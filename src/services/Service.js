@@ -1,5 +1,6 @@
 'use strict';
-const Host = 'http://localhost:3000';
+//const Host = 'http://localhost:3000';
+const Host = '';
 const Headers = { "Content-Type": "application/json; charset=utf-8;" };
 const Request = {
     getList     : '/getList',

@@ -10,7 +10,7 @@ export default class Navbar {
               src="./images/brain.svg" 
               alt="brain-idea"
               class="favicon"/>
-              eugenemdev(under construction)</a>              
+              eugenem.dev</a>              
             </div>            
             <div class="links">                            
               <a href="#/articles">Articles</a>
