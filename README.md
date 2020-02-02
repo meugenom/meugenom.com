@@ -2,6 +2,7 @@
 
 ##in progress
 
+https://eugenem.dev
 This is personal blog and website, what was written on pure Javascript.
 
 Tehnologies were used:
