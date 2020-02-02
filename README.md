@@ -6,10 +6,17 @@ This is personal blog and website, what was written on pure Javascript.
 
 Tehnologies were used:
 - Webpack (ES6) 
-- NodeJS as backend 
-- GraphQL
+- NodeJS in backend 
+- GraphQL (frontend and backend, REST removed)
 
-P.S. The backend has the transitional structure and works yet with frontend was written on REST. Soon it's planned to rewrite frontend to the same technology. 
+
+### How to start in the terminal:
+- git clone https://github.com/eugenemdev/eugenem.dev.git
+- cd eugene.dev
+- npm install -s
+- cd src
+- node server.js 
+
 
 
 
