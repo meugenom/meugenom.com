@@ -14,7 +14,7 @@ Tehnologies were used:
 ### How to start in the terminal:
 - git clone https://github.com/eugenemdev/eugenem.dev.git
 - cd eugene.dev
-- npm install -s
+- npm install --save
 - cd src
 - node server.js 
 
