@@ -22,11 +22,11 @@ const schema = buildSchema(`
         test:  String,
         lastArticlesList: [Article],
         articlesList: [Article],        
-        article(title: String): Article
+        article(slug: String): Article
   }
 `);
 
-var root = { 
+const root = { 
     version: () => 'version 0.0.1' ,
     test: () => 'All tests were checked!',
     lastArticlesList: ()=>{                    
@@ -42,8 +42,8 @@ var root = {
     articlesList: ()=>{
         return Promise.resolve(getArticlesList());
     },
-    article: ({title}) => {                 
-        return getArticle(title);
+    article: ({slug}) => {                      
+        return getArticle(slug);
       }, 
 
 };
@@ -65,46 +65,6 @@ app.use(function(req, res, next) {
     rootValue: root,
     graphiql: true,
   }));
-
-/**
- * @todo all REST to delete 
- */
-
-
-app.get('/getList', (req, res) => {    
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send(getArticlesList());
-    
-});
-
-
-app.get('/getLastList', (req, res) => {    
-    res.header("Access-Control-Allow-Origin", "*");
-    
-    let lastList = [];
-
-    getArticlesList().forEach((post, key) => {
-        if(key < 5){
-            lastList.push(post);
-        }
-    }) 
-
-    res.send(lastList);
-    
-});
-
-
-// time code stub for REST Frontend 
-app.get('/post/:id', async function (req, res){
-    
-    // Retrieve the tag from our URL path
-    let id = req.params.id;
-    let fileName = id + '.md';
-    
-    res.send( (getArticlesList().find(p => p.fileName === fileName)).body);        
-    
-});
-
 
 updateArticlesList();
 app.listen(81, () => console.log('listening on port 81!'));
