@@ -14,7 +14,6 @@ import ProjectsList from './components/ProjectsList.js';
 // Import PrismJS package
 import Prism from 'prismjs';
 
-
 /**
  * @constant 
  */
