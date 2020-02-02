@@ -6,8 +6,10 @@ import PostService from '../services/Service.js';
 let Home = {
 
     render : async () => {                        
-                      
-        let posts = await PostService.getLastList();            
+                              
+        let posts =  await PostService.graphql( 'json',"{ lastArticlesList { slug title}}");  
+        let articles = await posts.lastArticlesList;                         
+
         let view = /*html*/`
             <main id="main-content">
                 <div class="container">
@@ -24,8 +26,8 @@ let Home = {
                                 Latest Articles
                             </h2>                                                
                             <ul>
-                                ${posts.map(post => 
-                                    `<li><a href="#/post/${post.slug}">${post.title}</a></li>`
+                                ${articles.map(article => 
+                                    `<li><a href="#/post/${article.slug}">${article.title}</a></li>`
                                     ).join('\n ')
                                 }
                             </ul>

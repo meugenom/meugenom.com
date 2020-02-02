@@ -20,8 +20,7 @@ const Utils = {
         request.id          = r[1]
         request.verb        = r[2]                            
 
-        //window.history.replaceState('', document.title, url);
-
+        //window.history.replaceState('', document.title, url);        
         return request
         
     }

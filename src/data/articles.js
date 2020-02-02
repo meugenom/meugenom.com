@@ -84,8 +84,8 @@ const addArticle = () => {
     console.log('Add new article to store')
 } 
 
-const getArticle = (title) => {    
-        return articlesList.find(p => p.title === title);
+const getArticle = (slug) => {    
+        return articlesList.find(p => p.slug === slug);
 }
 
 const getArticlesList = () => {    
