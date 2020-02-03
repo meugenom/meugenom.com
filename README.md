@@ -14,9 +14,12 @@ Tehnologies were used:
 ### How to start in the terminal:
 - git clone https://github.com/eugenemdev/eugenem.dev.git
 - cd eugene.dev
-- npm install --save
-- cd src
+- npm install --save-dev
 - node server.js 
+
+### How to see started web page
+open web browser by link http://localhost:8081 after starting of web server by terminal
+
 
 
 
