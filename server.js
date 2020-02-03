@@ -1,8 +1,6 @@
 const { getArticlesList, getArticle,  addArticle, updateArticlesList} = require("./data/articles");
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
-
-
 const { buildSchema } = require('graphql');
 const schema = buildSchema(`
     type Article {
@@ -48,9 +46,10 @@ const root = {
 
 };
 
-
+const terminate = require('./data/terminate');
 const app = express();
 app.use(express.static('./dist/'));
+
 
 /*
 app.use(function(req, res, next) {
@@ -60,11 +59,20 @@ app.use(function(req, res, next) {
   });
 */
 
-  app.use('/graphql', graphqlHTTP({
-    schema: schema,
-    rootValue: root,
-    graphiql: true,
-  }));
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true,
+}));
 
 updateArticlesList();
-app.listen(8081, () => console.log('listening on port 8081!'));
+const server = app.listen(8081, () => console.log('listening on port 8081!'));
+const exitHandler = terminate(server, {
+  coredump: false,
+  timeout: 500
+});
+
+process.on('uncaughtException', exitHandler(1, 'Unexpected Error'));
+process.on('unhandledRejection', exitHandler(1, 'Unhandled Promise'));
+process.on('SIGTERM', exitHandler(0, 'SIGTERM'));
+process.on('SIGINT', exitHandler(0, 'SIGINT'));
