@@ -50,7 +50,7 @@ const root = {
 
 
 const app = express();
-app.use(express.static('./../dist/'));
+app.use(express.static('./dist/'));
 
 /*
 app.use(function(req, res, next) {
@@ -67,4 +67,4 @@ app.use(function(req, res, next) {
   }));
 
 updateArticlesList();
-app.listen(81, () => console.log('listening on port 81!'));
+app.listen(8081, () => console.log('listening on port 8081!'));

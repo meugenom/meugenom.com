@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const dir = './../../content/posts';
-const dirFromRoot = './../content/posts';
+const dir = './../content/posts';
+const dirFromRoot = './content/posts';
 
 let directoryPath = path.join(__dirname, dir);
 let deltaTime =0;
