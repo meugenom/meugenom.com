@@ -11,9 +11,10 @@ import Utils        from './services/Utils.js';
 import ArticlesList from './components/ArticlesList.js';
 import ProjectsList from './components/ProjectsList.js';
 
+
+
 // Import PrismJS package
 import Prism from 'prismjs';
-
 
 /**
  * @constant 
@@ -55,12 +56,13 @@ const router =  async (type) => {
 	let page = routes[parsedURL] ? routes[parsedURL] : Error404;  
 
 
+	
 	content.innerHTML =  await page.render();
 	await page.after_render();
 
 	// Highlight all matching syntax
-	await Prism.highlightAll();    
-
+	await Prism.highlightAll();
+	
 }
 
 

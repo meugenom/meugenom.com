@@ -7,7 +7,7 @@ let ProjectsList = {
 
     render : async () => {                        
                       
-        let posts = await PostService.getList();
+        //let posts = await PostService.getList();
             
             let view = /*html*/`
             <main id="main-content">

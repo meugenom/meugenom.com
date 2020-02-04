@@ -20,9 +20,14 @@ let Post = {
     after_render : async ()=> {
 
         let request = await Utils.parseRequestURL();
-        console.log('-----prepare to post call-----')
-        console.log('request.id = '+ request.id)                              
-        let post = await PostService.getPost(request.id);                                    
+        
+        //GraphQL query options
+        let query =  "query Query($slug: String!) {\n  article(slug: $slug) {\n    body\n  }\n}\n";                    
+        let variables =  { "slug": request.id};
+        
+        let post = await PostService.graphql('json', query, variables);                
+        post = await post.article.body;
+
         await (new View()).render(post);        
         await Post.setLanguage();       
 

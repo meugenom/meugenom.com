@@ -1,13 +1,16 @@
 'use strict';
-//const Host = 'http://localhost:3000';
+//const Host = 'http://localhost:8081';
 const Host = '';
-const Headers = { "Content-Type": "application/json; charset=utf-8;" };
+
+const defaultHeaders = { "Content-Type": "application/json; charset=utf-8;" };
+let Headers = {};
+
 const Request = {
-    getList     : '/getList',
-    getLastList : '/getLastList',
-    updateList  : '/updateList',
-    getPost     : '/post/'
+    //GraphQL
+    getVersion : '{version}'
 }
+
+
 const dataType = {
     json: 'json',
     text: 'text'
@@ -15,7 +18,7 @@ const dataType = {
 
 
 let PostService = {
-
+    
     http : async (link, dataType)=> {
 
         try {
@@ -23,32 +26,36 @@ let PostService = {
             let data = (dataType == 'json' ? await response.json() : await response.text());                
             return data;                 
           } catch (err) {                    
-                location.hash = '#/Error500';
+                location.hash = '#/Error404';
                 throw new Error(err.message);                            
           }
     },
 
-    getList :  () => {        
-        let link = Host + Request.getList;        
-        return PostService.http(link, dataType.json);                
-    },
-
-    getLastList : () => {                
-        let link = Host + Request.getLastList;        
-        return PostService.http(link, dataType.json);
-    },
-    
-    updateList : () => {
-        let link = Host + Request.updateList;         
-        return PostService.http(link, dataType.json);
-    },
-
-    getPost : async (param) => {        
-        let link = Host + Request.getPost  + param        
-        return PostService.http(link, dataType.text)
+    graphql : async (dataType, query, variables)=> {
+        try {            
+        let response = await fetch(
+            '/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },           
+            body: JSON.stringify({
+                query,
+                variables: variables,
+              })            
+            });
+        let data = (dataType == 'json' ? await response.json() : await response.text());                                                 
+        //console.log(data.data);
+         return data.data;                 
+        
+        } catch (err) {
+            location.hash = '#/Error404';  
+            throw new Error(err.message);  
+                                    
+        }
     }
-
+    
 }
 
-export default PostService;
-
+export default PostService; 
