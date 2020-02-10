@@ -6,9 +6,13 @@ let posts = {};
 
 let ArticlesList = {    
     
-    render : async () => {             
+    render : async () => {            
+            
+            const host = '/graphql';
+            const token = '';
+            const query = "{ articlesList { slug title}}";
                         
-            posts =  await PostService.graphql( 'json',"{ articlesList { slug title}}");  
+            posts =  await PostService.graphql( 'json', host, token, query);  
             let articles = await posts.articlesList;                 
             
             let view = `

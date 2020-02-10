@@ -22,10 +22,12 @@ let Post = {
         let request = await Utils.parseRequestURL();
         
         //GraphQL query options
-        let query =  "query Query($slug: String!) {\n  article(slug: $slug) {\n    body\n  }\n}\n";                    
-        let variables =  { "slug": request.id};
+        const host = '/graphql';
+        const token = ''; 
+        const query =  "query Query($slug: String!) {\n  article(slug: $slug) {\n    body\n  }\n}\n";                    
+        const variables =  { "slug": request.id};
         
-        let post = await PostService.graphql('json', query, variables);                
+        let post = await PostService.graphql('json', host, token, query, variables);                
         post = await post.article.body;
 
         await (new View()).render(post);        

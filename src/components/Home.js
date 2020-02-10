@@ -1,14 +1,17 @@
 'use strict';
 
 import PostService from '../services/Service.js';
+import ProjectsList from './ProjectsList';
 
 
 let Home = {
 
     render : async () => {                        
-                              
-        let posts =  await PostService.graphql( 'json',"{ lastArticlesList { slug title}}");  
-        let articles = await posts.lastArticlesList;                         
+        const host = '/graphql';
+        const token = '';                              
+        const query = "{ lastArticlesList { slug title}}";
+        let posts =  await PostService.graphql( 'json', host, token, query);  
+        let articles = await posts.lastArticlesList;                                 
 
         let view = /*html*/`
             <main id="main-content">
@@ -30,18 +33,12 @@ let Home = {
                                     `<li><a href="#/post/${article.slug}">${article.title}</a></li>`
                                     ).join('\n ')
                                 }
-                            </ul>
-                            <h2>Open Source Projects</h2>
-                                <section class="projects">
-                                    <div class="each">
-                                        <h2>
-                                            ...under construction
-                                        </h2>                                        
-                                    </div>
-                                </section>
-                    </article>
+                            </ul>                            
+                    </article>                    
                 </div>      
-            </main>                
+                <div id="currentProjects"></div>
+            </main>
+                            
         `    
                 
         //console.log('Created View - '+ Date.now());
@@ -51,7 +48,9 @@ let Home = {
     },
 
     after_render : async ()=> {
-        
+
+        const content = document.getElementById('currentProjects');
+        content.innerHTML =  await ProjectsList.render();        
     }
 
 }

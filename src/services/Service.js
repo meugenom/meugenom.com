@@ -1,14 +1,5 @@
 'use strict';
-//const Host = 'http://localhost:8081';
-const Host = '';
-
-const defaultHeaders = { "Content-Type": "application/json; charset=utf-8;" };
-let Headers = {};
-
-const Request = {
-    //GraphQL
-    getVersion : '{version}'
-}
+import Config from'../config/Configs';
 
 
 const dataType = {
@@ -19,24 +10,14 @@ const dataType = {
 
 let PostService = {
     
-    http : async (link, dataType)=> {
-
-        try {
-            let response = await fetch(link, { headers: Headers});        
-            let data = (dataType == 'json' ? await response.json() : await response.text());                
-            return data;                 
-          } catch (err) {                    
-                location.hash = '#/Error404';
-                throw new Error(err.message);                            
-          }
-    },
-
-    graphql : async (dataType, query, variables)=> {
+    graphql : async (dataType, host, token, query, variables)=> {
         try {            
+        let token = Config.token;    
         let response = await fetch(
-            '/graphql', {
+            host, {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
               },           
