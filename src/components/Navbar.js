@@ -15,8 +15,7 @@ export default class Navbar {
             <div class="links">                            
               <a href="#/articles">Articles</a>
               <a href="#/projects">Projects</a>
-              <a href="#/about">About</a>
-              <a aria-current="page" class="active" href="#/contact">Contact</a>                                          
+              <a href="#/about">About</a>                                                      
             </div>
           </div>
         </nav>`;
