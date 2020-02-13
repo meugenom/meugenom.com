@@ -1,16 +1,14 @@
 'use strict';
-
 import PostService from '../services/Service.js';
+import Query from '../services/Query.js'
 
 let posts = {};
 
-let ArticlesList = {    
-    
-    render : async () => {            
-            
-            const host = '/graphql';
+let ArticlesList = {        
+    render : async () => {                        
+            const host = Query.articlesList.host;
             const token = '';
-            const query = "{ articlesList { slug title}}";
+            const query = Query.articlesList.query;
                         
             posts =  await PostService.graphql( 'json', host, token, query);  
             let articles = await posts.articlesList;                 
@@ -32,14 +30,10 @@ let ArticlesList = {
                 </div>      
             </main>                
         `                        
-
         return view;        
-
     },
-
     after_render : ()=> {      
     }
-
 }
 
 export default ArticlesList;

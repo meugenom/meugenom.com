@@ -2,6 +2,7 @@
 
 import Utils        from '../services/Utils.js';
 import PostService from '../services/Service.js';
+import Query from '../services/Query.js';
 
 //import parser for markable text
 import {View} from '../parser/View.js';
@@ -22,9 +23,9 @@ let Post = {
         let request = await Utils.parseRequestURL();
         
         //GraphQL query options
-        const host = '/graphql';
+        const host = Query.post.host;
         const token = ''; 
-        const query =  "query Query($slug: String!) {\n  article(slug: $slug) {\n    body\n  }\n}\n";                    
+        const query =  Query.post.query;                    
         const variables =  { "slug": request.id};
         
         let post = await PostService.graphql('json', host, token, query, variables);                

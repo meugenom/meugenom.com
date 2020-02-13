@@ -2,14 +2,14 @@
 
 import PostService from '../services/Service.js';
 import ProjectsList from './ProjectsList';
-
+import Query from '../services/Query.js'
 
 let Home = {
 
     render : async () => {                        
-        const host = '/graphql';
+        const host = Query.lastArticlesList.host;
         const token = '';                              
-        const query = "{ lastArticlesList { slug title}}";
+        const query = Query.lastArticlesList.query;
         let posts =  await PostService.graphql( 'json', host, token, query);  
         let articles = await posts.lastArticlesList;                                 
 
@@ -39,20 +39,14 @@ let Home = {
                 <div id="currentProjects"></div>
             </main>
                             
-        `    
-                
-        //console.log('Created View - '+ Date.now());
-
+        `                
         return view;        
-
     },
 
     after_render : async ()=> {
-
         const content = document.getElementById('currentProjects');
         content.innerHTML =  await ProjectsList.render();        
     }
-
 }
 
 export default Home;

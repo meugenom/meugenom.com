@@ -2,12 +2,6 @@
 import Config from'../config/Configs';
 
 
-const dataType = {
-    json: 'json',
-    text: 'text'
-}
-
-
 let PostService = {
     
     graphql : async (dataType, host, token, query, variables)=> {
@@ -26,8 +20,7 @@ let PostService = {
                 variables: variables,
               })            
             });
-        let data = (dataType == 'json' ? await response.json() : await response.text());                                                 
-        //console.log(data.data);
+        let data = (dataType == 'json' ? await response.json() : await response.text());                                                         
          return data.data;                 
         
         } catch (err) {
