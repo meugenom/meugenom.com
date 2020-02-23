@@ -5,8 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "node server.js",
-    "start dev server": "webpack-dev-server --mode development --open",
-    "dev frontend": "webpack --mode development",
+    "start dev": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "lint": "eslint --ignore-path .gitignore .",
     "test": "echo \"Error: no test specified\" && exit 1"
