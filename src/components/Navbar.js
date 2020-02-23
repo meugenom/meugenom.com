@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
 export default class Navbar {
-    static render(){      
-      return /*html*/`
+  static render () {
+    return /* html */ `
         <nav class="nav">
           <div class="nav-container">
             <div class="brand">
@@ -18,6 +18,6 @@ export default class Navbar {
               <a href="#/about">About</a>                                                      
             </div>
           </div>
-        </nav>`;
-    }
+        </nav>`
+  }
 }

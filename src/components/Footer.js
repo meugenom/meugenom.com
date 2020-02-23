@@ -1,11 +1,7 @@
-class Bottombar{
-
-    static render(){
-        let template =  /*html*/`
-        <footer class="footer container">
-        <a href="https://ko-fi.com/meugenom" target="_blank" rel="noopener noreferrer">
-          Ko-Fi
-        </a>        
+class Bottombar {
+  static render () {
+    const template = /* html */`
+        <footer class="footer container">        
         <a href="https://twitter.com/meugenom" target="_blank" rel="noopener noreferrer">
           Twitter
         </a>
@@ -17,9 +13,8 @@ class Bottombar{
         </a>
       </footer>
         `
-        return template;
-    }
-
+    return template
+  }
 }
 
-export default Bottombar;
+export default Bottombar

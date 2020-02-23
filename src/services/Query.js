@@ -1,15 +1,15 @@
 const Query = {
-    lastArticlesList : {
-        host: '/graphql',
-        query : "{ lastArticlesList { slug title}}"
-    },  
-    articlesList : {
-        host: '/graphql',
-        query : "{ articlesList { slug title}}"
-    },  
-    projectsListQuery : {        
-        host: 'https://api.github.com/graphql',
-        query: `{
+  lastArticlesList: {
+    host: '/graphql',
+    query: '{ lastArticlesList { slug title}}'
+  },
+  articlesList: {
+    host: '/graphql',
+    query: '{ articlesList { slug title}}'
+  },
+  projectsListQuery: {
+    host: 'https://api.github.com/graphql',
+    query: `{
             user(login: "eugenemdev") {
             email
             location
@@ -43,13 +43,13 @@ const Query = {
             }
             }
         }
-        `        
-    },                        
-    post: {
-        host: '/graphql',
-        query: "query Query($slug: String!) {\n  article(slug: $slug) {\n    body\n  }\n}\n",        
-    }    
+        `
+  },
+  post: {
+    host: '/graphql',
+    query: 'query Query($slug: String!) {\n  article(slug: $slug) {\n    body\n  }\n}\n'
+  }
 
 }
 
-export default Query;
+export default Query

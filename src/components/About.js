@@ -1,9 +1,8 @@
-'use strict';
+'use strict'
 
 class About {
-
-    static render(){
-        return /*html*/`
+  static render () {
+    return /* html */`
         <main id="main-content">
             <div class="container">
                 <article>
@@ -18,11 +17,11 @@ class About {
                 </article>
             </div>    
         </main>                                    
-        `        
-    }
+        `
+  }
 
-    static after_render(){
-    }
+  static afterRender () {
+  }
 }
 
-export default About;
+export default About

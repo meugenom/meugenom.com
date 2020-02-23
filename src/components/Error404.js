@@ -1,9 +1,6 @@
-
 class Error404 {
-
-    static render(){
-
-        return /*html*/`
+  static render () {
+    return /* html */ `
         <main id="main-content">
             <div class="container">
                 <article>                    
@@ -11,14 +8,13 @@ class Error404 {
                         alt="404-error"/>
                 </article>
             </div>
-        </main>`;
-    }
+        </main>`
+  }
 
-    static after_render(){
-        
-    }
+  // eslint-disable-next-line camelcase
+  static afterRender () {
+
+  }
 }
 
-export default Error404;
-
-
+export default Error404
