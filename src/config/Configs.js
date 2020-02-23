@@ -1,6 +1,6 @@
 const Config = {
   dir: './../content/posts/',
-  token: '3bb9bff6d5b5308d795b302c24021bf4c09d6e49',
+  token: '',
   month: {
     0: 'Jan',
     1: 'Feb',
