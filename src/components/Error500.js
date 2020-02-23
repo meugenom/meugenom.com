@@ -1,9 +1,7 @@
 
 class Error500 {
-
-    static render(){
-
-        return /*html*/`
+  static render () {
+    return /* html */`
         <main id="main-content">
             <div class="container">
                 <article>                    
@@ -13,13 +11,11 @@ class Error500 {
             </div>
         </main>                
     `
-    }
+  }
 
-    static after_render(){
-        
-    }
+  static afterRender () {
+
+  }
 }
 
-export default Error500;
-
-
+export default Error500

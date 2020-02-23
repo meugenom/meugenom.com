@@ -1,19 +1,19 @@
-'use strict';
-import PostService from '../services/Service.js';
+'use strict'
+import PostService from '../services/Service.js'
 import Query from '../services/Query.js'
 
-let posts = {};
+let posts = {}
 
-let ArticlesList = {        
-    render : async () => {                        
-            const host = Query.articlesList.host;
-            const token = '';
-            const query = Query.articlesList.query;
-                        
-            posts =  await PostService.graphql( 'json', host, token, query);  
-            let articles = await posts.articlesList;                 
-            
-            let view = `
+const ArticlesList = {
+  render: async () => {
+    const host = Query.articlesList.host
+    const token = ''
+    const query = Query.articlesList.query
+
+    posts = await PostService.graphql('json', host, token, query)
+    const articles = await posts.articlesList
+
+    const view = `
             <main id="main-content">
                 <div class="container">
                     <article>                
@@ -21,19 +21,18 @@ let ArticlesList = {
                             List of Articles
                         </h2>
                         <ul>                        
-                        ${articles.map(article => 
-                            `<li><a href="#/post/${article.slug}">${article.title}</a></li>`                                
+                        ${articles.map(article =>
+                            `<li><a href="#/post/${article.slug}">${article.title}</a></li>`
                             ).join('\n ')
                         }
                         </ul>                        
                     </article>
                 </div>      
             </main>                
-        `                        
-        return view;        
-    },
-    after_render : ()=> {      
-    }
+        `
+    return view
+  },
+  afterRender: () => {}
 }
 
-export default ArticlesList;
+export default ArticlesList

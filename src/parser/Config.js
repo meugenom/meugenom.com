@@ -1,40 +1,41 @@
-const CONFIG = {    
-	rules : {
-		'*'   : 'h1',
-		'**'  : 'h2',
-		'***' : 'h3',
-		'****' : 'h4'                
-	},
+const Config =
+{
+  rules: {
+	  '*': 'h1',
+	  '**': 'h2',
+	  '***': 'h3',
+	  '****': 'h4'
+	  },
 	separator: {
-		newLine : '\n',
-		newSpace : ' '
-	},
-        
-	ImagesPattern : /^!\[(.*?)\]/,
-	BracketsPattern : /\[(.*?)\]/,
-	BracesPattern  : /\((.*?)\)/,
-	UnderDashPattern : /^\_(.*?)\_/,
-	StrongPattern : /^\*\*(.*?)\*\*/,
-	CodePattern : /^\`(.*?)\`$/,
-	SearchLinkPattern : /<a href="">(.*?)/,        
-	UnMarkablePattern : /\\\*\w+\\\*/,
+		newLine: '\n',
+		newSpace: ' '
+	  },
 
-	StartCodePattern :  /^\`(.*?)/,
-	EndCodePattern :  /(.*?)\`$/,
-	StartStrongPattern : /^\*\*(.*?)/,
-	EndStrongPattern : /(.*?)\*\*/,
-	StartBracketsPattern : /\[(.*?)/,
-	EndBracketsPattern : /(.*?)\]/,    
-	StartUnMarkablePattern : /\\\*\w+/,
-	EndUnMarkablePattern : /\w+\\\*/,
+  ImagesPattern: /^!\[(.*?)\]/,
+  BracketsPattern: /\[(.*?)\]/,
+  BracesPattern: /\((.*?)\)/,
+  UnderDashPattern: /^\_(.*?)\_/,
+  StrongPattern: /^\*\*(.*?)\*\*/,
+  CodePattern: /^\`(.*?)\`$/,
+  SearchLinkPattern: /<a href="">(.*?)/,
+  UnMarkablePattern: /\\\*\w+\\\*/,
 
-	english : '@en',
-	german : '@de',
-	russian : '@ru',
-	multi : '@all',
+  StartCodePattern: /^\`(.*?)/,
+  EndCodePattern: /(.*?)\`$/,
+  StartStrongPattern: /^\*\*(.*?)/,
+  EndStrongPattern: /(.*?)\*\*/,
+  StartBracketsPattern: /\[(.*?)/,
+  EndBracketsPattern: /(.*?)\]/,
+  StartUnMarkablePattern: /\\\*\w+/,
+  EndUnMarkablePattern: /\w+\\\*/,
 
-	version: '0.0.1rc'
-        
-};
+  english: '@en',
+  german: '@de',
+  russian: '@ru',
+  multi: '@all',
 
-export default CONFIG;
+  version: '0.0.1rc'
+
+}
+
+export default Config

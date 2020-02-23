@@ -1,19 +1,17 @@
-'use strict';
-
-import PostService from '../services/Service.js';
-import ProjectsList from './ProjectsList';
+'use strict'
+import PostService from '../services/Service.js'
+import ProjectsList from './ProjectsList'
 import Query from '../services/Query.js'
 
-let Home = {
+const Home = {
+  render: async () => {
+    const host = Query.lastArticlesList.host
+    const token = ''
+    const query = Query.lastArticlesList.query
+    const posts = await PostService.graphql('json', host, token, query)
+    const articles = await posts.lastArticlesList
 
-    render : async () => {                        
-        const host = Query.lastArticlesList.host;
-        const token = '';                              
-        const query = Query.lastArticlesList.query;
-        let posts =  await PostService.graphql( 'json', host, token, query);  
-        let articles = await posts.lastArticlesList;                                 
-
-        let view = /*html*/`
+    const view = /* html */`
             <main id="main-content">
                 <div class="container">
                     <article>
@@ -37,16 +35,14 @@ let Home = {
                     </article>                    
                 </div>      
                 <div id="currentProjects"></div>
-            </main>
-                            
-        `                
-        return view;        
-    },
+            </main>`
+    return view
+  },
 
-    after_render : async ()=> {
-        const content = document.getElementById('currentProjects');
-        content.innerHTML =  await ProjectsList.render();        
-    }
+  afterRender: async () => {
+    const content = document.getElementById('currentProjects')
+    content.innerHTML = await ProjectsList.render()
+  }
 }
 
-export default Home;
+export default Home

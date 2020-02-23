@@ -1,20 +1,19 @@
 
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const isDevelopment = process.env.NODE_ENV === 'development';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const isDevelopment = process.env.NODE_ENV === 'development'
 
-//copy files from /src to /dist
-const CopyWebpackPlugin= require('copy-webpack-plugin');
-
+// copy files from /src to /dist
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: [ 
-            'babel-polyfill', 
-            './src/index.js',
-            './src/scss/style.scss'            
-          ],
+  entry: [
+    'babel-polyfill',
+    './src/index.js',
+    './src/scss/style.scss'
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -25,18 +24,18 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
       },
       {
         test: /\.html$/,
-        use: [ {
+        use: [{
           loader: 'html-loader',
           options: {
             minimize: true
           }
-        }],
-      },      
+        }]
+      },
       {
         test: /\.module\.s(a|c)ss$/,
         loader: [
@@ -80,11 +79,11 @@ module.exports = {
             loader: 'image-webpack-loader',
             options: {
               bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
-            },
-          },
-        ],
-      }      
+              disable: true // webpack@2.x and newer
+            }
+          }
+        ]
+      }
     ]
   },
   resolve: {
@@ -96,8 +95,8 @@ module.exports = {
       template: './src/index.html',
       inject: true,
       minify: {
-          removeComments: true,
-          collapseWhitespace: false
+        removeComments: true,
+        collapseWhitespace: false
       }
     }),
     new MiniCssExtractPlugin({
@@ -126,4 +125,4 @@ module.exports = {
     }
     ])
   ]
-};
+}
