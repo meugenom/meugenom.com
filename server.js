@@ -6,6 +6,7 @@ const { buildSchema } = require('graphql')
 const terminate = require('./data/terminate')
 const mySchema = require('./data/graphqlschema')
 const schema = buildSchema(mySchema)
+const path = require('path')
 
 const root = {
   version: () => 'version 0.0.1',
@@ -29,7 +30,14 @@ const root = {
 
 }
 
+/**
+ * https://stackoverflow.com/questions/51227859/react-router-doesnt-work-on-express-server
+ */
 app.use(express.static('./dist/'))
+app.get('*', function (req, res) {
+  res.sendFile('index.html', { root: path.join(__dirname, './dist/') })
+})
+
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
