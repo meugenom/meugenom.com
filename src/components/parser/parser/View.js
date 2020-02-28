@@ -3,7 +3,7 @@ import Config from './Config.js'
 import { Line } from './Line.js'
 import Language from './Language.js'
 
-export class View extends Line {
+export default class View extends Line {
   constructor () {
     super()
     this.Config = Config
@@ -16,7 +16,6 @@ export class View extends Line {
     lines.forEach(line => {
       if (line.length !== 0) {
         let node = this.parse(line)
-
         if (node !== undefined) {
           node = Language.parseLang(node)
           article.appendChild(node)
