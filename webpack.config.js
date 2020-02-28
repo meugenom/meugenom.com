@@ -2,11 +2,11 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const isDevelopment = process.env.NODE_ENV === 'development'
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const isDevelopment = process.env.NODE_ENV === 'development'
 
 // copy files from /src to /dist
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: './src/index.tsx',
@@ -90,7 +90,7 @@ module.exports = {
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.ts', '.tsx']
+    extensions: ['.js', '.ts', '.tsx', '.css']
   },
   /*
   resolve: {
