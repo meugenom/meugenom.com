@@ -12,10 +12,9 @@ interface IArticle {
     title: string,
 }
 interface IState {
-    articlesList: Array<IArticle>;
+    articlesList: IArticle[];
 }
-interface IProps {
-}
+interface IProps {}
 
 
 export default class ArticlesList extends React.Component<IProps, IState> {
@@ -23,16 +22,22 @@ export default class ArticlesList extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = { articlesList: [] }
-        this.getArticles()
-    }
 
-    async getArticles() {
         const token = Config.token
         const host = Query.articlesList.host
-        const query = Query.articlesList.query
-        let variables = {}
+        let query = Query.articlesList.query
+        const variables = {}
         const dataType = 'json'
 
+        // when route is '/' and using 5 last articles
+        if (props === null){
+            query = Query.lastArticlesList.query
+        }
+
+        this.getArticles( dataType, token, host, query, variables);
+    }
+
+    async getArticles(dataType: string, token: string, host: string, query: string, variables: {}) {
         const response = await new Service().graphql(dataType, token, host, query, variables)
         await this.setState({ articlesList: response.articlesList })
     }
@@ -41,8 +46,8 @@ export default class ArticlesList extends React.Component<IProps, IState> {
         return this.state.articlesList.map((article: IArticle) => {
             return (
                     <li key={article.slug}>
-                        <Link to={`/post/${article.slug}`}>{article.title}</Link>                
-                    </li>                    
+                        <Link to={`/post/${article.slug}`}>{article.title}</Link>
+                    </li>
             )
         })
     }

@@ -3,10 +3,12 @@ import Service from '../Service/Service'
 import Query from '../Service/Query'
 
 // import parser for markable text
-import View from   '../parser/parser/View.js'
+import View from   '../../libs/parser/View'
 
+// import prismjs
+import * as Prism from 'prismjs';
 
-interface IState { 
+interface IState {
     article: {
         body: string
     }
@@ -23,26 +25,29 @@ interface IProps {
 export default class Article extends React.Component< IProps, IState> {
 
     constructor(props: IProps){
-        super(props);                     
+        super(props);
         const id = this.props.match.params.id
         this.state = {
             article: {
                 body: ''
             }
-        }           
+        }
+
         this.init(id)
+
     }
 
     async init(id: string){
         await this.getArticle(id)
-        let test = await this.parse(this.state.article.body)
+        await this.parse(this.state.article.body)
+        await Prism.highlightAll()
     }
 
-    parse(article: string){        
-        let html = (new View()).render(article)
+    parse(article: string){
+        const html = (new View()).render(article)
         return html
     }
-    
+
     async getArticle(id: string){
         const token = ''
         const host = Query.post.host
@@ -51,17 +56,16 @@ export default class Article extends React.Component< IProps, IState> {
         const dataType = 'json'
 
         const response = await new Service().graphql(dataType, token, host, query, variables)
-        await this.setState({article : response.article})         
-    }                                       
+        await this.setState({article : response.article})
 
+    }
 
     render(){
         return (
             <main id="main-content">
                 <div className="container">
-                    <article>                                        
-                    </article>
-                </div>      
+                <article/>
+                </div>
             </main>
         )
     }

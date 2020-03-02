@@ -14,15 +14,15 @@ export default class Service{
               },
               body: JSON.stringify({
                 query,
-                variables: variables
+                variables
               })
             })
-          const data = (dataType === 'json' ? await response.json() : await response.text())            
-            return data.data
-            
+          const data = (dataType === 'json' ? await response.json() : await response.text())
+          return data.data
+
         } catch (err) {
           // eslint-disable-next-line no-undef
-          //location.hash = '#/Error404'
+          // location.hash = '#/Error404'
           throw new Error(err.message)
         }
     }

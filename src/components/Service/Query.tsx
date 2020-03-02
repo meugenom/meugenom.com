@@ -16,16 +16,16 @@ const Query = {
               websiteUrl
               repositories
               (last: 10,
-                  orderBy: 
-                  {field: UPDATED_AT, 
+                  orderBy:
+                  {field: UPDATED_AT,
                       direction: DESC
-                  }) 
+                  })
               {
                   edges {
-                  node {                      
+                  node {
                       id
                       name
-                      description                    
+                      description
                       updatedAt
                       hasIssuesEnabled
                       homepageUrl
@@ -49,8 +49,7 @@ const Query = {
       host: '/graphql',
       query: 'query Query($slug: String!) {\n  article(slug: $slug) {\n    body\n  }\n}\n'
     }
-  
+
   }
-  
-  export default Query
-  
+
+export default Query
