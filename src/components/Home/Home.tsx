@@ -1,5 +1,5 @@
 import * as React from 'react'
-import ArticlesList from '../ArticlesList/ArticlesList'
+import LastArticlesList from '../LastArticlesList/LastArticlesList'
 import ProjectsList from '../ProjectsList/ProjectsList'
 
 
@@ -16,8 +16,16 @@ export default class Home extends React.Component<{}, IState> {
 
     public render(): JSX.Element{
         return (
-            <div>
-                <ArticlesList/>
+            <div id="main-content">
+                <h1> I'm Eugen </h1>
+                            <p>
+                                I'm a web developer writing about Javascript,
+                                Python, Java and all things which are interesting and maybe incredible.
+                            </p>
+                            <div className="social-buttons">
+                                Social Buttons ... (under construction)
+                            </div>
+                <LastArticlesList/>
                 <ProjectsList/>
             </div>
         )
@@ -26,8 +34,8 @@ export default class Home extends React.Component<{}, IState> {
 
 interface IState {
     currentTask: string;
-    tasks: Array<ITask>;    
-    
+    tasks: ITask[];
+
 }
 
 interface ITask {

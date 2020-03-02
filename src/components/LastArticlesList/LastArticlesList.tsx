@@ -23,11 +23,11 @@ export default class ArticlesList extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
 
-        this.state = { articlesList: [], classContent: 'main-content'}
+        this.state = { articlesList: [], classContent: 'section-content'}
 
         const token = Config.token
-        const host = Query.articlesList.host
-        const query = Query.articlesList.query
+        const host = Query.lastArticlesList.host
+        const query = Query.lastArticlesList.query
         const variables = {}
         const dataType = 'json'
 
