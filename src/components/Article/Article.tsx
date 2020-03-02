@@ -64,7 +64,7 @@ export default class Article extends React.Component< IProps, IState> {
         return (
             <main id="main-content">
                 <div className="container">
-                <article/>
+                    <article/>
                 </div>
             </main>
         )
