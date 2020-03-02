@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 // const isDevelopment = process.env.NODE_ENV === 'development'
 
 // copy files from /src to /dist
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: './src/index.tsx',
@@ -25,45 +25,8 @@ module.exports = {
         test: /\.js$/,
         loader: 'source-map-loader'
       },
-      /*
-      {
-        test: /\.module\.s(a|c)ss$/,
-        loader: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-              camelCase: true,
-              sourceMap: isDevelopment
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
-      },
       {
         test: /\.s(a|c)ss$/,
-        exclude: /\.module.(s(a|c)ss)$/,
-        loader: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
-      },
-      */
-      {
-        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           use: [
             {
@@ -92,16 +55,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.css']
   },
-  /*
-  resolve: {
-    extensions: ['.js', '.jsx', '.scss']
-  },
-  */
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    new ExtractTextPlugin('style.css')
+    new ExtractTextPlugin('./style.css'),
 
     /*
     new HtmlWebpackPlugin({
@@ -118,6 +76,7 @@ module.exports = {
       filename: isDevelopment ? '[name].css' : '[name].css',
       chunkFilename: isDevelopment ? '[id].css' : '[id].css'
     }),
+    */
     new CopyWebpackPlugin([{
       from: './src/fonts',
       to: './fonts'
@@ -139,6 +98,5 @@ module.exports = {
       to: './thumbnails'
     }
     ])
-    */
   ]
 }
