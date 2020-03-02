@@ -1,5 +1,6 @@
 import * as React from 'react'
 import LastArticlesList from '../LastArticlesList/LastArticlesList'
+import ArticlesList from '../ArticlesList/ArticlesList'
 import ProjectsList from '../ProjectsList/ProjectsList'
 
 
@@ -8,10 +9,7 @@ export default class Home extends React.Component<{}, IState> {
     constructor(props: {}){
         super(props);
 
-        this.state = {
-            currentTask: "",
-            tasks: [],
-        }
+        this.state = {}
     }
 
     public render(): JSX.Element{
@@ -32,15 +30,5 @@ export default class Home extends React.Component<{}, IState> {
     }
 }
 
-interface IState {
-    currentTask: string;
-    tasks: ITask[];
-
-}
-
-interface ITask {
-    id: number;
-    value: string;
-    completed: boolean
-}
-
+// tslint:disable-next-line: no-empty-interface
+interface IState {}

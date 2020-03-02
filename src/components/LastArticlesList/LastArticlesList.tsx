@@ -12,18 +12,17 @@ interface IArticle {
     title: string,
 }
 interface IState {
-    articlesList: IArticle[];
-    classContent: string
+    lastArticlesList: IArticle[]
 }
-interface IProps {}
 
 
-export default class ArticlesList extends React.Component<IProps, IState> {
 
-    constructor(props: IProps) {
+export default class LastArticlesList extends React.Component<{}, IState> {
+
+    constructor(props: {}) {
         super(props);
 
-        this.state = { articlesList: [], classContent: 'section-content'}
+        this.state = { lastArticlesList: []}
 
         const token = Config.token
         const host = Query.lastArticlesList.host
@@ -36,11 +35,11 @@ export default class ArticlesList extends React.Component<IProps, IState> {
 
     async getArticles(dataType: string, token: string, host: string, query: string, variables: {}) {
         const response = await new Service().graphql(dataType, token, host, query, variables)
-        await this.setState({ articlesList: response.articlesList })
+        await this.setState({ lastArticlesList: response.lastArticlesList })
     }
 
     renderArticlesList() {
-        return this.state.articlesList.map((article: IArticle) => {
+        return this.state.lastArticlesList.map((article: IArticle) => {
             return (
                     <li key={article.slug}>
                         <Link to={`/post/${article.slug}`}>{article.title}</Link>
@@ -51,10 +50,10 @@ export default class ArticlesList extends React.Component<IProps, IState> {
 
     render() {
         return (
-            <main id={this.state.classContent}>
+            <main id="section-content">
                 <div className="container">
                     <article>
-                        <h2>List of Articles</h2>
+                        <h2>List of Last Articles</h2>
                         <ul>
                             {this.renderArticlesList()}
                         </ul>
