@@ -1,19 +1,15 @@
 
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const isDevelopment = process.env.NODE_ENV === 'development'
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const isDevelopment = process.env.NODE_ENV === 'development'
 
 // copy files from /src to /dist
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: [
-    'babel-polyfill',
-    './src/index.js',
-    './src/scss/style.scss'
-  ],
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -21,55 +17,24 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader'
+      },
+      {
+        enforce: 'pre',
         test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
-      },
-      {
-        test: /\.html$/,
-        use: [{
-          loader: 'html-loader',
-          options: {
-            minimize: true
-          }
-        }]
-      },
-      {
-        test: /\.module\.s(a|c)ss$/,
-        loader: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-              camelCase: true,
-              sourceMap: isDevelopment
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
+        loader: 'source-map-loader'
       },
       {
         test: /\.s(a|c)ss$/,
-        exclude: /\.module.(s(a|c)ss)$/,
-        loader: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            'sass-loader'
+          ]
+        })
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
@@ -86,10 +51,17 @@ module.exports = {
       }
     ]
   },
+  devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx', '.scss']
+    extensions: ['.js', '.ts', '.tsx', '.css']
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    }),
+    new ExtractTextPlugin('/style.css'),
+
+    /*
     new HtmlWebpackPlugin({
       title: 'Webpack 4 Starter',
       template: './src/index.html',
@@ -99,10 +71,12 @@ module.exports = {
         collapseWhitespace: false
       }
     }),
+    new ExtractTextPlugin('style.css'),
     new MiniCssExtractPlugin({
       filename: isDevelopment ? '[name].css' : '[name].css',
       chunkFilename: isDevelopment ? '[id].css' : '[id].css'
     }),
+    */
     new CopyWebpackPlugin([{
       from: './src/fonts',
       to: './fonts'
