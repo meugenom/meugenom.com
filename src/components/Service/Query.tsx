@@ -15,7 +15,7 @@ const Query = {
               location
               websiteUrl
               repositories
-              (last: 10,
+              (last: 15,
                   orderBy:
                   {field: UPDATED_AT,
                       direction: DESC
@@ -30,6 +30,7 @@ const Query = {
                       hasIssuesEnabled
                       homepageUrl
                       resourcePath
+                      openGraphImageUrl
                       issues(last: 10) {
                       nodes {
                           id
