@@ -2,11 +2,16 @@ import * as React from 'react'
 import Config from './../../Config'
 import Query from './../Service/Query'
 import Service from '../Service/Service'
+// import ProjectsListFilter from './ProjectsListFilter'
 import './ProjectsList.scss'
+
+interface IProps {
+
+}
 
 interface IState {
     projectsList: IProject[],
-    count: number
+    projectsFilter: IProject[]
 }
 
 interface IIssue {
@@ -14,6 +19,14 @@ interface IIssue {
     number: number,
     lastEditedAt: Date,
     bodyText: string
+}
+
+interface IRepositoryTopic {
+    node: {
+        topic: {
+            name: string
+        }
+    }
 }
 
 interface IProject {
@@ -26,17 +39,20 @@ interface IProject {
         homepageUrl: string,
         resourcePath: string,
         openGraphImageUrl: string,
+        repositoryTopics: {
+            edges: IRepositoryTopic[]
+        }
         issues: {
             nodes: IIssue[]
         }
     }
 }
 
-export default class ProjectsList extends React.Component<{}, IState> {
+export default class ProjectsList extends React.Component<IProps, IState> {
 
-    constructor(props: {}) {
+    constructor(props: IProps) {
         super(props);
-        this.state = { projectsList: [], count: 0}
+        this.state = { projectsList: [], projectsFilter: []}
         this.getProjects()
     }
 
@@ -48,11 +64,9 @@ export default class ProjectsList extends React.Component<{}, IState> {
         const dataType = 'json'
         const response = await new Service().graphql(dataType, token, host, query, variables)
         const projects = await response.user.repositories.edges
-        const projectsWithoutDescription = await projects.filter((project: IProject) => String(project.node.description) != 'null')
-        this.setState({ projectsList: projectsWithoutDescription})
+        const projectsWithDescription = await projects.filter((project: IProject) => String(project.node.description) !== 'null')
+        this.setState({ projectsList: projectsWithDescription})
     }
-
-    // String(project.node.description) != 'null'
 
     renderProjectsList() {
         return this.state.projectsList.map((project: IProject, id: number) => {
@@ -71,10 +85,10 @@ export default class ProjectsList extends React.Component<{}, IState> {
                                 {new Date(project.node.updatedAt).getMonth()}/
                                 {new Date(project.node.updatedAt).getFullYear()})
                             </p>
-                            <button className="btn btn-block card-btn"><a href={"https://github.com" + project.node.resourcePath}>to source</a></button>
+                            <button className="btn"><a href={"https://github.com" + project.node.resourcePath}>to source</a></button>
                                 {project.node.homepageUrl === '' || project.node.homepageUrl == null
                                     ? ''
-                                    : <button className="btn btn-block card-btn"><a href={project.node.homepageUrl}>to website</a></button>
+                                    : <button className="btn"><a href={project.node.homepageUrl}>to website</a></button>
                                 }
                         </div>
                     </div>
@@ -82,6 +96,8 @@ export default class ProjectsList extends React.Component<{}, IState> {
             )
         })
     }
+
+    // <ProjectsListFilter searchName="javascript" projectsList={this.state.projectsList}/>
 
     render() {
         return (
