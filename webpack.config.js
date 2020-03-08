@@ -27,6 +27,11 @@ module.exports = {
       },
       {
         test: /\.s(a|c)ss$/,
+        // include: /styles/,
+        include: [/(.*?)\/(.*?)\/(.*?).scss/],
+        // [ path.resolve(__dirname, 'styles') //,
+        // path.resolve(__dirname, '/components/*/')
+        // ],
         use: ExtractTextPlugin.extract({
           use: [
             {
@@ -59,7 +64,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    new ExtractTextPlugin('/style.css'),
+    new ExtractTextPlugin('./style.css'),
 
     /*
     new HtmlWebpackPlugin({
