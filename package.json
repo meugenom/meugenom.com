@@ -1,6 +1,6 @@
 {
-  "name": "eugenem.dev",
-  "version": "1.1.0",
+  "name": "eugenem.dev-react-typescript-webpack",
+  "version": "1.1.1",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
