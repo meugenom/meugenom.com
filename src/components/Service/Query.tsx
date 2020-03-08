@@ -31,16 +31,7 @@ const Query = {
                       homepageUrl
                       resourcePath
                       openGraphImageUrl
-                      repositoryTopics(first: 5) {
-                        edges {
-                          node {
-                            topic {
-                              name
-                            }
-                          }
-                        }
-                      }
-                      issues(last: 5) {
+                      issues(last: 10) {
                       nodes {
                           id
                           number

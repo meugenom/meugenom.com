@@ -11,7 +11,7 @@ img {
   vertical-align: middle;
 }
 
-.card .btn {
+.btn {
   background-color: white;
   border: 1px solid #cccccc;
   //border-radius: 1rem;
@@ -85,6 +85,10 @@ img {
       padding-top: 66.6%; // 3:2 aspect ratio
     }
   }
+}
+
+.card-image-fence {
+  background-image: url(https://unsplash.it/400/300?image=59);
 }
 
 .card-title {
