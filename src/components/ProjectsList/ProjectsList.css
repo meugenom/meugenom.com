@@ -15,7 +15,10 @@ img {
   padding: 0.5rem;
   text-transform: lowercase;
 }
-.btn-block {
+.card .btn:hover {
+  background-color: lightgray;
+}
+.card .btn-block {
   display: block;
   width: 100%;
 }

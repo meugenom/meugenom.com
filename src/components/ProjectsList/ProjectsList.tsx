@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import Config from './../../Config'
 import Query from './../Service/Query'
 import Service from '../Service/Service'
@@ -68,6 +69,12 @@ export default class ProjectsList extends React.Component<IProps, IState> {
         this.setState({ projectsList: projectsWithDescription})
     }
 
+    openWebPage(event: React.MouseEvent, link: string){
+        event.preventDefault();
+        window.open(link)
+    }
+      
+
     renderProjectsList() {
         return this.state.projectsList.map((project: IProject, id: number) => {
             return (
@@ -85,10 +92,16 @@ export default class ProjectsList extends React.Component<IProps, IState> {
                                 {new Date(project.node.updatedAt).getMonth()}/
                                 {new Date(project.node.updatedAt).getFullYear()})
                             </p>
-                            <button className="btn"><a href={"https://github.com" + project.node.resourcePath}>to source</a></button>
+                            <button className="btn" onClick= {(e)=>{
+                                this.openWebPage(e, "https://github.com" + project.node.resourcePath)
+                            }}
+                            >to Github's source</button>
                                 {project.node.homepageUrl === '' || project.node.homepageUrl == null
                                     ? ''
-                                    : <button className="btn"><a href={project.node.homepageUrl}>to website</a></button>
+                                    : <button className="btn" onClick= {(e) =>{
+                                        this.openWebPage(e, project.node.homepageUrl)
+                                    }}
+                                    >to Web page</button>
                                 }
                         </div>
                     </div>

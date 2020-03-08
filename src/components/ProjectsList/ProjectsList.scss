@@ -11,16 +11,23 @@ img {
   vertical-align: middle;
 }
 
-.card .btn {
-  background-color: white;
-  border: 1px solid #cccccc;
-  //border-radius: 1rem;
-  color: #696969;
-  padding: 0.5rem;
-  text-transform: lowercase;
+.card {
+  .btn {
+    background-color: white;
+    border: 1px solid #cccccc;
+    //border-radius: 1rem;
+    color: #696969;
+    padding: 0.5rem;
+    text-transform: lowercase;
+  }
+
+  .btn:hover {
+    background-color: lightgray;
+  }
 }
 
-.btn-block {
+
+.card .btn-block {
   display: block;
   width: 100%;
 }
