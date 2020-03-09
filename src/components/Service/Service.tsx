@@ -1,29 +1,29 @@
 'use strict'
+import { useHistory } from 'react-router-dom';
 
-export default class Service{
+export default class Service {
 
-    async graphql(dataType : string, token: string, host: string, query: string, variables: object){
-        try {
-          const response = await fetch(
-            host, {
-              method: 'POST',
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-              },
-              body: JSON.stringify({
-                query,
-                variables
-              })
-            })
-          const data = (dataType === 'json' ? await response.json() : await response.text())
-          return data.data
+  async graphql(dataType: string, token: string, host: string, query: string, variables: object) {
+    const response: any = await fetch(
+      host, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        query,
+        variables
+      })
+    })
+      .catch((error) => {
+        console.log(error)
+        const history = useHistory()
+        history.push('/error404')
 
-        } catch (err) {
-          // eslint-disable-next-line no-undef
-          // location.hash = '#/Error404'
-          throw new Error(err.message)
-        }
-    }
+      })
+    const data = (dataType === 'json' ? await response.json() : await response.text())
+    return data.data
+  }
 }
