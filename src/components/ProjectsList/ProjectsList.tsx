@@ -73,7 +73,10 @@ export default class ProjectsList extends React.Component<IProps, IState> {
         event.preventDefault();
         window.open(link)
     }
-      
+
+    getMonth (num: number){
+        return Config.months[num]
+    }
 
     renderProjectsList() {
         return this.state.projectsList.map((project: IProject, id: number) => {
@@ -88,8 +91,8 @@ export default class ProjectsList extends React.Component<IProps, IState> {
                             </div>
                             <p className="card-text">
                                 {project.node.description} |
-                                (updated {new Date(project.node.updatedAt).getDate()}/
-                                {new Date(project.node.updatedAt).getMonth()}/
+                                (updated {new Date(project.node.updatedAt).getDate()}.
+                                {this.getMonth(new Date(project.node.updatedAt).getMonth())}.
                                 {new Date(project.node.updatedAt).getFullYear()})
                             </p>
                             <button className="btn" onClick= {(e)=>{
