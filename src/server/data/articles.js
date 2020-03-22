@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
-const dir = './../content/posts'
+// const dir = './../content/posts'
+const dir = './../../../content/posts'
 const dirFromRoot = './content/posts'
 
 const directoryPath = path.join(__dirname, dir)
@@ -34,7 +35,7 @@ const updateArticlesList = () => {
 
         lines.forEach(line => {
           if (line === '---') {
-            if (newPostTrigger == true) {
+            if (newPostTrigger === true) {
               newPostTrigger = false
               articlesList.push(post)
             } else {

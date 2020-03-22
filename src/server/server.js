@@ -34,9 +34,9 @@ const root = {
  * https://stackoverflow.com/questions/51227859/react-router-doesnt-work-on-express-server
  */
 // app.use(express.static('./dist'))
-app.use(express.static(path.join(__dirname, 'dist')))
+app.use(express.static(path.join(__dirname, './../../dist')))
 app.get('*', function (req, res) {
-  res.sendFile('index.html', { root: path.join(__dirname, './dist') })
+  res.sendFile('index.html', { root: path.join(__dirname, './../../dist') })
 })
 
 app.use('/graphql', graphqlHTTP({

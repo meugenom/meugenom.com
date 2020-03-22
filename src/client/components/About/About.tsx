@@ -3,8 +3,8 @@ import * as React from 'react'
 export default class About extends React.Component<{}> {
 
     constructor(props: {}){
-        super(props);        
-        }    
+        super(props);
+        }
 
     public render(){
         return (
@@ -21,8 +21,8 @@ export default class About extends React.Component<{}> {
                     <p>Today I primarily create websites and also work with development both frontend and backend, specifically with JavaScript, Java and Python. I have a wide range of skills to apply my knowledge to more sorts of projects.</p>                     
                     <p>If you have any ideas, critiques or you want to say hi,  send me an email at <a href="mailto:hallo@eugenemorozov.de">hallo@eugenmorozov.de</a></p>                    
                 </article>
-            </div>    
-        </main>               
+            </div>
+        </main>
         )
     }
 }

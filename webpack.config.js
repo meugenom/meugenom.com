@@ -1,4 +1,3 @@
-
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -9,7 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './src/client/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -62,7 +61,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/client/index.html'
     }),
     new ExtractTextPlugin('./style.css'),
 
@@ -83,15 +82,15 @@ module.exports = {
     }),
     */
     new CopyWebpackPlugin([{
-      from: './src/fonts',
+      from: './src/resources/fonts',
       to: './fonts'
     },
     {
-      from: './src/favicon',
+      from: './src/resources/favicon',
       to: './favicon'
     },
     {
-      from: './src/images',
+      from: './src/resources/images',
       to: './images'
     },
     {

@@ -1,10 +1,10 @@
 {
   "name": "eugenem.dev-react-typescript-webpack",
-  "version": "1.1.1",
+  "version": "0.7.1",
   "description": "",
-  "main": "./src/index.js",
+  "main": "./src/client/index.js",
   "scripts": {
-    "start:prod": "node server.js",
+    "start:prod": "node ./src/server/server.js",
     "start:dev": "webpack-dev-server --mode development --open --history-api-fallback",
     "build": "webpack --mode production",
     "lint": "eslint --ignore-path .gitignore .",

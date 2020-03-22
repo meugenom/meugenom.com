@@ -41,7 +41,7 @@ export default class App extends React.Component<{}, IState> {
                                 <Link to="/">
                                     <img 
                                     // tslint:disable-next-line: jsx-alignment
-                                    src="../../images/face-splash.svg" alt="face-splash" className="favicon"
+                                    src="../../images/face-splash-maske.svg" alt="face-splash" className="favicon"
                                     />
                                 </Link>
                             </div>

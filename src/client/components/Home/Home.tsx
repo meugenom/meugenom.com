@@ -1,6 +1,5 @@
 import * as React from 'react'
 import LastArticlesList from '../LastArticlesList/LastArticlesList'
-import ArticlesList from '../ArticlesList/ArticlesList'
 import ProjectsList from '../ProjectsList/ProjectsList'
 
 
@@ -15,7 +14,7 @@ export default class Home extends React.Component<{}, IState> {
     public render(): JSX.Element{
         return (
             <div id="main-content">
-                <img alt="splasch-screen" src="../../images/screen-splash.svg"/>
+                <img alt="splasch-screen" src="../../images/screen-splash-coronavirus.svg"/>
                 <h1> I'm Eugen </h1>
                             <p>
                                 I'm a web developer writing about Javascript,
