@@ -2,16 +2,25 @@
   "name": "eugenem.dev-react-typescript-webpack",
   "version": "0.7.1",
   "description": "",
-  "main": "./src/client/index.js",
+  "main": "./src/main/client/js/index.js",
   "scripts": {
     "start:prod": "node ./src/server/server.js",
     "start:dev": "webpack-dev-server --mode development --open --history-api-fallback",
     "build": "webpack --mode production",
     "lint": "eslint --ignore-path .gitignore .",
+    "watch": "webpack --watch -d",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "react",
+    "rest",
+    "typescript",
+    "spring",
+    "markdown"
+  ],
   "author": "eugenemdev",
   "license": "MIT",
+  "homepage": "https://eugenem.dev",
   "devDependencies": {
     "@types/prismjs": "^1.16.0",
     "@types/react": "^16.9.23",

@@ -8,9 +8,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: './src/client/index.tsx',
+  entry: './src/main/client/js/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'target/classes/static'),
     filename: 'bundle.js'
   },
   module: {
@@ -60,9 +60,9 @@ module.exports = {
     extensions: ['.js', '.ts', '.tsx', '.css']
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/client/index.html'
-    }),
+    // new HtmlWebpackPlugin({
+    //  template: './src/main/resources/templates/index.html'
+    // }),
     new ExtractTextPlugin('./style.css'),
 
     /*
@@ -81,16 +81,17 @@ module.exports = {
       chunkFilename: isDevelopment ? '[id].css' : '[id].css'
     }),
     */
+
     new CopyWebpackPlugin([{
-      from: './src/resources/fonts',
+      from: './src/main/client/fonts',
       to: './fonts'
     },
     {
-      from: './src/resources/favicon',
+      from: './src/main/client/favicon',
       to: './favicon'
     },
     {
-      from: './src/resources/images',
+      from: './src/main/client/images',
       to: './images'
     },
     {
