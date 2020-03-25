@@ -3,8 +3,7 @@ import * as ReactDOM from 'react-dom'
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App/App";
 import Footer from "./components/Footer/Footer"
-// import "./styles/style.scss"
-import "./../resources/styles/style.scss"
+import "../styles/style.scss"
 
 
 const ROOT = document.querySelector(".container")

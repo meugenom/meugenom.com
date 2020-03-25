@@ -11,7 +11,7 @@ export default class Error404 extends React.Component<{}> {
             <main id="main-content">
             <div className="container">
                 <article>
-                    <img src="../images/404.svg" 
+                    <img src="../../../images/404.svg" 
                         alt="404-error"/>
                 </article>
             </div>

@@ -1,5 +1,5 @@
 const Config = {
-  dir: './../../content/post/',
+  dir: './../../../../content/posts/',
   token: '',
   months: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']
 }

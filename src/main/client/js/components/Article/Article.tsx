@@ -3,7 +3,7 @@ import Service from '../Service/Service'
 import Query from '../Service/Query'
 
 // import parser for markable text
-import View from '../../../resources/libs/parser/View'
+import View from '../../../libs/parser/View'
 // import prismjs
 import * as Prism from 'prismjs';
 
