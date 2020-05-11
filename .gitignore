@@ -4,6 +4,7 @@
 .vscode
 .private
 .settings
+.factorypath
 target
 dist
 node_modules
