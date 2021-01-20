@@ -14,7 +14,7 @@ export default class Home extends React.Component<{}, IState> {
     public render(): JSX.Element{
         return (
             <div id="main-content">
-                <img alt="splasch-screen" src="../../../images/screen-splash-coronavirus.svg"/>
+                <img alt="splasch-screen" src="../../images/screen-splash.svg"/>
                 <h1> I'm Eugen </h1>
                             <p>
                                 I'm a web developer writing about Javascript,

@@ -1,7 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 // const isDevelopment = process.env.NODE_ENV === 'development'
 
 // copy files from /src to /dist
@@ -31,14 +31,7 @@ module.exports = {
         // [ path.resolve(__dirname, 'styles') //,
         // path.resolve(__dirname, '/components/*/')
         // ],
-        use: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: 'css-loader'
-            },
-            'sass-loader'
-          ]
-        })
+        use: [MiniCssExtractPlugin.loader, 'css-loader',  'sass-loader'],
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
@@ -63,8 +56,10 @@ module.exports = {
     // new HtmlWebpackPlugin({
     //  template: './src/main/resources/templates/index.html'
     // }),
-    new ExtractTextPlugin('./style.css'),
-
+    //new ExtractTextPlugin('./style.css'),
+    new MiniCssExtractPlugin({
+      filename: './style.css'
+    }),
     /*
     new HtmlWebpackPlugin({
       title: 'Webpack 4 Starter',
@@ -82,26 +77,34 @@ module.exports = {
     }),
     */
 
-    new CopyWebpackPlugin([{
-      from: './src/main/client/fonts',
-      to: './fonts'
-    },
-    {
-      from: './src/main/client/favicon',
-      to: './favicon'
-    },
-    {
-      from: './src/main/client/images',
-      to: './images'
-    },
-    {
-      from: './content/images',
-      to: './images'
-    },
-    {
-      from: './content/thumbnails',
-      to: './thumbnails'
-    }
-    ])
+    new CopyWebpackPlugin({
+      patterns: [
+        { 
+          from: './src/main/client/fonts',
+          to: './fonts'
+        },
+        { 
+          from: './src/main/client/favicon',
+          to: './favicon'
+        },
+        { 
+          from: './src/main/client/images',
+          to: './images'
+        },
+        { 
+          from: './content/images',
+          to: './images'
+        },
+        { 
+          from: './content/thumbnails',
+          to: './thumbnails'
+        }
+      ],
+      options: {
+        concurrency: 100,
+      },
+    }),
+
+
   ]
 }
