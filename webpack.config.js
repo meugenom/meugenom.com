@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: './src/main/client/js/index.tsx',
+  entry: './src/main/resources/js/index.tsx',
   output: {
     path: path.resolve(__dirname, 'target/classes/static'),
     filename: 'bundle.js'
@@ -80,15 +80,15 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { 
-          from: './src/main/client/fonts',
+          from: './src/main/resources/static/fonts',
           to: './fonts'
         },
         { 
-          from: './src/main/client/favicon',
+          from: './src/main/resources/static/favicon',
           to: './favicon'
         },
         { 
-          from: './src/main/client/images',
+          from: './src/main/resources/static/images',
           to: './images'
         },
         { 

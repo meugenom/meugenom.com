@@ -1,4 +1,4 @@
-package de.eugenem.blog;
+package dev.eugenem.article;
 
 import lombok.Data;
 import net.minidev.json.JSONObject;

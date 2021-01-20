@@ -1,4 +1,4 @@
-package de.eugenem.blog;
+package dev.eugenem.article;
 
 import lombok.extern.slf4j.Slf4j;
 

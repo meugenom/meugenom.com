@@ -1,7 +1,12 @@
-package de.eugenem.blog;
+/**
+ * @author eugenem
+ * @param <Article>
+ * @param <ArticleRepository>
+ */
 
+
+package dev.eugenem.article;
 import java.util.List;
-
 // import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.PathVariable;
@@ -10,11 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author eugenem
- * @param <Article>
- * @param <ArticleRepository>
- */
 
 @RestController
 public class ArticleController {
@@ -38,9 +38,15 @@ public class ArticleController {
 		return repository.findAll();
 	}
     
-    
 	@PostMapping("/graphql")
 	Article newArticle(@RequestBody Article newArticle) {
+		
+		System.out.print("");
+		
+		
+		
+		
 		return repository.save(newArticle);
-    }
+	}
+	
 }

@@ -57,6 +57,12 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>com.graphql-java</groupId>
+			<artifactId>graphql-java</artifactId>
+			<version>2020-12-21T21-14-06-a12f84b</version>
+  			<type>pom</type>
+		</dependency>
 	</dependencies>
 
 	<build>
