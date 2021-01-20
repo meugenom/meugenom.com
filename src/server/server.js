@@ -1,12 +1,12 @@
 const { getArticlesList, getArticle, updateArticlesList } = require('./data/articles')
-const express = require('express')
-const app = express()
-const graphqlHTTP = require('express-graphql')
-const { buildSchema } = require('graphql')
-const terminate = require('./data/terminate')
-const mySchema = require('./data/graphqlschema')
-const schema = buildSchema(mySchema)
-const path = require('path')
+const express = require('express');
+const app = express();
+const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql');
+const terminate = require('./data/terminate');
+const mySchema = require('./data/graphqlschema');
+const schema = buildSchema(mySchema);
+const path = require('path');
 
 const root = {
   version: () => 'version 0.0.1',
