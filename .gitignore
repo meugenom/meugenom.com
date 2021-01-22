@@ -9,4 +9,5 @@ target
 dist
 node_modules
 node
+temp
 *.log

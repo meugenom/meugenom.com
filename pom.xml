@@ -7,17 +7,16 @@
 	<parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
+        <version>2.4.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-	<groupId>de.eugenem</groupId>
-	<artifactId>react-and-spring-data-rest</artifactId>
+	<groupId>dev.eugenem</groupId>
+	<artifactId>react-and-spring-data-graphql</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
-	<name>React.js and Spring Data REST - Basic</name>
-	<description>An SPA with ReactJS in the frontend and Spring Data REST in the backend</description>
+	<!-- <packaging>jar</packaging> -->
+	<name>React And Spring Data GraphQL</name>
+	<description>An SPA with ReactJS in the frontend and Spring Data GraphQL in the backend</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,43 +24,68 @@
 	</properties>
 
 	<dependencies>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+		</dependency>		
+		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
+
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
+		
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.graphql-java-kickstart/graphql-spring-boot-starter -->
+		<dependency>
+    		<groupId>com.graphql-java</groupId>
+    		<artifactId>graphql-spring-boot-starter</artifactId>
+    		<version>5.0.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.graphql-java-kickstart/graphql-java-tools -->
+		<dependency>
+    		<groupId>com.graphql-java</groupId>
+    		<artifactId>graphql-java-tools</artifactId>
+    		<version>5.2.4</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.graphql-java</groupId>
+    		<artifactId>graphiql-spring-boot-starter</artifactId>
+    		<version>5.0.2</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.graphql-java</groupId>
-			<artifactId>graphql-java</artifactId>
-			<version>2020-12-21T21-14-06-a12f84b</version>
-  			<type>pom</type>
 		</dependency>
 	</dependencies>
 
@@ -79,6 +103,7 @@
 					<installDirectory>target</installDirectory>
 				</configuration>
 				<executions>
+					
 					<execution>
 						<id>install node and npm</id>
 						<goals>
@@ -98,6 +123,7 @@
 							<arguments>install</arguments>
 						</configuration>
 					</execution>
+					
 					<execution>
 						<id>npm run build</id>
 						<goals>
