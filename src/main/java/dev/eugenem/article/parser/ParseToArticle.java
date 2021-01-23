@@ -30,7 +30,9 @@ public class ParseToArticle {
                 // we need to the end of post processing 
             } else if (topTextCounter == 2) {
                 //put all other rows to body of our article
-                article.setBody(article.getBody() + System.lineSeparator() + line);  
+                
+                // article.setBody(article.getBody() + System.lineSeparator() + line);  
+                article.setBody(line);
 
             } else  if(topTextCounter == 1){
 

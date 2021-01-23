@@ -2,15 +2,21 @@ package dev.eugenem.article.model;
 
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+
 
 @Data
 @Entity
 public class Article {
 
-    //private int id;
     private @Id @GeneratedValue Long id;
     private String title;
     private String categories;
@@ -20,12 +26,15 @@ public class Article {
     private String slug;
     private String date;
     private String fileName;
-    private String body;
+
+    @Column
+    @ElementCollection(targetClass=String.class)
+    private Set<String> body = new HashSet<>();
 
     public Article(){}
 
     public Article(String date, String title, String template, String thumbnail, String slug, String categories,
-            String tags, String fileName, String body) {
+            String tags, String fileName, Set<String> body) {
         this.date = date;
         this.title = title;
         this.template = template;
@@ -110,12 +119,12 @@ public class Article {
         return fileName;
     }
 
-    public String getBody(){
+    public Set<String> getAllBody(){
         return this.body;
     }
 
     public String setBody(String body){
-        this.body = body;
+        this.body.add(body);
         return body;
     }
     
