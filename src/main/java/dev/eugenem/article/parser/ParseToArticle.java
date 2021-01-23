@@ -9,7 +9,7 @@ import dev.eugenem.article.model.Article;
 public class ParseToArticle {
 
     private Article article = new Article();
-    
+
     public Article parse(String text){
 
         int topTextCounter = 0;

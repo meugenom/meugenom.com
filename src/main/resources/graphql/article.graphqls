@@ -1,0 +1,15 @@
+type Article {
+        date: String,
+        title: String,    
+        template: String,
+        thumbnail: String,
+        slug: String,
+        categories: String,
+        tags: String,
+        fileName: String,
+        body: [String]        
+    }
+
+type Query {
+  lastArticlesList: [Article],
+}

@@ -78,8 +78,12 @@ class LoadDatabase {
       article.getFileName(),
       article.getAllBody()
     ));
+
+    logger.info("articleId = ",article.getId());
+
     }
   
+    
     logger.info("Number of articles is : {}", articleRepository.count());
     
     /*

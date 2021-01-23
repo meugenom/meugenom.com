@@ -17,7 +17,10 @@ import javax.persistence.Id;
 @Entity
 public class Article {
 
-    private @Id @GeneratedValue Long id;
+    @Id 
+    @GeneratedValue 
+    private Long id;
+    
     private String title;
     private String categories;
     private String tags;
@@ -34,7 +37,7 @@ public class Article {
     public Article(){}
 
     public Article(String date, String title, String template, String thumbnail, String slug, String categories,
-            String tags, String fileName, Set<String> body) {
+            String tags, String fileName, Set<String> body) {    
         this.date = date;
         this.title = title;
         this.template = template;
@@ -44,88 +47,89 @@ public class Article {
         this.tags = tags;
         this.fileName = fileName;
         this.body = body;
-    }    
-
-
-    public String getTitle(){
-        return this.title;
     }
 
-    public String setTitle(String title){
-        this.title = title;
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
+    
+
+    public String getTitle(){
         return title;
     }
 
-    public String getCategories(){
-        return this.categories;
+    public void setTitle(String title){
+        this.title = title;
     }
 
-    public String setCategories(String categories){
-        this.categories = categories;
+    public String getCategories(){
         return categories;
     }
 
-    public String getTags(){
-        return this.tags;
+    public void setCategories(String categories){
+        this.categories = categories;        
     }
 
-    public String setTags(String tags){
-        this.tags = tags;
+    public String getTags(){
         return tags;
     }
 
-    public String getTemplate(){
-        return this.template;
+    public void setTags(String tags){
+        this.tags = tags;        
     }
 
-    public String setTemplate(String template){
-        this.template = template;
+    public String getTemplate(){
         return template;
     }
 
-    public String getThumbnail (){
-        return this.thumbnail;
+    public void setTemplate(String template){
+        this.template = template;        
     }
 
-    public String setThumbnail(String thumbnail){
-        this.thumbnail = thumbnail;
+    public String getThumbnail (){
         return thumbnail;
     }
 
-    public String getSlug(){
-        return this.slug;
+    public void setThumbnail(String thumbnail){
+        this.thumbnail = thumbnail;        
     }
 
-    public String setSlug(String slug){
-        this.slug = slug;
+    public String getSlug(){
         return slug;
     }
 
-    public String getDate(){
-        return this.date;
+    public void setSlug(String slug){
+        this.slug = slug;
+        
     }
 
-    public String setDate(String date){
-        this.date= date;
+    public String getDate(){
         return date;
     }
 
-    public String getFileName(){
-        return this.fileName;
+    public void setDate(String date){
+        this.date= date;
     }
 
-    public String setFileName(String fileName){
-        this.fileName = fileName;
+    public String getFileName(){
         return fileName;
     }
 
-    public Set<String> getAllBody(){
-        return this.body;
+    public void setFileName(String fileName){
+        this.fileName = fileName;
+        
     }
 
-    public String setBody(String body){
-        this.body.add(body);
+    public Set<String> getAllBody(){
         return body;
+    }
+
+    public void setBody(String body){
+        this.body.add(body);        
     }
     
 

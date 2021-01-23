@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 import dev.eugenem.article.model.Article;
 
 @Repository
+public
 interface ArticleRepository extends JpaRepository<Article, Long> {
+
 }
