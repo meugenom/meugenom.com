@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+//import org.springframework.context.annotation.MBeanExportConfiguration.SpecificPlatform;
+
 
 // import lombok.extern.slf4j.Slf4j;
 // import org.springframework.context.annotation.Bean;
@@ -62,24 +64,40 @@ class LoadDatabase {
     ReadFile readFile = new ReadFile();
     String textFromFile = readFile.read(filePath);
     ParseToArticle parseToArticle = new ParseToArticle();
-    Article article = parseToArticle.parse(textFromFile);
-    article.setFileName(fileName);
-    // System.out.println(article.getAllBody());
+    //Article draft = parseToArticle.parse(textFromFile);
+    Article draft = new Article();
+    draft = parseToArticle.parse(textFromFile);
+    draft.setFileName(fileName);
+    System.out.println(draft.getBody());
+    
+
+    /*  
+    Set<Specification> specList = new HashSet<Specification>();
+    Specification spec = new Specification();
+    spec.setSpecification("test");
+    specList.add(spec);
+      */
     
     //save file to repository
+    
     articleRepository.save( new Article(
-      article.getDate(),
-      article.getTitle(),
-      article.getTemplate(),
-      article.getThumbnail(),
-      article.getSlug(),
-      article.getCategories(),
-      article.getTags(),
-      article.getFileName(),
-      article.getAllBody()
+      draft.getDate(),
+      draft.getTitle(),
+      draft.getTemplate(),
+      draft.getThumbnail(),
+      draft.getSlug(),
+      draft.getCategories(),
+      draft.getTags(),
+      draft.getFileName(),
+      draft.getBody()
     ));
+    
+     
 
-    logger.info("articleId = ",article.getId());
+  
+     
+
+    // logger.info("articleId = ",draft.getId());
 
     }
   
@@ -92,6 +110,7 @@ class LoadDatabase {
         logger.info("{}", articles);
     */    
     }
+    
 
 }
 

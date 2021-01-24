@@ -2,9 +2,12 @@ package dev.eugenem.article.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import dev.eugenem.article.model.Article;
+import dev.eugenem.article.model.Specification;
 
 public class ParseToArticle {
 
@@ -14,13 +17,18 @@ public class ParseToArticle {
 
         int topTextCounter = 0;
         String topLine = "---";
+        
 
         List<String> lines = Arrays.asList(text.split("\\r?\\n"));
-
+        Set<Specification> specifications = new HashSet<Specification>();
+                      
         // for (String line: lines) {        
         for (int i = 0; i < lines.size(); i++) {
+
+            Specification specification = new Specification();
+        
             // System.out.println(lines.get(i));            
-            String line = lines.get(i);
+            String line = lines.get(i); 
 
             //it's begin of  post processing            
             if(line.equals(topLine) && topTextCounter == 0){
@@ -29,11 +37,14 @@ public class ParseToArticle {
                 ++topTextCounter;                
                 // we need to the end of post processing 
             } else if (topTextCounter == 2) {
-                //put all other rows to body of our article
                 
-                // article.setBody(article.getBody() + System.lineSeparator() + line);  
-                article.setBody(line);
-
+                //put all other rows to body of our article                
+                // article.setBody(article.getBody() + System.lineSeparator() + line);                  
+                // article.setBody(line);
+                
+                specification.setSpecification(line);
+                specifications.add(specification);                                                                        
+                
             } else  if(topTextCounter == 1){
 
                 CompilePattern compilePattern = new CompilePattern();                
@@ -62,6 +73,8 @@ public class ParseToArticle {
                 
             }        
         }
+
+        article.setBody(specifications); 
 
         return article;
             
