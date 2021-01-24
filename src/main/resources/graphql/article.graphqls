@@ -1,4 +1,18 @@
+schema {
+        query: QueryType
+    }
+type QueryType {
+  lastArticlesList: [Article]
+  getName(name : String) : String
+  getArticleById(id: Long) : Article
+
+    }
+
+type Specification {
+  specification: String
+}
 type Article {
+        id: Long,
         date: String,
         title: String,    
         template: String,
@@ -7,9 +21,6 @@ type Article {
         categories: String,
         tags: String,
         fileName: String,
-        body: [String]        
+        body: [Specification]
     }
 
-type Query {
-  lastArticlesList: [Article],
-}
