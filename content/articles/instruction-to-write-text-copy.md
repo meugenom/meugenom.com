@@ -20,10 +20,10 @@ Der Text wurde speziel als Instruktion vorbereitet, den auf jedem Editor möglic
 ```bash
 1  ---
 2  date: 2019-08-30
-3  title: 'Instruction to Write Text'
+3  title: 'Instruction to Write Text Copy'
 4  template: post
 5  thumbnail: '../thumbnails/writing.png'
-6  slug: instruction-to-write-text
+6  slug: instruction-to-write-text-copy
 7  categories: 
 8  tags: instruction texter writer 
 9  ---
