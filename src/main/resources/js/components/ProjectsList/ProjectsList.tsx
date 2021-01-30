@@ -3,7 +3,6 @@ import * as React from 'react'
 import Config from './../../Config'
 import Query from './../Service/Query'
 import Service from '../Service/Service'
-// import ProjectsListFilter from './ProjectsListFilter'
 import './ProjectsList.scss'
 
 interface IProps {

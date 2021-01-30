@@ -1,12 +1,12 @@
 const Query = {
     lastArticlesList: {
       host: '/graphql',
-      query: '{ lastArticlesList { slug title}}'
+      query: '{ lastArticlesList { slug title id}}'
     },
     articlesList: {
       host: '/graphql',
-      query: '{ articlesList { slug title}}'
-    },
+      query: '{ articlesList { slug title id}}'
+    },    
     projectsList: {
       host: 'https://api.github.com/graphql',
       query: `{
@@ -55,9 +55,9 @@ const Query = {
           }
           `
     },
-    post: {
+    getAllSpecificationTextByArticleId: {
       host: '/graphql',
-      query: 'query Query($slug: String!) {\n  article(slug: $slug) {\n    body\n  }\n}\n'
+      query: 'query Query($id: Long!) {\n  getAllSpecificationTextByArticleId(id: $id) \n}\n'
     }
 
   }

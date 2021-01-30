@@ -31,7 +31,7 @@ module.exports = {
         // [ path.resolve(__dirname, 'styles') //,
         // path.resolve(__dirname, '/components/*/')
         // ],
-        use: [MiniCssExtractPlugin.loader, 'css-loader',  'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
@@ -58,7 +58,7 @@ module.exports = {
     // }),
     //new ExtractTextPlugin('./style.css'),
     new MiniCssExtractPlugin({
-      filename: './style.css'
+      filename: '/css/main.css'
     }),
     /*
     new HtmlWebpackPlugin({
@@ -79,32 +79,31 @@ module.exports = {
 
     new CopyWebpackPlugin({
       patterns: [
-        { 
+        {
           from: './src/main/resources/static/fonts',
           to: './fonts'
         },
-        { 
+        {
           from: './src/main/resources/static/favicon',
           to: './favicon'
         },
-        { 
+        {
           from: './src/main/resources/static/images',
           to: './images'
         },
-        { 
+        {
           from: './content/images',
           to: './images'
         },
-        { 
+        {
           from: './content/thumbnails',
           to: './thumbnails'
         }
       ],
       options: {
-        concurrency: 100,
-      },
-    }),
-
+        concurrency: 100
+      }
+    })
 
   ]
 }

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Service from '../Service/Service'
 import Query from '../Service/Query'
+import './Article.scss'
 
 // import parser for markable text
 import View from '../../../../resources/static/libs/parser/View'
@@ -8,14 +9,12 @@ import View from '../../../../resources/static/libs/parser/View'
 import * as Prism from 'prismjs';
 
 interface IState {
-    article: {
-        body: string
-    }
+    getAllSpecificationTextByArticleId: string
 }
 interface IProps {
     match: {
         params: {
-            id: string
+            id: number
             }
     }
 }
@@ -27,18 +26,16 @@ export default class Article extends React.Component< IProps, IState> {
         super(props);
         const id = this.props.match.params.id
         this.state = {
-            article: {
-                body: ''
-            }
+            getAllSpecificationTextByArticleId:''            
         }
 
         this.init(id)
 
     }
 
-    async init(id: string){
+    async init(id: number){
         await this.getArticle(id)
-        await this.parse(this.state.article.body)
+        await this.parse(this.state.getAllSpecificationTextByArticleId)
         await Prism.highlightAll()
     }
 
@@ -47,15 +44,15 @@ export default class Article extends React.Component< IProps, IState> {
         return html
     }
 
-    async getArticle(id: string){
+    async getArticle(id: number){
         const token = ''
-        const host = Query.post.host
-        const query = Query.post.query
-        const variables = { "slug": id }
+        const host = Query.getAllSpecificationTextByArticleId.host
+        const query = Query.getAllSpecificationTextByArticleId.query
+        const variables = { "id": id }
         const dataType = 'json'
 
         const response = await new Service().graphql(dataType, token, host, query, variables)
-        await this.setState({article : response.article})
+        await this.setState({getAllSpecificationTextByArticleId : response.getAllSpecificationTextByArticleId})
 
     }
 

@@ -10,6 +10,7 @@ import {
 interface IArticle {
     slug: string,
     title: string,
+    id: string
 }
 interface IState {
     lastArticlesList: IArticle[]
@@ -42,7 +43,7 @@ export default class LastArticlesList extends React.Component<{}, IState> {
         return this.state.lastArticlesList.map((article: IArticle) => {
             return (
                     <li key={article.slug}>
-                        <Link to={`/post/${article.slug}`}>{article.title}</Link>
+                        <Link to={`/article/${article.id}`}>{article.title}</Link>
                     </li>
             )
         })

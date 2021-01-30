@@ -58,7 +58,7 @@ export default class App extends React.Component<{}, IState> {
                     <Route path="/articles" component={ArticlesList} />
                     <Route path="/projects" component={ProjectsList} />
                     <Route path="/about" component={About} />
-                    <Route path='/post/:id' component={Article} />
+                    <Route path='/article/:id' component={Article} />
                     <Route component={Error404} />
                 </Switch>
               </div>
