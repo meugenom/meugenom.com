@@ -1,11 +1,8 @@
 {
   "name": "eugenem.dev",
-  "version": "0.7.1",
+  "version": "0.0.1",
   "description": "",
-  "main": "./src/client/index.js",
   "scripts": {
-    "start:prod": "node ./src/server/server.js",
-    "start:dev": "webpack-dev-server --mode development --open --history-api-fallback",
     "build": "webpack --mode production",
     "lint": "eslint --ignore-path .gitignore .",
     "test": "echo \"Error: no test specified\" && exit 1"

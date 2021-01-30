@@ -2,14 +2,13 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const isDevelopment = process.env.NODE_ENV === 'development'
-
 // copy files from /src to /dist
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: './src/client/index.tsx',
+  entry: './src/main/resources/js/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'target/classes/static'),
     filename: 'bundle.js'
   },
   module: {

@@ -3,38 +3,33 @@
 ## in progress
 
 https://eugenem.dev
-This is personal blog and website, what was written on React + Typescript + Webpack bolerplate.
+This is my personal website, that you can see in the web by link "https://eugenem.dev".
 
 Tehnologies were used:
 - Webpack (ES6) 
-- NodeJS in backend 
-- GraphQL (frontend and backend, REST removed)
-- call to api.github.com/graphql about current repositories and websites
+- GraphQL 
 - Typescript
 - React
+- SCSS
+- Java Spring 
+- maven
 
 ### settings:
-- need to add to /src/config/Config.js own Github's developer's token, by default is null
+- need preinstalled jdk, npm, nodejs, mvn
+- for showing information about projects related with github you need add to "/src/main/resources/js/Config.tsx" own Github's developer's token, by default in my app set empty
+
 
 ### How to start in the terminal:
 1. clone repository 
 `git clone https://github.com/eugenemdev/eugenem.dev.git`
 2. change dir
-`cd eugene.dev`
-3. install libraries
-`npm install --save-dev`
-4. build application
-`npm run build`
-5. start server
-`npm run start:prod`
-
-start in develop mode (in develop mode can't see list of articles)
-`npm run start:dev`
+`cd eugenem.dev`
+3. for building frontend and backend parts write in the terminal:  
+` mvn clean spring-boot:run`
+4. in the Visual Studio Code start application with button "Run"
+5. for building only frontend part use in the terminal:
+` npm run build`
 
 ### How to see started web page
-open web browser by link http://localhost:8081 after starting of web server by terminal
-
-
-
-
+open web browser with link:  http://localhost:8081 after starting of spring java web server
 

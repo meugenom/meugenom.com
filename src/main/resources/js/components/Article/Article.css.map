@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,CAAC;AACD,CAAC,AAAA,QAAQ;AACT,CAAC,AAAA,OAAO,CAAC;EACP,UAAU,EAAE,UAAU;CACvB",
+    "sources": [
+        "Article.scss"
+    ],
+    "names": [],
+    "file": "Article.css"
+}

@@ -1,4 +1,13 @@
 .vscode
-node_modules
-dist
+.project
+.classpath
+.vscode
 .private
+.settings
+.factorypath
+target
+dist
+node_modules
+node
+temp
+*.log
