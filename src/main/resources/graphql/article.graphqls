@@ -1,18 +1,15 @@
 schema {
         query: QueryType
     }
-type QueryType {
-  lastArticlesList: [Article]
-  getName(name : String) : String
-  getArticleById(id: Long) : Article
 
-    }
 
 type Specification {
+  id: Int
   specification: String
 }
+
 type Article {
-        id: Long,
+        id: Int,
         date: String,
         title: String,    
         template: String,
@@ -21,6 +18,14 @@ type Article {
         categories: String,
         tags: String,
         fileName: String,
-        body: [Specification]
+        specifications: [Specification]
     }
 
+type QueryType {
+  lastArticlesList: [Article]
+  articlesList: [Article]
+  getName(name : String) : String
+  getArticleById(id: Long) : Article
+  getSpecificationByArticleId(id: Long) : [Specification]
+  getAllSpecificationTextByArticleId(id: Long) : String
+}
