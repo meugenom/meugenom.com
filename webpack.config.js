@@ -1,7 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 // const isDevelopment = process.env.NODE_ENV === 'development'
+
 // copy files from /src to /dist
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -26,10 +28,10 @@ module.exports = {
         test: /\.s(a|c)ss$/,
         // include: /styles/,
         include: [/(.*?)\/(.*?)\/(.*?).scss/],
-        // [ path.resolve(__dirname, 'styles'),
+        // [ path.resolve(__dirname, 'styles') //,
         // path.resolve(__dirname, '/components/*/')
         // ],
-        use: [MiniCssExtractPlugin.loader, 'css-loader',  'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
@@ -51,51 +53,57 @@ module.exports = {
     extensions: ['.js', '.ts', '.tsx', '.css']
   },
   plugins: [
+    // new HtmlWebpackPlugin({
+    //  template: './src/main/resources/templates/index.html'
+    // }),
+    //new ExtractTextPlugin('./style.css'),
+    new MiniCssExtractPlugin({
+      filename: '/css/main.css'
+    }),
+    /*
     new HtmlWebpackPlugin({
-      template: './src/client/index.html',
+      title: 'Webpack 4 Starter',
+      template: './src/index.html',
       inject: true,
       minify: {
         removeComments: true,
         collapseWhitespace: false
       }
     }),
-    new MiniCssExtractPlugin({
-      filename: '../../style.css'
-    }),
-    /*
+    new ExtractTextPlugin('style.css'),
     new MiniCssExtractPlugin({
       filename: isDevelopment ? '[name].css' : '[name].css',
       chunkFilename: isDevelopment ? '[id].css' : '[id].css'
     }),
     */
 
-   new CopyWebpackPlugin({
-    patterns: [
-      { 
-        from: './src/resources/fonts',
-        to: './fonts'
-      },
-      { 
-        from: './src/resources/favicon',
-        to: './favicon'
-      },
-      { 
-        from: './src/resources/images',
-        to: './images'
-      },
-      { 
-        from: './content/images',
-        to: './images'
-      },
-      { 
-        from: './content/thumbnails',
-        to: './thumbnails'
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: './src/main/resources/static/fonts',
+          to: './fonts'
+        },
+        {
+          from: './src/main/resources/static/favicon',
+          to: './favicon'
+        },
+        {
+          from: './src/main/resources/static/images',
+          to: './images'
+        },
+        {
+          from: './content/images',
+          to: './images'
+        },
+        {
+          from: './content/thumbnails',
+          to: './thumbnails'
+        }
+      ],
+      options: {
+        concurrency: 100
       }
-    ],
-    options: {
-      concurrency: 100,
-    },
-  }),
-  
+    })
+
   ]
 }
