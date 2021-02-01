@@ -62,7 +62,7 @@ public class ParseToArticle {
                 shablons.add(".*tags:.*");
 
                 shablons.forEach((shablon) -> {
-                    var result = compilePattern.compile(line, shablon);
+                    boolean result = compilePattern.compile(line, shablon);
                     if (result) {
                         if (shablon == ".*date:.*")
                             article.setDate(line.replace("date: ", ""));
