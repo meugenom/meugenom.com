@@ -27,7 +27,7 @@ public class ParseToArticle {
         List<String> lines = Arrays.asList(text.split("\\r?\\n"));
 
         // for (String line: lines) {
-        for (int i = 0; i < lines.size(); i++) {
+        for (int i = 1; i < lines.size(); i++) {
 
             Specification specification = new Specification();
 
@@ -36,16 +36,17 @@ public class ParseToArticle {
 
             // it's begin of post processing
             if (line.equals(topLine) && topTextCounter == 0) {
-                ++topTextCounter;
+                ++topTextCounter;                
+
             } else if (line.equals(topLine) && topTextCounter == 1) {
-                ++topTextCounter;
+                ++topTextCounter;                
+
                 // we need to the end of post processing
             } else if (topTextCounter == 2) {
 
-                specification.setArticle(article);
-                specification.setSpecification(line);
-
-                specifications.add(specification);
+                // specification.setArticle(article);
+                // specification.setSpecification(line);
+                // specifications.add(specification);
 
             } else if (topTextCounter == 1) {
 
@@ -79,8 +80,12 @@ public class ParseToArticle {
                             article.setTags(line.replace("tags: ", ""));
                     }
                 });
-
             }
+        
+                specification.setSpecification(line);
+                specifications.add(specification);
+                specification.setArticle(article);        
+    
         }
 
         article.setSpecifications(specifications);
