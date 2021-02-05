@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -79,6 +79,7 @@ module.exports = {
 
     new CopyWebpackPlugin({
       patterns: [
+        /*
         {
           from: './src/main/resources/static/fonts',
           to: './fonts'
@@ -91,6 +92,7 @@ module.exports = {
           from: './src/main/resources/static/images',
           to: './images'
         },
+        */
         {
           from: './content/images',
           to: './images'
