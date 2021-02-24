@@ -1,0 +1,155 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type":"Feature",
+        "id":0,
+        "geometry":{
+            "coordinates":[8.6820917, 50.1106444],
+            "type":"Point"},
+        "properties":{
+            "city":"Frankfurt am Main",
+            "about":"Java",
+            "state":"Hessen",
+            "name": "Edgar Linde",
+            "username":"edgarlinde",
+            "img" : "https://homepages.cae.wisc.edu/~ece533/images/cat.png"
+        }
+    },
+    { 
+        "type":"Feature",
+        "id":1,
+        "geometry":{
+            "coordinates":[8.7665, 50.1006],
+            "type":"Point"},
+        "properties":{
+            "city":"Offenbach",
+            "about":"Javascript Java Python",
+            "state":"Hessen",
+            "name":"Eugen M.",
+            "username":"eugenemdev",
+            "img" : "https://homepages.cae.wisc.edu/~ece533/images/cat.png"
+        }
+    },
+    { 
+        "type":"Feature",
+        "id":2,
+        "geometry":{
+            "coordinates":[13.4033, 52.5167],
+            "type":"Point"},
+        "properties":{
+            "city":"Berlin",
+            "about":"Java Python bash",
+            "state":"Berlin",
+            "name": "Maxim",
+            "username": null,
+            "img" : "https://homepages.cae.wisc.edu/~ece533/images/cat.png"
+        }
+    },
+    { 
+        "type":"Feature",
+        "id":4,
+        "geometry":{
+            "coordinates":[13.3833,52.5167],
+            "type":"Point"},
+        "properties":{
+            "city":"Berlin",
+            "about":"python,  data science",
+            "state":"Berlin",
+            "name" : "Igor",
+            "username": null,
+            "img" : "https://homepages.cae.wisc.edu/~ece533/images/cat.png"
+        }
+    },
+    { 
+        "type":"Feature",
+        "id":5,
+        "geometry":{
+            "coordinates":[13.3833,52.2167],
+            "type":"Point"},
+        "properties":{
+            "city":"Berlin",
+            "about":"java data science",
+            "state":"Berlin",
+            "name": "Alex Diter",
+            "username":"Alex",
+            "img" : "https://homepages.cae.wisc.edu/~ece533/images/cat.png"
+        }
+    },
+    { 
+        "type":"Feature",
+        "id":6,
+        "geometry":{
+            "coordinates":[13.3833,51.5167],
+            "type":"Point"},
+        "properties":{
+            "city":"Berlin",
+            "about":"java spring-boot",
+            "state":"Berlin",
+            "name":"Igor Bondarev",
+            "username": null,
+            "img" : "https://homepages.cae.wisc.edu/~ece533/images/cat.png"
+        }
+    },
+    { 
+        "type":"Feature",
+        "id":7,
+        "geometry":{
+            "coordinates":[8.6820917,50.1106444],
+            "type":"Point"},
+        "properties":{
+            "city":"Frankfurt am Main",
+            "about":"javascript AngularJS ReactJS",
+            "state":"Hessen",
+            "name":"Goego Vange",
+            "username":"pickachu",
+            "img" : "https://homepages.cae.wisc.edu/~ece533/images/cat.png"
+        }
+    },
+    { 
+        "type":"Feature",
+        "id":8,
+        "geometry":{
+            "coordinates":[8.6820917, 50.1106444],
+            "type":"Point"},
+        "properties":{
+            "city":"Frankfurt am Main",
+            "about":"Java AI",
+            "state":"Hessen",
+            "name":"Maxim Brulow",
+            "username":"maxbrulow",
+            "img" : "https://homepages.cae.wisc.edu/~ece533/images/barbara.png"
+        }
+    },
+    { 
+        "type":"Feature",
+        "id":9,
+        "geometry":{
+            "coordinates":[11.5755, 48.1372],
+            "type":"Point"},
+        "properties":{
+            "city":"Munich",
+            "about":"Java",
+            "state":"Bavaria",            
+            "name":"bigTester",
+            "username": null,
+            "img" : "https://homepages.cae.wisc.edu/~ece533/images/barbara.png"
+        }
+    },
+    { 
+        "type":"Feature",
+        "id":10,
+        "geometry":{
+            "coordinates":[11.5755 , 48.1372],
+            "type":"Point"},
+        "properties":{
+            "city":"Munich",
+            "about":"AngularJS BackboneJS",
+            "state":"Bavaria",
+            "name": "JS BEAT",
+            "username":"jsbeat",
+            "img" : "https://homepages.cae.wisc.edu/~ece533/images/barbara.png"
+        }
+    } 
+]
+}

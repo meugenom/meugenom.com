@@ -7,7 +7,7 @@ This is my personal website, that you can see in the web by link "https://eugene
 
 Tehnologies were used:
 - Webpack (ES6) 
-- GraphQL 
+- GraphQL
 - Typescript
 - React
 - SCSS
