@@ -9,7 +9,7 @@ This is personal web page, that you can see [https://eugenem.dev](https://eugene
 - Typescript and React (web site, frontend part);
 - Java and Spring-Boot (for backend part);
 - GraphQL;
-- Webpack (ES6); 
+- Webpack (ES6);
 - SCSS, CSS;
 - maven;
 

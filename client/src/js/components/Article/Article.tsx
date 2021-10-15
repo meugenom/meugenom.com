@@ -9,12 +9,12 @@ import View from '../../../static/libs/parser/View'
 import * as Prism from 'prismjs';
 
 interface IState {
-    getAllSpecificationTextByArticleId: string
+    getAllSpecificationTextByArticleSlug: string
 }
 interface IProps {
     match: {
         params: {
-            id: number
+            slug: string
             }
     }
 }
@@ -24,18 +24,18 @@ export default class Article extends React.Component< IProps, IState> {
 
     constructor(props: IProps){
         super(props);
-        const id = this.props.match.params.id
+        const slug = this.props.match.params.slug
         this.state = {
-            getAllSpecificationTextByArticleId:''            
+            getAllSpecificationTextByArticleSlug:''            
         }
 
-        this.init(id)
+        this.init(slug)
 
     }
 
-    async init(id: number){
-        await this.getArticle(id)
-        await this.parse(this.state.getAllSpecificationTextByArticleId)
+    async init(slug: string){
+        await this.getArticle(slug)
+        await this.parse(this.state.getAllSpecificationTextByArticleSlug)
         await Prism.highlightAll()
     }
 
@@ -44,15 +44,15 @@ export default class Article extends React.Component< IProps, IState> {
         return html
     }
 
-    async getArticle(id: number){
+    async getArticle(slug: string){
         const token = ''
-        const host = Query.getAllSpecificationTextByArticleId.host
-        const query = Query.getAllSpecificationTextByArticleId.query
-        const variables = { "id": id }
+        const host = Query.getAllSpecificationTextByArticleSlug.host
+        const query = Query.getAllSpecificationTextByArticleSlug.query
+        const variables = { "slug": slug }
         const dataType = 'json'
 
         const response = await new Service().graphql(dataType, token, host, query, variables)
-        await this.setState({getAllSpecificationTextByArticleId : response.getAllSpecificationTextByArticleId})
+        await this.setState({getAllSpecificationTextByArticleSlug : response.getAllSpecificationTextByArticleSlug})
 
     }
 

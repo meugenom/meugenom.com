@@ -119,15 +119,41 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 
   }
 
-  /**
-   * graphql request: Query { getName(name: "Joe Doe") }
-   * 
-   * @param name set any name
-   * @return json : {"data" : { "getName" : "Hello Joe Doe"}}
-   */
+  public String getAllSpecificationTextByArticleSlug(String slug) {
 
-  public String getName(String name) {
-    return "Hello " + name;
+	
+	System.out.println("Slug is: " + slug);
+
+	List<Article> articles = new ArrayList<Article>();
+    articles = articleRepository.findAll();
+    
+	
+	Article result = articles.stream().filter(a -> {		
+		
+      if (new String(a.getSlug()).equals(slug) == true) {
+        return true;
+      }
+	  return false;
+    }).findAny().orElse(null);
+	
+	
+    List<Specification> specifications = new ArrayList<Specification>();
+    specifications = specificationRepository.findAll();
+    List<String> bodies = new ArrayList<String>();
+
+	
+    specifications.forEach(spec -> {
+      if (spec.getArticle().getId() == result.getId()) {
+        bodies.add(spec.getSpecification());
+      }
+    });
+
+    String text = String.join("\n", bodies);
+    return text;
+
+
   }
+
+
 
 }

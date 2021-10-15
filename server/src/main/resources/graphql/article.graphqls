@@ -24,8 +24,8 @@ type Article {
 type QueryType {
   lastArticlesList: [Article]
   articlesList: [Article]
-  getName(name : String) : String
   getArticleById(id: Long) : Article
   getSpecificationByArticleId(id: Long) : [Specification]
   getAllSpecificationTextByArticleId(id: Long) : String
+  getAllSpecificationTextByArticleSlug(slug: String) : String
 }

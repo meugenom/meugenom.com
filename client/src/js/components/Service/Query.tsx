@@ -58,7 +58,11 @@ const Query = {
     getAllSpecificationTextByArticleId: {
       host: 'http://localhost:8080/graphql/',
       query: 'query Query($id: Long!) {\n  getAllSpecificationTextByArticleId(id: $id) \n}\n'
-    }
+    },
+	getAllSpecificationTextByArticleSlug: {
+		host: 'http://localhost:8080/graphql/',
+		query: 'query Query($slug: String!) {\n  getAllSpecificationTextByArticleSlug(slug: $slug) \n}\n'
+	  }
 
   }
 

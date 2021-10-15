@@ -44,7 +44,7 @@ export default class ArticlesList extends React.Component<IProps, IState> {
         return this.state.articlesList.map((article: IArticle) => {
             return (
                     <li key={article.slug}>
-                        <Link to={`/article/${article.id}`}>{article.title}</Link>
+                        <Link to={`/article/${article.slug}`}>{article.title}</Link>
                     </li>
             )
         })
