@@ -1,6 +1,7 @@
 import * as React from 'react'
 import LastArticlesList from '../LastArticlesList/LastArticlesList'
 import ProjectsList from '../ProjectsList/ProjectsList'
+import SocialLinks from '../SocialLinks/SocialLinks'
 
 
 export default class Home extends React.Component<{}, IState> {
@@ -14,14 +15,18 @@ export default class Home extends React.Component<{}, IState> {
     public render(): JSX.Element{
         return (
             <div id="main-content">
-                <img alt="splasch-screen" src="../../images/screen-splash.svg"/>
-                <h1> I'm Eugen </h1>
+                <h2> Zervus! I'm Eugen </h2>
                             <p>
-                                I'm a web developer writing about Javascript,
-                                Python, Java and all things which are interesting and maybe incredible.
+							I'm a <strong>software developer</strong> writing about things that will maybe interesting for you: 							
+							<strong> data structures</strong>, <strong>Java</strong>, <strong>Javascript</strong>, and Python.
+							Every day is special to do something useful for yourself, so don't lose it.
+							This site is <strong>a little sandbox</strong> where I write my code. 
+								<p>
+								Follow me if you need my help or have questions:
+								</p>
                             </p>
                             <div className="social-buttons">
-                                Social Buttons ... (under construction)
+                                <SocialLinks/>
                             </div>
                 <LastArticlesList/>
                 <ProjectsList/>
