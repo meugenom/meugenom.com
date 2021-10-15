@@ -48,33 +48,34 @@
   }
     
   &:hover {
-    cursor:pointer;   
+    cursor:pointer;
   }
 }
 
 .twitter:hover {
   .sl_circle {
     fill:#ffffff;
-    fill-opacity : 1;      
+    fill-opacity : 1;
+	transform: scale(1.2);      
     animation: outWaveIn 1s cubic-bezier(0.42, 0.0, 0.58, 1.0) forwards, colorTwitter 1s linear forwards;
   }
   .sl_social {color:#3aaae1;}
 }
 .github:hover {
   .sl_circle {
-      fill:#ffffff;
-  fill-opacity :1;      
-  animation: outWaveIn 1s cubic-bezier(0.42, 0.0, 0.58, 1.0) forwards, colorGithub 1s linear forwards;
+    fill:#ffffff;
+  	fill-opacity :1;
+  	animation: outWaveIn 1s cubic-bezier(0.42, 0.0, 0.58, 1.0) forwards, colorGithub 1s linear forwards;
   }
   .sl_social {color:#6cc644;}
 }
-.google:hover {
+.mail:hover {
   .sl_circle {
-      fill:#ffffff;
-  fill-opacity : 1;      
-  animation: outWaveIn 1s cubic-bezier(0.42, 0.0, 0.58, 1.0) forwards, colorGoogle 1s linear forwards;
+	fill:#ffffff;
+  	fill-opacity : 1;      
+  	animation: outWaveIn 1s cubic-bezier(0.42, 0.0, 0.58, 1.0) forwards, colorMail 1s linear forwards;
   }
-  .sl_social {color:#dd4b39;}
+  .sl_social {color:#ebac37;}
 }
 .telegram:hover {
   .sl_circle {
@@ -101,9 +102,9 @@
   from {stroke: #ffffff;}
   to {stroke:#6cc644;}
 }
-@keyframes colorGoogle {
+@keyframes colorMail {
   from {stroke: #ffffff;}
-  to {stroke:#dd4b39;}
+  to {stroke:#ebac37;}
 }
 @keyframes colorTelegram {
   from {stroke: #ffffff;}

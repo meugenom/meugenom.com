@@ -52,6 +52,7 @@ or
 	}
 	location ^~ /graphql/ {
 		proxy_pass http://localhost:3000/graphql/; 
+	}
 ```
 
 ### How to see web page:

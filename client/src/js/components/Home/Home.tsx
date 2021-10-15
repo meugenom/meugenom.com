@@ -17,7 +17,7 @@ export default class Home extends React.Component<{}, IState> {
             <div id="main-content">
                 <h2> Zervus! I'm Eugen </h2>
                             <p>
-							I'm a <strong>software developer</strong> writing about things that will maybe interesting for you: 							
+							I'm a <strong>software developer</strong> writing about things that will be maybe interesting for you: 							
 							<strong> data structures</strong>, <strong>Java</strong>, <strong>Javascript</strong>, and Python.
 							Every day is special to do something useful for yourself, so don't lose it.
 							This site is <strong>a little sandbox</strong> where I write my code. 

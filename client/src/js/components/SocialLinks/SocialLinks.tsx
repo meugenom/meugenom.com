@@ -22,12 +22,12 @@ export default class SocialLinks extends React.Component<{}, IState> {
 							  <i className="bi-github" role="img" aria-label="GitHub"></i>
       						</div>
     					</a>
-    					<a href="#" className="sl_container google">
+    					<a href="mailto:hallo@eugenmorozov.de?subject=My propositions" className="sl_container mail">
       						<svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
          						<circle cx="100" cy="100" r="50"/>
       						</svg>
       						<div className="sl_social">
-        						<i className="bi bi-google"></i>
+        						<i className="bi bi-envelope"></i>
       						</div>
     					</a>
     					<a href="https://t.me/eugenemdev" className="sl_container telegram">
