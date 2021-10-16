@@ -3,7 +3,7 @@ import * as React from 'react'
 import Config from './../../Config'
 import Query from './../Service/Query'
 import Service from '../Service/Service'
-import './ProjectsList.scss'
+import './Cards.scss'
 
 interface IProps {
 
@@ -21,6 +21,10 @@ interface IIssue {
     bodyText: string
 }
 
+interface ILang {
+	name: string
+}
+
 interface IRepositoryTopic {
     node: {
         topic: {
@@ -35,6 +39,7 @@ interface IProject {
         name: string,
         description: string,
         updatedAt: string,
+		createdAt: string,
         hasIssuesEnabled: boolean,
         homepageUrl: string,
         resourcePath: string,
@@ -45,6 +50,9 @@ interface IProject {
         issues: {
             nodes: IIssue[]
         }
+		languages: {
+			nodes: ILang[]
+		}
     }
 }
 
@@ -77,41 +85,77 @@ export default class ProjectsList extends React.Component<IProps, IState> {
         return Config.months[num]
     }
 
+	renderLanguages(project: IProject){
+		return  project.node.languages.nodes.map((language: ILang) => {
+				return (
+					<div>
+						<i className="bi bi-tag"><a href="#">{language.name}</a></i>
+						<br></br>
+					</div>
+				)
+			 })
+	}
+
     renderProjectsList() {
         return this.state.projectsList.map((project: IProject, id: number) => {
-            return (
-                <div key={project.node.id} className="cards-item">
-                    <div className="card">
-                        <img src={project.node.openGraphImageUrl} className="card-image card-image-fence"/>
-                        <div className="card-content">
-                            <div className="card-title">
-                                {project.node.name}
-                            </div>
-                            <p className="card-text">
-                                {project.node.description} |
-                                (updated {new Date(project.node.updatedAt).getDate()}.
-                                {this.getMonth(new Date(project.node.updatedAt).getMonth())}.
-                                {new Date(project.node.updatedAt).getFullYear()})
-                            </p>
-                            <button className="btn" onClick= {(e)=>{
+			
+			project.node.languages.nodes.map((language: ILang) => {
+				//console.log(language.name);
+			 })
+			
+				return (
+					<div key = {project.node.id} className="blog-card">
+					<div className="meta">
+					  <div className="photo" style={{ backgroundImage: `url(`+ project.node.openGraphImageUrl +`)`}}></div>
+					  
+					  <ul className="details">
+
+						<li className="author">
+							<i className="bi bi-person">
+								<a href="https://github.com/eugenemdev"><strong> eugenemdev</strong></a>
+							</i>
+						</li>
+					
+						<li className="date">
+						<i className="bi bi-calendar4-event"> created: {new Date(project.node.createdAt).getDate()}.
+                            {this.getMonth(new Date(project.node.createdAt).getMonth())}.
+                            {new Date(project.node.updatedAt).getFullYear()}
+						</i>
+							
+						</li>
+						<li className="tags">						
+							{this.renderLanguages(project)}
+						</li>
+					  </ul>
+					</div>
+					<div className="description">
+					  <h1>{project.node.name}</h1>
+					  <h2>
+					  		(updated {new Date(project.node.updatedAt).getDate()}.
+                            {this.getMonth(new Date(project.node.updatedAt).getMonth())}.
+                            {new Date(project.node.updatedAt).getFullYear()})
+					  </h2>
+					  <p> {project.node.description}</p>
+					  <p className="view-source">
+						<a href="#" onClick= {(e)=>{
                                 this.openWebPage(e, "https://github.com" + project.node.resourcePath)
-                            }}
-                            >to Github's source</button>
-                                {project.node.homepageUrl === '' || project.node.homepageUrl == null
+                            }}>Source</a>
+						</p>
+						<p className="view-web">
+						{project.node.homepageUrl === '' || project.node.homepageUrl == null
                                     ? ''
-                                    : <button className="btn" onClick= {(e) =>{
+                                    : <a href="#" onClick= {(e) =>{
                                         this.openWebPage(e, project.node.homepageUrl)
                                     }}
-                                    >to Web page</button>
+                                    >Web</a>
                                 }
-                        </div>
-                    </div>
-                </div>
-            )
-        })
+					  </p>
+					</div>
+				  </div>
+				)
+			}
+        )
     }
-
-    // <ProjectsListFilter searchName="javascript" projectsList={this.state.projectsList}/>
 
     render() {
         return (

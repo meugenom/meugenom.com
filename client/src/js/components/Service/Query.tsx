@@ -27,10 +27,19 @@ const Query = {
                       name
                       description
                       updatedAt
+					  createdAt
                       hasIssuesEnabled
                       homepageUrl
                       resourcePath
                       openGraphImageUrl
+					  primaryLanguage {
+						name
+					  }
+					  languages(first: 100) {
+						nodes {
+						  name
+						}
+					  }
                       repositoryTopics(first: 5) {
                         edges {
                           node {

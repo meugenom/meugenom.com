@@ -49,36 +49,10 @@ export default class ProjectsListFilter extends React.Component<IProps, IState> 
         super(props);
         this.state = { }
 
-        console.log(this.props.projectsList)
+        //console.log(this.props.projectsList)
 
-        /*
-        //const projectsF = await this.filterProjects('reactjs')
-        //this.setState({ projectsList: projectsF})
-        */
         }
-    /*
-    handleChange = (e) => {
-        this.setState({
-            projectsFilter: e.target.value
-        })
-        this.props.onChange(event.target.value)
-    }
 
-    <input type="text" id='filter'  value={this.state.projectsFilter}  onChange={this.handleChange}/>
-    */
-   /*
-   filterProjects(filterString: string){
-    const D = this.state.projectsList.filter((project: IProject) => {
-            const F = project.node.repositoryTopics.edges.filter((topic: IRepositoryTopic) => {
-                return topic.node.topic.name === filterString
-            })
-            if (F[0] !== undefined){
-                return project
-            }
-    })
-    return D
-    }
-    */
 
     render() {
         return (
