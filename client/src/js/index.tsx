@@ -3,8 +3,8 @@ import * as ReactDOM from 'react-dom'
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App/App";
 import Footer from "./components/Footer/Footer"
-import { HashRouter } from 'react-router-dom'
 import "../styles/style.scss"
+
 
 
 const ROOT = document.querySelector(".container")

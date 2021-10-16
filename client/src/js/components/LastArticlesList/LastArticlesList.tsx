@@ -17,7 +17,6 @@ interface IState {
 }
 
 
-
 export default class LastArticlesList extends React.Component<{}, IState> {
 
     constructor(props: {}) {
