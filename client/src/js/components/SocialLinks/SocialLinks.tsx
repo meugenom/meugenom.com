@@ -13,7 +13,7 @@ export default class SocialLinks extends React.Component<{}, IState> {
         return (
             <div id="social_links">
                 <div id="sl_wrapper">
-  					<div id="sl_share"><span>Social Buttons: </span>    					
+  					<div id="sl_share">
     					<a href="https://github.com/eugenemdev" className="sl_container github">
       						<svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
          					<circle cx="100" cy="100" r="50"/>
