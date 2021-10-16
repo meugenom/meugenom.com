@@ -52,7 +52,7 @@ export default class App extends React.Component<{}, IState> {
                             <div className="links">
                                 <Link to="/">Home</Link>
                                 <Link to="/articles">Articles</Link>
-                                <Link to="/projects">Projects</Link>
+                                <Link to="/projects">Pets</Link>
                                 <Link to="/about">About</Link>                                
                             </div>
                         </div>
