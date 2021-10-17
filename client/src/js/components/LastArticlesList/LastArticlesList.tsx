@@ -42,7 +42,7 @@ export default class LastArticlesList extends React.Component<{}, IState> {
         return this.state.lastArticlesList.map((article: IArticle) => {
             return (
                     <li key={article.slug}>
-                        <Link to={`/article/${article.slug}`}>{article.title}</Link>
+                        <Link to={`/article/${article.slug}`}>{article.title.substring(1, article.title.length-1)}</Link>
                     </li>
             )
         })

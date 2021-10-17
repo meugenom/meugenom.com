@@ -99,9 +99,9 @@ export default class ProjectsList extends React.Component<IProps, IState> {
     renderProjectsList() {
         return this.state.projectsList.map((project: IProject, id: number) => {
 			
-			project.node.languages.nodes.map((language: ILang) => {
+			//project.node.languages.nodes.map((language: ILang) => {
 				//console.log(language.name);
-			 })
+			// })
 			
 				return (
 					<div key = {project.node.id} className="blog-card">
