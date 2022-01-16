@@ -2,10 +2,10 @@
 - front-end works on port 8081;
 - backend works on port 3000;
 
-This is personal web page, that you can see [https://eugenem.dev](https://eugenem.dev).
+This is personal web page, that you can see [https://meugenom.com](https://meugenom.com).
 
 ### What were used to prepare this page:
-- Javascript (ES6) (my markdown parser for *.md pages [Github:](https://github.com/eugenemdev/markable-to-html));
+- Javascript (ES6) (my markdown parser for *.md pages [Github:](https://github.com/meugenom/markable-to-html));
 - Typescript and React (web site, frontend part);
 - Java and Spring-Boot (for backend part);
 - GraphQL;
@@ -23,9 +23,9 @@ This is personal web page, that you can see [https://eugenem.dev](https://eugene
 ### How to start:
 
 1. clone repository 
-`git clone https://github.com/eugenemdev/eugenem.dev.git`
+`git clone https://github.com/meugenom/meugenom.com.git`
 2. change dir
-`cd eugenem.dev`
+`cd meugenom.com`
 3. install npm libraries
 `npm install`
 3. for building frontend part:
@@ -60,7 +60,6 @@ or
 open web browser with link:  http://localhost:8080 after starting both servers (front and back).
 
 ### Author 
-@eugenemdev [mail me](mailto:hallo@eugenem.dev?subject=Github%20source%20question&amp;body=Hello%20Eugen,%0D%0A%0D%0Ahier%20is%20your%20message)
+@meugenom [mail me](mailto:hallo@meugenom.com?subject=Github%20source%20question&amp;body=Hello%20Eugen,%0D%0A%0D%0Ahier%20is%20your%20message)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-
