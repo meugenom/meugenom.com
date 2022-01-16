@@ -1,5 +1,5 @@
 {
-  "name": "eugenem.dev",
+  "name": "meugenom",
   "version": "0.0.1",
   "description": "",
   "scripts": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eugenemdev/eugenem.dev.git"
+    "url": "git+https://github.com/meugenom/meugenom.com.git"
   },
-  "author": "eugenemdev",
+  "author": "meugenom",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eugenemdev/eugenem.dev/issues"
+    "url": "https://github.com/meugenom/meugenom.com/issues"
   },
-  "homepage": "https://github.com/eugenemdev/eugenem.dev#readme",
+  "homepage": "https://github.com/meugenom/meugenom.com#readme",
   "devDependencies": {
     "@types/prismjs": "^1.16.6",
     "@types/react": "^17.0.20",
