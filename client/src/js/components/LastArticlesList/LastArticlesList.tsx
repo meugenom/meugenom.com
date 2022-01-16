@@ -56,12 +56,12 @@ export default class LastArticlesList extends React.Component<{}, IState> {
                         <h2>List of Last Articles</h2>
 						<p>
 							You can find all articles on my 
-							<a href="https://github.com/eugenemdev/eugenem.dev/tree/master/content/articles">
+							<a href="https://github.com/meugenom/meugenom.com/tree/master/content/articles">
 								<strong> Github repository </strong>
 							</a>
 							in <strong> markable </strong> format.
 							This website uses my own made 
-							<a href="https://github.com/eugenemdev/markable-to-html"> parser </a> 
+							<a href="https://github.com/meugenom/markable-to-html"> parser </a> 
 							that converts files from *.md to *.html format. 
 						</p>
                         <ul>

@@ -15,7 +15,7 @@ export default class SocialLinks extends React.Component<{}, IState> {
 		if(isMobile) {
 			return (
 				<div className="social_links">
-						<a href="https://github.com/eugenemdev" className="sl_container github_touch">
+						<a href="https://github.com/meugenom" className="sl_container github_touch">
 					 
 						  <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
 						 <circle cx="100" cy="100" r="50"/>
@@ -32,7 +32,7 @@ export default class SocialLinks extends React.Component<{}, IState> {
 							<i className="bi bi-envelope"></i>
 						  </div>
 					</a>
-					<a href="https://t.me/eugenemdev" className="sl_container telegram_touch">
+					<a href="https://t.me/meugenom" className="sl_container telegram_touch">
 						  <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
 						 <circle cx="100" cy="100" r="50"/>
 						  </svg>
@@ -53,7 +53,7 @@ export default class SocialLinks extends React.Component<{}, IState> {
 		} else {
 			return (
 				<div className="social_links">
-						<a href="https://github.com/eugenemdev" className="sl_container github_no_touch">
+						<a href="https://github.com/meugenom" className="sl_container github_no_touch">
 					 
 						  <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
 						 <circle cx="100" cy="100" r="50"/>
@@ -62,7 +62,7 @@ export default class SocialLinks extends React.Component<{}, IState> {
 						  <i className="bi-github" role="img" aria-label="GitHub"></i>
 						  </div>
 					</a>
-					<a href="mailto:hallo@eugenmorozov.de?subject=My propositions" className="sl_container mail_no_touch">
+					<a href="mailto:hallo@meugenom.com?subject=My propositions" className="sl_container mail_no_touch">
 						  <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
 							 <circle cx="100" cy="100" r="50"/>
 						  </svg>
@@ -70,7 +70,7 @@ export default class SocialLinks extends React.Component<{}, IState> {
 							<i className="bi bi-envelope"></i>
 						  </div>
 					</a>
-					<a href="https://t.me/eugenemdev" className="sl_container telegram_no_touch">
+					<a href="https://t.me/meugenom" className="sl_container telegram_no_touch">
 						  <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
 						 <circle cx="100" cy="100" r="50"/>
 						  </svg>

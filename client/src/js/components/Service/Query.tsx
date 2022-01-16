@@ -1,16 +1,16 @@
 const Query = {
     lastArticlesList: {
-      host: 'http://localhost:8080/graphql/', //https://eugenem.dev/graphql/
+      host: 'http://localhost:8080/graphql/', //https://meugenom.com/graphql/
       query: '{ lastArticlesList { slug title id}}'
     },
     articlesList: {
-      host: 'http://localhost:8080/graphql/', //https://eugenem.dev/graphql/
+      host: 'http://localhost:8080/graphql/', //https://meugenom.com/graphql/
       query: '{ articlesList { slug title id}}'
     },    
     projectsList: {
       host: 'https://api.github.com/graphql',
       query: `{
-              user(login: "eugenemdev") {
+              user(login: "meugenom") {
               email
               location
               websiteUrl
@@ -65,11 +65,11 @@ const Query = {
           `
     },
     getAllSpecificationTextByArticleId: {
-      host: 'http://localhost:8080/graphql/', //https://eugenem.dev/graphql/
+      host: 'http://localhost:8080/graphql/', //https://meugenom.com/graphql/
       query: 'query Query($id: Long!) {\n  getAllSpecificationTextByArticleId(id: $id) \n}\n'
     },
 	getAllSpecificationTextByArticleSlug: {
-		host: 'http://localhost:8080/graphql/', //https://eugenem.dev/graphql/
+		host: 'http://localhost:8080/graphql/', //https://meugenom.com/graphql/
 		query: 'query Query($slug: String!) {\n  getAllSpecificationTextByArticleSlug(slug: $slug) \n}\n'
 	  }
 
