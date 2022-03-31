@@ -15,9 +15,9 @@ This is personal web page, that you can see [https://meugenom.com](https://meuge
 
 ### How to set up:
 
-1. need preinstalled OpenJDK(build 16.0.2+7), npm(v.7.20.5), node(v16.6.0), mvn(v.3.8.2), nginx(1.21.2);
+1. need preinstalled OpenJDK(build 16.0.2+7), npm(8.5.0), node(16.14.2), mvn(3.8.2), nginx(1.21.2);
 2. for information about projects you need  personal acess token [https://github.com/settings/tokens](https://github.com/settings/tokens);
-3. add this token to [./src/js/Config.tsx](https://github.com/eugenemdev/eugenem.dev/tree/master/client/src/js/Config.tsx);
+3. add this token to [./src/js/Config.tsx](https://github.com/meugenom/meugenom.com/tree/master/client/src/js/Config.tsx);
 
 
 ### How to start:
