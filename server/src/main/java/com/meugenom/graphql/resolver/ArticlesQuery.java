@@ -1,18 +1,18 @@
-package dev.eugenem.graphql.resolver;
+package com.meugenom.graphql.resolver;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import dev.eugenem.article.model.Article;
-import dev.eugenem.article.model.Specification;
-import dev.eugenem.article.repository.ArticleRepository;
-import dev.eugenem.article.repository.SpecificationRepository;
+import com.meugenom.article.model.Article;
+import com.meugenom.article.model.Specification;
+import com.meugenom.article.repository.ArticleRepository;
+import com.meugenom.article.repository.SpecificationRepository;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 
 /**
- * @author eugenemdev graphqlquery file implements graphqlqueryresolver and
+ * @author meugenom graphqlquery file implements graphqlqueryresolver and
  *         let's get queries from repositories
  */
 
@@ -36,7 +36,6 @@ public class ArticlesQuery implements GraphQLQueryResolver {
   }
 
   // return 5 last articles 
-  // TODO
   public List<Article> lastArticlesList() {
     return articleRepository.findAll();
   }

@@ -1,4 +1,4 @@
-package dev.eugenem.article.model;
+package com.meugenom.article.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

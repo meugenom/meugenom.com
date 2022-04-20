@@ -1,4 +1,4 @@
-package dev.eugenem.readfile;
+package com.meugenom.readfile;
 
 import java.io.File;
 import java.util.Set;

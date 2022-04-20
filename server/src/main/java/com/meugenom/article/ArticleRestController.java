@@ -1,4 +1,4 @@
-package dev.eugenem.article;
+package com.meugenom.article;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

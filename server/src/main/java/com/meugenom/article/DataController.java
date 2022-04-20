@@ -1,4 +1,4 @@
-package dev.eugenem.article;
+package com.meugenom.article;
 
 import java.io.FileReader;
 import org.apache.tomcat.util.json.JSONParser;

@@ -9,5 +9,6 @@ client/node_modules
 client/node
 client/temp
 client/*.log
-client/package-log.json
 client/package-lock.json
+.idea/*
+.vscode/*

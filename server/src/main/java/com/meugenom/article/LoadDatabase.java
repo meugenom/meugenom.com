@@ -1,7 +1,7 @@
-package dev.eugenem.article;
+package com.meugenom.article;
 
 /**
- * @author eugenemdev
+ * @author meugenom
  * reading files from directory "/content/articles"
  * parsing and saving data from files in the articleRepository
  */
@@ -12,12 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import java.util.Set;
 import org.springframework.stereotype.Component;
-import dev.eugenem.article.model.Article;
-import dev.eugenem.article.parser.ParseToArticle;
-import dev.eugenem.article.repository.ArticleRepository;
-import dev.eugenem.article.repository.SpecificationRepository;
-import dev.eugenem.readfile.ReadFile;
-import dev.eugenem.readfile.ReadFilenamesFromDirectory;
+import com.meugenom.article.model.Article;
+import com.meugenom.article.parser.ParseToArticle;
+import com.meugenom.article.repository.ArticleRepository;
+import com.meugenom.article.repository.SpecificationRepository;
+import com.meugenom.readfile.ReadFile;
+import com.meugenom.readfile.ReadFilenamesFromDirectory;
 
 @Component
 public class LoadDatabase implements CommandLineRunner {

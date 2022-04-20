@@ -1,13 +1,13 @@
-package dev.eugenem.article.parser;
+package com.meugenom.article.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import dev.eugenem.article.model.Article;
-import dev.eugenem.article.model.Specification;
+import com.meugenom.article.model.Article;
+import com.meugenom.article.model.Specification;
 
 /**
- * @author eugenemdev
+ * @author meugenom
  * @see ArrayList, Regex rules 
  * @param text String value for next parsing and inputing datas to object Article
  * @return object Article that consists of the  article's fields and specifications

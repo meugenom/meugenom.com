@@ -1,4 +1,4 @@
-package dev.eugenem.article.model;
+package com.meugenom.article.model;
 
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -44,14 +44,14 @@ public class Article {
     @Column(name = "fileName")
     private String fileName;
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private List<Specification> specifications;
 
     public Article() {
     }
 
     public Article(String date, String title, String template, String thumbnail, String slug, String categories,
-            String tags, String fileName, List<Specification> specifications) {
+                   String tags, String fileName, List<Specification> specifications) {
         this.date = date;
         this.title = title;
         this.template = template;

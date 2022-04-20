@@ -1,4 +1,4 @@
-package dev.eugenem;
+package com.meugenom;
 
 import java.io.IOException;
 
