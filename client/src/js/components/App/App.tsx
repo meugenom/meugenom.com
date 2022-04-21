@@ -1,73 +1,45 @@
-import * as React from 'react';
-import { Switch, Route, Link} from 'react-router-dom';
-import Home from '../Home/Home'
-import ArticlesList from '../ArticlesList/ArticlesList'
-import ProjectsList from '../ProjectsList/ProjectsList'
-import About from '../About/About'
-import Article from '../Article/Article'
-import Error404 from '../Error404/Error404'
-import ThemaA from '../ThemaA/ThemaA'
+import * as React from "react";
+import { Switch, Route, Link } from "react-router-dom";
+import Home from "../Home/Home";
+import ArticlesList from "../ArticlesList/ArticlesList";
+import ProjectsList from "../ProjectsList/ProjectsList";
+import About from "../About/About";
+import Article from "../Article/Article";
+import Error404 from "../Error404/Error404";
+import Nav from "../Nav/Nav";
 
+export default function App() {
+  const routs = [
+    {
+      link: "/",
+      name: "Home",
+    },
+    {
+      link: "/articles",
+      name: "Articles",
+    },
+    {
+      link: "/projects",
+      name: "Pets",
+    },
+    {
+      link: "/about",
+      name: "About",
+    },
+  ];
 
-interface IState {
-    currentTask: string;
-    tasks: ITask[];
-
-}
-
-interface ITask {
-    id: number;
-    value: string;
-    completed: boolean
-}
-
-
-export default class App extends React.Component<{}, IState> {
-
-    constructor(props: {}){
-        super(props);
-
-        this.state = {
-            currentTask: "",
-            tasks: [],
-        }
-    }
-
-
-
-    public render(): JSX.Element{
-        
-        return (
-            <div>
-              <nav className="nav">
-                        <div className="nav-container">
-                            <div className="brand">
-                                <Link to="/">
-                                    <img 
-                                    // tslint:disable-next-line: jsx-alignment
-                                    src="../../images/face-splash.svg" alt="face-splash" className="favicon"
-                                    />
-                                </Link>
-                            </div>
-                            <div className="links">
-                                <Link to="/">Home</Link>
-                                <Link to="/articles">Articles</Link>
-                                <Link to="/projects">Pets</Link>
-                                <Link to="/about">About</Link>                                
-                            </div>
-                        </div>
-            </nav>
-
-                <Switch>                    
-                        <Route exact={true} path="/" component={Home} />
-                        <Route path="/articles" component={ArticlesList} />
-                        <Route path="/projects" component={ProjectsList} />
-                        <Route path="/about" component={About} />                        
-                        <Route path='/article/:slug' component={Article} />
-                        <Route component={Error404} />                    
-                </Switch>                
-              </div>
-        )
-        
-    }
+  const content = "ohh another prop this is good!!";
+  return (
+    <React.Fragment>
+      <Nav routs={routs} />
+      <Switch>
+        <Route exact={true} path="/" component={Home} />
+        <Route path="/articles" component={ArticlesList} />
+        <Route path="/projects" component={ProjectsList} />
+        <Route path="/about" component={About} />
+        <Route path="/article/:slug" component={Article} />
+        <Route component={Error404} />
+      </Switch>
+    </React.Fragment>
+  );
 }
