@@ -10,6 +10,8 @@ import {
 interface IArticle {
     slug: string,
     title: string,
+	date: string;
+  	tags: string;
     id: string
 }
 interface IState {
@@ -38,38 +40,57 @@ export default class LastArticlesList extends React.Component<{}, IState> {
         await this.setState({ lastArticlesList: response.lastArticlesList })
     }
 
-    renderArticlesList() {
-        return this.state.lastArticlesList.map((article: IArticle) => {
-            return (
-                    <li key={article.slug}>
-                        <Link to={`/article/${article.slug}`}>{article.title.substring(1, article.title.length-1)}</Link>
-                    </li>
-            )
-        })
-    }
+	renderArticlesTags(tags: string) {
+		const tagsArray = tags.split(" ");
+		return tagsArray.map((tag) => {
+		  return (
+			<Link to={`/tags/${tag}`}
+				href="/tags/${tag}"
+				className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-emerald-500 hover:bg-emerald-600 uppercase last:mr-0 mr-1">
+				  {tag}
+			</Link>
+		  );
+		});
+	  }
 
-    render() {
-        return (
-            <main id="section-content">
-                <div className="container">
-                    <article>
-                        <h2>List of Last Articles</h2>
-						<p>
-							You can find all articles on my 
-							<a href="https://github.com/meugenom/meugenom.com/tree/master/content/articles">
-								<strong> Github repository </strong>
-							</a>
-							in <strong> markable </strong> format.
-							This website uses my own made 
-							<a href="https://github.com/meugenom/markable-to-html"> parser </a> 
-							that converts files from *.md to *.html format. 
-						</p>
-                        <ul>
-                            {this.renderArticlesList()}
-                        </ul>
-                    </article>
-                </div>
-            </main>
-        )
-    }
+
+	renderArticlesList() {
+		return this.state.lastArticlesList.map((article: IArticle) => {
+		  return (
+			<li className="text-slate-600 hover:text-blue-600" key={article.slug}>
+			  <Link to={`/article/${article.slug}`}>
+				{article.title.substring(1, article.title.length - 1)}
+			  </Link>
+			  &nbsp;
+			  &nbsp;
+			  <span className="tag-container">
+				{this.renderArticlesTags(article.tags)}
+			  </span>
+			  &nbsp;
+			  &nbsp;
+			  <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
+				{article.date}
+			  </span>
+			</li>
+		  );
+		});
+	  }
+	
+	  render() {
+		return (
+		  
+			<div className="">
+			  <article>
+				<h4 className="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
+				  Last Articles:
+				</h4>
+				<ul className="list-disc">{this.renderArticlesList()}</ul>
+			  </article>
+			  <br/>
+			  <hr/>
+			  <br/>
+			</div>
+		  
+		);
+	  }
 }

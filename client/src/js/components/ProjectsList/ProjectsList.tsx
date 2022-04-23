@@ -162,12 +162,9 @@ export default class ProjectsList extends React.Component<IProps, IState> {
             <main id="main-content">
                 <div className="container">
                     <article>
-                        <h2>Pet Projects</h2>
-						<p>
-						Pet projects are homemade experiences with programming languages, structures of dates, 
-						small challenges that were solved and explained on 
-							<a href="https://github.com/eugenemdev"> Github.</a>
-						</p>
+					<h4 className="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
+						Pet Projects:
+					</h4>                        
                         <ul className="cards">
                             {this.renderProjectsList()}
                         </ul>

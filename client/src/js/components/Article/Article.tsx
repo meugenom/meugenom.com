@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Service from '../Service/Service'
 import Query from '../Service/Query'
-import './Article.scss'
 
 // import parser for markable text
 import View from '../../../static/libs/parser/View'
@@ -58,8 +57,8 @@ export default class Article extends React.Component< IProps, IState> {
 
     render(){
         return (
-            <main id="main-content">
-                <div className="container">
+            <main>
+                <div>
                     <article/>
                 </div>
             </main>

@@ -5,12 +5,10 @@ template: post
 thumbnail: '../thumbnails/writing.png'
 slug: instruction-to-write-text
 categories: 
-tags: instruction texter writer 
+tags: instruction texter writer
 ---
 
-This text was prepared as instruction to write texts in any editor for [markable parser](https://github.com/eugenemdev/markable-to-html), that helps to convert markable text to more relevant html document. @en
-
-Der Text wurde speziel als Instruktion vorbereitet, den auf jedem Editor möglich schreiben zu können. Und mit Hilfe des Parsers [markable parser](https://github.com/eugenemdev/markable-to-html) kann man den Text zu nutzfreundliches HTML umwandeln. @de
+This text was prepared as instruction to write texts in any editor for [markable parser](https://github.com/eugenemdev/markable-to-html), that helps to convert markable text to more relevant html document.
 
 ## Formatting Syntax
 
@@ -117,12 +115,6 @@ in out;
 \* this all text is ### unmarkable
 this is \*test\* text
 About \*this >Quote\*
-
-### Languages
-```terminal
-    in the end for each paragraph use @en, @de or @ru
-    by default @all 
-```
 
 ### Images
 ```bash

@@ -1,11 +1,11 @@
 const Query = {
     lastArticlesList: {
       host: 'http://localhost:8080/graphql/', //https://meugenom.com/graphql/
-      query: '{ lastArticlesList { slug title id}}'
+      query: '{ lastArticlesList { slug title id date tags}}'
     },
     articlesList: {
       host: 'http://localhost:8080/graphql/', //https://meugenom.com/graphql/
-      query: '{ articlesList { slug title id}}'
+      query: '{ articlesList { slug title id date tags}}'
     },    
     projectsList: {
       host: 'https://api.github.com/graphql',

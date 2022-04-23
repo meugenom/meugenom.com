@@ -8,14 +8,12 @@ export default class Error404 extends React.Component<{}> {
 
     public render(){
         return (
-            <main id="main-content">
-            <div className="container">
+            <div className="flex items-center justify-center">
                 <article>
                     <img src="../../../images/404.svg" 
                         alt="404-error"/>
                 </article>
             </div>
-        </main>
         )
     }
 }
