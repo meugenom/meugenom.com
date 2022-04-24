@@ -35,12 +35,17 @@ export default function App() {
             <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
               <a href="https://meugenom.com" className="flex items-center">
                 <img
-                  src="../../images/brain.svg"
+                  src="../../images/brain_gray.svg"
                   alt="face-splash"
                   className="mr-3 h-6 sm:h-9"
                 />
                 <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                  meugenom
+                  <span className="text-yellow-500">
+					  Meu
+				  </span>
+				  <span className="text-sky-500">
+					  Genom
+				  </span>
                 </span>
               </a>
               <button
