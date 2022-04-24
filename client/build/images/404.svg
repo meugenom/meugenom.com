@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with EazyDraw for Mac ( http://www.eazydraw.com/ ) -->
+
+<svg
+    version="1.1"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+    width="289.125699846"
+    height="174.359317755"
+    viewBox="0, 0, 289.125699846, 174.359317755"
+    preserveAspectRatio="none"
+    id="svg2">
+   <defs
+       id="defs_42CDC6BC"/>
+   <metadata
+       id="metadata7">
+      <rdf:RDF>
+         <cc:Work
+             rdf:about="">
+            <dc:format>image/svg+xml</dc:format>
+            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+            <dc:title></dc:title>
+         </cc:Work>
+      </rdf:RDF>
+   </metadata>
+   <g
+       id="layer_Paper"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;fill-rule:nonzero;stroke-linecap:square;stroke-linejoin:miter;stroke-width:1;stroke-miterlimit:10">
+      <g
+          id="E46375BC">
+         <g id="227375BC_transform" transform="matrix(1.015373815621,-0.00037132992,0.00036003315,0.984483647427,-2.253870167563,1.406390835835)">
+            <text
+                id="D17375BC"
+                style="fill:#5B5B5B;stroke:none"
+                font-family="Skia"
+                font-size="146.269560441"
+                font-weight="normal"
+                font-style="normal">
+               <tspan x="7.220212398088" y="141.679658877">404</tspan>
+            </text>
+         </g>
+      </g>
+      <g id="467375BC_transform" transform="matrix(1.031376956211,-0.00037718239,0.000363586363,0.994199640402,-4.699577531926,0.248357565804)">
+         <text
+             id="267375BC"
+             style="fill:#5B5B5B;stroke:none"
+             font-family="Skia"
+             font-size="48.554041763"
+             font-weight="normal"
+             font-style="normal"
+             transform="matrix(0.988589173158,0,0,0.988589173158,0.963742951756,0.035406462763)">
+            <tspan x="89.4586431028" y="51.1028831874">error</tspan>
+         </text>
+      </g>
+   </g>
+</svg>

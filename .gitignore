@@ -4,7 +4,6 @@ server/.settings
 server/.factorypath
 server/target
 client/dist
-client/build
 client/node_modules
 client/node
 client/temp
