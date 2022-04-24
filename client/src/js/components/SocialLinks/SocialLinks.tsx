@@ -24,7 +24,7 @@ export default class SocialLinks extends React.Component<{}, IState> {
 						  <i className="bi-github" role="img" aria-label="GitHub"></i>
 						  </div>
 					</a>
-					<a href="mailto:hallo@eugenmorozov.de?subject=My propositions" className="sl_container mail_touch">
+					<a href="mailto:hallo@meugenom.com?subject=My propositions" className="sl_container mail_touch">
 						  <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
 							 <circle cx="100" cy="100" r="50"/>
 						  </svg>
