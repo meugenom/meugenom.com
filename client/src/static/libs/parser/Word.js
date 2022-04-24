@@ -85,7 +85,7 @@ export class Word {
         tags.shift()
 
         const headerPostView = `
-                    <img src="${linkPost.slice(2, -1)}" class="float-left p-8"/>    
+                    <img src="${linkPost.slice(2, -1)}" class="float-left p-8"/>
                     <div class="">
                         <h3 class="text-3xl font-normal leading-normal mt-0 mb-2 text-gray-600">${titlePost}</h3>
 						<time class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
@@ -93,7 +93,7 @@ export class Word {
                         </time>
                         <div class="tag-container">
                             ${tags.map(tag => `
-								<a href="#/tags/${tag}" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-emerald-500  hover:bg-emerald-600 uppercase last:mr-0 mr-1">
+								<a href="#/tags/${tag}" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-orange-400  hover:bg-orange-500 uppercase last:mr-0 mr-1">
 								${tag}
 							</a>`)}
                         </div>

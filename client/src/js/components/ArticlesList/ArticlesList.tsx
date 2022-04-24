@@ -56,7 +56,7 @@ export default class ArticlesList extends React.Component<IProps, IState> {
       return (
         <Link to={`/tags/${tag}`}
 			href="/tags/${tag}"
-        	className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-emerald-500  hover:bg-emerald-600 uppercase last:mr-0 mr-1">
+        	className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-orange-400  hover:bg-orange-500 uppercase last:mr-0 mr-1">
           	{tag}
 		</Link>
       );
@@ -90,7 +90,7 @@ export default class ArticlesList extends React.Component<IProps, IState> {
       <main id={this.state.classContent}>
         <div className="container">
           <article>
-            <h4 className="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
+            <h4 className="text-2xl font-normal leading-normal text-gray-500">
               Articles:
             </h4>
             <ul className="list-decimal">{this.renderArticlesList()}</ul>
