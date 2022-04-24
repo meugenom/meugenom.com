@@ -6,6 +6,8 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 // copy files from /client..  to /build/..
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
+const devMode = process.env.NODE_ENV !== "production"
+
 module.exports = {
   entry: path.join(__dirname, './src/js/index.tsx'),
   output: {
@@ -24,6 +26,14 @@ module.exports = {
         test: /\.js$/,
         loader: 'source-map-loader'
       },
+	  {
+		test: /\.css$/i,
+		use: [
+			devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+			'css-loader',
+			"postcss-loader",
+		],
+	  },
       {
         test: /\.s(a|c)ss$/,
         // include: /styles/,

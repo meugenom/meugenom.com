@@ -70,7 +70,7 @@ export default class SocialLinks extends React.Component<{}, IState> {
 							<i className="bi bi-envelope"></i>
 						  </div>
 					</a>
-					<a href="https://t.me/meugenom" className="sl_container telegram_no_touch">
+					<a href="https://t.me/meugenom_channel" className="sl_container telegram_no_touch">
 						  <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
 						 <circle cx="100" cy="100" r="50"/>
 						  </svg>

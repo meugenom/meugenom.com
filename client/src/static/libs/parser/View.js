@@ -1,7 +1,6 @@
 'use strict'
 import Config from './Config.js'
 import { Line } from './Line.js'
-import Language from './Language.js'
 
 export default class View extends Line {
   constructor () {
@@ -17,7 +16,6 @@ export default class View extends Line {
       if (line.length !== 0) {
         let node = this.parse(line)
         if (node !== undefined) {
-          node = Language.parseLang(node)
           article.appendChild(node)
         }
       }

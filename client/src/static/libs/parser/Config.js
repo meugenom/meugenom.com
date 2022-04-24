@@ -29,11 +29,6 @@ const Config =
   StartUnMarkablePattern: /\\\*\w+/,
   EndUnMarkablePattern: /\w+\\\*/,
 
-  english: '@en',
-  german: '@de',
-  russian: '@ru',
-  multi: '@all',
-
   version: '0.0.1rc'
 
 }

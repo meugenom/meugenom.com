@@ -10,7 +10,7 @@ This is personal web page, that you can see [https://meugenom.com](https://meuge
 - Java and Spring-Boot (for backend part);
 - GraphQL;
 - Webpack (ES6);
-- SCSS, CSS;
+- SCSS, Tailwind CSS;
 - maven;
 
 ### How to set up:
