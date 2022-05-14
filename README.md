@@ -5,8 +5,8 @@
 This is personal web page, that you can see [https://meugenom.com](https://meugenom.com).
 
 ### What were used to prepare this page:
-- imported markdown-ts-compiler (Markdown->HTML [markdown-ts-compiler](https://github.com/meugenom/markdown-ts-compiler));
-- used Typescript and React (frontend part);
+- imported own developed markdown-ts-compiler (Markdown->HTML [markdown-ts-compiler](https://github.com/meugenom/markdown-ts-compiler));
+- used Typescript + React (frontend part);
 - Java and Spring-Boot (backend part);
 - GraphQL;
 - Webpack (ES6);
