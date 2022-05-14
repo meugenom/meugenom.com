@@ -3,7 +3,10 @@ import Service from '../Service/Service'
 import Query from '../Service/Query'
 
 // import parser for markable text
-import View from '../../../static/libs/parser/View'
+import { Tokenizer } from "../../../static/libs/parser/Tokenizer";
+import { Parser } from "../../../static/libs/parser/Parser";
+import { View } from "../../../static/libs/parser/View";
+
 // import prismjs
 import * as Prism from 'prismjs';
 
@@ -34,13 +37,23 @@ export default class Article extends React.Component< IProps, IState> {
 
     async init(slug: string){
         await this.getArticle(slug)
-        await this.parse(this.state.getAllSpecificationTextByArticleSlug)
+        //await this.parse(this.state.getAllSpecificationTextByArticleSlug)
+		await this.parse(this.state.getAllSpecificationTextByArticleSlug)
         await Prism.highlightAll()
     }
 
     parse(article: string){
-        const html = (new View()).render(article)
-        return html
+        
+		const tokenizer = new Tokenizer(article);
+		
+		//console.log(tokenizer.tokens);
+		const parser = new Parser(tokenizer.tokens);
+		
+		//console.log(parser.ast);
+		new View(parser.ast);
+
+		//const html = (new View()).render(article)
+        //return html
     }
 
     async getArticle(slug: string){
@@ -59,7 +72,7 @@ export default class Article extends React.Component< IProps, IState> {
         return (
             <main>
                 <div>
-                    <article/>
+                    <article id="article"/>
                 </div>
             </main>
         )

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { isMobile } from "react-device-detect";
-import './SocialLinks.scss'
+import './_SocialLinks.css'
 
 export default class SocialLinks extends React.Component<{}, IState> {
 
