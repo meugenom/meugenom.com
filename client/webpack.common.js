@@ -41,7 +41,7 @@ module.exports = {
         // [ path.resolve(__dirname, 'styles') //,
         // path.resolve(__dirname, '/components/*/')
         // ],
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,

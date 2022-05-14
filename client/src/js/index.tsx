@@ -3,8 +3,6 @@ import * as ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App/App";
 import "../styles/main.css";
-import "../styles/code.scss";
-
 
 const ROOT = document.querySelector(".app");
 
