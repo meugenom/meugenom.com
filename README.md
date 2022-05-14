@@ -5,12 +5,12 @@
 This is personal web page, that you can see [https://meugenom.com](https://meugenom.com).
 
 ### What were used to prepare this page:
-- Javascript (ES6) (my markdown parser for *.md pages [Github:](https://github.com/meugenom/markable-to-html));
-- Typescript and React (web site, frontend part);
-- Java and Spring-Boot (for backend part);
+- imported markdown-ts-compiler (Markdown->HTML [Github:](https://github.com/meugenom/markdown-ts-compiler));
+- used Typescript and React (frontend part);
+- Java and Spring-Boot (backend part);
 - GraphQL;
 - Webpack (ES6);
-- SCSS, Tailwind CSS;
+- Tailwind CSS;
 - maven;
 
 ### How to set up:
