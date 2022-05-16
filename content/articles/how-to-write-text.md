@@ -90,6 +90,24 @@ in out:
 [] list unchecked disable
 [x] list checked disable
 
+### Table
+
+```bash
+| Name | Age | Auto | Town | Pet |
+| Bob | 17 | BMW | Baku | Fish |
+| John | 52 | Fiat | Berlin | Dog |
+| Lisa | 32 | Toyota | Frankfurt | Snake |
+| Eugen | 45 | Mazda | Dresden | Cat |
+```
+
+
+| Name | Age | Auto | Town | Pet |
+| Bob | 17 | BMW | Baku | Fish |
+| John | 52 | Fiat | Berlin | Dog |
+| Lisa | 32 | Toyota | Frankfurt | Snake |
+| Eugen | 45 | Mazda | Dresden | Cat |
+
+
 ### Quoting text
 
 ```bash
@@ -186,9 +204,9 @@ About \*this >Quote\*
 ### Images
 
 ```bash
-    ![Github_image](../images/github.png)
+    ![Github_image](./images/github.png)
 ```
 
 in out:
 
-![Github image](../images/github.png)
+![Github image](./images/github.png)

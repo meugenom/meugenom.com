@@ -14,7 +14,7 @@ export class Tokenizer {
 		Token.codeInlineToken | Token.colorTextToken | Token.headToken | Token.imageToken |
 		Token.linkToken | Token.listToken | Token.paragraphEndToken | Token.paragraphStartToken |
 		Token.quoteToken | Token.strongTextToken | Token.textToken | Token.underLineToken |
-		Token.unknownTextToken | Token.codeInCodeToken | Token.unmarkableToken)[];
+		Token.unknownTextToken | Token.codeInCodeToken | Token.unmarkableToken | Token.tableToken)[];
 	
 	public text: string;
 	public words: Array<string>;
@@ -54,6 +54,7 @@ export class Tokenizer {
 		 *  - CODEBLOCK
 		 *  - CODE
 		 *  - QUOTE
+		 *  - TABLE
 		 */
 
 		this.word_number = 0;
@@ -65,7 +66,7 @@ export class Tokenizer {
 			//in the end of article
 			if (this.word_number == this.words.length - 1) {
 
-				let token =  {} as Token.unknownTextToken;
+				const token =  {} as Token.unknownTextToken;
 				token.type = TokenType.UNKNOWN_TEXT;
 				token.value = out;
 				this.tokens.push(token);
@@ -82,13 +83,13 @@ export class Tokenizer {
 				const arr = rest.split("&codeInCode&")
 
 				//block before
-				let unknownToken = {} as Token.unknownTextToken;
+				const unknownToken = {} as Token.unknownTextToken;
 				unknownToken.type = TokenType.UNKNOWN_TEXT;
 				unknownToken.value = arr[0];
 				this.tokens.push(unknownToken);
 
 				//founded block
-				let codeToken = {} as  Token.codeInCodeToken;
+				const codeToken = {} as  Token.codeInCodeToken;
 				codeToken.type = TokenType.CODE_IN_CODE;
 				codeToken.code = out.match(Grammar.BLOCKS.CODE_IN_CODE)[2];
 				codeToken.language = out.match(Grammar.BLOCKS.CODE_IN_CODE)[1];
@@ -111,13 +112,13 @@ export class Tokenizer {
 
 
 				//block before
-				let unknownTextToken = {} as  Token.unknownTextToken;
+				const unknownTextToken = {} as  Token.unknownTextToken;
 				unknownTextToken.type = TokenType.UNKNOWN_TEXT;
 				unknownTextToken.value = arr[0];
 				this.tokens.push(unknownTextToken);
 
 				//founded block
-				let codeToken = {} as  Token.codeBlockToken;
+				const codeToken = {} as  Token.codeBlockToken;
 				codeToken.type = TokenType.CODE_BLOCK;
 				codeToken.code = out.match(Grammar.BLOCKS.CODE_BLOCK)[2];
 				codeToken.language = out.match(Grammar.BLOCKS.CODE_BLOCK)[1];
@@ -137,13 +138,13 @@ export class Tokenizer {
 
 
 				//block before
-				let unknownToken = {} as  Token.unknownTextToken;
+				const unknownToken = {} as  Token.unknownTextToken;
 				unknownToken.type = TokenType.UNKNOWN_TEXT;
 				unknownToken.value = arr[0];
 				this.tokens.push(unknownToken);
 
 				//founded block
-				let quoteToken = {} as  Token.quoteToken;
+				const quoteToken = {} as  Token.quoteToken;
 				quoteToken.type = TokenType.QUOTE;
 				quoteToken.row = out.match(Grammar.BLOCKS.QUOTE)[0];
 				quoteToken.quote = out.match(Grammar.BLOCKS.QUOTE)[1];
@@ -154,7 +155,6 @@ export class Tokenizer {
 				out = arr[1];
 				this.word_number++;
 				continue loop_word;
-
 			}
 
 			this.word_number++;
@@ -164,11 +164,11 @@ export class Tokenizer {
 
 		// LOOPS UNKNOWN_TEXT TO DEFINE OTHER TOKENS:
 
-		let itokens = [] as  Array<Token.bagdeToken | Token.captionToken | Token.codeBlockToken |
+		const itokens = [] as  Array<Token.bagdeToken | Token.captionToken | Token.codeBlockToken |
 			Token.codeInlineToken | Token.colorTextToken | Token.headToken | Token.imageToken |
 			Token.linkToken | Token.listToken | Token.paragraphEndToken | Token.paragraphStartToken |
 			Token.quoteToken | Token.strongTextToken | Token.textToken | Token.underLineToken |
-			Token.unknownTextToken | Token.codeInCodeToken | Token.unmarkableToken >;
+			Token.unknownTextToken | Token.codeInCodeToken | Token.unmarkableToken | Token.tableToken >;
 
 
 		this.tokens.forEach((token: any) => {
@@ -190,7 +190,10 @@ export class Tokenizer {
 						 *  - Strong
 						 * - Unmarkable
 						 * - Heading
-						 * - Underdash
+						 * - Underline
+						 * - Color
+						 * - Badge
+						 * - Table
 						 */
 
 
@@ -199,31 +202,31 @@ export class Tokenizer {
 							//Paragrah Start -> Text before -> Image -> Text after -> Paragraph End
 
 							//paragraph start
-							let paragraphStartToken = {} as  Token.paragraphStartToken;
+							const paragraphStartToken = {} as  Token.paragraphStartToken;
 							paragraphStartToken.type = TokenType.PARAGRAPH_START;
 							itokens.push(paragraphStartToken);
 
 							//text before 
-							let textBeforeToken = {} as  Token.textToken;
+							const textBeforeToken = {} as  Token.textToken;
 							textBeforeToken.type = TokenType.TEXT;
 							textBeforeToken.value = stroke.match(Grammar.BLOCKS.IMAGE)[1];
 							itokens.push(textBeforeToken)
 
 							//image
-							let imageToken = {} as  Token.imageToken;
+							const imageToken = {} as  Token.imageToken;
 							imageToken.type = TokenType.IMAGE;
 							imageToken.alt = stroke.match(Grammar.BLOCKS.IMAGE)[2];
 							imageToken.url = stroke.match(Grammar.BLOCKS.IMAGE)[3];
 							itokens.push(imageToken);
 
 							//text after
-							let textAfterToken = {} as  Token.textToken;
+							const textAfterToken = {} as  Token.textToken;
 							textAfterToken.type = TokenType.TEXT;
 							textAfterToken.value = stroke.match(Grammar.BLOCKS.IMAGE)[4];
 							itokens.push(textAfterToken);
 
 							//end paragraph
-							let paragraphEndToken = {} as Token.paragraphEndToken;
+							const paragraphEndToken = {} as Token.paragraphEndToken;
 							paragraphEndToken.type = TokenType.PARAGRAPH_END;
 							itokens.push(paragraphEndToken)
 
@@ -236,31 +239,31 @@ export class Tokenizer {
 							//Paragrah Start -> Text before -> Link -> Text after -> Paragraph End
 
 							//paragraph start
-							let paragraphStartToken= {} as Token.paragraphStartToken;
+							const paragraphStartToken= {} as Token.paragraphStartToken;
 							paragraphStartToken.type = TokenType.PARAGRAPH_START;
 							itokens.push(paragraphStartToken);
 
 							//text before 
-							let textBeforeToken= {} as Token.textToken;
+							const textBeforeToken= {} as Token.textToken;
 							textBeforeToken.type = TokenType.TEXT;
 							textBeforeToken.value = stroke.match(Grammar.BLOCKS.LINK)[1];
 							itokens.push(textBeforeToken);
 
 							//link
-							let linkToken= {} as Token.linkToken;
+							const linkToken= {} as Token.linkToken;
 							linkToken.type = TokenType.LINK;
 							linkToken.name = stroke.match(Grammar.BLOCKS.LINK)[2];
 							linkToken.url = stroke.match(Grammar.BLOCKS.LINK)[3];
 							itokens.push(linkToken);
 
 							//text after
-							let textAfterToken= {} as Token.textToken;
+							const textAfterToken= {} as Token.textToken;
 							textAfterToken.type = TokenType.TEXT;
 							textAfterToken.value = stroke.match(Grammar.BLOCKS.LINK)[4];
 							itokens.push(textAfterToken);
 
 							//end paragraph
-							let paragraphEndToken = {} as Token.paragraphEndToken;
+							const paragraphEndToken = {} as Token.paragraphEndToken;
 							paragraphEndToken.type = TokenType.PARAGRAPH_END;
 							itokens.push(paragraphEndToken)
 
@@ -273,30 +276,30 @@ export class Tokenizer {
 							//Paragrah Start -> Text before -> underLine -> Text after -> Paragraph End
 
 							//paragraph start
-							let paragraphStartToken = {} as Token.paragraphStartToken;
+							const paragraphStartToken = {} as Token.paragraphStartToken;
 							paragraphStartToken.type = TokenType.PARAGRAPH_START;
 							itokens.push(paragraphStartToken);
 
 							//text before 
-							let textBeforeToken = {} as Token.textToken;
+							const textBeforeToken = {} as Token.textToken;
 							textBeforeToken.type = TokenType.TEXT;
 							textBeforeToken.value = stroke.match(Grammar.BLOCKS.UNDER_LINE)[1];
 							itokens.push(textBeforeToken)
 
 							//underLine
-							let underLineToken = {} as Token.underLineToken;
+							const underLineToken = {} as Token.underLineToken;
 							underLineToken.type = TokenType.UNDER_LINE;
 							underLineToken.value = stroke.match(Grammar.BLOCKS.UNDER_LINE)[2];
 							itokens.push(underLineToken);
 
 							// text after
-							let textAfterToken = {} as Token.textToken;
+							const textAfterToken = {} as Token.textToken;
 							textAfterToken.type = TokenType.TEXT;
 							textAfterToken.value = stroke.match(Grammar.BLOCKS.UNDER_LINE)[3];
 							itokens.push(textAfterToken);
 
 							//end paragraph
-							let paragraphEndToken = {} as Token.paragraphEndToken;
+							const paragraphEndToken = {} as Token.paragraphEndToken;
 							paragraphEndToken.type = TokenType.PARAGRAPH_END
 							itokens.push(paragraphEndToken)
 
@@ -310,30 +313,30 @@ export class Tokenizer {
 							//Paragrah Start -> Text before -> inline code -> Text after -> Paragraph End
 
 							//paragraph start
-							let paragraphStartToken = {} as Token.paragraphStartToken;
+							const paragraphStartToken = {} as Token.paragraphStartToken;
 							paragraphStartToken.type = TokenType.PARAGRAPH_START;
 							itokens.push(paragraphStartToken);
 
 							//text before 
-							let textBeforeToken = {} as Token.textToken;
+							const textBeforeToken = {} as Token.textToken;
 							textBeforeToken.type = TokenType.TEXT;
 							textBeforeToken.value = stroke.match(Grammar.BLOCKS.INLINE_CODE)[1];
 							itokens.push(textBeforeToken)
 
 							//inline code
-							let codeInlineToken = {} as Token.codeInlineToken;
+							const codeInlineToken = {} as Token.codeInlineToken;
 							codeInlineToken.type = TokenType.CODE_INLINE;
 							codeInlineToken.value = stroke.match(Grammar.BLOCKS.INLINE_CODE)[2];
 							itokens.push(codeInlineToken);
 
 							// text after
-							let textAfterToken = {} as Token.textToken;
+							const textAfterToken = {} as Token.textToken;
 							textAfterToken.type = TokenType.TEXT;
 							textAfterToken.value = stroke.match(Grammar.BLOCKS.INLINE_CODE)[3];
 							itokens.push(textAfterToken);
 
 							//end paragraph
-							let paragraphEndToken = {} as Token.paragraphEndToken;
+							const paragraphEndToken = {} as Token.paragraphEndToken;
 							paragraphEndToken.type = TokenType.PARAGRAPH_END;
 							itokens.push(paragraphEndToken)
 
@@ -347,30 +350,30 @@ export class Tokenizer {
 							//Paragrah Start -> Text before -> Strong Text -> Text after -> Paragraph End
 
 							//paragraph start
-							let paragraphStartToken = {} as Token.paragraphStartToken;
+							const paragraphStartToken = {} as Token.paragraphStartToken;
 							paragraphStartToken.type = TokenType.PARAGRAPH_START;
 							itokens.push(paragraphStartToken);
 
 							//text before 
-							let textToken = {} as Token.textToken;
+							const textToken = {} as Token.textToken;
 							textToken.type = TokenType.TEXT;
 							textToken.value = stroke.match(Grammar.BLOCKS.STRONG)[1];
 							itokens.push(textToken)
 
 							//strong text
-							let strongTextToken = {} as Token.strongTextToken;
+							const strongTextToken = {} as Token.strongTextToken;
 							strongTextToken.type = TokenType.STRONG;
 							strongTextToken.value = stroke.match(Grammar.BLOCKS.STRONG)[2];
 							itokens.push(strongTextToken);
 
 							// text after
-							let textAfterToken = {} as Token.textToken;
+							const textAfterToken = {} as Token.textToken;
 							textAfterToken.type = TokenType.TEXT;
 							textAfterToken.value = stroke.match(Grammar.BLOCKS.STRONG)[3];
 							itokens.push(textAfterToken);
 
 							//end paragraph
-							let paragraphEndToken = {} as Token.paragraphEndToken;
+							const paragraphEndToken = {} as Token.paragraphEndToken;
 							paragraphEndToken.type = TokenType.PARAGRAPH_END;
 							itokens.push(paragraphEndToken)
 
@@ -388,31 +391,31 @@ export class Tokenizer {
 							const arr = rest.split("&color&")
 
 							//paragraph start
-							let paragraphStartToken = {} as Token.paragraphStartToken;
+							const paragraphStartToken = {} as Token.paragraphStartToken;
 							paragraphStartToken.type = TokenType.PARAGRAPH_START;
 							itokens.push(paragraphStartToken);
 
 							//text before 
-							let textToken = {} as Token.textToken;
+							const textToken = {} as Token.textToken;
 							textToken.type = TokenType.TEXT;
 							textToken.value = arr[0];
 							itokens.push(textToken)
 
 							//Color Text
-							let colorTextToken = {} as Token.colorTextToken;
+							const colorTextToken = {} as Token.colorTextToken;
 							colorTextToken.type = TokenType.COLOR;
 							colorTextToken.value = stroke.match(Grammar.BLOCKS.COLOR)[1];
 							colorTextToken.color = stroke.match(Grammar.BLOCKS.COLOR)[3];
 							itokens.push(colorTextToken);
 
 							// text after
-							let textAfterToken = {} as Token.textToken;
+							const textAfterToken = {} as Token.textToken;
 							textAfterToken.type = TokenType.TEXT;
 							textAfterToken.value = arr[1];
 							itokens.push(textAfterToken);
 
 							//end paragraph
-							let paragraphEndToken = {} as Token.paragraphEndToken;
+							const paragraphEndToken = {} as Token.paragraphEndToken;
 							paragraphEndToken.type = TokenType.PARAGRAPH_END;
 							itokens.push(paragraphEndToken)
 
@@ -429,31 +432,31 @@ export class Tokenizer {
 							const arr = rest.split("&badge&")
 
 							//paragraph start
-							let paragraphStartToken = {} as Token.paragraphStartToken;
+							const paragraphStartToken = {} as Token.paragraphStartToken;
 							paragraphStartToken.type = TokenType.PARAGRAPH_START;
 							itokens.push(paragraphStartToken);
 
 							//text before 
-							let textToken = {} as Token.textToken;
+							const textToken = {} as Token.textToken;
 							textToken.type = TokenType.TEXT;
 							textToken.value = arr[0];
 							itokens.push(textToken)
 
 							//Color Badge
-							let badgeToken = {} as Token.bagdeToken;
+							const badgeToken = {} as Token.bagdeToken;
 							badgeToken.type = TokenType.BADGE;
 							badgeToken.value = stroke.match(Grammar.BLOCKS.BADGE)[1];
 							badgeToken.color = stroke.match(Grammar.BLOCKS.BADGE)[3];
 							itokens.push(badgeToken);
 
 							// text after
-							let textAfterToken = {} as Token.textToken;
+							const textAfterToken = {} as Token.textToken;
 							textAfterToken.type = TokenType.TEXT;
 							textAfterToken.value = arr[1];
 							itokens.push(textAfterToken);
 
 							//end paragraph
-							let paragraphEndToken = {} as Token.paragraphEndToken;
+							const paragraphEndToken = {} as Token.paragraphEndToken;
 							paragraphEndToken.type = TokenType.PARAGRAPH_END;
 							itokens.push(paragraphEndToken);
 
@@ -467,30 +470,30 @@ export class Tokenizer {
 							//Paragrah Start -> Text before -> Unmarkable Text -> Text after -> Paragraph End
 
 							//paragraph start
-							let paragraphStartToken = {} as Token.paragraphStartToken;
+							const paragraphStartToken = {} as Token.paragraphStartToken;
 							paragraphStartToken.type = TokenType.PARAGRAPH_START;
 							itokens.push(paragraphStartToken);
 
 							//text before 
-							let textToken = {} as Token.textToken;
+							const textToken = {} as Token.textToken;
 							textToken.type = TokenType.TEXT;
 							textToken.value = stroke.match(Grammar.BLOCKS.UNMARKABLE)[1];
 							itokens.push(textToken)
 
 							//unmarkable text
-							let unmarkableToken = {} as Token.unmarkableToken;
+							const unmarkableToken = {} as Token.unmarkableToken;
 							unmarkableToken.type = TokenType.UNMARKABLE;
 							unmarkableToken.value = stroke.match(Grammar.BLOCKS.UNMARKABLE)[2];
 							itokens.push(unmarkableToken);
 
 							// text after
-							let textAfterToken = {} as Token.textToken;
+							const textAfterToken = {} as Token.textToken;
 							textAfterToken.type = TokenType.TEXT;
 							textAfterToken.value = stroke.match(Grammar.BLOCKS.UNMARKABLE)[3];
 							itokens.push(textAfterToken);
 
 							//end paragraph
-							let paragraphEndToken = {} as Token.paragraphEndToken;
+							const paragraphEndToken = {} as Token.paragraphEndToken;
 							paragraphEndToken.type = TokenType.PARAGRAPH_END;
 							itokens.push(paragraphEndToken);
 
@@ -504,21 +507,57 @@ export class Tokenizer {
 							//Paragrah Start -> List -> Paragraph End
 
 							//paragraph start
-							let paragraphStartToken = {} as Token.paragraphStartToken;
+							const paragraphStartToken = {} as Token.paragraphStartToken;
 							paragraphStartToken.type = TokenType.PARAGRAPH_START;
 							itokens.push(paragraphStartToken);
 
 							//List
-							let listToken = {} as Token.listToken;
+							const listToken = {} as Token.listToken;
 							listToken.type = TokenType.LIST;
 							listToken.attribute = stroke.match(Grammar.BLOCKS.LIST)[1];
 							listToken.value = stroke.match(Grammar.BLOCKS.LIST)[2];
 							itokens.push(listToken);
 
 							//end paragraph
-							let paragraphEndToken = {} as Token.paragraphEndToken;
+							const paragraphEndToken = {} as Token.paragraphEndToken;
 							paragraphEndToken.type = TokenType.PARAGRAPH_END;
 							itokens.push(paragraphEndToken);
+
+							return;
+
+						}
+
+						// TABLE
+						if (stroke.match(Grammar.BLOCKS.TABLE) != null) {
+
+							// if second row in the table, when add this row to the previous table element
+							if (itokens[itokens.length - 1].type == TokenType.TABLE){
+								
+								const tableRowToken = {} as Token.tableRowToken;
+								tableRowToken.type = TokenType.TABLE_ROW;
+								tableRowToken.value = stroke.match(Grammar.BLOCKS.TABLE)[1];
+								tableRowToken.row = stroke.match(Grammar.BLOCKS.TABLE)[1];
+								
+								itokens[itokens.length - 1].children?.push(tableRowToken);
+								itokens[itokens.length - 1].row = itokens[itokens.length - 1].row + "\n" + tableRowToken.row;
+
+							}else {
+
+								//added first row of the Table
+								const tableRowToken = {} as Token.tableRowToken;
+								tableRowToken.type = TokenType.TABLE_ROW;
+								tableRowToken.value = stroke.match(Grammar.BLOCKS.TABLE)[1];
+								tableRowToken.row = stroke.match(Grammar.BLOCKS.TABLE)[1];
+
+								const tableToken = {} as Token.tableToken
+								tableToken.type = TokenType.TABLE;
+								tableToken.children = [tableRowToken];
+								tableToken.row = stroke.match(Grammar.BLOCKS.TABLE)[1];
+
+								itokens.push(tableToken);
+							}
+
+							
 
 							return;
 
@@ -538,7 +577,7 @@ export class Tokenizer {
 
 							const itype: number = stroke.match(Grammar.BLOCKS.HEADING)[1].length - 1;
 
-							let headToken = {} as Token.headToken;
+							const headToken = {} as Token.headToken;
 							headToken.type = types[itype];
 							headToken.value = stroke.match(Grammar.BLOCKS.HEADING)[2];
 							itokens.push(headToken);
@@ -550,18 +589,20 @@ export class Tokenizer {
 						// Paragraph -> Other Text -> Paragraph
 
 						//paragraph start
-						let paragraphStartToken = {} as Token.paragraphStartToken;
+						const paragraphStartToken = {} as Token.paragraphStartToken;
+						paragraphStartToken.type = TokenType.PARAGRAPH_START;
 						itokens.push(paragraphStartToken);
 
 						//Other Text 
-						let textToken = {} as Token.textToken;
+						const textToken = {} as Token.textToken;
 						textToken.type = TokenType.TEXT;
 						textToken.value = stroke;
 						itokens.push(textToken)
 
 
 						//end paragraph
-						let paragraphEndToken = {} as Token.paragraphEndToken;
+						const paragraphEndToken = {} as Token.paragraphEndToken;
+						paragraphEndToken.type = TokenType.PARAGRAPH_END;
 						itokens.push(paragraphEndToken);
 
 					}
@@ -574,7 +615,6 @@ export class Tokenizer {
 		})
 
 		this.tokens = itokens;
-
 
 	}
 }

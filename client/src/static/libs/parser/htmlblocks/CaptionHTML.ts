@@ -47,6 +47,8 @@ export class CaptionHTML {
 						<div class="categories-container py-1">
 							${categoriesBlock}
 						</div>
+						<hr/>
+						<br/>
 						<br/>
 					`;
 

@@ -66,7 +66,7 @@ export default class ArticlesList extends React.Component<IProps, IState> {
   renderArticlesList() {
     return this.state.articlesList.map((article: IArticle) => {
       return (
-        <li className="text-slate-600 hover:text-blue-600" key={article.slug}>
+        <li className="text-slate-600 font-medium hover:text-blue-600" key={article.slug}>
           <Link to={`/article/${article.slug}`}>
             {article.title.substring(1, article.title.length - 1)}
           </Link>
