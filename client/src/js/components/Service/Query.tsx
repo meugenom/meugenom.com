@@ -1,10 +1,16 @@
+const Environment = {
+	host : 'http://localhost:8080/graphql/',
+	//host : 'https://meugenom.com/graphql/'
+
+}
+
 const Query = {
     lastArticlesList: {
-      host: 'http://localhost:8080/graphql/', //https://meugenom.com/graphql/
+      host: Environment.host,
       query: '{ lastArticlesList { slug title id date tags}}'
     },
     articlesList: {
-      host: 'http://localhost:8080/graphql/', //https://meugenom.com/graphql/
+		host: Environment.host,
       query: '{ articlesList { slug title id date tags}}'
     },    
     projectsList: {
@@ -65,11 +71,11 @@ const Query = {
           `
     },
     getAllSpecificationTextByArticleId: {
-      host: 'http://localhost:8080/graphql/', //https://meugenom.com/graphql/
+		host: Environment.host,
       query: 'query Query($id: Long!) {\n  getAllSpecificationTextByArticleId(id: $id) \n}\n'
     },
 	getAllSpecificationTextByArticleSlug: {
-		host: 'http://localhost:8080/graphql/', //https://meugenom.com/graphql/
+		host: Environment.host,
 		query: 'query Query($slug: String!) {\n  getAllSpecificationTextByArticleSlug(slug: $slug) \n}\n'
 	  }
 
