@@ -131,7 +131,7 @@ export default class ProjectsList extends React.Component<IProps, IState> {
         <div>
           <div
             key={project.node.id}
-            className="shadow hover:shadow-md bg-white rounded-lg overflow-hidden relative"
+            className="shadow-lg hover:shadow-md bg-white rounded-lg overflow-hidden relative"
 			style = {card}
           >
             <img
@@ -156,7 +156,7 @@ export default class ProjectsList extends React.Component<IProps, IState> {
               </p>
               <p>
                 <a
-                  className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-orange-400  hover:bg-orange-500 uppercase last:mr-0 mr-1"
+                  className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-yellow-400  hover:bg-yellow-500 uppercase last:mr-0 mr-1"
                   href="#"
                   onClick={(e) => {
                     this.openWebPage(
@@ -165,7 +165,7 @@ export default class ProjectsList extends React.Component<IProps, IState> {
                     );
                   }}
                 >
-                  Source
+                Code
                 </a>
                 &nbsp;
                 {project.node.homepageUrl === "" ||
@@ -173,13 +173,13 @@ export default class ProjectsList extends React.Component<IProps, IState> {
                   ""
                 ) : (
                   <a
-                    className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-orange-400  hover:bg-orange-500 uppercase last:mr-0 mr-1"
+                    className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400  hover:bg-blue-500 uppercase last:mr-0 mr-1"
                     href="#"
                     onClick={(e) => {
                       this.openWebPage(e, project.node.homepageUrl);
                     }}
                   >
-                    Web
+                    Show
                   </a>
                 )}
               </p>
