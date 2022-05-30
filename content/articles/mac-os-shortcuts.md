@@ -8,7 +8,7 @@ categories: macos shortcuts
 tags: macos shortcuts
 ---
 
-These are the most helpful shortcuts :
+These are the most helpful shortcuts:
 
 ### System wide
 
