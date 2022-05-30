@@ -2,11 +2,16 @@
 date: 2019-08-30
 title: 'How to Write Text'
 template: post
-thumbnail: './thumbnails/writing.png'
+thumbnail: './thumbnails/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg'
 slug: how-to-write-text
 categories: helping to write text
 tags: instruction texter writer
 ---
+
+
+### Used Links
+
+Photo by Nick Morrison on Unsplash
 
 ### Formatting syntax
 
@@ -93,19 +98,19 @@ in out:
 ### Table
 
 ```bash
-| Name | Age | Auto | Town | Pet |
-| Bob | 17 | BMW | Baku | Fish |
-| John | 52 | Fiat | Berlin | Dog |
-| Lisa | 32 | Toyota | Frankfurt | Snake |
-| Eugen | 45 | Mazda | Dresden | Cat |
+| Name | Age | Auto |
+| Bob | 17 | BMW |
+| John | 52 | Fiat |
+| Lisa | 32 | Toyota |
+| Eugen | 45 | Mazda |
 ```
 
 
-| Name | Age | Auto | Town | Pet |
-| Bob | 17 | BMW | Baku | Fish |
-| John | 52 | Fiat | Berlin | Dog |
-| Lisa | 32 | Toyota | Frankfurt | Snake |
-| Eugen | 45 | Mazda | Dresden | Cat |
+| Name | Age | Auto |
+| Bob | 17 | BMW |
+| John | 52 | Fiat |
+| Lisa | 32 | Toyota |
+| Eugen | 45 | Mazda |
 
 
 ### Quoting text

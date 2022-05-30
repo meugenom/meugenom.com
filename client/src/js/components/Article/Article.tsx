@@ -72,7 +72,7 @@ export default class Article extends React.Component< IProps, IState> {
         return (
             <main>
                 <div>
-                    <article id="article"/>
+                    <article id="article" className='mb-20'/>
                 </div>
             </main>
         )
