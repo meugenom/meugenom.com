@@ -1,10 +1,8 @@
 package com.meugenom.article.parser;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import com.meugenom.article.model.Article;
-import com.meugenom.article.model.Specification;
 
 /**
  * @author meugenom
@@ -17,19 +15,20 @@ import com.meugenom.article.model.Specification;
 public class ParseToArticle {
 
     private Article article = new Article();
-    private List<Specification> specifications = new ArrayList<Specification>();
+    
 
     public Article parse(String text) {
 
         int topTextCounter = 0;        
         String topLine = "---";
+		String strokes = "";
 
         List<String> lines = Arrays.asList(text.split("\\r?\\n"));
 
         // for (String line: lines) {
         for (int i = 1; i < lines.size(); i++) {
 
-            Specification specification = new Specification();
+            
 
             // System.out.println(lines.get(i));
             String line = lines.get(i);
@@ -44,9 +43,6 @@ public class ParseToArticle {
                 // we need to the end of post processing
             } else if (topTextCounter == 2) {
 
-                // specification.setArticle(article);
-                // specification.setSpecification(line);
-                // specifications.add(specification);
 
             } else if (topTextCounter == 1) {
 
@@ -82,13 +78,10 @@ public class ParseToArticle {
                 });
             }
         
-                specification.setSpecification(line);
-                specifications.add(specification);
-                specification.setArticle(article);        
-    
+				strokes = strokes + line + "\n";
         }
 
-        article.setSpecifications(specifications);
+        article.setText(strokes);
         return article;
 
     }

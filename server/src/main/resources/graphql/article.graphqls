@@ -18,14 +18,12 @@ type Article {
         categories: String,
         tags: String,
         fileName: String,
-        specifications: [Specification]
+        text: String
     }
 
 type QueryType {
   lastArticlesList: [Article]
   articlesList: [Article]
   getArticleById(id: Long) : Article
-  getSpecificationByArticleId(id: Long) : [Specification]
-  getAllSpecificationTextByArticleId(id: Long) : String
   getAllSpecificationTextByArticleSlug(slug: String) : String
 }
