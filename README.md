@@ -1,6 +1,7 @@
 ## Personal Web Site:
 - front-end works on port 8081;
 - backend works on port 3000;
+- Redis
 
 This is personal web page, that you can see [https://meugenom.com](https://meugenom.com).
 
@@ -12,6 +13,7 @@ This is personal web page, that you can see [https://meugenom.com](https://meuge
 - Webpack (ES6);
 - Tailwind CSS;
 - maven;
+- Redis (port 9001), set up  etc/redis.conf with port 9001
 
 ### How to set up:
 
@@ -34,8 +36,9 @@ This is personal web page, that you can see [https://meugenom.com](https://meuge
 `npm run start`
 4. build backend
 `cd ../server`
-`mvn clean package`  
-5. start backend dev server
+`mvn clean package`
+5. install Redis server
+6. start backend dev server
 `mvn clean spring-boot:run`
 or
 `./start-dev-server.sh`
