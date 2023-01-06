@@ -64,8 +64,8 @@
   "resolutions": {
     "meow": "^9.0.0",
     "trim-newline": "^4.0.2",
-	"semver-regex": "4.0.3",
-	"nth-check": "2.0.1"
+    "semver-regex": "4.0.3",
+    "nth-check": "2.0.1"
   },
   "dependencies": {
     "autoprefixer": "^10.4.4",

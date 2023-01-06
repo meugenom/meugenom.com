@@ -20,7 +20,7 @@
 	 animation: outWaveOut 1s cubic-bezier(0.42, 0, 0.58, 1) forwards;
 }
  .sl_container .sl_social {
-	 color: rgba(0, 0, 0, 0.212);
+	 /* color: rgba(0, 0, 0, 0.212); */
 	 font-size: 1.3em;
 	 position: absolute;
 	 top: 0px;
