@@ -209,9 +209,9 @@ About \*this >Quote\*
 ### Images
 
 ```bash
-    ![Github_image](./images/github.png)
+    ![Github_image](../images/github.png)
 ```
 
 in out:
 
-![Github image](./images/github.png)
+![Github image](../images/github.png)
