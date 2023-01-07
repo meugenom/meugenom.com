@@ -2,7 +2,7 @@
 date: 2022-05-30
 title: 'Mac OS Shortcuts'
 template: post
-thumbnail: './thumbnails/artem-sapegin-b18TRXc8UPQ-unsplash.jpg'
+thumbnail: '../thumbnails/artem-sapegin-b18TRXc8UPQ-unsplash.jpg'
 slug: mac-os-shortcuts
 categories: macos shortcuts 
 tags: macos shortcuts

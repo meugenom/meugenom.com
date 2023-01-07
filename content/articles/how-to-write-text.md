@@ -2,7 +2,7 @@
 date: 2019-08-30
 title: 'How to Write Text'
 template: post
-thumbnail: './thumbnails/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg'
+thumbnail: '../thumbnails/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg'
 slug: how-to-write-text
 categories: helping to write text
 tags: instruction texter writer
