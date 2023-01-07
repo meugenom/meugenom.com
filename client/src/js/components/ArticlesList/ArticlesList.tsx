@@ -55,7 +55,7 @@ export default class ArticlesList extends React.Component<IProps, IState> {
     return tagsArray.map((tag) => {
       return (
         <Link to={`/tags/${tag}`}
-			href="/tags/${tag}"
+			//href="/tags/${tag}"
         	className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-yellow-400  hover:bg-yellow-500 uppercase last:mr-0 mr-1">
           	{tag}
 		</Link>

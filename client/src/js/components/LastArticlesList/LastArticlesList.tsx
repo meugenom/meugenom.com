@@ -4,7 +4,7 @@ import Config from '../../Config'
 import Query from '../Service/Query'
 import {
     BrowserRouter as Router,
-    Link,
+    Link
   } from "react-router-dom";
 
 interface IArticle {
@@ -23,17 +23,17 @@ export default class LastArticlesList extends React.Component<{}, IState> {
 
     constructor(props: {}) {
         super(props);
-
         this.state = { lastArticlesList: []}
+    }
 
-        const token = Config.token
+	componentDidMount(){
+		const token = Config.token
         const host = Query.lastArticlesList.host
         const query = Query.lastArticlesList.query
         const variables = {}
         const dataType = 'json'
-
-        this.getArticles(dataType, token, host, query, variables);
-    }
+		this.getArticles(dataType, token, host, query, variables);
+	}
 
     async getArticles(dataType: string, token: string, host: string, query: string, variables: {}) {
         const response = await new Service().graphql(dataType, token, host, query, variables)
@@ -45,7 +45,8 @@ export default class LastArticlesList extends React.Component<{}, IState> {
 		return tagsArray.map((tag) => {
 		  return (
 			<Link to={`/tags/${tag}`}
-				href="/tags/${tag}"
+			key = {tag}
+				//href="/tags/${tag}"
 				className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-yellow-400  hover:bg-yellow-500 uppercase last:mr-0 mr-1">
 				  {tag}
 			</Link>
@@ -57,7 +58,8 @@ export default class LastArticlesList extends React.Component<{}, IState> {
 	renderArticlesList() {
 		return this.state.lastArticlesList.map((article: IArticle) => {
 		  return (
-			<li className="text-slate-600 font-medium hover:text-blue-600" key={article.slug}>
+			<li key={article.slug} 
+				className="text-slate-600 font-medium hover:text-blue-600" >
 			  <Link to={`/article/${article.slug}`}>
 				{article.title.substring(1, article.title.length - 1)}
 			  </Link>

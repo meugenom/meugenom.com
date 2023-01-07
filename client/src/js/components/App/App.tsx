@@ -1,9 +1,11 @@
 import * as React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import {
+  Route,
+  Routes,
+} from "react-router-dom";
 import Home from "../Home/Home";
 import ArticlesList from "../ArticlesList/ArticlesList";
 import ProjectsList from "../ProjectsList/ProjectsList";
-import About from "../About/About";
 import Article from "../Article/Article";
 import Error404 from "../Error404/Error404";
 import Nav from "../Nav/Nav";
@@ -24,7 +26,6 @@ export default function App() {
       name: "Pets",
     },
   ];
-
   const [navbarOpen, setNavbarOpen] = React.useState(false);
 
   return (
@@ -40,12 +41,8 @@ export default function App() {
                   className="mr-3 h-6 sm:h-9"
                 />
                 <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                  <span className="text-yellow-500">
-					  Meu
-				  </span>
-				  <span className="text-sky-500">
-					  Genom
-				  </span>
+                  <span className="text-yellow-500">Meu</span>
+                  <span className="text-sky-500">Genom</span>
                 </span>
               </a>
               <button
@@ -63,9 +60,9 @@ export default function App() {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
                 <svg
@@ -75,9 +72,9 @@ export default function App() {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
 
@@ -105,13 +102,16 @@ export default function App() {
 					leading-7 
 					z-0"
       >
-        <Switch>
-          <Route exact={true} path="/" component={Home} />
-          <Route path="/articles" component={ArticlesList} />
-          <Route path="/projects" component={ProjectsList} />
-          <Route path="/article/:slug" component={Article} />
-          <Route component={Error404} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+
+          <Route path="/articles" element={<ArticlesList />} />
+          <Route path="/projects" element={<ProjectsList />} />
+
+          <Route path="/article/:slug" element={<Article/>}/>
+
+          <Route element={<Error404 />}></Route>
+        </Routes>
       </div>
 
       <Footer />

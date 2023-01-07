@@ -38,6 +38,12 @@ const Query = {
                       homepageUrl
                       resourcePath
                       openGraphImageUrl
+					  stargazers {
+						totalCount
+					  }
+					  forks {
+						totalCount
+					  }
 					  primaryLanguage {
 						name
 					  }

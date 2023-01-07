@@ -20,7 +20,7 @@ export default class Footer extends React.Component<{}> {
       >
         <div className="flex justify-center">
           <div className="text-sm text-gray-100 dark:text-gray-400 align-middle text-center pt-5">
-            © 2022 &nbsp;
+            © 2023 &nbsp;
           </div>
           <div className="flex justify-center mt-0">
             <div className="social-buttons">

@@ -1,5 +1,5 @@
 'use strict'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default class Service {
 
@@ -19,8 +19,8 @@ export default class Service {
     })
       .catch((error) => {
         console.log(error)
-        const history = useHistory()
-        history.push('/error404')
+        const navigate = useNavigate()
+        navigate('/error404')
 
       })
     const data = (dataType === 'json' ? await response.json() : await response.text())

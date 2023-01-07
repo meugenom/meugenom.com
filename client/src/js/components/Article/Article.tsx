@@ -1,6 +1,7 @@
-import * as React from 'react'
-import Service from '../Service/Service'
-import Query from '../Service/Query'
+import * as React from "react";
+import { useParams } from "react-router-dom";
+import Service from "../Service/Service";
+import Query from "../Service/Query";
 
 // import parser for markable text
 import { Tokenizer } from "../../../static/libs/parser/Tokenizer";
@@ -8,73 +9,64 @@ import { Parser } from "../../../static/libs/parser/Parser";
 import { View } from "../../../static/libs/parser/View";
 
 // import prismjs
-import * as Prism from 'prismjs';
-
-interface IState {
-    getAllSpecificationTextByArticleSlug: string
-}
-interface IProps {
-    match: {
-        params: {
-            slug: string
-            }
-    }
-}
+import * as Prism from "prismjs";
 
 
-export default class Article extends React.Component< IProps, IState> {
 
-    constructor(props: IProps){
-        super(props);
-        const slug = this.props.match.params.slug
-        this.state = {
-            getAllSpecificationTextByArticleSlug:''            
-        }
+export default function Article() {
+  const { slug } = useParams();
+  console.log(slug)
+  let specifications = {
+    spec: "",
+  };
 
-        this.init(slug)
 
-    }
 
-    async init(slug: string){
-        await this.getArticle(slug)
-        //await this.parse(this.state.getAllSpecificationTextByArticleSlug)
-		await this.parse(this.state.getAllSpecificationTextByArticleSlug)
-        await Prism.highlightAll()
-    }
 
-    parse(article: string){
-        
-		const tokenizer = new Tokenizer(article);
-		
-		//console.log(tokenizer.tokens);
-		const parser = new Parser(tokenizer.tokens);
-		
-		//console.log(parser.ast);
-		new View(parser.ast);
+  async function getArticle(slug: string) {
+    const token = "";
+    const host = Query.getAllSpecificationTextByArticleSlug.host;
+    const query = Query.getAllSpecificationTextByArticleSlug.query;
+    const variables = { slug: slug };
+    const dataType = "json";
 
-		//const html = (new View()).render(article)
-        //return html
-    }
+    const response = await new Service().graphql(
+      dataType,
+      token,
+      host,
+      query,
+      variables
+    );
 
-    async getArticle(slug: string){
-        const token = ''
-        const host = Query.getAllSpecificationTextByArticleSlug.host
-        const query = Query.getAllSpecificationTextByArticleSlug.query
-        const variables = { "slug": slug }
-        const dataType = 'json'
+    specifications = await { spec: response.getAllSpecificationTextByArticleSlug };
+  }
 
-        const response = await new Service().graphql(dataType, token, host, query, variables)
-        await this.setState({getAllSpecificationTextByArticleSlug : response.getAllSpecificationTextByArticleSlug})
+  function parse(article: string) {
 
-    }
+    const tokenizer = new Tokenizer(article);
 
-    render(){
-        return (
-            <main>
-                <div>
-                    <article id="article" className='mb-20'/>
-                </div>
-            </main>
-        )
-    }
+    //console.log(tokenizer);
+    const parser = new Parser(tokenizer.tokens);
+
+    //console.log(parser.ast);
+    new View(parser.ast);
+
+  }
+
+  async function init(slug: string) {
+    await getArticle(slug);
+    await parse(specifications.spec);
+    await Prism.highlightAll();
+  }
+  
+  //start init
+  init(slug);
+
+  return (
+    <main>
+      <div>
+        <article id="article" className="mb-20" />
+      </div>
+    </main>
+  );
 }
