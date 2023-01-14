@@ -1,4 +1,10 @@
 ## Personal Web Site:
+
+<center>
+	<img alt="" src="./assets/panda-meugenom.png"/>
+</center>
+
+
 - front-end works on port 8081;
 - backend works on port 3000;
 - Redis
