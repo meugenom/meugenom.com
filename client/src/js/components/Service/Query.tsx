@@ -21,7 +21,7 @@ const Query = {
               location
               websiteUrl
               repositories
-              (last: 15,
+              (last: 20,
                   orderBy:
                   {field: UPDATED_AT,
                       direction: DESC
