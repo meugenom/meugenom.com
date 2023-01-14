@@ -17,7 +17,7 @@
 	 stroke-width: 3px;
 	 stroke-dasharray: 40;
 	 transition: all 0.2s ease-in-out;
-	 animation: outWaveOut 1s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+	 /* animation: outWaveOut 1s cubic-bezier(0.42, 0, 0.58, 1) forwards;*/
 }
  .sl_container .sl_social {
 	 /* color: rgba(0, 0, 0, 0.212); */
