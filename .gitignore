@@ -11,3 +11,4 @@ client/temp
 client/*.log
 .idea/*
 .vscode/*
+client/.env
