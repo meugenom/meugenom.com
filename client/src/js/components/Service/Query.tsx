@@ -1,12 +1,13 @@
+import { config } from 'webpack';
+import Config from '../../Config';
+
 //by development
 const Environment = {
-	host : 'http://localhost:8080/graphql/'
+	host : Config.localHost
 }
 
-console.log("APP_MODE = "+process.env.APP_MODE)
-
 if(process.env.APP_MODE == "production"){
-	Environment.host = 'https://meugenom.com/graphql/';
+	Environment.host = Config.publicHost;
 }
 
 const Query = {
