@@ -1,7 +1,12 @@
+//by development
 const Environment = {
-	host : 'http://localhost:8080/graphql/',
-	//host : 'https://meugenom.com/graphql/'
+	host : 'http://localhost:8080/graphql/'
+}
 
+console.log("APP_MODE = "+process.env.APP_MODE)
+
+if(process.env.APP_MODE == "production"){
+	Environment.host = 'https://meugenom.com/graphql/';
 }
 
 const Query = {
