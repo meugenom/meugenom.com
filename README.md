@@ -19,14 +19,15 @@ This is personal web page, that you can see [https://meugenom.com](https://meuge
 - Webpack (ES6);
 - Tailwind CSS;
 - maven;
-- Redis (port 9001), set up  etc/redis.conf with port 9001
+- Redis (port 9001), set up  etc/redis.conf with port 9001;
+- Github Token
 
 ### How to set up:
 
-1. need preinstalled java 19.0.1, npm(8.9.0), node(16.14.2), mvn(3.8.7), nginx(1.23.3 stable);
-2. for information about projects you need  personal acess token [https://github.com/settings/tokens](https://github.com/settings/tokens);
-3. add this token to [./src/js/Config.tsx](https://github.com/meugenom/meugenom.com/tree/master/client/src/js/Config.tsx);
-
+1. Need preinstalled java 19.0.1, npm(8.9.0), node(16.14.2), mvn(3.8.7), nginx(1.23.3 stable);
+2. for information about projects you need  personal access token [https://github.com/settings/tokens](https://github.com/settings/tokens);
+3. Create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to GITHUB_TOKEN=
+4. For production please change `client/src/Config.tsx` your public host and in `.env` APP_MODE=production (by default APP_MODE=development)
 
 ### How to start:
 
