@@ -2,10 +2,11 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const Dotenv = require('dotenv-webpack');
+ 
 
 // copy files from /client..  to /build/..
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-
 const devMode = process.env.NODE_ENV !== "production"
 
 module.exports = {
@@ -63,6 +64,7 @@ module.exports = {
     extensions: ['.js', '.ts', '.tsx', '.css']
   },
   plugins: [
+	new Dotenv(),
     // new HtmlWebpackPlugin({
     //  template: './src/main/resources/templates/index.html'
     // }),

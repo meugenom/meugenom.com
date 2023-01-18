@@ -10,8 +10,14 @@ import Article from "../Article/Article";
 import Error404 from "../Error404/Error404";
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
+import Config from "../../Config"
 
 export default function App() {
+
+if(process.env.GITHUB_TOKEN){
+	Config.token = process.env.GITHUB_TOKEN;
+}
+
   const routs = [
     {
       link: "/",
