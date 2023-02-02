@@ -117,7 +117,7 @@
 	animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorCoffee 3s linear forwards;
 }
 .coffee_touch .sl_social {
-	color: #08c;
+	color: #d94e17;
 }
  .linkedin_no_touch:hover {
 	 transform: scale(1.2);
