@@ -37,6 +37,7 @@ interface IProject {
     description: string;
     updatedAt: string;
     createdAt: string;
+	pushedAt: string;
     hasIssuesEnabled: boolean;
     homepageUrl: string;
     resourcePath: string;
@@ -206,9 +207,9 @@ export default class ProjectsList extends React.Component<IProps, IState> {
               </h3>
 
               <p className="mt-4 text-base md:text-xs text-gray-600">
-                (updated {new Date(project.node.updatedAt).getDate()}.
-                {this.getMonth(new Date(project.node.updatedAt).getMonth())}.
-                {new Date(project.node.updatedAt).getFullYear()})
+                (updated {new Date(project.node.pushedAt).getDate()}.
+                {this.getMonth(new Date(project.node.pushedAt).getMonth())}.
+                {new Date(project.node.pushedAt).getFullYear()})
               </p>
               <p>
                 <a
