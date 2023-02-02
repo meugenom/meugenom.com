@@ -124,6 +124,32 @@
 	  color: #0088cc;
 	}
   }
+
+  .coffee_no_touch:hover {
+	.sl_circle {
+	  fill: #ffffff;
+	  fill-opacity: 1;
+	  animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards,
+		colorCoffee 1s linear forwards;
+	}
+	.sl_social {
+	  color: #d94e17;
+	}
+	transform: scale(1.2);
+  }
+  
+  .coffee_touch {
+	  .sl_circle {
+		fill: #ffffff;
+		fill-opacity: 1;
+		animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards,
+		  colorCoffee 3s linear forwards;
+	  }
+	  .sl_social {
+		color: #d94e17;
+	  }
+	}
+
 .linkedin_no_touch:hover {
   .sl_circle {
     fill: #ffffff;
@@ -182,6 +208,16 @@
     stroke: #0088cc;
   }
 }
+
+@keyframes colorCoffee {
+	from {
+		stroke: #fff;
+   }
+	to {
+		stroke: #d94e17;
+   }
+}
+
 @keyframes colorLinkedin {
   from {
     stroke: #ffffff;
