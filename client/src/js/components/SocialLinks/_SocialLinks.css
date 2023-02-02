@@ -100,6 +100,25 @@
  .telegram_touch .sl_social {
 	 color: #08c;
 }
+.coffee_no_touch:hover {
+	transform: scale(1.2);
+}
+.coffee_no_touch:hover .sl_circle {
+	fill: #fff;
+	fill-opacity: 1;
+	animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorCoffee 1s linear forwards;
+}
+.coffee_no_touch:hover .sl_social {
+	color: #d94e17;
+}
+.coffee_touch .sl_circle {
+	fill: #fff;
+	fill-opacity: 1;
+	animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorCoffee 3s linear forwards;
+}
+.coffee_touch .sl_social {
+	color: #08c;
+}
  .linkedin_no_touch:hover {
 	 transform: scale(1.2);
 }
@@ -151,6 +170,16 @@
 		 stroke: #08c;
 	}
 }
+
+@keyframes colorCoffee {
+	from {
+		stroke: #fff;
+   }
+	to {
+		stroke: #d94e17;
+   }
+}
+
  @keyframes colorLinkedin {
 	 from {
 		 stroke: #fff;

@@ -32,12 +32,12 @@ export default class SocialLinks extends React.Component<{}, IState> {
 							<i className="bi bi-envelope"></i>
 						  </div>
 					</a>
-					<a href="https://t.me/meugenom" className="sl_container telegram_touch">
+					<a href="https://buymeacoffee.com/meugenom" className="sl_container coffee_touch">
 						  <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
 						 <circle cx="100" cy="100" r="50"/>
 						  </svg>
-						  <div className="sl_social">								  
-							<i className="bi bi-telegram"></i>
+						  <div className="sl_social">
+							<i className="bi bi-cup"></i>
 						  </div>
 					</a>
 					<a href="https://www.linkedin.com/in/meugenom/" className="sl_container linkedin_touch">
@@ -70,12 +70,12 @@ export default class SocialLinks extends React.Component<{}, IState> {
 							<i className="bi bi-envelope"></i>
 						  </div>
 					</a>
-					<a href="https://t.me/meugenom_channel" className="sl_container telegram_no_touch">
+					<a href="https://buymeacoffee.com/meugenom" className="sl_container coffee_no_touch">
 						  <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" className="sl_circle">  
 						 <circle cx="100" cy="100" r="50"/>
 						  </svg>
 						  <div className="sl_social">								  
-							<i className="bi bi-telegram"></i>
+							<i className="bi bi-cup"></i>
 						  </div>
 					</a>
 					<a href="https://www.linkedin.com/in/meugenom/" className="sl_container linkedin_no_touch">
