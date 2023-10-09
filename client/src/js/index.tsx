@@ -14,17 +14,3 @@ root.render(
 );
 
 
-//old code for version < 18
-/*
-const ROOT = document.querySelector(".app");
-
-ReactDOM.render(
-  <BrowserRouter basename="#/">
-    <App />
-  </BrowserRouter>,
-  ROOT
-);
-*/
-
-
-

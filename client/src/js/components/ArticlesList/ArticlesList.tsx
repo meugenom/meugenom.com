@@ -24,13 +24,16 @@ export default class ArticlesList extends React.Component<IProps, IState> {
 
     this.state = { articlesList: [], classContent: "main-content" };
 
+  }
+
+  async componentWillMount(){
     const token = Config.token;
     const host = Query.articlesList.host;
     const query = Query.articlesList.query;
     const variables = {};
     const dataType = "json";
 
-    this.getArticles(dataType, token, host, query, variables);
+    await this.getArticles(dataType, token, host, query, variables);
   }
 
   async getArticles(
@@ -58,7 +61,7 @@ export default class ArticlesList extends React.Component<IProps, IState> {
 			//href="/tags/${tag}"
         	className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-yellow-400  hover:bg-yellow-500 uppercase last:mr-0 mr-1">
           	{tag}
-		</Link>
+		    </Link>
       );
     });
   }
@@ -71,13 +74,13 @@ export default class ArticlesList extends React.Component<IProps, IState> {
           <Link to={`/article/${article.slug}`}>
             {article.title.substring(1, article.title.length - 1)}
           </Link>
-		  &nbsp;
-		  &nbsp;
+		      &nbsp;
+		      &nbsp;
           <span className="tag-container">
             {this.renderArticlesTags(article.tags)}
           </span>
-		  &nbsp;
-		  &nbsp;
+		      &nbsp;
+		      &nbsp;
           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
             {article.date}
           </span>

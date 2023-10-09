@@ -19,7 +19,7 @@ public class ReadFile {
 
             while ((currentLine = reader.readLine()) != null) {
                                 
-                //System.out.println(currentLine);                
+                System.out.println(currentLine);                
                 //textFromFile.add(currentLine);
                 textFromFile = textFromFile + System.lineSeparator() + currentLine;
             }

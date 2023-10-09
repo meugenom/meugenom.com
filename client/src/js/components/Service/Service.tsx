@@ -1,5 +1,5 @@
 'use strict'
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 export default class Service {
 

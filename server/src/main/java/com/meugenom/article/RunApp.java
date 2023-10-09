@@ -35,7 +35,7 @@ import com.meugenom.readfile.ReadFilenamesFromDirectory;
 public class RunApp implements CommandLineRunner {
 
 	private static final Logger logger = LoggerFactory.getLogger(RunApp.class);
-	private String articlesPath = "../content/articles";
+	private String articlesPath = "content/articles";
 
 	@Autowired
 	private ArticleRepository articleRepository;
@@ -51,11 +51,20 @@ public class RunApp implements CommandLineRunner {
 
 			// get files list from folder 'content/posts/'
 			ReadFilenamesFromDirectory dirList = new ReadFilenamesFromDirectory();
+			
 			Set<String> fileList = dirList.listFilesUsingJavaIO(articlesPath);
+
+			logger.info("File list: {}", fileList);
 
 			logger.info("Read files: {}", fileList);
 
 			id = 0;
+			
+			if(fileList.size() == 0){
+				
+				logger.warn("No files in directory {}", articlesPath);
+
+			}else{
 
 			for (String fileName : fileList) {
 
@@ -136,6 +145,7 @@ public class RunApp implements CommandLineRunner {
 			}
 			
 			}
+		}
 
 			logger.info("Number of articles is : {}", articleRepository.count());
 
@@ -148,6 +158,7 @@ public class RunApp implements CommandLineRunner {
 		//reloadArticles();
 
 		//https://www.baeldung.com/java-timer-and-timertask
+		/*
 		TimerTask repeatedTask = new TimerTask() {
 			@Override
 			public void run() {
@@ -166,7 +177,7 @@ public class RunApp implements CommandLineRunner {
     	long period = 1000L * 60L * 20L; //* 24L; //every 20 min
 
 		timer.schedule(repeatedTask, 0, 1800000); 
-
+		*/
 	}
 
 	private static String getFileChecksum(MessageDigest digest, File file) throws IOException {

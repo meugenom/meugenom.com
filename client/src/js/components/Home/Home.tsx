@@ -11,9 +11,9 @@ export default class Home extends React.Component<{}, IState> {
 
   public render(): JSX.Element {
     return (
-      <div className="">
-        <LastArticlesList />
-		<ProjectsList/>
+      <div className="">        
+        <LastArticlesList/>
+		    <ProjectsList/>
       </div>
     );
   }

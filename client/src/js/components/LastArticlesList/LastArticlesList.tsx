@@ -18,7 +18,6 @@ interface IState {
     lastArticlesList: IArticle[]
 }
 
-
 export default class LastArticlesList extends React.Component<{}, IState> {
 
     constructor(props: {}) {
@@ -26,7 +25,8 @@ export default class LastArticlesList extends React.Component<{}, IState> {
         this.state = { lastArticlesList: []}
     }
 
-	componentDidMount(){
+	componentWillMount(){
+	//componentDidMount(){
 		const token = Config.token
         const host = Query.lastArticlesList.host
         const query = Query.lastArticlesList.query

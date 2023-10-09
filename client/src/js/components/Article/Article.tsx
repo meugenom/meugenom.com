@@ -11,16 +11,15 @@ import { View } from "../../../static/libs/parser/View";
 // import prismjs
 import * as Prism from "prismjs";
 
-
-
+//in functional style
 export default function Article() {
+
+  //console.log(window.location.href);
+
   const { slug } = useParams();
-  console.log(slug)
-  let specifications = {
-    spec: "",
-  };
+  console.log('slug: ', slug);
 
-
+  const [specifications, setSpecifications] = React.useState({ spec: "" });
 
 
   async function getArticle(slug: string) {
@@ -30,6 +29,8 @@ export default function Article() {
     const variables = { slug: slug };
     const dataType = "json";
 
+    try {
+
     const response = await new Service().graphql(
       dataType,
       token,
@@ -38,29 +39,31 @@ export default function Article() {
       variables
     );
 
-    specifications = await { spec: response.getAllSpecificationTextByArticleSlug };
+    //specifications = await { spec: response.getAllSpecificationTextByArticleSlug };
+    setSpecifications({ spec: response.getAllSpecificationTextByArticleSlug });
+
+  } catch (error) {
+    console.error(error);
+    // Error saving data
+  }
   }
 
-  function parse(article: string) {
+  React.useEffect(() => {
+    async function init() {
+      await getArticle(slug);
+    }
 
-    const tokenizer = new Tokenizer(article);
+    init();
+  }, [slug]);
 
-    //console.log(tokenizer);
-    const parser = new Parser(tokenizer.tokens);
-
-    //console.log(parser.ast);
-    new View(parser.ast);
-
-  }
-
-  async function init(slug: string) {
-    await getArticle(slug);
-    await parse(specifications.spec);
-    await Prism.highlightAll();
-  }
-  
-  //start init
-  init(slug);
+  React.useEffect(() => {
+    if (specifications.spec) {
+      const tokenizer = new Tokenizer(specifications.spec);
+      const parser = new Parser(tokenizer.tokens);
+      new View(parser.ast);
+      Prism.highlightAll();
+    }
+  }, [specifications.spec]);
 
   return (
     <main>
