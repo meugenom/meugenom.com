@@ -8,9 +8,7 @@ categories: macos shortcuts
 tags: macos shortcuts
 ---
 
-These are the most helpful shortcuts:
-
-### System wide
+# Mac OS Shortcuts
 
 Spotlight search: ⌘Space@yellow
 Character Viewer: ⌃⌘Space@yellow

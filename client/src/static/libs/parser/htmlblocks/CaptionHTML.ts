@@ -19,7 +19,7 @@ export class CaptionHTML {
 		this.token.children[0].tags.toString().split(" ").map( (tag: string) => {			
 			if(tag.length >0){
 				tagsBlock = tagsBlock + 
-				'<a href="#/tags/' + tag + '" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-yellow-400  hover:bg-yellow-500 uppercase last:mr-0 mr-1">'+
+				'<a href="#/tag/' + tag + '" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-yellow-400  hover:bg-yellow-500 uppercase last:mr-0 mr-1">'+
 					tag + 
 				"</a>" 
 			}

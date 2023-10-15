@@ -16,8 +16,8 @@ export class Grammar{
 
 		LIST : /(\-|\[\]|\[\x\])\s((.*))/,
 		
-		CODE_BLOCK : /```(bash|javascript)(.*?\s)```/s,
-		CODE_IN_CODE : /```(bash|javascript)((\s.*)```)\s*```\s/s,
+		CODE_BLOCK : /```(bash|javascript|java|typescript)(.*?\s)```/s,		
+		CODE_IN_CODE : /```(bash|javascript|java|typescript)((\s.*)```)\s*```\s/s,
 		INLINE_CODE : /(.*)`(.*)`(.*)/,
 
 		QUOTE: />(.*)\s>.<cite>(.*)<\/cite>/,
