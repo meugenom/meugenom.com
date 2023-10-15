@@ -10,7 +10,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const devMode = process.env.NODE_ENV !== "production"
 
 module.exports = {
-  entry: path.join(__dirname, './src/js/index.tsx'),
+  entry: path.join(__dirname, './src/js/index.ts'),
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.[chunkhash].js'
@@ -61,7 +61,7 @@ module.exports = {
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.ts', '.tsx', '.css']
+    extensions: ['.js', '.ts', '.tsx', '.css'],
   },
   plugins: [
 	new Dotenv(),

@@ -4,18 +4,16 @@
 	<img alt="" src="./assets/panda-meugenom.png"/>
 </center>
 
+### What is it:
 
-- front-end works on port 8081;
-- backend works on port 3000;
-- Redis
-
-This is personal web page, that you can see [https://meugenom.com](https://meugenom.com).
+This is my personal web page, that you can see [https://meugenom.com](https://meugenom.com).
 
 ### What were used to prepare this page:
-- imported own markdown-ts-compiler (Markdown->HTML [markdown-ts-compiler](https://github.com/meugenom/markdown-ts-compiler));
-- used Typescript + React (frontend part);
-- Java and Spring-Boot (backend part);
-- GraphQL;
+
+- imported own markdown-ts-compiler (Markdown->HTML [Markdown Typescript Compiler](https://github.com/meugenom/markdown-ts-compiler) with Tailwind CSS);
+- used Typescript own [SPA MVC Router](https://github.com/meugenom/spa-mvc-router) on port 8081;
+- Java and Spring-Boot (backend part on port 3000);
+- GraphQL (frontend and backend part);
 - Webpack (ES6);
 - Tailwind CSS;
 - maven;
@@ -27,7 +25,7 @@ This is personal web page, that you can see [https://meugenom.com](https://meuge
 1. Need preinstalled java 19.0.1, npm(8.9.0), node(16.14.2), mvn(3.8.7), nginx(1.23.3 stable);
 2. for information about projects you need  personal access token [https://github.com/settings/tokens](https://github.com/settings/tokens);
 3. Create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to GITHUB_TOKEN=
-4. For production please change `client/src/Config.tsx` your public host and in `.env` APP_MODE=production (by default APP_MODE=development)
+4. For production please change `client/src/config.ts` your public host and in `.env` APP_MODE=production (by default APP_MODE=development)
 
 ### How to start:
 

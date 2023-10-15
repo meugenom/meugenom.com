@@ -5,14 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        .loader__container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .loader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #94a3b8;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>    
     <title>meugenom.com</title>
 </head>
 <body>
-    <div id="page" class="app">
-        <article>
-            Loading....
-        </article>
-    </div>
-    
+    <header id="header"></header>    
+        <main id="page">                
+            <article class="row"> 
+                <div class="loader__container">
+                <div class="loader"></div>
+                </div>
+            </article>                
+        </main>
+    <footer id="footer"></footer>        
 </body>
 </html>
