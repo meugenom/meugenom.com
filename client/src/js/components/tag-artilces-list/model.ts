@@ -27,8 +27,8 @@ class Model {
         
         try {
             const token = "";
-            const host = Query.getAllArticlesByArticleTag.host;
-            const query = Query.getAllArticlesByArticleTag.query;
+            const host = Query.articlesListByTag.host;
+            const query = Query.articlesListByTag.query;
             const variables = { tag: tag };
             const dataType = "json";
     
@@ -40,7 +40,7 @@ class Model {
                 variables
             );
     
-            this.specifications = await { spec: response.getAllSpecificationTextByArticleTag };
+            this.specifications = await { spec: response.articlesListByTag };
 
             return this.specifications;
         } catch (error) {
