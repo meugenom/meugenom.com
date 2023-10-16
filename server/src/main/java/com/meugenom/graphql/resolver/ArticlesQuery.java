@@ -29,6 +29,22 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 	public List<Article> articlesList() {
 		return (List<Article>) articleRepository.findAll();
 	}
+	
+	// return list of articles by tag
+	public List<Article> articlesListByTag(String tag) {
+		//get all articles
+		List<Article> list = (List<Article>) articleRepository.findAll();
+
+		//find articles where tag is in tags
+		List<Article> result = new ArrayList<Article>();
+		for (Article article : list) {
+			if (article.getTags().contains(tag)) {
+				result.add(article);			
+			}
+		}
+		return result;
+		
+	}
 
 	// return 5 last articles
 	public List<Article> lastArticlesList() {
@@ -75,9 +91,9 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 		}).findAny().orElse(null);
 	
 		return result.getText();
-	
-	
 	  }
+
+
 	
 
 }
