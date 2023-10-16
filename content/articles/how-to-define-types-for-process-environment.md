@@ -2,7 +2,7 @@
 date: 2023-10-15
 title: 'How to define types for process environment'
 template: post
-thumbnail: '../thumbnails/process-environment.png'
+thumbnail: '../thumbnails/artem-sapegin-b18TRXc8UPQ-unsplash.jpg'
 slug: how-to-define-types-for-process-environment
 categories: process-env typescript
 tags: process-env typescript

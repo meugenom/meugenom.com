@@ -26,13 +26,12 @@ class View {
       <div class="md:container mx-10 font-sans text-base antialiased leading-7 z-0">      
           <article>
             <h4 class="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
-              Articles:
+              Writing:
             </h4>
-            <ul class="list-decimal">
-
+            <ul>
               ${list.map((article: any) => `              
             
-              <li class="text-slate-600 font-medium hover:text-blue-600">
+              <li class="text-slate-600 font-medium hover:text-indigo-600">
                 <a key="${article.slug}" href="#/article/${article.slug}">
                   ${article.title.substring(1, article.title.length - 1)}
                 </a>                      
@@ -42,7 +41,7 @@ class View {
                   ${article.tags.split(" ").map((tag: any) => 
                   `
                   <a href="${`#/tag/${tag}`}"                
-                  class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-yellow-400  hover:bg-yellow-500 uppercase last:mr-0 mr-1">
+                  class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">
                   ${tag}
               </a>`).join('')}
               

@@ -11,8 +11,8 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 ### What were used to prepare this page:
 
 - imported own markdown-ts-compiler (Markdown->HTML [Markdown Typescript Compiler](https://github.com/meugenom/markdown-ts-compiler) with Tailwind CSS);
-- used Typescript own [SPA MVC Router](https://github.com/meugenom/spa-mvc-router) on port 8081;
-- Java and Spring-Boot (backend part on port 3000);
+- used Typescript own [SPA MVC Router](https://github.com/meugenom/spa-mvc-router) on port 8082;
+- Java and Spring-Boot (backend part on port 4000);
 - GraphQL (frontend and backend part);
 - Webpack (ES6);
 - Tailwind CSS;
@@ -56,10 +56,10 @@ or
 
 ```
 	location ^~ / {
-		proxy_pass http://localhost:8081/;
+		proxy_pass http://localhost:8082/;
 	}
 	location ^~ /graphql/ {
-		proxy_pass http://localhost:3000/graphql/; 
+		proxy_pass http://localhost:4000/graphql/; 
 	}
 ```
 

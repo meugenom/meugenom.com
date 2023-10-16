@@ -11,14 +11,13 @@ class View {
     const view = /* html */
         `            
         <div>
-            <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gradient-to-r from-slate-400 border-gray-600 shadow-md shadow-slate-500/10 mb-3">
+            <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gradient-to-r from-slate-400 border-slate-600 shadow-md shadow-slate-500/10 mb-3">
                 <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
                 <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     <a href="https://meugenom.com" class="flex items-center">
                         <img src="../../images/brain_gray.svg" alt="face-splash" class="mr-3 h-6 sm:h-9">
-                            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                                <span class="text-yellow-500">Meu</span>
-                                <span class="text-sky-500">Genom</span>
+                            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">                                
+                                <span class="text-slate-600">meugenom.com</span>
                             </span>
                     </a>
                     <button id="navbarButton" type="button" data-collapse-toggle="mobile-menu-3" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-3" aria-expanded="false">
@@ -34,27 +33,27 @@ class View {
                 <div class="lg:flex flex-grow items-center hidden" id="example-navbar-danger">
                     <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
                     <li class="nav-item">
-                        <a id="nav-home" href="/" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-green-500 opacity-50 hover:opacity-100 hover:underline">
+                        <a id="nav-home" href="/" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav-articles" href="/articles" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-yellow-500 opacity-50 hover:opacity-100 hover:underline">
-                            Articles
+                        <a id="nav-articles" href="/articles" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
+                            Blog
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav-projects" href="/projects" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-magenta-500 opacity-50 hover:opacity-100 hover:underline">
+                        <a id="nav-projects" href="/projects" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             Projects
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav-about" href="/about" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-blue-500 opacity-50 hover:opacity-100 hover:underline">
+                        <a id="nav-about" href="/about" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             About
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://github.com/meugenom" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-pink-500 opacity-50 hover:opacity-100 hover:underline">
+                        <a href="https://github.com/meugenom" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             Github
                         </a>
                     </li>                
