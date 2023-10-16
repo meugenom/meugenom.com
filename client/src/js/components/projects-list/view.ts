@@ -92,7 +92,7 @@ class View {
 
                                           <p>
                                             <a
-                                              class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-yellow-400  hover:bg-yellow-500 uppercase last:mr-0 mr-1"
+                                              class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1"
                                               href="${"https://github.com" + project.node.resourcePath}">
                                               Source
                                             </a>

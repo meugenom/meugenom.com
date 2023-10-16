@@ -10,7 +10,7 @@ class View {
     const view = /* html */`
         <footer
             class="
-                    bg-gradient-to-r from-slate-400 to-slate-200 border-gray-600 
+                    bg-gradient-to-r from-slate-400 to-slate-200 border-slate-600 
                     shadow-lg 
                     shadow-slate-500/10 							
                     dark:bg-gray-800 							

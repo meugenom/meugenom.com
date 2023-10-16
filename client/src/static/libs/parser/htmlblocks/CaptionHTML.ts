@@ -19,7 +19,7 @@ export class CaptionHTML {
 		this.token.children[0].tags.toString().split(" ").map( (tag: string) => {			
 			if(tag.length >0){
 				tagsBlock = tagsBlock + 
-				'<a href="#/tag/' + tag + '" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-yellow-400  hover:bg-yellow-500 uppercase last:mr-0 mr-1">'+
+				'<a href="#/tag/' + tag + '" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">'+
 					tag + 
 				"</a>" 
 			}
@@ -28,7 +28,7 @@ export class CaptionHTML {
 		let categoriesBlock  = "";
 			if(this.token.children[0].categories.length > 0){
 			categoriesBlock  = 
-			'<a class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-gray-400  hover:bg-gray-500 uppercase last:mr-0 mr-1">'+
+			'<a class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-indigo-400  hover:bg-indigo-500 uppercase last:mr-0 mr-1">'+
 				this.token.children[0].categories +
 			"</a>" 
 			}
