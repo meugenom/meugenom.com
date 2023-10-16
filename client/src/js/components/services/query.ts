@@ -17,7 +17,7 @@ const Query = {
     articlesList: {
 		host: Environment.host,
       query: '{ articlesList { slug title id date tags}}'
-    },    
+    },
     projectsList: {
       host: 'https://api.github.com/graphql',
       query: `{
@@ -90,11 +90,10 @@ const Query = {
 		  host: Environment.host,
 		  query: 'query Query($slug: String!) {\n  getAllSpecificationTextByArticleSlug(slug: $slug) \n}\n'
 	  },
-    getAllArticlesByArticleTag: {
+    articlesListByTag: {
       host: Environment.host,
-      query: 'query Query($tag: String!) {\n  getAllArticlesByArticleTag(tag: $tag) \n}\n'
-      }
-
+      query: 'query Query($tag: String!) {\n  articlesListByTag(tag: $tag){id\n title\n date\n tags\n slug\n} \n}\n'
+    },    
   }
 
 export default Query

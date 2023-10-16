@@ -8,8 +8,7 @@ import com.meugenom.article.model.Article;
  * @author meugenom
  * @see ArrayList, Regex rules 
  * @param text String value for next parsing and inputing datas to object Article
- * @return object Article that consists of the  article's fields and specifications
- * @since 0.1 beta
+ * @return object Article that consists of the  article's fields and specifications* 
  */
 
 public class ParseToArticle {

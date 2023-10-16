@@ -28,9 +28,6 @@ class TagArticlesList {
         const tag = request.id;                
         console.log('tag', tag)
 
-        //change url without reloading page
-        //window.history.replaceState({}, null, `/tag/${tag}`);
-
         this.articlesList = await this.model.getArticlesList(tag);
         const section = await this.view.appendTagArticlesList(this.articlesList);
         return section;
