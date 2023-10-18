@@ -29,6 +29,7 @@ class Article {
     //model: any;
     //view: any;
     article: any;
+    slug: string;
 
     constructor () {
         //this.model = new Model()
@@ -39,13 +40,13 @@ class Article {
         
         const request = new Utils().parseRequestURL()
         console.log(request)
-        const slug = request.id;                
-        console.log('slug', slug) 
+        this.slug = request.id;                
+        console.log('slug', this.slug) 
 
         //change url without reloading page
         //window.history.replaceState({}, null, `/article/${slug}`);
 
-        this.article = await new Model().getArticle(slug);
+        this.article = await new Model().getArticle(this.slug);
         const section = await new ArticleView().appendArticles();
         return section;
 
@@ -63,7 +64,22 @@ class Article {
     async afterRender () {
         // console.log('afterRender')
         await this.parse(this.article.spec);
-        await Prism.highlightAll();
+        await Prism.highlightAll();        
+
+        //set title page
+        document.title = this.slug;
+
+        // add utterances comments
+        const script = document.createElement('script');
+        script.src = 'https://utteranc.es/client.js';
+        script.type = 'application/javascript';
+        script.setAttribute('repo', 'meugenom/comments');
+        script.setAttribute('issue-term', 'title');
+        script.setAttribute('label', 'comments');
+        script.setAttribute('theme', 'github-light');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        await document.body.appendChild(script);
 
     }
 }
