@@ -79,7 +79,13 @@ class Article {
         script.setAttribute('theme', 'github-light');
         script.setAttribute('crossorigin', 'anonymous');
         script.async = true;
-        await document.body.appendChild(script);
+
+        // check if utterances comments is not already added
+        if((document.getElementById('utterance-comments').contains(script) == false) && 
+            (document.getElementById('utterance-comments').childElementCount == 0 )){            
+                await document.getElementById('utterance-comments').appendChild(script);
+        }
+        
 
     }
 }
