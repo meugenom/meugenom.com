@@ -3,6 +3,7 @@ package com.meugenom.graphql.resolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.meugenom.article.model.Article;
+import com.meugenom.tag.model.Tag;
 import com.meugenom.article.repository.ArticleRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,28 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 
 		return result;
 
+	}
+
+	// return all tags
+	public List<Tag> tagsList() {
+		List<Article> articles = new ArrayList<Article>();
+		articles = (List<Article>) articleRepository.findAll();
+		
+		List<Tag> result = new ArrayList<Tag>();
+
+		for (Article article : articles) {
+			
+			String[] tags = article.getTags().split(" ");
+			
+			for (String tag : tags) {				
+				if(tag != null && tag != ""){
+					Tag section = new Tag(tag, article.getSlug());				
+					System.out.println("Tag is: " + tag);
+					result.add(section);				
+				}				
+			}
+		}
+		return result;
 	}
 
 	public String getAllSpecificationTextByArticleSlug(String slug) {

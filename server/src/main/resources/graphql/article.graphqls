@@ -9,22 +9,28 @@ type Specification {
 }
 
 type Article {
-        id: Int,
-        date: String,
-        title: String,    
-        template: String,
-        thumbnail: String,
-        slug: String,
-        categories: String,
-        tags: String,
-        fileName: String,
-        text: String
-    }
+  id: Int,
+  date: String,
+  title: String,    
+  template: String,
+  thumbnail: String,
+  slug: String,
+  categories: String,
+  tags: String,
+  fileName: String,
+  text: String
+}
+
+type Tag {
+  name: String,
+  slug: String
+}
 
 type QueryType {
   lastArticlesList: [Article]
   articlesList: [Article]
-  articlesListByTag(tag: String) : [Article]
+  tagsList: [Tag]
+  articlesListByTag(tag: String) : [Article]  
   getArticleById(id: Long) : Article
   getAllSpecificationTextByArticleSlug(slug: String) : String
 }

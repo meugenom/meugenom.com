@@ -8,12 +8,9 @@ import Config from '../../config'
  * @returns list of posts
  */
 
-interface IArticle {
-  slug: string;
-  title: string;
-  date: string;
-  tags: string;
-  id: string;
+interface ITags {
+  name: string,
+  slug: string
 }
 
 class Model {
@@ -24,22 +21,22 @@ class Model {
     variables = {};
     dataType = "json";
 
-    tagsList: any;
+    tags: [ITags];
 
     constructor () {
     }
 
 
-  async getTagsList() {
+  async getTags() {
     try {
-      this.tagsList = await new Service().graphql(
+      this.tags = await new Service().graphql(
       this.dataType,
       this.token,
       this.host,
       this.query,
       this.variables
       )
-      return this.tagsList;
+      return this.tags;
     } catch (error) {
       console.error('Error retrieving tags list:', error);
       throw error; 
