@@ -18,6 +18,10 @@ const Query = {
 		host: Environment.host,
       query: '{ articlesList { slug title id date tags}}'
     },
+    tagsList: {
+      host: Environment.host,
+      query: '{ tagsList { name slug}}'
+    },
     projectsList: {
       host: 'https://api.github.com/graphql',
       query: `{

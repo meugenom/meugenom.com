@@ -8,18 +8,31 @@
 
 class View {
 
-  appendTagsGarten (tags: any) {
+  appendTags (tags: any) {
 
-    tags = [
-        {
-            "name": "writer",
-            "slug": "how-to-write-text"
-        },
-        {
-            "name": "macos",
-            "slug": "mac-os-shortcuts"
+    let letters: any[] = [];
+
+    // from object to array
+    Object.entries(tags).forEach(([key, value]) => {      
+      (value as any[]).map((tag: any) => {   
+        
+        // letters
+        const firstLetter = tag.name.charAt(0).toUpperCase();
+        //console.log(firstLetter)
+        const index = letters.findIndex(item => item.letter === firstLetter);
+        if (index === -1) {
+          letters.push({ letter: firstLetter, tags: [tag] });
+        } else {
+          letters[index].tags.push(tag);
         }
-    ]
+      })
+    })
+
+    // need to sort letters by letter property and tags by name property 
+    letters.sort((a, b) => a.letter.localeCompare(b.letter))
+    letters.forEach(letter => letter.tags.sort((a:any, b:any) => a.name.localeCompare(b.name)))
+
+    //console.log(letters)
 
     const view = /* html */`      
       <div class="md:container mx-5 font-sans text-base antialiased leading-7 z-0">
@@ -27,15 +40,23 @@ class View {
             <h4 class="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
               Tags Garten:
             </h4>
-            <ul class="list-decimal">
+            <ul>
 
-              ${tags.map((tag: any) => 
+              ${letters.map((letter: any) => 
                 /* html */
                 `              
-                <li class="text-slate-600 font-medium hover:text-blue-600">
-                    <a key="${tag.name}" href="#/article/${tag.slug}">
+                <li class="text-slate-600 font-medium hover:text-indigo-600">
+                  <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-indigo-400 uppercase last:mr-0 mr-1">
+                  ${letter.letter}
+                  </span>                    
+                    ${letter.tags.map((tag: any) => 
+                    `
+                      <a key="${tag.name}" 
+                        href="${`#/tag/${tag.name}`}"
+                        class="text-xx font-medium inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">                        
                         ${tag.name}
-                    </a>                                  
+                      </a>                                              
+                    `).join('')}
                 </li>
             `).join('')}
           </ul>
@@ -47,3 +68,9 @@ class View {
 }
 
 export default View
+
+/**
+ * <a key="${letter.name}" href="#/article/${tag.slug}">
+                        ${tag.name}
+                    </a>                                  
+ */

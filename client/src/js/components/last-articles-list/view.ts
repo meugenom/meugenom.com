@@ -44,14 +44,14 @@ class View {
                   ${article.tags.split(" ").map((tag: any) => 
                   `
                   <a href="${`#/tag/${tag}`}"                
-                  class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">
+                  class="text-xx font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">
                   ${tag}
               </a>`).join('')}
               
             </span>
             &nbsp;
             &nbsp;
-            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
+            <span class="text-xx font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
               ${article.date}
             </span>
           </li>
