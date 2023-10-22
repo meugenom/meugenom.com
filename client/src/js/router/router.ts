@@ -14,6 +14,8 @@ import Error404 from '../components/error404/index'
 import ProjectsList from '../components/projects-list/index'
 import TagArticlesList from '../components/tag-artilces-list/index'
 import TagsGarten from '../components/tags-garten/index'
+import About from '../components/about/index'
+import Illustration from '../components/illustration/index'
 
 import Utils from '../components/services/utils'
 
@@ -35,7 +37,9 @@ class Router {
         '/projects': new ProjectsList(),
         '/article/:id': new Article(),
         '/tag/:id': new TagArticlesList(),
-        '/tags': new TagsGarten()
+        '/tags': new TagsGarten(),
+        '/about': new About(),
+        '/illustration': new Illustration(),
         }
 
     // start

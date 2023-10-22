@@ -22,7 +22,7 @@ class View {
     })
 
     const view = /* html */`
-      <div class="md:container mx-10 font-sans text-base antialiased leading-7 z-0">      
+      <div class="mx-10 font-sans text-base antialiased leading-7 z-0">      
           <article>
             <h4 class="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
               The writings found:
@@ -41,14 +41,14 @@ class View {
                   ${article.tags.split(" ").map((tag: any) => 
                   `
                   <a href="${`#/tag/${tag}`}"                
-                  class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">
-                  ${tag}
+                  class="text-xx font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">
+                  #${tag}
               </a>`).join('')}
               
             </span>
             &nbsp;
             &nbsp;
-            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
+            <span class="text-xx font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
               ${article.date}
             </span>
           </li>
