@@ -48,7 +48,7 @@ class Navbar {
     const articles = document.getElementById('nav-articles');
     const projects = document.getElementById('nav-projects');
     const about = document.getElementById('nav-about');
-    const illustrations = document.getElementById('nav-illustrations');
+    const illustration = document.getElementById('nav-illustration');
 
     switch (url.resource) {
       case '':
@@ -64,8 +64,8 @@ class Navbar {
         projects.classList.replace('hover:underline', 'underline');
         break;
         case 'illustrations':
-          illustrations.classList.replace('opacity-50', 'opacity-100');
-          illustrations.classList.replace('hover:underline', 'underline');
+          illustration.classList.replace('opacity-50', 'opacity-100');
+          illustration.classList.replace('hover:underline', 'underline');
           break;
       case 'about':
         about.classList.replace('opacity-50', 'opacity-100');
