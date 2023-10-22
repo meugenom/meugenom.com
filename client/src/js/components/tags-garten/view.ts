@@ -35,7 +35,7 @@ class View {
     //console.log(letters)
 
     const view = /* html */`      
-      <div class="md:container mx-5 font-sans text-base antialiased leading-7 z-0">
+      <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
           <article>
             <h4 class="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
               Tags Garten:
@@ -68,9 +68,3 @@ class View {
 }
 
 export default View
-
-/**
- * <a key="${letter.name}" href="#/article/${tag.slug}">
-                        ${tag.name}
-                    </a>                                  
- */

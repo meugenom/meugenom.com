@@ -48,6 +48,11 @@ class View {
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a id="nav-illustrations" href="/illustrations" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
+                            Illustrations
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a id="nav-about" href="/about" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             About
                         </a>
