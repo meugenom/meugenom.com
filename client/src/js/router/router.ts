@@ -29,6 +29,9 @@ class Router {
     header: HTMLElement;
     content: HTMLElement;
     footer: HTMLElement;
+    
+    headerComponent: Navbar;
+    footerComponent: Footer;
 
     constructor () {
         this.routes = {
@@ -46,14 +49,20 @@ class Router {
     this.header = null || document.getElementById('header')
     this.content = null || document.getElementById('page')
     this.footer = null || document.getElementById('footer')
+
+    this.headerComponent  = new Navbar();
+    this.footerComponent  = new Footer();
+
     this.init()
   }
 
   async init () {
     
-    // Render the Header and footer of the page
-    this.header.innerHTML = await new Navbar().render()
-    await new Navbar().afterRender()
+    //old code for header
+    //this.header.innerHTML = await new Navbar().render()    
+    //await new Navbar().afterRender()
+    this.header.innerHTML = await this.headerComponent.render();
+    await this.headerComponent.afterRender();
 
     const request = new Utils().parseRequestURL()
     const parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
@@ -64,8 +73,11 @@ class Router {
     this.content.innerHTML = await page.render()
     await page.afterRender()
 
-    this.footer.innerHTML = await new Footer().render()
-    await new Footer().afterRender()
+    //old code for footer
+    //this.footer.innerHTML = await new Footer().render()
+    //await new Footer().afterRender()
+    this.footer.innerHTML = await this.footerComponent.render();
+    await this.footerComponent.afterRender();
   }
 }
 
