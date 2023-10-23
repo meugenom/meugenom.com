@@ -51,11 +51,11 @@ Huffman coding is widely used in various applications where data compression is 
 2. Optimize images:
 
 ```bash
-    # For JPEG
-    jpegoptim -m80 -o -p --strip-all <image-path>
+    // For JPEG
+    jpegoptim -m80 -o -p --strip-all your_image
 
-    # For PNG
-    optipng -o7 <image-path>
+    // For PNG
+    optipng -o7 your_image
 ``` 
 
 
