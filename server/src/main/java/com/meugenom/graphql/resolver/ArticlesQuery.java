@@ -49,7 +49,15 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 
 	// return 5 last articles
 	public List<Article> lastArticlesList() {
-		return (List<Article>) articleRepository.findAll();
+
+		List<Article> list = (List<Article>) articleRepository.findAll();
+		List<Article> result = new ArrayList<Article>();
+		
+		for (int i = 0; i < 5; i++) {
+			result.add(list.get(i));
+		}
+		
+		return result;
 	}
 
 	/**
