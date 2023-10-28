@@ -7,9 +7,9 @@ import './lazyLoading.css'
 
 class Utils {
 
-  url: string;
-  r: string[];
-  request: { resource: string | null; id: string | null; verb: string | null; };
+  public url: string;
+  private r: string[];
+  private request: { resource: string | null; id: string | null; verb: string | null; };
 
 
     constructor () {
@@ -41,6 +41,7 @@ class Utils {
       return this.request
     }
     
+    // lazy loading images
     static async lazyLoadImage(imageElement: HTMLImageElement) {
       
       const loaderElement = document.createElement('div');

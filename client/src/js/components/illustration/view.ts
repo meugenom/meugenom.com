@@ -20,10 +20,25 @@ class View {
             <div class="text-center pb-12">                            
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
+            
+            <!-- screen splash -->
+            <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
+                <div>
+
+                    <img class="lazy object-center object-fill h-48 w-100" 
+                        data-src="/images/screen_splash.svg" alt="screen splash">                    
+                </div>
+                <div class="text-center py-8 sm:py-6">
+                    <p class="text-md font-mono text-gray-500 leading-normal mb-2">
+                        Screen Splash
+                    </p>                        
+                </div>
+            </div>
+
+                <!-- algo panda -->
                 <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
-                        <img class="lazy object-center object-cover h-auto w-full" data-src="/images/algo-panda.png" alt="algo-panda">
+                        <img class="lazy object-center object-cover h-48 w-48" data-src="/images/algo_panda.png" alt="algo panda">
                     </div>
                     <div class="text-center py-8 sm:py-6">
                         <p class="text-md font-mono text-gray-500 leading-normal mb-2">
@@ -32,9 +47,10 @@ class View {
                     </div>
                 </div>
 
+                <!-- laptop panda -->
                 <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
-                        <img class="lazy object-center object-cover h-auto w-full" data-src="/images/laptop-panda.png" alt="laptop-panda">
+                        <img class="lazy object-center object-cover h-48 w-48" data-src="/images/laptop_panda.png" alt="laptop panda">
                     </div>
                     <div class="text-center py-8 sm:py-6">
                         <p class="text-md font-mono text-gray-500 leading-normal mb-2">
@@ -43,9 +59,10 @@ class View {
                     </div>
                 </div>
 
+                <!-- solutions panda -->
                 <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
-                        <img class="lazy object-center object-cover h-auto w-full" data-src="/images/solution-panda.png" alt="solution-panda">
+                        <img class="lazy object-center object-cover h-48 w-48" data-src="/images/solution_panda.png" alt="solution-panda">
                     </div>
                     <div class="text-center py-8 sm:py-6">
                         <p class="text-md font-mono text-gray-500 leading-normal mb-2">
@@ -54,9 +71,10 @@ class View {
                     </div>
                 </div>
 
+                <!-- meugenom panda -->
                 <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
-                        <img class="lazy object-center object-cover h-auto w-full" data-src="/images/website-panda.png" alt="website-panda">
+                        <img class="lazy object-center object-fill h-48 w-48" data-src="/images/meugenom_panda.png" alt="meugenom panda">
                     </div>
                     <div class="text-center py-8 sm:py-6">
                         <p class="text-md font-mono text-gray-500 leading-normal mb-2">
@@ -64,6 +82,35 @@ class View {
                         </p>                        
                     </div>
                 </div>
+
+                <!-- brain gray -->
+                <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
+                    <div>
+
+                        <img class="lazy object-center object-fill h-48 w-48" 
+                            data-src="/images/brain_gray.svg" alt="brain_gray">
+                    
+                    </div>
+                    <div class="text-center py-8 sm:py-6">
+                        <p class="text-md font-mono text-gray-500 leading-normal mb-2">
+                            Brain Gray
+                        </p>                        
+                    </div>
+                </div>
+
+                <!-- face splash -->
+                <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
+                    <div>
+
+                        <img class="lazy object-center object-fill h-48 w-48" 
+                            data-src="/images/face-splash.svg" alt="face splash">                    
+                    </div>
+                    <div class="text-center py-8 sm:py-6">
+                        <p class="text-md font-mono text-gray-500 leading-normal mb-2">
+                            Face Splash
+                        </p>                        
+                    </div>
+                </div>                
 
             </div>    
         </section>

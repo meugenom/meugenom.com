@@ -17,7 +17,7 @@ class View {
 
   renderLanguages(project: IProject) {
 
-    console.log('project', project)
+    //console.log('project', project)
 
     const languages = `
     ${project.node.languages.nodes.map((language: ILanguage) => {      
