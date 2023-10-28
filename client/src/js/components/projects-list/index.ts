@@ -1,5 +1,5 @@
 'use strict'
-import Utils from '../services/utils';
+import IProject from '../interfaces/IProject';
 import Model from './model'
 import View from './view'
 
@@ -12,10 +12,10 @@ import View from './view'
 
 class ProjectsList {
 
-    model: any;
-    view: any;
-    projectsList: any;
-    projects: any;
+    model: Model;
+    view: View;
+    section: string;
+    projects: IProject[];
 
   constructor () {
     this.model = new Model()
@@ -24,8 +24,8 @@ class ProjectsList {
 
   async render () {
     this.projects = await this.model.getProjects()
-    this.projectsList = await this.view.appendProjectsList(this.projects)
-    return this.projectsList
+    this.section = await this.view.appendProjectsList(this.projects)
+    return this.section
   }
 
   afterRender () { 

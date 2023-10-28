@@ -2,19 +2,25 @@
 
 import Model from './model'
 import Config from '../../config'
+import ILanguage from '../interfaces/ILanguage';
+import IProject from '../interfaces/IProject';
 
 /**
- * View for component Home
- * @param posts
- * @returns html view for home page
+ * View for component Project List
+ * @param project
+ * @returns html view for component Project List
  */
+
+
 
 class View {
 
+  renderLanguages(project: IProject) {
 
-  renderLanguages(project: any) {
+    console.log('project', project)
+
     const languages = `
-    ${project.node.languages.nodes.map((language: any) => {      
+    ${project.node.languages.nodes.map((language: ILanguage) => {      
       if(language.name === 'JavaScript'
       || language.name === 'HTML' 
       || language.name === 'CSS' 
@@ -36,7 +42,7 @@ class View {
     return languages;
 }
 
-  appendProjectsList (projects: any) {
+  appendProjectsList (projects: IProject[]) {
     
     //console.log('projects', projects)
     

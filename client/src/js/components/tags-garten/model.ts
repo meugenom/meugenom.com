@@ -1,17 +1,12 @@
 'use strict'
 import Service from '../services/services'
 import Query from '../services/query'
-import Config from '../../config'
+import ITags from '../interfaces/ITags';
 
 /**
  * Model for component Home
  * @returns list of posts
  */
-
-interface ITags {
-  name: string,
-  slug: string
-}
 
 class Model {
 
@@ -21,7 +16,7 @@ class Model {
     variables = {};
     dataType = "json";
 
-    tags: [ITags];
+    tags: ITags[];
 
     constructor () {
     }

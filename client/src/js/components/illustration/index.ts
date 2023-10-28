@@ -1,24 +1,19 @@
 'use strict'
 import Utils from '../services/utils'
-/**
- * controller Home
- * @param model
- * @param view
- * @return users
- */
-
-import Model from './model'
 import View from './view'
 
-class Illustration {
-    model: any;
-    view: any;
-    articles: any;
+/**
+ * controller Illustration 
+ * @param view
+ */
 
-  constructor () {
-    this.model = new Model()
+
+class Illustration {    
+    private view: View;    
+
+  constructor () {    
     this.view = new View()
-    this.articles = {}
+    
   }
 
   async render () {    
@@ -33,7 +28,5 @@ class Illustration {
     });
   }
 }
-
-
 
 export default Illustration

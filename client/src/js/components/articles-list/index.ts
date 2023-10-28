@@ -1,18 +1,20 @@
 'use strict'
 import Model from './model'
 import View from './view'
+import IArticle from '../interfaces/IArticle'
 
 /**
- * controller Articles
+ * controller Articles List
  * @param model
  * @param view
- * @return html to view articles
+ * @return html to view articles list
  */
 
+
 class ArticlesList {
-    model: any;
-    view: any;
-    articlesList: any;
+    model: Model;
+    view: View;
+    articlesList: IArticle[];
 
     constructor () {
         this.model = new Model()
@@ -26,7 +28,7 @@ class ArticlesList {
     }
 
     afterRender () {
-        // console.log('afterRender')
+        // nothing to do
     }
 }
 

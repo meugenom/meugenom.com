@@ -14,7 +14,7 @@ import TagsGartenView from "../tags-garten/view";
 
 class View {
 
-  async appendArticles (articles: any) {
+  async appendHome () {
     
     const projectsList = await new ProjectsListModel().getProjects();
     const lastArticlesList = await new LastArticlesListModel().getLastArticlesList();

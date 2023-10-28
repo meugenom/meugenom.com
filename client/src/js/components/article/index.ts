@@ -26,22 +26,21 @@ import * as Prism from "prismjs";
  */
 
 class Article {
-    //model: any;
-    //view: any;
-    article: any;
-    slug: string;
+    
+    private article: {
+        spec: string
+    };
+    private slug: string;
 
-    constructor () {
-        //this.model = new Model()
-        //this.view = new View()
+    constructor () {        
     }
 
     async render () {
         
         const request = new Utils().parseRequestURL()
-        console.log(request)
+        //console.log(request)
         this.slug = request.id;                
-        console.log('slug', this.slug) 
+        //console.log('slug', this.slug) 
 
         //change url without reloading page
         //window.history.replaceState({}, null, `/article/${slug}`);

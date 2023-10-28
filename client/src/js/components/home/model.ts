@@ -14,9 +14,7 @@ class Model {
     this.articles = {}
   }
 
-  async setArticles () {
-    //this.articles = await new Service().getArticles()
-    //return this.articles
+  async setArticles () {    
     return;
   }
 }

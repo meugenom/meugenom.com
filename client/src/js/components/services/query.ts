@@ -25,7 +25,7 @@ const Query = {
     projectsList: {
       host: 'https://api.github.com/graphql',
       query: `{
-              user(login: "meugenom") {
+              user(login: "${process.env.GITHUB_USER_NAME}") {
               email
               location
               websiteUrl
