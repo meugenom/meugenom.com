@@ -31,22 +31,49 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 
 1. clone repository 
 `git clone https://github.com/meugenom/meugenom.com.git`
+
 2. change dir
-`cd meugenom.com`
+`cd meugenom.com/client`
+
 3. install npm libraries
 `npm install`
-3. for building frontend part:
+
+4. for building frontend part:
 `npm run build`
-4. start frontend dev server
-`npm run start`
-4. build backend
-`cd ../server`
-`mvn clean package`
-5. install Redis server
-6. start backend dev server
-`mvn clean spring-boot:run`
-or
-`./start-dev-server.sh`
+
+5. create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to GITHUB_TOKEN=
+
+6. start frontend server
+	**for development:**	
+	- change .env file in the `client/.env`directory (see `client/simple.env`)  and add to APP_MODE=development
+	- start frontend dev server (for development)
+	`npm run start`
+
+	**for production:**	
+	- change .env file in the `client/.env`directory (see `client/simple.env`)  and add to APP_MODE=production
+	- start frontend prod server (for production)
+	`node meugenom-server.js`
+
+7. build backend part:
+	**for development:**	
+	- `cd ../server`
+	- `mvn clean package`
+
+	**for production:** when is not local machine
+	- `cd ../server`
+	- change path in the `application.properties` file in the `server/main/java/com/meugenom/resources/` from `content/articles` to `../content/articles`
+	- `mvn clean package`
+
+
+8. install Redis server and change port to 9001 in the `etc/redis.conf` file by default it's 6379
+
+9. start backend dev server `mvn clean spring-boot:run`
+	or
+	**for development**
+	- `./start-dev-server.sh`
+
+	**for production**
+	- `./start-prod-server.sh`
 
 ### CORS settings:
 1. write to  "/etc/hosts" host:

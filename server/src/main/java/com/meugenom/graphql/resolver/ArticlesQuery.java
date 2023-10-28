@@ -28,7 +28,15 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 	 */
 
 	public List<Article> articlesList() {
-		return (List<Article>) articleRepository.findAll();
+		//sort by date
+		//List<Article> list = (List<Article>) articleRepository.findAllByOrderByDateDesc();
+		List<Article> list = (List<Article>) articleRepository.findAll();
+		//sorting list of articles by date DESC
+		list.sort((a1, a2) -> a2.getDate().compareTo(a1.getDate()));
+		
+		
+
+		return list;
 	}
 	
 	// return list of articles by tag
@@ -43,13 +51,26 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 				result.add(article);			
 			}
 		}
+		//sorting list of articles by date DESC
+		result.sort((a1, a2) -> a2.getDate().compareTo(a1.getDate()));		
 		return result;
 		
 	}
 
 	// return 5 last articles
 	public List<Article> lastArticlesList() {
-		return (List<Article>) articleRepository.findAll();
+
+		List<Article> list = (List<Article>) articleRepository.findAll();
+		List<Article> result = new ArrayList<Article>();
+		
+		for (int i = 0; i < 5; i++) {
+			result.add(list.get(i));
+		}
+
+		//sorting list of articles by date DESC
+		result.sort((a1, a2) -> a2.getDate().compareTo(a1.getDate()));
+		
+		return result;
 	}
 
 	/**

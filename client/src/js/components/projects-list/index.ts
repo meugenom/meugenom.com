@@ -1,4 +1,5 @@
 'use strict'
+import Utils from '../services/utils';
 import Model from './model'
 import View from './view'
 
@@ -27,7 +28,9 @@ class ProjectsList {
     return this.projectsList
   }
 
-  afterRender () { }
+  afterRender () { 
+    //     
+  }
 }
 
 export default ProjectsList

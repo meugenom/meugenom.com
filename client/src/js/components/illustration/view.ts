@@ -9,7 +9,7 @@
 class View {
 
   async appendIllustration () {
-        
+
     const view = await /* html */`    
     <div class="container mx-auto px-4 sm:px-8">
         <!-- component -->
@@ -23,7 +23,7 @@ class View {
                 
                 <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
-                        <img class="object-center object-cover h-auto w-full" src="/images/algo-panda.png" alt="algo-panda">
+                        <img class="lazy object-center object-cover h-auto w-full" data-src="/images/algo-panda.png" alt="algo-panda">
                     </div>
                     <div class="text-center py-8 sm:py-6">
                         <p class="text-md font-mono text-gray-500 leading-normal mb-2">
@@ -34,7 +34,7 @@ class View {
 
                 <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
-                        <img class="object-center object-cover h-auto w-full" src="/images/laptop-panda.png" alt="laptop-panda">
+                        <img class="lazy object-center object-cover h-auto w-full" data-src="/images/laptop-panda.png" alt="laptop-panda">
                     </div>
                     <div class="text-center py-8 sm:py-6">
                         <p class="text-md font-mono text-gray-500 leading-normal mb-2">
@@ -45,7 +45,7 @@ class View {
 
                 <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
-                        <img class="object-center object-cover h-auto w-full" src="/images/solution-panda.png" alt="solution-panda">
+                        <img class="lazy object-center object-cover h-auto w-full" data-src="/images/solution-panda.png" alt="solution-panda">
                     </div>
                     <div class="text-center py-8 sm:py-6">
                         <p class="text-md font-mono text-gray-500 leading-normal mb-2">
@@ -56,7 +56,7 @@ class View {
 
                 <div class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
-                        <img class="object-center object-cover h-auto w-full" src="/images/website-panda.png" alt="website-panda">
+                        <img class="lazy object-center object-cover h-auto w-full" data-src="/images/website-panda.png" alt="website-panda">
                     </div>
                     <div class="text-center py-8 sm:py-6">
                         <p class="text-md font-mono text-gray-500 leading-normal mb-2">
@@ -68,9 +68,10 @@ class View {
             </div>    
         </section>
         </div>
-    `
+    ` 
     return view
   }
+
 }
 
 export default View

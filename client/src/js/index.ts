@@ -21,6 +21,6 @@ window.addEventListener('popstate', function () {
 
 // Listen on page load:
 window.addEventListener('load', function () {
-  console.log('load')
+  console.log('load');
   new Router()
 })

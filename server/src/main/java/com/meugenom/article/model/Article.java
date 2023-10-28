@@ -1,6 +1,8 @@
 package com.meugenom.article.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import org.springframework.data.redis.core.RedisHash;
 
 @RedisHash("Article")
@@ -20,7 +22,7 @@ public class Article implements Serializable {
 
 	private String slug;
 
-	private String date;
+	private LocalDate date;
 
 	private String fileName;
 
@@ -32,7 +34,7 @@ public class Article implements Serializable {
 
 	}
 
-	public Article(String date, String title, String template, String thumbnail, String slug, String categories,
+	public Article(LocalDate date, String title, String template, String thumbnail, String slug, String categories,
 			String tags, String fileName, String checksum, String text) {
 		this.date = date;
 		this.title = title;
@@ -103,11 +105,11 @@ public class Article implements Serializable {
 
 	}
 
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

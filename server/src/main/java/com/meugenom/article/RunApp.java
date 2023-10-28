@@ -6,6 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.factory.annotation.Value;
+
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,7 +26,10 @@ import com.meugenom.readfile.ReadFilenamesFromDirectory;
 public class RunApp implements CommandLineRunner {
 
 	private static final Logger logger = LoggerFactory.getLogger(RunApp.class);
-	private String articlesPath = "content/articles";
+	
+	@Value("${articles.path}")
+    private String articlesPath;
+	
 
 	@Autowired
 	private ArticleRepository articleRepository;
