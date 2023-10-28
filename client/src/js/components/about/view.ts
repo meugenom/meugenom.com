@@ -144,7 +144,7 @@ class View {
           
           <div class="w-30 md:w-30 p-8">            
             <div class="py-4 px-4 max-w-sm mx-auto bg-white shadow-lg">
-              <img class="block mx-auto w-128 sm:mx-0 sm:shrink-0" src="/images/foto_me.jpg" alt="Me" />              
+              <img class="lazy block mx-auto w-128 sm:mx-0 sm:shrink-0" data-src="/images/foto_me.jpg" alt="Me" />              
             </div>
           </div>
 

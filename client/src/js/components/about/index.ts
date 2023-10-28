@@ -1,4 +1,5 @@
 'use strict'
+import Utils from '../services/utils';
 import Model from './model'
 import View from './view'
 
@@ -26,7 +27,11 @@ class About {
     }
 
     afterRender () { 
-        //nothing
+        // lazy load images
+        const images = document.querySelectorAll('.lazy');
+        images.forEach((img) => {
+            Utils.lazyLoadImage(img as HTMLImageElement);
+        });
     }
 }
 

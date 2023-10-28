@@ -86,6 +86,11 @@ class Article {
                 await document.getElementById('utterance-comments').appendChild(script);
         }
         
+        // lazy load images
+        const images = document.querySelectorAll('.lazy');
+        images.forEach((img) => {
+            Utils.lazyLoadImage(img as HTMLImageElement);
+        });
 
     }
 }

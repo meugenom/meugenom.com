@@ -27,7 +27,7 @@ class View {
     const tags = await new TagsGartenModel().getTags();
     
     const view = /* html */`
-      <div class="mx-10 font-sans text-base antialiased leading-7 z-0">      
+      <div class="mx-10 font-sans text-base antialiased leading-7 z-0 mb-20">      
         `
         + new TagsGartenView().appendTags(tags) +
         `
@@ -64,7 +64,7 @@ class View {
             `).join('')}
           </ul>
         </article>
-    </div>
+    </div>    
     `
     return view
   }

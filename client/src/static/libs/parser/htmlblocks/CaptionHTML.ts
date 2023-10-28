@@ -37,8 +37,8 @@ export class CaptionHTML {
 			`
 			<div class = "flex flex-col md:flex-row">
 				<div class = "flex-none">
-					<img src= ${this.token.children[0].thumbnail} 
-					 class="float-left object-contain h-64 w-100 mx-2"/>
+					<img data-src= ${this.token.children[0].thumbnail} 
+					 class="lazy float-left object-contain h-64 w-100 mx-2"/>
                 </div>
 				<div class="flex-auto justify-start">
 					<h3 class="text-3xl font-normal leading-normal mt-0 mb-2 text-gray-600">
