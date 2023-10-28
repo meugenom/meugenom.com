@@ -20,7 +20,7 @@ class View {
         const firstLetter = tag.name.charAt(0).toUpperCase();
         //console.log(firstLetter)
         const index = letters.findIndex(item => item.letter === firstLetter);
-        if (index === -1) {
+        if (index === -1) {          
           letters.push({ letter: firstLetter, tags: [tag] });
         } else {
           letters[index].tags.push(tag);
@@ -28,11 +28,19 @@ class View {
       })
     })
 
+    //delete duble tags for each letter
+    letters.forEach(letter => {
+      letter.tags = letter.tags.filter((tag: { name: any; }, index: any, self: any[]) =>
+        index === self.findIndex((t) => (
+          t.name === tag.name
+        ))
+      )
+    })
+
     // need to sort letters by letter property and tags by name property 
     letters.sort((a, b) => a.letter.localeCompare(b.letter))
     letters.forEach(letter => letter.tags.sort((a:any, b:any) => a.name.localeCompare(b.name)))
 
-    //console.log(letters)
 
     const view = /* html */`      
       <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
