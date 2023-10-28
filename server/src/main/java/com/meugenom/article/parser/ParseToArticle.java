@@ -1,4 +1,6 @@
 package com.meugenom.article.parser;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +16,7 @@ import com.meugenom.article.model.Article;
 public class ParseToArticle {
 
     private Article article = new Article();
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     
 
     public Article parse(String text) {
@@ -59,12 +62,19 @@ public class ParseToArticle {
                 shablons.forEach((shablon) -> {
                     boolean result = compilePattern.compile(line, shablon);
                     if (result) {
-                        if (shablon == ".*date:.*")
-                            article.setDate(line.replace("date: ", ""));
-                        if (shablon == ".*title:.*")
+                        
+                        LocalDate date;
+                        
+                        if (shablon.equals(".*date:.*")) {
+                            date = LocalDate.parse(line.replace("date: ", ""), formatter);
+                            article.setDate(date);
+                        }
+                        if (shablon.equals(".*title:.*")) {
                             article.setTitle(line.replace("title: ", ""));
-                        if (shablon == ".*template:.*")
+                        }
+                        if (shablon.equals(".*template:.*")) {
                             article.setTemplate(line.replace("template: ", ""));
+                        }
                         if (shablon == ".*thumbnail:.*")
                             article.setThumbnail(line.replace("thumbnail: ", ""));
                         if (shablon == ".*slug:.*")
