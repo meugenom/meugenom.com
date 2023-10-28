@@ -57,16 +57,21 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 		
 	}
 
-	// return 5 last articles
+	// return not more then 5 last articles
 	public List<Article> lastArticlesList() {
 
 		List<Article> list = (List<Article>) articleRepository.findAll();
 		List<Article> result = new ArrayList<Article>();
 		
-		for (int i = 0; i < 5; i++) {
-			result.add(list.get(i));
+		//return only 5 last articles or then less
+		if (list.size() > 5) {
+			for (int i = 0; i < 5; i++) {
+				result.add(list.get(i));
+			}
+		} else {
+			result = list;
 		}
-
+		
 		//sorting list of articles by date DESC
 		result.sort((a1, a2) -> a2.getDate().compareTo(a1.getDate()));
 		
