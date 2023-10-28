@@ -1,4 +1,5 @@
 'use strict'
+import IArticle from '../interfaces/IArticle';
 import Model from './model'
 
 /**
@@ -9,16 +10,16 @@ import Model from './model'
 
 class View {
 
-  appendLastArticlesList (lastArticlesList: any) {
+  appendLastArticlesList (lastArticlesList: IArticle[]) {
 
-    const list: any[] = [];
+    const list: IArticle [] = [];
 
-    console.log(lastArticlesList)
+    //console.log(lastArticlesList)
 
     // from object to array
     Object.entries(lastArticlesList).forEach(([key, value]) => {      
-      (value as any[]).map((article: any) => {        
-        console.log(article)
+      (value as unknown as any[]).map((article: any) => {        
+        //console.log(article)
         list.push(article)
 
       })

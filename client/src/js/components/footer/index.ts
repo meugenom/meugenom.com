@@ -10,9 +10,9 @@ import View from './view'
  */
 
 class Footer {
-    model: any;
-    view: any;
-    footer: any;
+    model: Model;
+    view: View;
+    footer: string;
 
     constructor () {
         this.model = new Model()

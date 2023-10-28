@@ -8,13 +8,13 @@
 
 class View {
 
-  appendTagArticlesList (articlesList: any) {
+  appendTagArticlesList (articlesList: {spec: string}) {
 
-    const list: any[] = [];
+    const list: string[] = [];
 
     // from object to array
     Object.entries(articlesList).forEach(([key, value]) => {      
-      (value as any[]).map((article: any) => {        
+      (value as unknown as any[]).map((article: any) => {        
         console.log(article)
         list.push(article)
 

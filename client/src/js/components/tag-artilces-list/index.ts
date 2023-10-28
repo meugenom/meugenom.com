@@ -2,6 +2,7 @@
 import Model from './model'
 import View from './view'
 import Utils from '../services/utils'
+import IArticle from '../interfaces/IArticle';
 
 
 /**
@@ -12,9 +13,12 @@ import Utils from '../services/utils'
  */
 
 class TagArticlesList {
-    model: any;
-    view: any;
-    articlesList: any;
+    model: Model;
+    view: View;
+    articlesList: {
+        spec: string
+    };
+    section: string;
 
     constructor () {
         this.model = new Model()
@@ -24,9 +28,9 @@ class TagArticlesList {
     async render () {
         
         const request = new Utils().parseRequestURL()
-        console.log(request)
+        //console.log(request)
         const tag = request.id;                
-        console.log('tag', tag)
+        //console.log('tag', tag)
 
         this.articlesList = await this.model.getArticlesList(tag);
         const section = await this.view.appendTagArticlesList(this.articlesList);

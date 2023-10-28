@@ -11,9 +11,9 @@ import View from './view'
 
 class SocialLinks {
 
-    model: any;
-    view: any;
-    socialLinks: any;
+    model: Model;
+    view: View;
+    socialLinks: string;
 
   constructor () {
     this.model = new Model()

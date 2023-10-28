@@ -1,4 +1,5 @@
 'use strict'
+import ITags from '../interfaces/ITags';
 /**
  * controller Home
  * @param model
@@ -10,14 +11,16 @@ import Model from './model'
 import View from './view'
 
 class TagsGarten {
-    model: any;
-    view: any;
-    tags: any;
+    
+    private model: Model;
+    private view: View;
+    private tags: ITags[];
+    private section : string;
 
   constructor () {
     this.model = new Model()
     this.view = new View()
-    this.tags = {}
+    this.tags = []
   }
 
   async render () {

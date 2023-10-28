@@ -4,21 +4,16 @@ import Query from '../services/query'
 
 
 /**
- * Model for component Home
- * @returns list of posts
+ * Model for component Tag Articles List
+ * @returns list of tags
  */
 
-interface IArticle {
-  slug: string;
-  title: string;
-  date: string;
-  tags: string;
-  id: string;
-}
 
 class Model {
 
-    specifications: any;
+    specifications: {
+        spec: string
+    };
 
     constructor () {
     }

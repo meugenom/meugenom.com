@@ -12,9 +12,9 @@ import Utils from '../services/utils'
 
 class Navbar {
 
-    model: any;
-    view: any;
-    navbar: any;
+    model: Model;
+    view: View;
+    navbar: string;
 
   constructor () {
     this.model = new Model()

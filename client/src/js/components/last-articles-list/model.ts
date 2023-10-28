@@ -1,20 +1,12 @@
 'use strict'
 import Service from '../services/services'
 import Query from '../services/query'
-import Config from '../../config'
+import IArticle from '../interfaces/IArticle';
 
 /**
  * Model for component Home
  * @returns list of posts
  */
-
-interface IArticle {
-  slug: string;
-  title: string;
-  date: string;
-  tags: string;
-  id: string;
-}
 
 class Model {
 
@@ -24,7 +16,7 @@ class Model {
     variables = {};
     dataType = "json";
 
-    lastArticlesList: any;
+    lastArticlesList: IArticle[];
 
     constructor () {
     }

@@ -1,6 +1,7 @@
 'use strict'
 import Model from './model'
 import View from './view'
+import IArticle from '../interfaces/IArticle'
 
 /**
  * controller LastArticlesList
@@ -10,9 +11,9 @@ import View from './view'
  */
 
 class LastArticlesList {
-    model: any;
-    view: any;
-    lastArticlesList: any;
+    model: Model;
+    view: View;
+    lastArticlesList: IArticle[];
 
     constructor () {
         this.model = new Model()

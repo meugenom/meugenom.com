@@ -18,14 +18,14 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 - Tailwind CSS;
 - maven;
 - Redis (port 9001), set up  etc/redis.conf with port 9001;
-- Github Token
+- Github Token and User Name
 
 ### How to set up:
 
 1. Need preinstalled java 19.0.1, npm(8.9.0), node(16.14.2), mvn(3.8.7), nginx(1.23.3 stable);
 2. for information about projects you need  personal access token [https://github.com/settings/tokens](https://github.com/settings/tokens);
-3. Create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to GITHUB_TOKEN=
-4. For production please change `client/src/config.ts` your public host and in `.env` APP_MODE=production (by default APP_MODE=development)
+3. Create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to GITHUB_TOKEN= and github user name to GITHUB_USER_NAME=
+4. For production please change your `.env` APP_MODE=production (by default APP_MODE=development)
 
 ### How to start:
 

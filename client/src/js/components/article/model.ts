@@ -1,24 +1,20 @@
 'use strict'
 import Service from '../services/services'
 import Query from '../services/query'
+import IArticle from '../interfaces/IArticle'
 
 
 /**
- * Model for component Home
- * @returns list of posts
+ * Model for component Article
+ * @returns list of writes
  */
-
-interface IArticle {
-  slug: string;
-  title: string;
-  date: string;
-  tags: string;
-  id: string;
-}
 
 class Model {
 
-    specifications: any;
+    private specifications: 
+        { 
+            spec: string
+        };
 
     constructor () {
     }
@@ -40,8 +36,7 @@ class Model {
                 variables
             );
     
-            this.specifications = await { spec: response.getAllSpecificationTextByArticleSlug };
-
+            this.specifications = await { spec: response.getAllSpecificationTextByArticleSlug };                        
             return this.specifications;
         } catch (error) {
             console.error('Error retrieving article specification:', error);

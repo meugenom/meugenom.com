@@ -1,4 +1,5 @@
 'use strict'
+import IArticle from '../interfaces/IArticle';
 /**
  * controller Home
  * @param model
@@ -10,19 +11,17 @@ import Model from './model'
 import View from './view'
 
 class Home {
-    model: any;
-    view: any;
-    articles: any;
+    model: Model;
+    view: View;
+    
 
   constructor () {
     this.model = new Model()
-    this.view = new View()
-    this.articles = {}
+    this.view = new View()    
   }
 
-  async render () {
-    this.articles = await this.model.setArticles()
-    const section = await this.view.appendArticles(this.articles)
+  async render () {    
+    const section = await this.view.appendHome()
     return section
   }
 

@@ -8,11 +8,8 @@
  */
 
 class Model {
-
-    illustrations: any;
-
-  constructor () {
-    this.illustrations = {}
+  
+  constructor () {    
   }
 
   async setIllustration () {    

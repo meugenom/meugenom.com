@@ -1,24 +1,24 @@
 'use strict'
-import Model from './model'
 import TagsGartenModel from "../tags-garten/model";
 import TagsGartenView from "../tags-garten/view";
+import IArticle from '../interfaces/IArticle';
 
 /**
- * View for component Home
+ * View for component Articles List
  * @param posts
- * @returns html view for home page
+ * @returns html view for articles list page
  */
 
 class View {
 
-  async appendArticlesList (articlesList: any) {
+  async appendArticlesList (articlesList: IArticle[]) {
 
-    const list: any[] = [];
+    const list: IArticle[] = [];
 
     // from object to array
     Object.entries(articlesList).forEach(([key, value]) => {      
-      (value as any[]).map((article: any) => {        
-        console.log(article)
+      (value as unknown as any[]).map((article: any) => {        
+        //console.log(article)
         list.push(article)
 
       })

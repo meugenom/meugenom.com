@@ -1,27 +1,37 @@
 'use strict'
 
+import ITags from "../interfaces/ITags";
+
 /**
  * View for component TagsGarten
  * @param posts
  * @returns html view for tags garten
  */
 
+interface ILetter {
+  letter: string;
+  tags: ITags[];
+}
 class View {
 
-  appendTags (tags: any) {
+  appendTags (tags: ITags[]) {
 
-    let letters: any[] = [];
+    let letters: ILetter[] = [];
 
     // from object to array
     Object.entries(tags).forEach(([key, value]) => {      
-      (value as any[]).map((tag: any) => {   
+      (value as unknown as any[]).map((tag: ITags) => {   
         
         // letters
         const firstLetter = tag.name.charAt(0).toUpperCase();
         //console.log(firstLetter)
         const index = letters.findIndex(item => item.letter === firstLetter);
         if (index === -1) {          
-          letters.push({ letter: firstLetter, tags: [tag] });
+          letters.push(
+            { 
+              letter: firstLetter, 
+              tags: [tag] }
+            );
         } else {
           letters[index].tags.push(tag);
         }
@@ -30,7 +40,7 @@ class View {
 
     //delete duble tags for each letter
     letters.forEach(letter => {
-      letter.tags = letter.tags.filter((tag: { name: any; }, index: any, self: any[]) =>
+      letter.tags = letter.tags.filter((tag: { name: string; }, index: number, self: ITags[]) =>
         index === self.findIndex((t) => (
           t.name === tag.name
         ))

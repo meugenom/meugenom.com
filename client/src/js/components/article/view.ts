@@ -17,8 +17,7 @@ class ArticleView {
             <div>
                 <div id="article" class="container mx-auto px-4 sm:px-8 mb-20" />                
             </div>
-            <div id="utterance-comments"></div>
-            
+            <div id="utterance-comments"></div>            
         `
         return view
     }

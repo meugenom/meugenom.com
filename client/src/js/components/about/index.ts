@@ -11,9 +11,9 @@ import View from './view'
  */
 
 class About {
-    model: any;
-    view: any;
-    about: any;
+    model: Model;
+    view: View;
+    about: string;
 
     constructor () {
         this.model = new Model()
