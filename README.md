@@ -60,8 +60,7 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 	- `mvn clean package`
 
 	**for production:** when is not local machine
-	- `cd ../server`
-	- change path in the `application.properties` file in the `server/main/java/com/meugenom/resources/` from `content/articles` to `../content/articles`
+	- `cd ../server`	
 	- `mvn clean package`
 
 
