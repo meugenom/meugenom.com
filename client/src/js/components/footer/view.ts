@@ -12,9 +12,8 @@ class View {
             class="
                     bg-gradient-to-r from-slate-400 to-slate-200 border-slate-600 
                     shadow-lg 
-                    shadow-slate-500/10 							
-                    dark:bg-gray-800 							
-                    fixed inset-x-0 
+                    shadow-slate-500/10				
+                    dark:bg-gray-800 							                    
                     bottom-0 
                     z-10">
             <div class="flex justify-center">
@@ -38,3 +37,5 @@ class View {
 }
 
 export default View
+
+// footer class fixed inset-x-0 

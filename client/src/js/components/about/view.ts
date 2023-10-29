@@ -105,7 +105,7 @@ class View {
             <ul>
               <li class="list-disc ml-8">
                 The web site is hosted on
-                <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://www.namechip.com/">NameChip.com</a> and built with 
+                <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://www.namecheap.com/">NameCheap.com</a> and built with 
                 <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://www.typescriptlang.org/docs/">Typescript</a>,
                 and 
                 <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://spring.io">Spring-Boot && Java</a>,
