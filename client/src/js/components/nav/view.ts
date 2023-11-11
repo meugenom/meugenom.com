@@ -31,34 +31,54 @@ class View {
                     </button>
                 </div>
                 <div class="lg:flex flex-grow items-center hidden" id="example-navbar-danger">
-                    <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+                    
+                    <ul id="navbarLinks" class="flex flex-col lg:flex-row list-none lg:ml-auto">
+                    
                     <li class="nav-item">
-                        <a id="nav-home" href="/" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
+                        <a 
+                            id="nav-home" 
+                            navigateLinkTo="/"
+                            class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav-articles" href="/articles" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
+                        <a 
+                            id="nav-articles"                             
+                            navigateLinkTo="/articles"                            
+                            class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             Blog
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav-projects" href="/projects" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
+                        <a 
+                            id="nav-projects" 
+                            navigateLinkTo="/projects"                            
+                            class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             Projects
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav-illustration" href="/illustration" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
+                        <a 
+                            id="nav-illustration" 
+                            navigateLinkTo="/illustration"                             
+                            class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             Illustration
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav-about" href="/about" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
+                        
+                        <a id="nav-about" 
+                            navigateLinkTo="/about"                             
+                            class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             About
                         </a>
+
                     </li>
                     <li class="nav-item">
-                        <a href="https://github.com/meugenom" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
+                        <a 
+                            href="https://github.com/meugenom"
+                            class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-50 hover:opacity-100 hover:underline">
                             Github
                         </a>
                     </li>                
@@ -68,6 +88,7 @@ class View {
     </nav>
     </div>
         `
+        
     return view
   }
 }

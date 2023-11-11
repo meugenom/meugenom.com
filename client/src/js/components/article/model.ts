@@ -26,8 +26,8 @@ class Model {
             const host = Query.getAllSpecificationTextByArticleSlug.host;
             const query = Query.getAllSpecificationTextByArticleSlug.query;
             const variables = { slug: slug };
-            const dataType = "json";
-    
+            const dataType = "json";            
+
             const response = await new Service().graphql(
                 dataType,
                 token,
@@ -35,8 +35,9 @@ class Model {
                 query,
                 variables
             );
-    
-            this.specifications = await { spec: response.getAllSpecificationTextByArticleSlug };                        
+
+            this.specifications = await { spec: response.getAllSpecificationTextByArticleSlug };                                                            
+            
             return this.specifications;
         } catch (error) {
             console.error('Error retrieving article specification:', error);
