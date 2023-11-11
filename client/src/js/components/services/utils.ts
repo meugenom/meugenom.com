@@ -3,8 +3,6 @@
  * @date: 14.10.2023
  */
 
-import './lazyLoading.css'
-
 class Utils {
 
   public url: string;
