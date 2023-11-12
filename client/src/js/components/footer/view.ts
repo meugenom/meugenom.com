@@ -9,13 +9,7 @@ class View {
   appendFooter () {
     const view = /* html */`
         <footer
-            class=" relative                    
-                    from-slate-50 
-                    to-slate-150 
-                    border-slate-150 
-                    shadow-lg 
-                    shadow-slate-100/10				
-                    dark:bg-gray-800 
+            class=" relative                                                            
                     fixed inset-x-0 							                    
                     bottom-0
                     z-10                    
