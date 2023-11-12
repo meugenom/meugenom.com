@@ -146,7 +146,7 @@ class View {
               </li>                 
           </div>
           
-          <div class="w-30 md:w-30 p-8">            
+          <div class="w-30 md:w-30 p-8 hidden sm:flex" style="height: 20%;">            
             <div class="py-4 px-4 max-w-sm mx-auto bg-white shadow-lg">
               <img class="lazy block mx-auto w-128 sm:mx-0 sm:shrink-0" data-src="/images/foto_me.jpg" alt="Me" />              
             </div>

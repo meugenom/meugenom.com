@@ -13,7 +13,7 @@ class View {
         <div>
             <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 mb-2 ml-10">
                 
-                <div class="container px-4 mx-auto flex flex-wrap items-center justify-between mb-2">
+                <div class="container px-4 mx-auto flex flex-wrap items-center justify-between mb-2 ml-2 hidden sm:flex">
                     <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     
                         <a href="https://meugenom.com" class="flex items-center">
@@ -41,6 +41,15 @@ class View {
                             </a>
                         </li>
                         <li class="nav-item">
+                        
+                            <a id="nav-about" 
+                                navigateLinkTo="/about"                             
+                                class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-75 cursor-pointer">
+                                About
+                            </a>
+
+                        </li>
+                        <li class="nav-item">
                             <a 
                                 id="nav-articles"                             
                                 navigateLinkTo="/articles"                            
@@ -56,24 +65,15 @@ class View {
                                 Projects
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item hidden sm:flex">
                             <a 
                                 id="nav-illustration" 
                                 navigateLinkTo="/illustration"                             
                                 class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-75 cursor-pointer">
                                 Illustration
                             </a>
-                        </li>
-                        <li class="nav-item">
-                        
-                            <a id="nav-about" 
-                                navigateLinkTo="/about"                             
-                                class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-75 cursor-pointer">
-                                About
-                            </a>
-
-                        </li>
-                        <li class="nav-item">
+                        </li>                        
+                        <li class="nav-item hidden sm:flex">
                             <a 
                                 href="https://github.com/meugenom"
                                 class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-75">
