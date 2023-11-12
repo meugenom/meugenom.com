@@ -9,7 +9,11 @@ class Error502 {
   async render () {
     const view = /* html */`        
       <div class=" error-container flex items-center justify-center">            
-        <div class="error w-120 h-80" title="502">502</div>
+      <div 
+        class="error" 
+        data-text="502">
+          502
+        </div>        
       </div>  
         `
     return view

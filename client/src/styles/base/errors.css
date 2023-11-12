@@ -2,71 +2,58 @@
 .error-container{
     display: flex;
     width: 100vw;
-    height: 75vh;
+    height: 80vh;
     align-items: center;
-    justify-content: center;
+    justify-content: center;    
     margin: 0;
-    color: #475569;
-    font-size: 96px;
+    color: white;
+    font-size: 10rem;
     font-family: monospace;
     letter-spacing: -7px;
+
   }
   
   .error{
-    animation: glitch 1s linear infinite;
-  }
-  
-  @keyframes glitch{
-    2%,64%{
-      transform: translate(2px,0) skew(0deg);
-    }
-    4%,60%{
-      transform: translate(-2px,0) skew(0deg);
-    }
-    62%{
-      transform: translate(0,0) skew(5deg); 
-    }
-  }
-  
-  .error:before,
-  .error:after{
-    content: attr(title);
-    position: absolute;
-    left: 0;
+    text-transform: uppercase;
+    font-size: 10rem;
+    text-align: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin: 0;
+    background: white;
+    position: relative;
   }
   
   .error:before{
-    animation: glitchTop 1s linear infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    content: attr(data-text);
+    position: absolute;
+    background: linear-gradient(#475569, #a2b3cb, #38bdf8);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 100% 90%;
+    line-height: 0.9;
+    clip-path: ellipse(120px 120px at -2.54% -9.25%);
+    animation: error_spin 5s infinite;
+    animation-direction: alternate;
   }
   
-  @keyframes glitchTop{
-    2%,64%{
-      transform: translate(2px,-2px);
+  @keyframes error_spin{
+    0%{
+       -webkit-clip-path: ellipse(120px 120px at -2.54% -9.25%);
+       clip-path: ellipse(120px 120px at -2.54% -9.25%)
     }
-    4%,60%{
-      transform: translate(-2px,2px);
-    }
-    62%{
-      transform: translate(13px,-1px) skew(-13deg); 
-    }
-  }
+    50%{
+      -webkit-clip-path: ellipse(120px 120px at 49.66% 64.36%);
+      clip-path: ellipse(120px 120px at 49.66% 64.36%);
   
-  .error:after{
-    animation: glitchBotom 1.5s linear infinite;
-    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
-    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
-  }
+    }
+    100%{
+       -webkit-clip-path: ellipse(120px 120px at 102.62% -1.61%);
+      clip-path: ellipse(120px 120px at 102.62% -1.61%);
+    }
+}
   
-  @keyframes glitchBotom{
-    2%,64%{
-      transform: translate(-2px,0);
-    }
-    4%,60%{
-      transform: translate(-2px,0);
-    }
-    62%{
-      transform: translate(-22px,5px) skew(21deg); 
-    }
-  }

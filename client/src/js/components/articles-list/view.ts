@@ -58,7 +58,7 @@ class View {
             </span>
             &nbsp;
             &nbsp;
-            <span class="text-xx font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
+            <span class="invisible md:visible text-xx font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
               ${article.date}
             </span>
           </li>
