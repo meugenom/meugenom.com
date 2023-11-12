@@ -12,6 +12,7 @@ interface ILetter {
   letter: string;
   tags: ITags[];
 }
+
 class View {
 
   appendTags (tags: ITags[]) {
@@ -63,8 +64,8 @@ class View {
               ${letters.map((letter: any) => 
                 /* html */
                 `              
-                <li class="text-slate-600 font-medium hover:text-blue-600">
-                  <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
+                <li class="text-slate-600 font-medium hover:text-indigo-600">
+                  <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-indigo-400 uppercase last:mr-0 mr-1">
                   ${letter.letter}
                   </span>                    
                     ${letter.tags.map((tag: any) => 

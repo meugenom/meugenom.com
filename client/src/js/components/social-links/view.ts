@@ -1,5 +1,4 @@
 'use strict'
-import './socialLinks.css'
 
 /**
  * View for component Navbar

@@ -70,9 +70,14 @@ class Router {
 
     // Render page from hash
     async renderPage(parsedURL: string) {
+        this.footer.innerHTML = "";
         const page = this.routes[parsedURL] ? this.routes[parsedURL] : new Error404();
         this.content.innerHTML = await page.render();
         await page.afterRender();
+
+        //rerender footer
+        this.footer.innerHTML = await this.footerComponent.render();
+        await this.footerComponent.afterRender();
 
         if (parsedURL.includes('/:id')) {
             const cleanParsedId = parsedURL.replace('/:id','');
@@ -90,6 +95,20 @@ class Router {
         window.history.pushState({}, navigateLinkTo, window.location.origin + navigateLinkTo);
 
         await this.renderPage(navigateLinkTo);
+
+        //make inactive links
+        const links = document.querySelectorAll('[navigateLinkTo]');
+        links.forEach(link => {                        
+            link.classList.remove('active-links');
+        });
+
+        //make active clicked link        
+        clickedLink.classList.add('active-links');
+        
+        //close mobile menu
+        //const mobileMenu = document.getElementById('mobile-menu-opened');
+        //mobileMenu.style.display = 'none';
+
     }
 
     // Attach link listeners to navigation links

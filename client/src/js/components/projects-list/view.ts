@@ -49,7 +49,7 @@ class View {
     const view = /* html */`            
                     <div class="md:container mx-5 font-sans text-base antialiased leading-7 z-0 mb-20">                    
                           <article>
-                            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
+                            <h4 class="text-2xl font-normal leading-normal mt-10 mb-2 text-gray-500 ml-12">
                               Projects:
                             </h4>
                                                                             
