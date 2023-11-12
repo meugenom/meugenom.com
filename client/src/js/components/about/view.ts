@@ -6,9 +6,9 @@
  */
 
 class View {
-  appendAbout () {
+  appendAbout() {
     const view = /* html */`
-      <div class="mx-10 font-sans text-base antialiased leading-7 z-0" style="margin-bottom: 50px;">
+      <div class="mx-10 font-sans text-base antialiased leading-7 z-0">
         <div class="flex">
           <div class="w-70 md:w-70 p-8 font-mono">
             <h1 class="text-3xl font-normal leading-normal mt-0 mb-2 text-gray-500">
@@ -23,9 +23,9 @@ class View {
             <p>
               Welcome to my website.
               I make 
-              <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://meugenom.com/projects">open source projects</a>                            
+              <a class="text-blue-600 font-medium hover:text-blue-600" href="https://meugenom.com/projects">open source projects</a>                            
               and 
-              <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://meugenom.com/articles">write</a>
+              <a class="text-blue-600 font-medium hover:text-blue-600" href="https://meugenom.com/articles">write</a>
               about code, architecture, and building things and life.
               I've learned with the world and want to share my motivation for this site. 
             </p>  
@@ -51,7 +51,7 @@ class View {
                   Updated Oktober, 2023
               </p>
               <li class="list-disc ml-8">                                 
-                <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://github.com/meugenom/cloudydesk">Cloudy Desktop Project</a>
+                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://github.com/meugenom/cloudydesk">Cloudy Desktop Project</a>
               </li>
             </ul>
             
@@ -79,7 +79,11 @@ class View {
             <ul>
               <li class="list-disc ml-8">
                 <span class="font-bold">Colour:</span>
-                - indigo
+                - <span class="text-indigo-600">indigo</span>, 
+                  <span class="text-sky-600">sky</span>, 
+                  <span class="text-blue-600">blue</span>, 
+                  <span class="text-slate-600">slate</span>, 
+                  
               </li>
               <li class="list-disc ml-8">
                 <span class="font-bold">Flavour:</span>
@@ -105,24 +109,24 @@ class View {
             <ul>
               <li class="list-disc ml-8">
                 The web site is hosted on
-                <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://www.namecheap.com/">NameCheap.com</a> and built with 
-                <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://www.typescriptlang.org/docs/">Typescript</a>,
+                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://contabo.com/">Contabo.com</a> and built with 
+                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://www.typescriptlang.org/docs/">Typescript</a>,
                 and 
-                <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://spring.io">Spring-Boot && Java</a>,
+                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://spring.io">Spring-Boot && Java</a>,
                 and my own 
-                <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://github.com/meugenom/spa-mvc-router">SPA MVC Router</a>
+                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://github.com/meugenom/spa-mvc-router">SPA MVC Router</a>
               </li>
               <li class="list-disc ml-8">
                 <span class="font-bold">Coding:</span>
-                <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://code.visualstudio.com/">Visual Studio Code</a>
+                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://code.visualstudio.com/">Visual Studio Code</a>
               </li>
               <li class="list-disc ml-8">
                 <span class="font-bold">Terminal:</span>
-                <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://iterm2.com/">iTerm2</a>
+                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://iterm2.com/">iTerm2</a>
               </li>
               <li class="list-disc ml-8">
                 <span class="font-bold">Notes:</span>
-                <a class="text-indigo-600 font-medium hover:text-indigo-600" href="https://obsidian.md/">Obsidian</a>
+                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://obsidian.md/">Obsidian</a>
               </li>
             </ul>
             <h1 class="text-lg font-normal leading-normal mt-2 text-gray-600">
@@ -138,7 +142,7 @@ class View {
               Miscellaneous
             </h1>
               <li class="list-disc ml-8">
-              <a class="text-indigo-600 font-medium hover:text-indigo-600" href="">Resume(soon)</a>
+              <a class="text-blue-600 font-medium hover:text-blue-600" href="">Resume(soon)</a>
               </li>                 
           </div>
           

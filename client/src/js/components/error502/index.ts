@@ -1,15 +1,15 @@
 'use strict'
 
 /**
-* Controller for component Error404
-* @returns html to view error 404 then we have some error
+* Controller for component Error502
+* @returns html to view error 502 then we have some error
 */
 
-class Error404 {
+class Error502 {
   async render () {
     const view = /* html */`        
       <div class=" error-container flex items-center justify-center">            
-        <div class="error w-120 h-80" title="404">404</div>
+        <div class="error w-120 h-80" title="502">502</div>
       </div>  
         `
     return view
@@ -18,4 +18,4 @@ class Error404 {
   afterRender () {
   }
 }
-export default Error404
+export default Error502

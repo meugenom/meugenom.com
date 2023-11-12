@@ -9,16 +9,19 @@ class View {
   appendFooter () {
     const view = /* html */`
         <footer
-            class="
-                    bg-gradient-to-r from-slate-400 to-slate-200 border-slate-600 
+            class=" relative                    
+                    from-slate-50 
+                    to-slate-150 
+                    border-slate-150 
                     shadow-lg 
-                    shadow-slate-500/10				
+                    shadow-slate-100/10				
                     dark:bg-gray-800 
                     fixed inset-x-0 							                    
-                    bottom-0 
-                    z-10">
+                    bottom-0
+                    z-10                    
+                    ">
             <div class="flex justify-center">
-                <div class="text-sm text-gray-100 dark:text-gray-400 align-middle text-center pt-5">
+                <div class="text-sm text-slate-600 align-middle text-center pt-5">
                     © 2023 &nbsp;
                 </div>
                 <div class="flex justify-center mt-0">

@@ -1,7 +1,5 @@
 'use strict'
 
-import './utterance.css'
-
 /**
  * View for component Home
  * @param posts
@@ -15,7 +13,7 @@ class ArticleView {
         
         const view = /* html */`                        
             <div>
-                <div id="article" class="container mx-auto px-4 sm:px-8 mb-20" />                
+                <div id="article" class="container mx-auto px-4 sm:px-8" />                
             </div>
             <div id="utterance-comments"></div>            
         `

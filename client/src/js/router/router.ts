@@ -1,30 +1,25 @@
 /**
- * @description Router class that will handle the routing of the application
- * @exports Router
- * @autor meugenom
+ * @author meugenom
+ * @data 20.11.2023
  */
 
-import Navbar from './../components/nav/index'
-import Home from './../components/home/index'
-import Footer from '../components/footer/index'
-
-import ArticlesList from '../components/articles-list/index'
-import Article from '../components/article/index'
-import Error404 from '../components/error404/index'
-import ProjectsList from '../components/projects-list/index'
-import TagArticlesList from '../components/tag-artilces-list/index'
-import TagsGarten from '../components/tags-garten/index'
-import About from '../components/about/index'
-import Illustration from '../components/illustration/index'
-
+import Navbar from './../components/nav'
+import Footer from '../components/footer'
+import Error404 from '../components/error404'
+import IRoutes from './../components/interfaces/IRoutes'
 import Utils from '../components/services/utils'
 
-interface IRoutes {
-    [key: string]: any
-}  
-
+/**
+ * Router
+ * @class
+ * @classdesc Router class to handle routing
+ * @export
+ * @implements {IRouter}
+ * @example new Router(routes)
+ * @param {IRoutes} routes - routes object
+ */
 class Router {
-
+    
     routes: IRoutes;
     header: HTMLElement;
     content: HTMLElement;
@@ -33,52 +28,96 @@ class Router {
     headerComponent: Navbar;
     footerComponent: Footer;
 
-    constructor () {
-        this.routes = {
-        '/': new Home(),
-        '/articles': new ArticlesList(),
-        '/projects': new ProjectsList(),
-        '/article/:id': new Article(),
-        '/tag/:id': new TagArticlesList(),
-        '/tags': new TagsGarten(),
-        '/about': new About(),
-        '/illustration': new Illustration(),
+    request: {
+        resource: string | null;
+        id: string | null;
+        verb: string | null;    
+    };
+
+    static instance: Router | null = null;
+
+    constructor (routes: IRoutes) {
+        this.routes = routes;
+        this.header = document.getElementById('header');
+        this.content = document.getElementById('page');
+        this.footer = document.getElementById('footer');
+
+        this.headerComponent  = new Navbar();
+        this.footerComponent  = new Footer();
+
+        this.init();
+    }
+
+    // render header, content and footer
+    async init () {    
+        this.header.innerHTML = await this.headerComponent.render();
+        await this.headerComponent.afterRender();
+
+        const parsedURL = this.parseUrl();
+        await this.renderPage(parsedURL);
+
+        this.footer.innerHTML = await this.footerComponent.render();
+        await this.footerComponent.afterRender();
+
+        this.attachLinkListeners();
+    }
+
+    // Parse URL and return resource, id and verb
+    parseUrl() {
+        this.request = new Utils().parseRequestURL();
+        return (this.request.resource ? '/' + this.request.resource : '/') + (this.request.id ? '/:id' : '') + (this.request.verb ? '/' + this.request.verb : '');
+    }
+
+    // Render page from hash
+    async renderPage(parsedURL: string) {
+        this.footer.innerHTML = "";
+        const page = this.routes[parsedURL] ? this.routes[parsedURL] : new Error404();
+        this.content.innerHTML = await page.render();
+        await page.afterRender();
+
+        //rerender footer
+        this.footer.innerHTML = await this.footerComponent.render();
+        await this.footerComponent.afterRender();
+
+        if (parsedURL.includes('/:id')) {
+            const cleanParsedId = parsedURL.replace('/:id','');
+            window.history.pushState({}, cleanParsedId, window.location.origin + '/#'+ cleanParsedId + '/' + this.request.id);
         }
+    }
 
-    // start
-    this.header = null || document.getElementById('header')
-    this.content = null || document.getElementById('page')
-    this.footer = null || document.getElementById('footer')
+    // Handle hash change
+    async handleLinkClick(event: Event) {
+        event.preventDefault();
 
-    this.headerComponent  = new Navbar();
-    this.footerComponent  = new Footer();
+        const clickedLink = event.target as HTMLElement;
+        const navigateLinkTo = clickedLink.getAttribute('navigateLinkTo');
 
-    this.init()
-  }
+        window.history.pushState({}, navigateLinkTo, window.location.origin + navigateLinkTo);
 
-  async init () {
-    
-    //old code for header
-    //this.header.innerHTML = await new Navbar().render()    
-    //await new Navbar().afterRender()
-    this.header.innerHTML = await this.headerComponent.render();
-    await this.headerComponent.afterRender();
+        await this.renderPage(navigateLinkTo);
 
-    const request = new Utils().parseRequestURL()
-    const parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
+        //make inactive links
+        const links = document.querySelectorAll('[navigateLinkTo]');
+        links.forEach(link => {                        
+            link.classList.remove('active-links');
+        });
 
-    console.log('parsedURL', parsedURL)
-    
-    const page = this.routes[parsedURL] ? this.routes[parsedURL] : new Error404()
-    this.content.innerHTML = await page.render()
-    await page.afterRender()
+        //make active clicked link        
+        clickedLink.classList.add('active-links');
+        
+        //close mobile menu
+        //const mobileMenu = document.getElementById('mobile-menu-opened');
+        //mobileMenu.style.display = 'none';
 
-    //old code for footer
-    //this.footer.innerHTML = await new Footer().render()
-    //await new Footer().afterRender()
-    this.footer.innerHTML = await this.footerComponent.render();
-    await this.footerComponent.afterRender();
-  }
+    }
+
+    // Attach link listeners to navigation links
+    attachLinkListeners() {
+        const links = document.querySelectorAll('[navigateLinkTo]');
+        links.forEach(link => {
+            link.addEventListener('click', (event: Event) => this.handleLinkClick(event));
+        });
+    }
 }
 
 export default Router
