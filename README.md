@@ -10,7 +10,7 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 
 ### What were used to prepare this page:
 
-- imported own markdown-ts-compiler (Markdown->HTML [Markdown Typescript Compiler](https://github.com/meugenom/markdown-ts-compiler) with Tailwind CSS);
+- imported own markdown-ts-compiler v1.0.4 (Markdown->HTML [Markdown Typescript Compiler](https://github.com/meugenom/markdown-ts-compiler) with Tailwind CSS);
 - used Typescript own [SPA MVC Router](https://github.com/meugenom/spa-mvc-router) on port 8082;
 - Java and Spring-Boot (backend part on port 4000);
 - GraphQL (frontend and backend part);
@@ -94,6 +94,7 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 open web browser with link:  http://localhost:8080 after starting both servers (front and back).
 
 ### Author 
-@meugenom [mail me](mailto:hallo@meugenom.com?subject=Github%20source%20question&amp;body=Hello%20Eugen,%0D%0A%0D%0Ahier%20is%20your%20message)
+
+[meugenom](https://meugenom.com)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
