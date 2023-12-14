@@ -52,17 +52,24 @@ class Article {
     }
 
     parse(article: string) {
+        //console.log(article);
         const tokenizer = new Tokenizer(article);    
+
         //console.log(tokenizer);
-        const parser = new Parser(tokenizer.tokens);    
-        //console.log(parser.ast);
-        new View(parser.ast);
+        const parser = new Parser(tokenizer.tokens);
+        
+        // find html element with id="article" in the DOM
+        const virtualDOM = document.createElement('div');        
+        
+        const result: any = new View(parser.ast, virtualDOM).init();
+        document.getElementById("article")?.append(result);
+
     }  
 
 
     async afterRender () {
         // console.log('afterRender')
-        await this.parse(this.article.spec);
+        await this.parse(this.article.spec);        
         await Prism.highlightAll();        
 
         //set title page
