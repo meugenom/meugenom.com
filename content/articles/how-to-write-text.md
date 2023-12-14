@@ -2,152 +2,212 @@
 date: 2019-08-30
 title: 'How to Write Text'
 template: post
-thumbnail: '../thumbnails/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg'
+thumbnail: './thumbnails/writing.png'
 slug: how-to-write-text
 categories: helping to write text
 tags: instruction texter writer
 ---
 
+## Formatting syntax
 
-### Used Links
+This is a small guide. "How to write markdown text and get HTML document out". See code on my GitHub: [markable parser](https://github.com/meugenom/markable-to-html)
 
-Photo by Nick Morrison on Unsplash
+## Caption Block about article
 
-### Formatting syntax
+How to use: write caption block like the example below:
+<br/>
+\*
+---
+date: 2019-08-30
+title: 'Instruction to Write Text'
+template: post
+thumbnail: './thumbnails/writing.png'
+slug: instruction-to-write-text
+categories: 
+tags: instruction texter writer 
+---
+\*
 
-This example is a small guide. "How to write markdown text and get HTML document out". See code on my GitHub: [markable parser](https://github.com/meugenom/markable-to-html)
-
-### Caption
-
-How to use: write this block like the example below
-
-```bash
-1  ---
-2  date: 2019-08-30
-3  title: 'Instruction to Write Text'
-4  template: post
-5  thumbnail: '../thumbnails/writing.png'
-6  slug: instruction-to-write-text
-7  categories: 
-8  tags: instruction texter writer 
-9  ---
-```
-
-### Headings
+## Headings
 
 How to use:
+\*
+# The h1 heading
+## The h2 heading
+### The h3 heading
+#### The h4 heading
+##### The h5 heading
+\* 
+<br/>
+# The h1 heading
+## The h2 heading
+### The h3 heading
+#### The h4 heading
+##### The h5 heading
+
+## Styling bold text
+
+How to use: This word is \* **strong** and **unknown for me** \*
+in out: This word is **strong** and **unknown for me**.
+
+## Code Block: 
+
+\*		
 ```bash
-1  # The h1 heading
-2  ## The h2 heading
-3  ### The h3 heading
-4  #### The h4 heading
-5  ##### The h5 heading
+  	let getMin = async (min)=> {
+		return `
+    		minimal value is ${min}
+    	`
+	}‚
+```
+\* 
+
+```bash
+	let getMin = async (min)=> {
+		return `
+    		minimal value is ${min}
+    		`
+	}
 ```
 
-### Strong text
+## Code In Code Block
 
-How to use: This word is `**strong**`
-
-in out:
-This word is **strong**
-
-### Code Block
+\*
+	```bash
+		```javascript
+			let getMin = async (min)=> {
+				return `
+					minimal value is ${min}
+					`
+			}
+		```
+	```
+\*
 
 ```bash
 	```javascript
-    let getMin = async (min)=> {
-    return `
-        minimal value is ${min}
-        `
-    }
+		let getMin = async (min)=> {
+			return `
+				minimal value is ${min}
+				`
+		}
 	```
 ```
-in out:
 
-```javascript
-    let getMin = async (min)=> {
-    return `
-        minimal value is ${min}
-        `
-    }
-```
+## Code Inline
 
-### Code Inline
-
-```bash
-    `test` - test option
-```
+\*
+    `test is a one of more other options`
+\* 
 
 in out:
-`test` - test option
+`test is a one of more other options`
 
-### Lists
+## Lists
 
-```bash
-	- list disc
-	[] list unchecked disable
-	[x] list checked disable
-```
+\*
+	List 1 :
+	  - one
+	  - two
+	  - three and more
 
+	List 2 :
+	  [] one
+	  [] two
+	  [] three and more
+
+	List  simple 3:
+	  [x] one
+	  [x] two
+	  [x] three and more
+
+	List 4 with mixed attributes:
+	   - one
+	  [] two
+	  [x] three and more
+
+\*
+<br/>
 in out:
+<br/>
+List 1:
+	- one
+	- two
+	- three and more
+<br/>
+List 2:
+	[] one
+	[] two
+	[] three and more
+<br/>
+List 3:
+	[x] one
+	[x] two
+	[x] three and more
+<br/>
+List 4 with mixed attributes:
+	- one
+	[] two
+	[x] three and more
 
- - list disc
-[] list unchecked disable
-[x] list checked disable
 
-### Table
+## Table
 
-```bash
-| Name | Age | Auto |
-| Bob | 17 | BMW |
-| John | 52 | Fiat |
-| Lisa | 32 | Toyota |
-| Eugen | 45 | Mazda |
-```
+\*
+| Name | Age | Auto | Town | Pet |
+| Bob | 17 | BMW | Baku | Fish |
+| John | 52 | Fiat | Berlin | Dog |
+| Lisa | 32 | Toyota | Frankfurt | Snake |
+| Eugen | 45 | Mazda | Dresden | Cat | 
+\*
 
+<br/>
 
-| Name | Age | Auto |
-| Bob | 17 | BMW |
-| John | 52 | Fiat |
-| Lisa | 32 | Toyota |
-| Eugen | 45 | Mazda |
+| Name | Age | Auto | Town | Pet |
+| Bob | 17 | BMW | Baku | Fish |
+| John | 52 | Fiat | Berlin | Dog |
+| Lisa | 32 | Toyota | Frankfurt | Snake |
+| Eugen | 45 | Mazda | Dresden | Cat |
 
 
-### Quoting text
+## Quoting text
 
-```bash
+\*
     > Quote
     > <cite> - Author </cite>
-```
+\* 
 
 in out:
+
 > Example Quote
 > <cite> - Albert Rouge </cite>
 
-### Links
+## Links
 
 You can create an inline link by wrapping link text in brackets, and then wrapping the URL in parentheses:
 
-```bash
-	This site was built using [Javascript ES6](https://en.wikipedia.org/wiki/ECMAScript#ES2015)  and it's an example.
-```
-
-in out:
-This site was built using [Javascript ES6](https://en.wikipedia.org/wiki/ECMAScript#ES2015) and it's an example.
-
-### Simple Underline decoration
-
-```bash
-    _underline_
-```
+\*
+	This site was built using [Javascript ES6](https://en.wikipedia.org/wiki/ECMAScript)  and it's an example.
+\* 
 
 in out:
 
-_underline_
+This site was built using [Javascript ES6](https://en.wikipedia.org/wiki/ECMAScript) and it's an example.
 
-### Color Underline decoration
+[How to define types for process environment](https://meugenom.com/#/article/how-to-define-types-for-process-environment)
 
-```bash
+
+## Simple Underline decoration
+
+/* _underdash_ /*
+
+in out:
+
+_underdash_
+
+## Color Underline decoration
+
+\*
 	Blue.blue color
 	Gray.gray color
 	Red.red color
@@ -156,21 +216,15 @@ _underline_
 	Indigo.indigo color 
 	Purple.purple color
 	Pink.pink color
-```
+\*
+
 in out:
 
-Blue.blue color
-Gray.gray color
-Red.red color
-Green.green color
-Yellow.yellow color
-Indigo.indigo color 
-Purple.purple color
-Pink.pink color
+Lorem.green ipsum.indigo dolor.red sit amet.purple , consectetur.pink adipisicing.yellow elit. 
 
-### Color Badges
+## Color Badges
 
-```bash
+\*
 	Blue@blue color
 	Gray@gray color
 	Red@red color
@@ -179,39 +233,24 @@ Pink.pink color
 	Indigo@indigo color 
 	Purple@purple color
 	Pink@pink color
-```
+\* 
+
 in out:
 
-Blue@blue color
-Gray@gray color
-Red@red color
-Green@green color
-Yellow@yellow color
-Indigo@indigo color 
-Purple@purple color
-Pink@pink color
+Lorem@green ipsum@indigo dolor@red sit amet@purple , consectetur@pink adipisicing@yellow elit.
 
-### Ignoring Markdown formatting
+## Ignoring Markdown formatting
 
 You can ignore (or escape) Markdown formatting:
+<br/>
+\* this **all*** text is ### unmarkable \*
+this is \* unmarkable \* text
+About \* this >Quote \*
 
-```bash
-\* this all text is ### unmarkable\*
-this is \*unmarkable\* text
-About \*this >Quote\*
-```
+## Images
 
-in out:
-\* this all text is ### unmarkable\*
-this is \*unmarkable\* text
-About \*this >Quote\*
-
-### Images
-
-```bash
-    ![Github_image](../images/github.png)
-```
+\* ![Github_image](./images/github.png) \*
 
 in out:
 
-![Github image](../images/github.png)
+This is an ![Github image](./images/github.png)
