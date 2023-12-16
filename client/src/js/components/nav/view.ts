@@ -29,7 +29,7 @@ class View {
                     </div>
                 </div>
                 
-                <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">                
+                <div class="container px-4 flex flex-wrap items-center justify-between">                
                     <ul id="navbarLinks" class="flex lg:flex-row list-none lg:ml">
                     
                         <li class="nav-item">

@@ -20,7 +20,7 @@ class View {
     const lastArticlesList = await new LastArticlesListModel().getLastArticlesList();
     const tags = await new TagsGartenModel().getTags();
     
-    const view = await /* html */`    
+    const view = await /* html */`  
     <div class="container mx-auto px-4 sm:px-8 ml-5">    
     `
     + new LastArticlesListView().appendLastArticlesList(lastArticlesList)+

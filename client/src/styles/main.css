@@ -9,3 +9,8 @@
 @import url('./base/navbar.css');
 @import url('./base/social-links.css');
 
+
+
+.no-inherit-font-size {
+  font-size: revert !important;
+}
