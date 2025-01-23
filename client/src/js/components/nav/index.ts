@@ -31,19 +31,30 @@ class Navbar {
 
   async afterRender () { 
     
-    /*
-    // Handling mobile menu toggle after render
-    const mobileMenuToggle = document.getElementById('navbarButton');
-  
-    mobileMenuToggle.addEventListener('click', function () {     
-      const mobileMenu = document.getElementById('mobile-menu-opened');
-      if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-        mobileMenu.style.display = 'block';
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'theme-light';
+
+    if (currentTheme === 'theme-dark') {
+      document.documentElement.classList.add('theme-light');
+    } else {
+      document.documentElement.classList.add('theme-light');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      
+      //console.log('themeToggleBtn clicked');
+      //console.log(document.getElementById('theme-block').classList);
+      
+      if (document.documentElement.classList.contains('theme-dark')) {
+        document.documentElement.classList.remove('theme-dark');
+        document.documentElement.classList.add('theme-light');
+        localStorage.setItem('theme', 'theme-light');
       } else {
-        mobileMenu.style.display = 'none';
+        document.documentElement.classList.remove('theme-light');
+        document.documentElement.classList.add('theme-dark');
+        localStorage.setItem('theme', 'theme-dark');
       }
     });
-    */
   }
 
 }

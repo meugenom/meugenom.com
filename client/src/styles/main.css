@@ -8,9 +8,21 @@
 @import url('./base/loader.css');
 @import url('./base/navbar.css');
 @import url('./base/social-links.css');
+@import url('./base/themes.css');
+
 
 
 
 .no-inherit-font-size {
   font-size: revert !important;
+}
+
+.theme-dark {
+  @apply bg-dark-background;
+  @åpply txt-hell-text;
+}
+
+.theme-light {
+  @apply bg-light-background;
+  @åpply txt-dark-text;
 }

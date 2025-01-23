@@ -65,6 +65,7 @@ class View {
                                 Projects
                             </a>
                         </li>
+
                         <li class="nav-item hidden sm:flex">
                             <a 
                                 id="nav-illustration" 
@@ -73,13 +74,22 @@ class View {
                                 Illustration
                             </a>
                         </li>                        
+                        
                         <li class="nav-item hidden sm:flex">
                             <a 
                                 href="https://github.com/meugenom"
                                 class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-75">
                                 Github
                             </a>
-                        </li>                
+                        </li>
+                        
+                        <li class="nav-item hidden sm:flex">
+                            <a 
+                                <button class="p-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200" id="theme-toggle">
+                                    Toggle Theme
+                                </button>
+                            </a>
+                        </li>                        
                     </ul>
                 </div>        
             </nav>

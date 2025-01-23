@@ -12,6 +12,19 @@ module.exports = {
 	],
 
 	theme: {
+		extend: {
+			colors: {
+			  light: {
+				background: '#ffcccb', // Light red background
+				text: '#000000', // Black text
+			  },
+			  dark: {
+				background: '#000000', // Black background
+				text: '#ffffff', // White text
+			  },
+			},
+		},
+		
 			screens: {
 			  sm: '640px',
 			  md: '768px',
@@ -20,6 +33,7 @@ module.exports = {
 			  '2xl': '1536px',
 			},
 			colors: ({ colors }) => ({
+			  			
 			  inherit: colors.inherit,
 			  current: colors.current,
 			  transparent: colors.transparent,
@@ -47,6 +61,14 @@ module.exports = {
 			  fuchsia: colors.fuchsia,
 			  pink: colors.pink,
 			  rose: colors.rose,
+			  light: {
+				background: '#ffcccb', // Light red background
+				text: '#000000', // Black text
+			  },
+			  dark: {
+				background: '#000000', // Black background
+				text: '#ffffff', // White text
+			  },
 			}),
 			columns: {
 			  auto: 'auto',
@@ -959,6 +981,7 @@ module.exports = {
 			'active',
 			'disabled',
 		  ],
+		  variants: {},
 		  plugins: [],
 		}
   
