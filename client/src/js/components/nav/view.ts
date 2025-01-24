@@ -6,10 +6,10 @@
  */
 
 class View {
-  appendNav () { 
+    appendNav() {
 
-    const view = /* html */
-        `            
+        const view = /* html */
+            `            
         <div>
             <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 mb-2 ml-10">
                 
@@ -77,12 +77,24 @@ class View {
                             </a>
                         </li>                        
                         -->
-                        <li class="nav-item hidden sm:flex">
+                        <li class="nav-item hidden sm:flex ml-2 -mt-3.5 lg:-mt-3.5 lg:ml-0">
+                            <!--
                             <a 
                                 href="https://github.com/meugenom"
                                 class="px-3 py-2 items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-75">
                                 Github
                             </a>
+                            -->
+                            <a  class="sl_container github_no_touch">
+                                <div class="sl_circle">
+                                    <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200">
+						                <circle cx="100" cy="100" r="50"/>
+						            </svg>
+                                    <div class="sl_social">
+                                        <i class="bi bi-github"></i>
+                                    </div>
+                                </div>						        						        						        
+					        </a>
                         </li>                        
                         <li class="nav-item sm:flex ml-2 -mt-3.5 lg:-mt-3.5 lg:ml-0">
                             <a  id="theme-toggle" class="sl_container eye_no_touch">
@@ -101,9 +113,9 @@ class View {
             </nav>
         </div>
         `
-        
-    return view
-  }
+
+        return view
+    }
 }
 
 export default View
