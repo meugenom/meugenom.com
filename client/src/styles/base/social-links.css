@@ -43,7 +43,8 @@
  .twitter_no_touch:hover .sl_social {
 	 color: #3aaae1;
 }
- .github_no_touch:hover {
+ 
+.github_no_touch:hover {
 	 transform: scale(1.2);
 }
  .github_no_touch:hover .sl_circle {
@@ -119,6 +120,7 @@
 .coffee_touch .sl_social {
 	color: #d94e17;
 }
+
  .linkedin_no_touch:hover {
 	 transform: scale(1.2);
 }
@@ -138,6 +140,29 @@
  .linkedin_touch .sl_social {
 	 color: #8d6cab;
 }
+
+/* for navbar als selector light:dark */
+.eye_no_touch:hover {
+	transform: scale(1.2);
+}
+.eye_no_touch:hover .sl_circle {
+	/* fill: #fff; */
+	fill-opacity: 1;
+	animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorEye 1s linear forwards;
+}
+.eye_no_touch:hover .sl_social {
+	color: #8d6cab;
+}
+.eye_touch .sl_circle {
+	/* fill: #fff; */
+	fill-opacity: 1;
+	animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorEye 3s linear forwards;
+}
+.eye_touch .sl_social {
+	color: #8d6cab;
+}
+
+
  @keyframes colorTwitter {
 	 from {
 		 stroke: #fff;
@@ -180,14 +205,24 @@
    }
 }
 
- @keyframes colorLinkedin {
-	 from {
-		 stroke: #fff;
-	}
-	 to {
-		 stroke: #8d6cab;
-	}
+@keyframes colorLinkedin {
+	from {
+		stroke: #fff;
+   }
+	to {
+		stroke: #8d6cab;
+   }
 }
+
+@keyframes colorEye {
+	from {
+		stroke: #fff;
+   }
+	to {
+		stroke: #8d6cab;
+   }
+}
+ 
  @keyframes outWaveIn {
 	 to {
 		 stroke-width: 10px;

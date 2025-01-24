@@ -94,7 +94,7 @@ class Navbar {
     });   
 
     // Add transition classes to the root element
-    document.documentElement.classList.add('transition-colors', 'duration-1000');
+    document.documentElement.classList.add('transition-colors', 'duration-1500');
 
   }
 

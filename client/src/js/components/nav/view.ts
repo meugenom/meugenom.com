@@ -14,6 +14,7 @@ class View {
             <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 mb-2 ml-10">
                 
                 <div class="container px-4 mx-auto flex flex-wrap items-center justify-between mb-2 ml-2 hidden sm:flex">
+                    
                     <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     
                         <a href="https://meugenom.com" class="flex items-center">
@@ -24,14 +25,14 @@ class View {
                                 </span>
                                 -->
                                 
-                                <span id="_title"></span>
-                                
+                                <span id="_title"></span>                                
                         </a>
-                    </div>
+                    </div>                    
                 </div>
                 
-                <div class="container px-4 flex flex-wrap items-center justify-between">                
-                    <ul id="navbarLinks" class="flex lg:flex-row list-none lg:ml">
+                <div class="container px-4 flex items-center justify-between">                
+                    
+                <ul id="navbarLinks" class="flex lg:flex-row list-none lg:ml">
                     
                         <li class="nav-item">
                             <a 
@@ -66,7 +67,7 @@ class View {
                                 Projects
                             </a>
                         </li>
-
+                        <!--                        
                         <li class="nav-item hidden sm:flex">
                             <a 
                                 id="nav-illustration" 
@@ -75,23 +76,27 @@ class View {
                                 Illustration
                             </a>
                         </li>                        
-                        
+                        -->
                         <li class="nav-item hidden sm:flex">
                             <a 
                                 href="https://github.com/meugenom"
-                                class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-75">
+                                class="px-3 py-2 items-center text-xs uppercase font-bold leading-snug text-slate-500 opacity-75">
                                 Github
                             </a>
-                        </li>
-                        
-                        <li class="nav-item hidden sm:flex">
-                            <a 
-                                <button class="p-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200" id="theme-toggle">
-                                    Toggle Theme
-                                </button>
-                            </a>
                         </li>                        
-                    </ul>
+                        <li class="nav-item sm:flex ml-2 -mt-3.5 lg:-mt-3.5 lg:ml-0">
+                            <a  id="theme-toggle" class="sl_container eye_no_touch">
+                                <div class="sl_circle">
+                                    <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200">
+						                <circle cx="100" cy="100" r="50"/>
+						            </svg>
+                                    <div class="sl_social">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </div>
+                                </div>						        						        						        
+					        </a>
+                        </li>
+                    </ul>                    
                 </div>        
             </nav>
         </div>
