@@ -1,9 +1,0 @@
-.theme-dark {
-    @apply bg-dark-background;
-    @apply txt-hell-text;
-}
-  
-.theme-light {
-    @apply bg-light-background;
-    @apply txt-dark-text;
-}

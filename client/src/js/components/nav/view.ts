@@ -6,8 +6,8 @@
  */
 
 class View {
-  appendNav () {
-  
+  appendNav () { 
+
     const view = /* html */
         `            
         <div>
@@ -23,7 +23,8 @@ class View {
                                     <span class="text-slate-600">meugenom.com</span>
                                 </span>
                                 -->
-                                <title data-text="Meugenom">Meugenom</title>
+                                
+                                <span id="_title"></span>
                                 
                         </a>
                     </div>

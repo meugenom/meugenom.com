@@ -16,12 +16,25 @@ class Navbar {
     navbar: string;
     //routes: any;
     history: any;
+    title: string;
 
   constructor () {
     this.model = new Model()
     this.view = new View()
     this.navbar = ''
     this.history = []
+    this.title = ''
+
+    
+      this.title =
+      `<title 
+          data-text="Meugenom"
+          style="color: white;"
+          >
+              Meugenom
+      </title>
+      `
+    
   }
 
   async render () {
@@ -33,12 +46,15 @@ class Navbar {
     
     const themeToggleBtn = document.getElementById('theme-toggle');
     const currentTheme = localStorage.getItem('theme') || 'theme-light';
+  
 
     if (currentTheme === 'theme-dark') {
       document.documentElement.classList.add('theme-light');
     } else {
       document.documentElement.classList.add('theme-light');
     }
+
+    document.getElementById('_title').innerHTML = this.title;
 
     themeToggleBtn.addEventListener('click', () => {
       
@@ -49,12 +65,37 @@ class Navbar {
         document.documentElement.classList.remove('theme-dark');
         document.documentElement.classList.add('theme-light');
         localStorage.setItem('theme', 'theme-light');
+       
+          this.title =
+          `<title 
+              data-text="Meugenom"
+              style="color: white;"
+              >
+                  Meugenom
+          </title>
+          `
       } else {
         document.documentElement.classList.remove('theme-light');
         document.documentElement.classList.add('theme-dark');
         localStorage.setItem('theme', 'theme-dark');
+        
+        this.title = 
+          `<title 
+              data-text="Meugenom"
+              class="text-light-text"
+              >
+              Meugenom
+          </title>
+          `;      
       }
-    });
+
+      document.getElementById('_title').innerHTML = this.title;
+
+    });   
+
+    // Add transition classes to the root element
+    document.documentElement.classList.add('transition-colors', 'duration-1000');
+
   }
 
 }

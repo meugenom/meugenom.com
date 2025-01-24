@@ -15,12 +15,14 @@ module.exports = {
 		extend: {
 			colors: {
 			  light: {
-				background: '#ffcccb', // Light red background
-				text: '#000000', // Black text
+				background: '#FFFFFF', // Light Background
+				text: '#000000', // Text
+				title: '#FFFFFF', // Title
 			  },
 			  dark: {
-				background: '#000000', // Black background
-				text: '#ffffff', // White text
+				background:  '#1C202A', // Dark Background
+				text: '#ffffff', // Text
+				title: '#1C202A', // Title
 			  },
 			},
 		},
@@ -62,12 +64,14 @@ module.exports = {
 			  pink: colors.pink,
 			  rose: colors.rose,
 			  light: {
-				background: '#ffcccb', // Light red background
-				text: '#000000', // Black text
+				background: '#FFFFFF', // Light Background
+				text: '#000000', // Text
+				title: '#FFFFFF', // Title
 			  },
 			  dark: {
-				background: '#000000', // Black background
-				text: '#ffffff', // White text
+				background:  '#1C202A', // Dark Background
+				text: '#ffffff', // Text
+				title: '#1C202A', // Title
 			  },
 			}),
 			columns: {
