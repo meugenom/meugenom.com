@@ -21,7 +21,7 @@ module.exports = {
 			  },
 			  dark: {
 				background:  '#1C202A', // Dark Background
-				text: '#ffffff', // Text
+				text: '#E2EAF4', // Text
 				title: '#1C202A', // Title
 			  },
 			},

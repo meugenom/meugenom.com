@@ -85,7 +85,8 @@ class View {
                                 Github
                             </a>
                             -->
-                            <a  class="sl_container github_no_touch">
+                            <a  href="https://github.com/meugenom"
+                                class="sl_container github_no_touch">
                                 <div class="sl_circle">
                                     <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200">
 						                <circle cx="100" cy="100" r="50"/>

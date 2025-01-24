@@ -49,7 +49,16 @@ class Navbar {
   
 
     if (currentTheme === 'theme-dark') {
-      document.documentElement.classList.add('theme-light');
+      document.documentElement.classList.add('theme-dark');
+      this.title = 
+          `<title 
+              data-text="Meugenom"
+              class="text-light-text"
+              >
+              Meugenom
+          </title>
+          `;    
+      document.getElementById('_title').innerHTML = this.title;
     } else {
       document.documentElement.classList.add('theme-light');
     }
@@ -58,8 +67,8 @@ class Navbar {
 
     themeToggleBtn.addEventListener('click', () => {
       
-      //console.log('themeToggleBtn clicked');
-      //console.log(document.getElementById('theme-block').classList);
+    //console.log('themeToggleBtn clicked');
+    //console.log(document.getElementById('theme-block').classList);
       
       if (document.documentElement.classList.contains('theme-dark')) {
         document.documentElement.classList.remove('theme-dark');

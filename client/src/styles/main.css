@@ -21,8 +21,6 @@
   @apply text-dark-text;
 }
 
-
-
 .theme-light {
   @apply bg-light-background;
   @apply text-light-text;

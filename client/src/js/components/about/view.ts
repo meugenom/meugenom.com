@@ -11,7 +11,7 @@ class View {
       <div class="mx-10 font-sans text-base antialiased leading-7 z-0">
         <div class="flex">
           <div class="w-70 md:w-70 p-8 font-mono">
-            <h1 class="text-3xl font-normal leading-normal mt-0 mb-2 text-gray-500">
+            <h1 class="text-3xl font-normal leading-normal mt-0 mb-2">
               About me
             </h1>
             <p>
@@ -23,9 +23,9 @@ class View {
             <p>
               Welcome to my website.
               I make 
-              <a class="text-blue-600 font-medium hover:text-blue-600" href="https://meugenom.com/projects">open source projects</a>                            
+              <a class="text-purple-600 font-medium hover:text-purple-300" href="https://meugenom.com/projects">open source projects</a>                            
               and 
-              <a class="text-blue-600 font-medium hover:text-blue-600" href="https://meugenom.com/articles">write</a>
+              <a class="text-purple-600 font-medium hover:text-purple-300" href="https://meugenom.com/articles">write</a>
               about code, architecture, and building things and life.
               I've learned with the world and want to share my motivation for this site. 
             </p>  
@@ -43,7 +43,7 @@ class View {
             </p>
 
             <!-- What I'm doing now-->
-            <h1 class="text-2xl font-normal leading-normal mt-8 mb-2 text-gray-500">
+            <h1 class="text-2xl font-normal leading-normal mt-8 mb-2">
               What I'm doing now
             </h1>
             <ul>
@@ -51,12 +51,12 @@ class View {
                   Updated Oktober, 2023
               </p>
               <li class="list-disc ml-8">                                 
-                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://github.com/meugenom/cloudydesk">Cloudy Desktop Project</a>
+                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://github.com/meugenom/cloudydesk">Cloudy Desktop Project</a>
               </li>
             </ul>
             
             <!-- Random Facts-->
-            <h1 class="text-2xl font-normal leading-normal mt-8 mb-2 text-gray-500">
+            <h1 class="text-2xl font-normal leading-normal mt-8 mb-2">
               Random Facts
             </h1>
             <ul>
@@ -73,13 +73,14 @@ class View {
             </ul>
             
             <!-- Favorites-->
-            <h1 class="text-2xl font-normal leading-normal mt-8 mb-2 text-gray-500">
+            <h1 class="text-2xl font-normal leading-normal mt-8 mb-2">
               Favorites
             </h1>
             <ul>
               <li class="list-disc ml-8">
                 <span class="font-bold">Colour:</span>
-                - <span class="text-indigo-600">indigo</span>, 
+                  - <span class="text-purple-600">purple</span>,
+                  <span class="text-indigo-600">indigo</span>, 
                   <span class="text-sky-600">sky</span>, 
                   <span class="text-blue-600">blue</span>, 
                   <span class="text-slate-600">slate</span>, 
@@ -100,49 +101,49 @@ class View {
 
 
             <!-- Tools-->
-            <h1 class="text-2xl font-normal leading-normal mt-8 text-gray-500">
+            <h1 class="text-2xl font-normal leading-normal mt-8">
               Tools
             </h1>  
-            <h1 class="text-lg font-normal leading-normal mt-2 text-gray-600">
+            <h1 class="text-lg font-normal leading-normal mt-2">
               Software:
             </h1>
             <ul>
               <li class="list-disc ml-8">
                 The web site is hosted on
-                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://contabo.com/">Contabo.com</a> and built with 
-                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://www.typescriptlang.org/docs/">Typescript</a>,
+                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://contabo.com/">Contabo.com</a> and built with 
+                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://www.typescriptlang.org/docs/">Typescript</a>,
                 and 
-                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://spring.io">Spring-Boot && Java</a>,
+                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://spring.io">Spring-Boot && Java</a>,
                 and my own 
-                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://github.com/meugenom/spa-mvc-router">SPA MVC Router</a>
+                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://github.com/meugenom/spa-mvc-router">SPA MVC Router</a>
               </li>
               <li class="list-disc ml-8">
                 <span class="font-bold">Coding:</span>
-                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://code.visualstudio.com/">Visual Studio Code</a>
+                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://code.visualstudio.com/">Visual Studio Code</a>
               </li>
               <li class="list-disc ml-8">
                 <span class="font-bold">Terminal:</span>
-                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://iterm2.com/">iTerm2</a>
+                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://iterm2.com/">iTerm2</a>
               </li>
               <li class="list-disc ml-8">
                 <span class="font-bold">Notes:</span>
-                <a class="text-blue-600 font-medium hover:text-blue-600" href="https://obsidian.md/">Obsidian</a>
+                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://obsidian.md/">Obsidian</a>
               </li>
             </ul>
-            <h1 class="text-lg font-normal leading-normal mt-2 text-gray-600">
+            <h1 class="text-lg font-normal leading-normal mt-2">
               Hardware              
             </h1>
             <ul>
               <li class="list-disc ml-8">
                 <span class="font-bold">Coding PC:</span>
-                MacBook Pro 13" 2021 M1                                
+                MacBook Pro 14" M4 Pro                                
               </li>
             </ul>            
-            <h1 class="text-xl font-normal leading-normal mt-8 mb-2 text-gray-500">
+            <h1 class="text-xl font-normal leading-normal mt-8 mb-2">
               Miscellaneous
             </h1>
               <li class="list-disc ml-8">
-              <a class="text-blue-600 font-medium hover:text-blue-600" href="">Resume(soon)</a>
+              <a class="text-purple-600 font-medium hover:text-purple-300" href="">Resume(soon)</a>
               </li>                 
           </div>
           
