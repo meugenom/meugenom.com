@@ -31,7 +31,7 @@ export class CodeBlockHTML {
 
 
 	const codeBlock : any = `
-			<code class="language-${this.token.language}">
+			<code class="language-${this.token.language} -mt-12">
 		 		${this.token.code}
 			</code>`
 		

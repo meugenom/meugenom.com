@@ -16,12 +16,12 @@
 }
 
 /* Themes */
-.theme-dark {
+.dark {
   @apply bg-dark-background;
   @apply text-dark-text;
 }
 
-.theme-light {
+.light {
   @apply bg-light-background;
   @apply text-light-text;
 }

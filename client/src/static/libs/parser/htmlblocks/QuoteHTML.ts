@@ -27,7 +27,7 @@ export class QuoteHTML {
 
 		if (this.token.quote && this.token.author) {
 			const quoteBlock = `		
-		<div>
+		<div class="text-light-text">
 			<p classname="mb-2"> 
 				${this.token.quote}
 			</p>

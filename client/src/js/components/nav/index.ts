@@ -45,11 +45,11 @@ class Navbar {
   async afterRender () { 
     
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'theme-light';
+    const currentTheme = localStorage.getItem('theme') || 'light';
   
 
-    if (currentTheme === 'theme-dark') {
-      document.documentElement.classList.add('theme-dark');
+    if (currentTheme === 'dark') {
+      document.documentElement.classList.add('dark');
       this.title = 
           `<title 
               data-text="Meugenom"
@@ -60,7 +60,7 @@ class Navbar {
           `;    
       document.getElementById('_title').innerHTML = this.title;
     } else {
-      document.documentElement.classList.add('theme-light');
+      document.documentElement.classList.add('light');
     }
 
     document.getElementById('_title').innerHTML = this.title;
@@ -70,10 +70,10 @@ class Navbar {
     //console.log('themeToggleBtn clicked');
     //console.log(document.getElementById('theme-block').classList);
       
-      if (document.documentElement.classList.contains('theme-dark')) {
-        document.documentElement.classList.remove('theme-dark');
-        document.documentElement.classList.add('theme-light');
-        localStorage.setItem('theme', 'theme-light');
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        localStorage.setItem('theme', 'light');
        
           this.title =
           `<title 
@@ -84,9 +84,9 @@ class Navbar {
           </title>
           `
       } else {
-        document.documentElement.classList.remove('theme-light');
-        document.documentElement.classList.add('theme-dark');
-        localStorage.setItem('theme', 'theme-dark');
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
         
         this.title = 
           `<title 

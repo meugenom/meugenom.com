@@ -12,37 +12,36 @@ class View {
         <div class="flex">
           <div class="w-70 md:w-70 p-8 font-mono">
             <h1 class="text-3xl font-normal leading-normal mt-0 mb-2">
-              About me
+              About
             </h1>
             <p>
               Hey I'm Eugen. 
             </p>
             <p>
-              I'm a software developer from a small town in Germany. 
-            </p>
+              This website was written by me with pure Typescript. For styling, I used the <a class="text-sky-600 font-medium hover:font-bold" href="https://tailwindcss.com"> TailwindCSS framework</a>. The structure of the website is built with an
+              <a class="text-sky-600 font-medium hover:font-bold" href="https://github.com/meugenom/spa-mvc-router"> SPA MVC Router</a>, which I also developed myself.
             <p>
               Welcome to my website.
-              I make 
-              <a class="text-purple-600 font-medium hover:text-purple-300" href="https://meugenom.com/projects">open source projects</a>                            
-              and 
-              <a class="text-purple-600 font-medium hover:text-purple-300" href="https://meugenom.com/articles">write</a>
-              about code, architecture, and building things and life.
-              I've learned with the world and want to share my motivation for this site. 
+              I work on
+              <a class="text-sky-600 font-medium hover:font-bold" href="https://meugenom.com/projects"> open source projects</a>                            
+              and <a class="text-sky-600 font-medium hover:font-bold" href="https://meugenom.com/articles">write</a>
+              about coding, architecture, building things, and life.
+              I've learned a lot from the world, and I want to share my knowledge and motivation through this site.
             </p>  
             <p>
               My website has no ads, sponsors, no affilated links, no tracking or analytics, 
               no paywell or sponsored posts.
-              I want to make a place where I can share my thoughts and ideas. 
-              I hope to motivate others to make own projects and share them with the world.
+              I want to create a space where I can freely share my thoughts and ideas. My goal is to inspire others to build their own projects and share them with the world.              
             </p>
             <p>
-              You can contact me by email at hallo at meugenom.com to say hello or ask questions.               
+              You can contact me by email 📧:  hallo at meugenom.com to say hello or ask questions.               
             </p>
             <p>
-              I will be happy meeting new people.
+              I’d be happy to connect with new people!
             </p>
 
             <!-- What I'm doing now-->
+            <!--
             <h1 class="text-2xl font-normal leading-normal mt-8 mb-2">
               What I'm doing now
             </h1>
@@ -54,21 +53,20 @@ class View {
                 <a class="text-purple-600 font-medium hover:text-purple-300" href="https://github.com/meugenom/cloudydesk">Cloudy Desktop Project</a>
               </li>
             </ul>
-            
+            -->
             <!-- Random Facts-->
             <h1 class="text-2xl font-normal leading-normal mt-8 mb-2">
               Random Facts
             </h1>
             <ul>
               <li class="list-disc ml-8">
-                My best category music is 80s and 90s                
+                My favorite music era is the '80s and '90s                
               </li>
               <li class="list-disc ml-8">
-                I have a degree in economics and worked as a economist for 5 years. 
+                I have a degree in economics and worked as an economist for five years. 
               </li>
               <li class="list-disc ml-8">
-                My expirience is not limited in economics or IT. 
-                I have worked with personnel and know how to motivate people to get the job done and get good results.
+                My experience isn't limited to economics or IT—I’ve also worked in personnel management and know how to motivate people to achieve great results.
               </li>
             </ul>
             
@@ -78,17 +76,17 @@ class View {
             </h1>
             <ul>
               <li class="list-disc ml-8">
-                <span class="font-bold">Colour:</span>
-                  - <span class="text-purple-600">purple</span>,
-                  <span class="text-indigo-600">indigo</span>, 
-                  <span class="text-sky-600">sky</span>, 
-                  <span class="text-blue-600">blue</span>, 
-                  <span class="text-slate-600">slate</span>, 
+                <span class="font-bold">Color:</span>
+                  - <span class="text-purple-600 font-bold">purple</span>,
+                  <span class="text-indigo-600 font-bold">indigo</span>, 
+                  <span class="text-sky-600 font-bold">sky</span>, 
+                  <span class="text-blue-600 font-bold">blue</span>, 
+                  <span class="text-slate-600 font-bold">slate</span>, 
                   
               </li>
               <li class="list-disc ml-8">
                 <span class="font-bold">Flavour:</span>
-                - chocolate, strawberry, pistachio
+                - 🍫, 🍓, 🍒, pistachio
               </li>
               <li class="list-disc ml-8">
                 <span class="font-bold">Season:</span>
@@ -96,7 +94,7 @@ class View {
               </li>
               <li class="list-disc ml-8">
                 <span class="font-bold">Animal:</span>
-                - tiger, cats
+                - 🐅, 🐈
               </li>
 
 
@@ -109,25 +107,25 @@ class View {
             </h1>
             <ul>
               <li class="list-disc ml-8">
-                The web site is hosted on
-                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://contabo.com/">Contabo.com</a> and built with 
-                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://www.typescriptlang.org/docs/">Typescript</a>,
+                The web site 🌐 is hosted on
+                <a class="text-blue-600 font-medium hover:font-bold" href="https://contabo.com/">Contabo.com</a> and built with 
+                <a class="text-blue-600 font-medium hover:font-bold" href="https://www.typescriptlang.org/docs/">Typescript</a>,
                 and 
-                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://spring.io">Spring-Boot && Java</a>,
+                <a class="text-blue-600 font-medium hover:font-bold" href="https://spring.io">Spring-Boot && Java</a>,
                 and my own 
-                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://github.com/meugenom/spa-mvc-router">SPA MVC Router</a>
+                <a class="text-blue-600 font-medium hover:font-bold" href="https://github.com/meugenom/spa-mvc-router">SPA MVC Router</a>
               </li>
               <li class="list-disc ml-8">
-                <span class="font-bold">Coding:</span>
-                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://code.visualstudio.com/">Visual Studio Code</a>
+                <span class="font-bold">Coding 🛠:</span>
+                <a class="text-blue-600 font-medium hover:font-bold" href="https://code.visualstudio.com/">Visual Studio Code</a>
               </li>
               <li class="list-disc ml-8">
-                <span class="font-bold">Terminal:</span>
-                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://iterm2.com/">iTerm2</a>
+                <span class="font-bold">Terminal ⌨️:</span>
+                <a class="text-blue-600 font-medium hover:font-bold" href="https://iterm2.com/">iTerm2</a>
               </li>
               <li class="list-disc ml-8">
-                <span class="font-bold">Notes:</span>
-                <a class="text-purple-600 font-medium hover:text-purple-300" href="https://obsidian.md/">Obsidian</a>
+                <span class="font-bold">Notes 💾:</span>
+                <a class="text-blue-600 font-medium hover:font-bold" href="https://obsidian.md/">Obsidian</a>
               </li>
             </ul>
             <h1 class="text-lg font-normal leading-normal mt-2">
@@ -135,7 +133,7 @@ class View {
             </h1>
             <ul>
               <li class="list-disc ml-8">
-                <span class="font-bold">Coding PC:</span>
+                <span class="font-bold">Coding PC 💻:</span>
                 MacBook Pro 14" M4 Pro                                
               </li>
             </ul>            
@@ -143,7 +141,7 @@ class View {
               Miscellaneous
             </h1>
               <li class="list-disc ml-8">
-              <a class="text-purple-600 font-medium hover:text-purple-300" href="">Resume(soon)</a>
+              <a class="text-slate-600 font-medium hover:font-bold" href="">Resume(soon)</a>
               </li>                 
           </div>
           

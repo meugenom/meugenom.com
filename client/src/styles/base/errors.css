@@ -24,7 +24,7 @@
     -webkit-justify-content: center;
     justify-content: center;
     margin: 0;
-    background: white;
+    /* background: white; */
     position: relative;
   }
   

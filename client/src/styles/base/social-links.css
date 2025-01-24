@@ -1,4 +1,4 @@
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css");
  .social_links {
 	 display: flex;
 	 flex-direction: row;
@@ -48,7 +48,7 @@
 	 transform: scale(1.2);
 }
  .github_no_touch:hover .sl_circle {
-	 fill: #fff;
+	 /* fill: #fff; */
 	 fill-opacity: 1;
 	 animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorGithub 1s linear forwards;
 }
@@ -56,7 +56,7 @@
 	 color: #6cc644;
 }
  .github_touch .sl_circle {
-	 fill: #fff;
+	 /* fill: #fff; */
 	 fill-opacity: 1;
 	 animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorGithub 3s linear forwards;
 }
@@ -105,27 +105,27 @@
 	transform: scale(1.2);
 }
 .coffee_no_touch:hover .sl_circle {
-	fill: #fff;
+	/* fill: #fff; */
 	fill-opacity: 1;
 	animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorCoffee 1s linear forwards;
 }
 .coffee_no_touch:hover .sl_social {
-	color: #d94e17;
+	color: #c46210;
 }
 .coffee_touch .sl_circle {
-	fill: #fff;
+	/* fill: #fff; */
 	fill-opacity: 1;
 	animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorCoffee 3s linear forwards;
 }
 .coffee_touch .sl_social {
-	color: #d94e17;
+	color: #c46210;
 }
 
  .linkedin_no_touch:hover {
 	 transform: scale(1.2);
 }
  .linkedin_no_touch:hover .sl_circle {
-	 fill: #fff;
+	 /* fill: #fff; */
 	 fill-opacity: 1;
 	 animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorLinkedin 1s linear forwards;
 }
@@ -133,7 +133,7 @@
 	 color: #8d6cab;
 }
  .linkedin_touch .sl_circle {
-	 fill: #fff;
+	 /* fill: #fff; */
 	 fill-opacity: 1;
 	 animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorLinkedin 3s linear forwards;
 }
@@ -142,24 +142,24 @@
 }
 
 /* for navbar als selector light:dark */
-.eye_no_touch:hover {
+.sun_no_touch:hover {
 	transform: scale(1.2);
 }
-.eye_no_touch:hover .sl_circle {
+.sun_no_touch:hover .sl_circle {
 	/* fill: #fff; */
 	fill-opacity: 1;
-	animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorEye 1s linear forwards;
+	animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorSun 1s linear forwards;
 }
-.eye_no_touch:hover .sl_social {
-	color: #8d6cab;
+.sun_no_touch:hover .sl_social {
+	color: #ffd700;
 }
-.eye_touch .sl_circle {
+.sun_touch .sl_circle {
 	/* fill: #fff; */
 	fill-opacity: 1;
 	animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorEye 3s linear forwards;
 }
-.eye_touch .sl_social {
-	color: #8d6cab;
+.sun_touch .sl_social {
+	color: #ffd700;
 }
 
 
@@ -201,7 +201,7 @@
 		stroke: #fff;
    }
 	to {
-		stroke: #d94e17;
+		stroke: #c46210;
    }
 }
 
@@ -214,12 +214,12 @@
    }
 }
 
-@keyframes colorEye {
+@keyframes colorSun {
 	from {
 		stroke: #fff;
    }
 	to {
-		stroke: #8d6cab;
+		stroke: #ffd700;
    }
 }
  

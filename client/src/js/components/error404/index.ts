@@ -6,11 +6,16 @@
 */
 
 class Error404 {
+
+  constructor () {
+    this.afterRender = this.afterRender.bind(this)
+  }
+  
   async render () {
     const view = /* html */`        
-      <div class=" error-container flex items-center justify-center">            
+      <div class=" error-container flex items-center justify-center">
         <div 
-          class="error" 
+          class="error"
           data-text="404">
           404
         </div>        
@@ -20,6 +25,7 @@ class Error404 {
   }
 
   afterRender () {
+    //console.log('afterRender')
   }
 }
 export default Error404

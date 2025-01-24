@@ -17,7 +17,7 @@ class ArticleView {
                     container 
                     mx-auto 
                     px-4                     
-                    sm:px-8                              
+                    sm:px-8                                          
                     "/>                
             </div>
             <div id="utterance-comments"></div>            
