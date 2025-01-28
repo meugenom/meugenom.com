@@ -53,7 +53,7 @@ in out: This word is **strong** and **unknown for me**.
 ## Code Block: 
 
 \*		
-```bash
+```javascript
   	let getMin = async (min)=> {
 		return `
     		minimal value is ${min}
@@ -62,7 +62,7 @@ in out: This word is **strong** and **unknown for me**.
 ```
 \* 
 
-```bash
+```javascript
 	let getMin = async (min)=> {
 		return `
     		minimal value is ${min}

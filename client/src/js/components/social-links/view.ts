@@ -34,8 +34,8 @@ class View {
 						  <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200" class="sl_circle">  
 						 <circle cx="100" cy="100" r="50"/>
 						  </svg>
-						  <div class="sl_social">								  
-							<i class="bi bi-cup"></i>
+						  <div class="sl_social">								  							
+							<i class="bi bi-cup-hot-fill"></i>
 						  </div>
 					</a>
 					<a href="https://www.linkedin.com/in/meugenom/" class="sl_container linkedin_no_touch">

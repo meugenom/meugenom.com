@@ -43,7 +43,7 @@ export class CaptionHTML {
 				 class="lazy float-left object-contain h-64 w-100 mx-2"/>
 			</div>
 			<div class="flex-auto justify-start">
-				<h3 class="text-3xl font-normal leading-normal mt-0 mb-2 text-gray-600">
+				<h3 class="text-3xl font-normal leading-normal mt-0 mb-2">
 					${this.token.children[0].title.slice(2, this.token.children[0].title.length-1)}</h3>
 				<time class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
 					${this.token.children[0].date}
@@ -58,8 +58,7 @@ export class CaptionHTML {
 
 		</div>
 		<hr/>
-		<br/>
-		<br/>`;
+		`;
 
 		//add caption to htmlOutput
 		const captionNode = this.DomUtilites.createElement('p')

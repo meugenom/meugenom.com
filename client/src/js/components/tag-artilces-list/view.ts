@@ -24,14 +24,14 @@ class View {
     const view = /* html */`
       <div class="mx-10 font-sans text-base antialiased leading-7 z-0">      
           <article>
-            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
+            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
               The writings found:
             </h4>
             <ul class="list-decimal">
 
               ${list.map((article: any) => `              
             
-              <li class="text-slate-600 font-medium hover:text-blue-600" key="${article.slug}">
+              <li class="font-medium hover:text-blue-600" key="${article.slug}">
                 <a href="#/article/${article.slug}">
                   ${article.title.substring(1, article.title.length - 1)}
                 </a>                      

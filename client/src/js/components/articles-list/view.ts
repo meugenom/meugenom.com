@@ -1,6 +1,4 @@
 'use strict'
-import TagsGartenModel from "../tags-garten/model";
-import TagsGartenView from "../tags-garten/view";
 import IArticle from '../interfaces/IArticle';
 
 /**
@@ -23,24 +21,17 @@ class View {
 
       })
     })
-
-    const tags = await new TagsGartenModel().getTags();
     
     const view = /* html */`    
-      <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">      
-        `
-        + new TagsGartenView().appendTags(tags) +
-        `
-        <br/>
-        <br/>
+      <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">              
           <article>
-            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
-              Writing:
+            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
+              Articles:
             </h4>
             <ul>
               ${list.map((article: any) => `              
             
-              <li class="text-slate-600 font-medium hover:text-blue-600">
+              <li class="font-medium hover:text-blue-400">
                 <a key="${article.slug}" 
                 href="#/article/${article.slug}">
                   ${article.title.substring(1, article.title.length - 1)}

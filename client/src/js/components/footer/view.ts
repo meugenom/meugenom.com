@@ -9,14 +9,15 @@ class View {
   appendFooter () {
     const view = /* html */`
         <footer
-            class=" relative                                                            
+            class=" container mx-auto border-t border-gray-300
+                    relative                                                            
                     fixed inset-x-0 							                    
                     bottom-0
                     z-10                    
                     ">
             <div class="flex justify-center">
-                <div class="text-sm text-slate-600 align-middle text-center pt-5">
-                    © 2023 &nbsp;
+                <div class="text-sm align-middle text-center pt-5">
+                    © 2025 &nbsp;
                 </div>
                 <div class="flex justify-center mt-0">
                     <div class="social-buttons">`

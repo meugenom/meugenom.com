@@ -29,15 +29,18 @@ export class CodeBlockHTML {
 
   render () : void {
 
+	console.log(this.token.language);
 
 	const codeBlock : any = `
-			<code class="language-${this.token.language}">
-		 		${this.token.code}
+			<div class="ml-5 -mt-8 -mb-8">${this.token.language}</div>
+			<code class="language-${this.token.language}">								
+		 		${this.token.code}				
 			</code>`
 		
 		const CodeBlockNode = this.DomUtilites.createElement("pre");
-		CodeBlockNode.className = `language-${this.token.language}"` ;
-
+		CodeBlockNode.className = `"+language-${this.token.language} border-r border-l border-t border-b border-gray-300 rounded-md overflow-x-auto"`;		
+		CodeBlockNode.style.backgroundColor = "#d1d5db";
+		
 		Prism.highlightAll(codeBlock);
 
 		CodeBlockNode.innerHTML = codeBlock;

@@ -16,12 +16,25 @@ class Navbar {
     navbar: string;
     //routes: any;
     history: any;
+    title: string;
 
   constructor () {
     this.model = new Model()
     this.view = new View()
     this.navbar = ''
     this.history = []
+    this.title = ''
+
+    
+      this.title =
+      `<title 
+          data-text="Meugenom"
+          style="color: white;"
+          >
+              Meugenom
+      </title>
+      `
+    
   }
 
   async render () {
@@ -31,19 +44,67 @@ class Navbar {
 
   async afterRender () { 
     
-    /*
-    // Handling mobile menu toggle after render
-    const mobileMenuToggle = document.getElementById('navbarButton');
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
   
-    mobileMenuToggle.addEventListener('click', function () {     
-      const mobileMenu = document.getElementById('mobile-menu-opened');
-      if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-        mobileMenu.style.display = 'block';
+
+    if (currentTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      this.title = 
+          `<title 
+              data-text="Meugenom"
+              class="text-light-text"
+              >
+              Meugenom
+          </title>
+          `;    
+      document.getElementById('_title').innerHTML = this.title;
+    } else {
+      document.documentElement.classList.add('light');
+    }
+
+    document.getElementById('_title').innerHTML = this.title;
+
+    themeToggleBtn.addEventListener('click', () => {
+      
+    //console.log('themeToggleBtn clicked');
+    //console.log(document.getElementById('theme-block').classList);
+      
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        localStorage.setItem('theme', 'light');
+       
+          this.title =
+          `<title 
+              data-text="Meugenom"
+              style="color: white;"
+              >
+                  Meugenom
+          </title>
+          `
       } else {
-        mobileMenu.style.display = 'none';
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        
+        this.title = 
+          `<title 
+              data-text="Meugenom"
+              class="text-light-text"
+              >
+              Meugenom
+          </title>
+          `;      
       }
-    });
-    */
+
+      document.getElementById('_title').innerHTML = this.title;
+
+    });   
+
+    // Add transition classes to the root element
+    document.documentElement.classList.add('transition-colors', 'duration-1500');
+
   }
 
 }

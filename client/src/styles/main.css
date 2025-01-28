@@ -14,3 +14,37 @@
 .no-inherit-font-size {
   font-size: revert !important;
 }
+
+/* Themes */
+.dark {
+  @apply bg-dark-background;
+  @apply text-dark-text;
+}
+
+.light {
+  @apply bg-light-background;
+  @apply text-light-text;
+}
+
+/*clearfix for checkboxes*/
+/* Reset any unwanted styles */
+input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  position: relative;
+}
+
+/* Custom checkmark */
+input[type="checkbox"]:checked::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 6px;
+  height: 12px;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

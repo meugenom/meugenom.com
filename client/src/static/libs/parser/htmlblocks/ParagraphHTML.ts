@@ -38,7 +38,7 @@ export class ParagraphHTML {
 				text = text + `
 				<div class="flex flex-wrap justify-center">
 					<div class="w-6/12 sm:w-4/12 px-4 pb-20">						
-						<img data-src="${child.url}" alt="${child.alt}" class="lazy shadow rounded max-w-full h-auto allign-middle border-none">
+						<img data-src="${child.url}" alt="${child.alt}" class="lazy shadow rounded max-w-full h-auto allign-middle border">
 					</div>
 				</div>
 				`
@@ -58,7 +58,7 @@ export class ParagraphHTML {
 
 			if (child.type == TokenType.CODE_INLINE) {
 				text = text + " " + `
-				<code class="inline-block py-1 px-2 bg-gray-300 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+				<code class="inline-block py-1 px-2 bg-blue-400 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
 					${child.value.substring(1, child.value.length - 1)}
 				</code>
 				`
@@ -120,7 +120,7 @@ export class ParagraphHTML {
 
 			if (child.type == TokenType.UNDER_LINE) {
 				text = text + " " + `
-				<span class="underline decoration-sky-500 text-slate-500">
+				<span class="underline decoration-sky-500">
 					${child.value}
 				</span>
 				`
@@ -132,7 +132,7 @@ export class ParagraphHTML {
 				const unmarkableText = unmarkable.substring(1, unmarkable.length - 1);								
 
 				text = text + " " + `				
-				<div class="text-orange-900">
+				<div class="italic text-sm">
 					${unmarkableText.replace(/\n/g, '<br/>')}
 				</div>
 				`				

@@ -1,5 +1,4 @@
 'use strict'
-import IArticle from '../interfaces/IArticle';
 /**
  * controller Home
  * @param model

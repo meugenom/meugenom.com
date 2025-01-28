@@ -32,7 +32,7 @@ export class TableHTML {
         const children = this.token.children;
         let table = '';
         let tableNode = this.DomUtilites.createElement("table");
-        tableNode.className = "shadow-lg bg-white mb-4";
+        tableNode.className = "shadow-lg bg-white mb-4 text-light-text";
 
         for (let i = 0; i < children.length; i++) {
             let rowArray = children[i].value.split("|");
