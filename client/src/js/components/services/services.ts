@@ -5,6 +5,9 @@ import Loader from '../loader';
 export default class Service {
 
   async graphql(dataType: string, token: string, host: string, query: string, variables: object) {
+    if (!variables) {
+      throw new Error('Variables parameter is null or undefined');      
+    }
     let response: any;
 
     // Get page element
@@ -22,7 +25,6 @@ export default class Service {
     try {
       response = await this.fetchWithRetry(host, token, query, variables, 3);
     } catch (error) {
-      console.error(error);
 
       // Handle specific error codes or show a generic error message
       switch (response?.status) {
@@ -46,7 +48,7 @@ export default class Service {
       data = (dataType === 'json' ? await response.json() : await response.text());
     } catch (error) {
       console.error(error);
-      window.location.href = '/error502';
+      window.location.href = '/error500';
       return;
     }
 
@@ -63,10 +65,13 @@ export default class Service {
     url: string,
     token: string,
     query: string,
-    variables: Record<string, any>,
+    variables: any,
     retries: number = 3,
     backoff = 300): Promise<Response> {
     try {
+      if (!variables) {
+        throw new Error('Variables parameter is null or undefined');
+      }
       const response = await fetch(
         url, {
         method: 'POST',
@@ -79,7 +84,7 @@ export default class Service {
           query,
           variables
         })
-      }
+        }
       );
 
       if (!response.ok) throw new Error('Network response was not ok');
@@ -87,7 +92,11 @@ export default class Service {
     } catch (error) {
       if (retries === 0) throw error;
 
-      await this.delay(backoff * Math.pow(2, 3 - retries));
+      await this.delay(backoff * Math.pow(2, 3 - retries));      
+      
+      if (retries === 1){
+        throw new Error('Network response was not ok');
+      };
 
       return this.fetchWithRetry(url, token, query, variables, retries - 1, backoff);
     }
@@ -98,8 +107,10 @@ export default class Service {
   }
 
   showErrorPage(page: any, message: string) {
-    //const errorElement = document.createElement('div');
-    //errorElement.textContent = message;
-    //page.appendChild(errorElement);    
+    // Clear all children from the page
+    while (page.firstChild) {
+      page.removeChild(page.firstChild);
+    }
+    
   }
 }
