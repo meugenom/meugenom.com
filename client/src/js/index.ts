@@ -38,6 +38,6 @@ window.addEventListener('popstate', function () {
 })
 
 // Listen on page load:
-window.addEventListener('load', function () {
+window.addEventListener('load', function () {  
   new Router(routes)
 })

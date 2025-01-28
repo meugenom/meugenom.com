@@ -1,59 +1,31 @@
-'use strict'
+'use strict';
 
 import Loader from '../loader';
 
-export default class Service {  
+export default class Service {
 
   async graphql(dataType: string, token: string, host: string, query: string, variables: object) {
-    
     let response: any;
 
-    //get page element
-    const page : any = document.getElementById('page');
-    
-    //delete from page all children
+    // Get page element
+    const page: any = document.getElementById('page');
+
+    // Clear all children from the page
     while (page.firstChild) {
       page.removeChild(page.firstChild);
     }
 
-    //add loader to page
+    // Add loader to page
     const loader = new Loader();
     page.appendChild(await loader.render());
 
-
-
     try {
-      response = await fetch(
-        host, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify({
-          query,
-          variables
-        })
-      })
+      response = await this.fetchWithRetry(host, token, query, variables, 3);
     } catch (error) {
-      console.log(error);
-      window.location.href = '/'+error;
-      return;
-    }
+      console.error(error);
 
-    let data;
-    try {
-
-      data = (dataType === 'json' ? await response.json() : await response.text());            
-
-    } catch (error) {
-      
-      console.log(error);
-
-      //switch case for error codes 404, 502, 500
-
-      switch (response.status) {
+      // Handle specific error codes or show a generic error message
+      switch (response?.status) {
         case 404:
           window.location.href = '/error404';
           break;
@@ -64,17 +36,70 @@ export default class Service {
           window.location.href = '/error502';
           break;
         default:
-          window.location.href = '/error404';
-          break;
+          this.showErrorPage(page, 'An unexpected error occurred. Please try again later.');
       }
       return;
     }
-    // need to check for error 200-299
-    if (!response.ok) {
+
+    let data;
+    try {
+      data = (dataType === 'json' ? await response.json() : await response.text());
+    } catch (error) {
+      console.error(error);
       window.location.href = '/error502';
       return;
-    }    
-    
+    }
+
+    // Check for successful response
+    if (!response.ok) {
+      this.showErrorPage(page, `Error: ${response.status}`);
+      return;
+    }
+
     return data.data;
+  }
+
+  async fetchWithRetry(
+    url: string,
+    token: string,
+    query: string,
+    variables: Record<string, any>,
+    retries: number = 3,
+    backoff = 300): Promise<Response> {
+    try {
+      const response = await fetch(
+        url, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          query,
+          variables
+        })
+      }
+      );
+
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response;
+    } catch (error) {
+      if (retries === 0) throw error;
+
+      await this.delay(backoff * Math.pow(2, 3 - retries));
+
+      return this.fetchWithRetry(url, token, query, variables, retries - 1, backoff);
+    }
+  }
+
+  delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  showErrorPage(page: any, message: string) {
+    //const errorElement = document.createElement('div');
+    //errorElement.textContent = message;
+    //page.appendChild(errorElement);    
   }
 }

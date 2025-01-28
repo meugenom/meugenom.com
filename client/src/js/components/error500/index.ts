@@ -8,7 +8,7 @@
 class Error500 {
   async render () {
     const view = /* html */`        
-      <div class=" error-container flex items-center justify-center">            
+       <div class="items-center justify-center mt-20">            
       <div 
       class="error" 
       data-text="500">
