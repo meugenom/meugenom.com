@@ -16,12 +16,13 @@ class Layout {
     
   }
 
-  async render () {    
-    const section = await this.view.appendLayout()
+  async getHTMLElement () {    
+    const section = await this.view.getLayoutHTMLElement();
     return section
   } 
 
-  afterRender () {              
+  afterRender () {   
+    return           
   }
 }
 

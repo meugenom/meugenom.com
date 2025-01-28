@@ -17,15 +17,29 @@ class View {
             
             <aside class="w-64 p-6 flex flex-col items-center">
               
-              <img src="../../images/ai-generated.png" alt="Profile Picture" class="w-24 h-24 rounded-full mb-4 border-4 border-gray-300"/>
+              <img src="../../images/ai-generated.png" alt="Profile Picture" class="w-24 h-24 rounded-full mb-4 border-2 border-gray-300"/>
               
               <h2 class="text-xl">About Me</h2>
 
-              <p class="text-center mt-2">AI sees me this way. My name is Eugen. I'm an open-source creator and software engineer.
-              Welcome to my little space 🚀 on the web 🌍✨</p>
+              <p class="text-center mt-2">
+                Hey there! I'm Eugen, an open-source creator and software engineer. 
+                This is my little corner of the web 🚀. 
+              </p>
+              <p class="text-center mt-2">
+                Glad to have you here!
+              </p>
+              <hr class="w-full border-t-1 border-gray-200 my-4">
+              <p>
+                Contact me 📧:                
+              </p>              
+              <p>
+                <span class="text-blue-500 hover:font-bold">hallo</span> at <span class="text-blue-500 hover:font-bold">meugenom.com</span>
+              </p>
 
-              <p class="text-center mt-4">If you enjoy my work, feel free to support me with a 
-                <a href="https://www.buymeacoffee.com/meugenom" target="_blank" class="text-blue-500" hover:text-blue-700">cup of coffee ☕💙</a>
+              <hr class="w-full border-t-1 border-gray-200 my-4">
+
+              <p class="text-center mt-4">Like what I do? You can show your support by treating me to a
+                <a href="https://www.buymeacoffee.com/meugenom" target="_blank" class="text-blue-500 hover:font-bold">cup of coffee ☕💙</a>
               </p>
             </aside>  
             

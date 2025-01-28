@@ -22,13 +22,13 @@ class View {
                 Hey I'm Eugen. 
               </p>
               <p>
-                This website was written by me with pure Typescript. For styling, I used the <a class="text-sky-600 font-medium hover:font-bold" href="https://tailwindcss.com"> TailwindCSS framework</a>. The structure of the website is built with an
-                <a class="text-sky-600 font-medium hover:font-bold" href="https://github.com/meugenom/spa-mvc-router"> SPA MVC Router</a>, which I also developed myself.
+                This website was written by me with pure Typescript. For styling, I used the <a class="text-sky-blue font-medium hover:font-bold" href="https://tailwindcss.com"> TailwindCSS framework</a>. The structure of the website is built with an
+                <a class="text-blue-600 font-medium hover:font-bold" href="https://github.com/meugenom/spa-mvc-router"> SPA MVC Router</a>, which I also developed myself.
               <p>
                 Welcome to my website.
                 I work on
-                <a class="text-sky-600 font-medium hover:font-bold" href="https://meugenom.com/projects"> open source projects</a>                            
-                and <a class="text-sky-600 font-medium hover:font-bold" href="https://meugenom.com/articles">write</a>
+                <a class="text-blue-600 font-medium hover:font-bold" href="https://meugenom.com/projects"> open source projects</a>                            
+                and <a class="text-blue-600 font-medium hover:font-bold" href="https://meugenom.com/articles">write</a>
                 about coding, architecture, building things, and life.
                 I've learned a lot from the world, and I want to share my knowledge and motivation through this site.
               </p>  

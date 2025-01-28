@@ -16,7 +16,7 @@ class View {
     const view = await /* html */`    
         <div class="hidden lg:block w-full min-w-[300] max-w-[300] sidebar">
           `
-          +
+          +            
             await new TagsGartenView().appendTags(tags)
           +
         `

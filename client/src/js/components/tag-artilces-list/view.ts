@@ -31,7 +31,7 @@ class View {
 
               ${list.map((article: any) => `              
             
-              <li class="text-slate-600 font-medium hover:text-blue-600" key="${article.slug}">
+              <li class="font-medium hover:text-blue-600" key="${article.slug}">
                 <a href="#/article/${article.slug}">
                   ${article.title.substring(1, article.title.length - 1)}
                 </a>                      

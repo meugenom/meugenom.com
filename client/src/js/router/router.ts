@@ -4,9 +4,9 @@
  */
 
 import Navbar from './../components/nav'
-import SideBarLeft from '../components/side-bar-left'
-import SideBarRight from '../components/side-bar-right'
+
 import Layout from '../components/layout'
+import SideBarRight from '../components/side-bar-right'
 import Footer from '../components/footer'
 import Error404 from '../components/error404'
 import IRoutes from './../components/interfaces/IRoutes'
@@ -27,15 +27,12 @@ class Router {
     header: HTMLElement;
     content: HTMLElement;
     footer: HTMLElement;
-    sideBarLeft: HTMLElement;
-    sideBarRight: HTMLElement;
     layout: HTMLElement;
     
     headerComponent: Navbar;
     footerComponent: Footer;
-    sideBarLeftComponent: SideBarLeft;
-    sideBarRightComponent: SideBarRight;
     layoutComponent: Layout;
+    sideBarRightComponent: SideBarRight;
 
     request: {
         resource: string | null;
@@ -48,14 +45,14 @@ class Router {
     constructor (routes: IRoutes) {
         this.routes = routes;
         this.header = document.getElementById('header');        
-        this.layout = document.getElementById('layout');
         this.footer = document.getElementById('footer');
+        this.layout = document.getElementById('layout');        
 
         this.headerComponent  = new Navbar();
         this.footerComponent  = new Footer();
-        this.sideBarLeftComponent = new SideBarLeft();
-        this.sideBarRightComponent = new SideBarRight(); 
         this.layoutComponent = new Layout();
+        this.sideBarRightComponent = new SideBarRight();
+        
 
         // Listen on hash change:
         this.init();
@@ -63,30 +60,38 @@ class Router {
 
     // render header, content and footer
     async init () {    
+        
         //render header
         this.header.innerHTML = await this.headerComponent.render();
         await this.headerComponent.afterRender();
-
-        //render layout
-        this.layout.innerHTML = await this.layoutComponent.render();
-        await this.layoutComponent.afterRender();        
         
-        //get the side bar left and right on the layout
-        this.sideBarLeft = await document.getElementById('side-bar-left');
-        this.sideBarRight = await document.getElementById('side-bar-right');
+        //render layout
+        let layoutHTML = await this.layoutComponent.getHTMLElement();
 
-        // render side bar left
-        this.sideBarLeft.innerHTML = await this.sideBarLeftComponent.render();     
+        // add layout element to the document
+        if(document.getElementById('content') !== null
+            || document.getElementById('content') !== undefined
+            || document.getElementById('content').textContent !== ""
+        ) {
+            if(document.getElementById('layout')  === null
+                || document.getElementById('layout') === undefined
+                || document.getElementById('layout').textContent === ""
+            ) {
+                // add right side bar
+                document.getElementById('content').appendChild(layoutHTML);                
+            }
+        }
 
-        // get the location of the content block on the layout
-        this.content = await document.getElementById('page');
+        const sideBarRight = await this.sideBarRightComponent.render();
+        document.getElementById('side-bar-right').innerHTML = sideBarRight;
+
+        // get content element from added layout element
+        this.content = document.getElementById('page')
+        
 
         //render content
         const parsedURL = this.parseUrl();
         await this.renderPage(parsedURL);
-
-        //render side bar right
-        this.sideBarRight.innerHTML = await this.sideBarRightComponent.render();
 
         //render footer
         this.footer.innerHTML = await this.footerComponent.render();
@@ -105,6 +110,7 @@ class Router {
     async renderPage(parsedURL: string) {
         this.footer.innerHTML = "";
         const page = this.routes[parsedURL] ? this.routes[parsedURL] : new Error404();
+        
         this.content.innerHTML = await page.render();
         await page.afterRender();
 
@@ -137,10 +143,6 @@ class Router {
 
         //make active clicked link        
         clickedLink.classList.add('active-links');
-        
-        //close mobile menu
-        //const mobileMenu = document.getElementById('mobile-menu-opened');
-        //mobileMenu.style.display = 'none';
 
     }
 
