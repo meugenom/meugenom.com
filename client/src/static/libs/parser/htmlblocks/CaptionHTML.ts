@@ -58,8 +58,7 @@ export class CaptionHTML {
 
 		</div>
 		<hr/>
-		<br/>
-		<br/>`;
+		`;
 
 		//add caption to htmlOutput
 		const captionNode = this.DomUtilites.createElement('p')

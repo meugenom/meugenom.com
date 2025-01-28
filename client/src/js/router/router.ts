@@ -4,6 +4,9 @@
  */
 
 import Navbar from './../components/nav'
+import SideBarLeft from '../components/side-bar-left'
+import SideBarRight from '../components/side-bar-right'
+import Layout from '../components/layout'
 import Footer from '../components/footer'
 import Error404 from '../components/error404'
 import IRoutes from './../components/interfaces/IRoutes'
@@ -24,9 +27,15 @@ class Router {
     header: HTMLElement;
     content: HTMLElement;
     footer: HTMLElement;
+    sideBarLeft: HTMLElement;
+    sideBarRight: HTMLElement;
+    layout: HTMLElement;
     
     headerComponent: Navbar;
     footerComponent: Footer;
+    sideBarLeftComponent: SideBarLeft;
+    sideBarRightComponent: SideBarRight;
+    layoutComponent: Layout;
 
     request: {
         resource: string | null;
@@ -38,24 +47,48 @@ class Router {
 
     constructor (routes: IRoutes) {
         this.routes = routes;
-        this.header = document.getElementById('header');
-        this.content = document.getElementById('page');
+        this.header = document.getElementById('header');        
+        this.layout = document.getElementById('layout');
         this.footer = document.getElementById('footer');
 
         this.headerComponent  = new Navbar();
         this.footerComponent  = new Footer();
+        this.sideBarLeftComponent = new SideBarLeft();
+        this.sideBarRightComponent = new SideBarRight(); 
+        this.layoutComponent = new Layout();
 
+        // Listen on hash change:
         this.init();
     }
 
     // render header, content and footer
     async init () {    
+        //render header
         this.header.innerHTML = await this.headerComponent.render();
         await this.headerComponent.afterRender();
 
+        //render layout
+        this.layout.innerHTML = await this.layoutComponent.render();
+        await this.layoutComponent.afterRender();        
+        
+        //get the side bar left and right on the layout
+        this.sideBarLeft = await document.getElementById('side-bar-left');
+        this.sideBarRight = await document.getElementById('side-bar-right');
+
+        // render side bar left
+        this.sideBarLeft.innerHTML = await this.sideBarLeftComponent.render();     
+
+        // get the location of the content block on the layout
+        this.content = await document.getElementById('page');
+
+        //render content
         const parsedURL = this.parseUrl();
         await this.renderPage(parsedURL);
 
+        //render side bar right
+        this.sideBarRight.innerHTML = await this.sideBarRightComponent.render();
+
+        //render footer
         this.footer.innerHTML = await this.footerComponent.render();
         await this.footerComponent.afterRender();
 

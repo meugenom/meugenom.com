@@ -25,7 +25,7 @@ export class HeaderHTML {
 
 		const HeaderNode = this.DomUtilites.createElement('h' + this.token.dept)
 
-		HeaderNode.className = "text-" + this.token.dept + "xl mt-0 mb-2 pr-10 pt-10 no-inherit-font-size";
+		HeaderNode.className = "text-" + this.token.dept + "xl mt-0 mb-1 pr-10 pt-6 no-inherit-font-size";
 
 		if (this.token.children[0]) {
 

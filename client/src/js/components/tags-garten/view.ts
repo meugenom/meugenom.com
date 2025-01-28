@@ -55,7 +55,7 @@ class View {
     const view = /* html */`      
       <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
           <article>
-            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2 text-gray-500">
+            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
               Tags Garten:
             </h4>
             <ul>

@@ -29,9 +29,12 @@ pre[class*="language-"] {
 pre[class*="language-"] > code {
   position: relative;
   z-index: 1;
-  border-left: 10px solid #358ccb;
-  box-shadow: -1px 0 0 0 #358ccb, 0 0 0 1px #dfdfdf;
-  background-color: #fdfdfd;
+  
+  border-left: 10px solid  #64b5f6;
+  box-shadow: -1px 0 0 0  #64b5f6, 0 0 0 1px #dfdfdf;
+  
+  /* background-color: #fdfdfd; */
+  background-color: #fafafa;
   background-image: linear-gradient(
     transparent 50%,
     rgba(69, 142, 209, 0.04) 50%

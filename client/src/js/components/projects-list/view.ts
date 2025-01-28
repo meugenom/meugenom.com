@@ -5,6 +5,9 @@ import Config from '../../config'
 import ILanguage from '../interfaces/ILanguage';
 import IProject from '../interfaces/IProject';
 
+import TagsGartenModel from "../tags-garten/model";
+import TagsGartenView from "../tags-garten/view";
+
 /**
  * View for component Project List
  * @param project
@@ -42,18 +45,20 @@ class View {
     return languages;
 }
 
-  appendProjectsList (projects: IProject[]) {
+  async appendProjectsList (projects: IProject[]) {
     
     //console.log('projects', projects)
+    const tags = await new TagsGartenModel().getTags();
     
-    const view = /* html */`            
-                    <div class="md:container mx-5 font-sans text-base antialiased leading-7 z-0 mb-20">                    
+    const view = await /* html */`                                                                  
+                  <!-- Projects content -->                                    
+                    <div class="font-sans text-base antialiased leading-7 z-0 mb-5">                    
                           <article>
-                            <h4 class="text-2xl font-normal leading-normal mt-10 mb-2 ml-12">
+                            <h4 class="text-2xl font-normal leading-normal mt-1 mb-1 ml-12">
                               Projects:
                             </h4>
                                                                             
-                            <ul class="grid justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 w-full mt-10">                              
+                            <ul class="grid justify-items-center grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 gap-1 w-full mt-10">                              
                             
                             ${projects.map((project: { node: any }) => /* html */`                                                        
                                   <li>                          

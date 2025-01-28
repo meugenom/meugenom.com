@@ -1,5 +1,7 @@
 'use strict'
 
+import TagsGartenModel from "../tags-garten/model";
+import TagsGartenView from "../tags-garten/view";
 /**
  * View for component Home
  * @param posts
@@ -8,20 +10,17 @@
 
 class ArticleView {
 
-
     async appendArticles () {
-        
-        const view = /* html */`                        
-            <div>
-                <div id="article" class="
-                    container 
-                    mx-auto 
-                    px-4                     
-                    sm:px-8                                          
-                    "/>                
-            </div>
-            <div id="utterance-comments"></div>            
+        const tags = await new TagsGartenModel().getTags();        
+        const view = /* html */`            
+            
+                <! -- Main Content (takes full width on small screens) -->
+                    <div id="article" class="px-5"/></div>  
+
+                    <!-- Comments -->
+                    <div id="utterance-comments"></div>                    
         `
+
         return view
     }
 }
