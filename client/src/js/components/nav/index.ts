@@ -10,103 +10,57 @@ import View from './view'
  */
 
 class Navbar {
+  model: Model;
+  view: View;
+  navbar: string;
+  history: any;
+  title: string;
 
-    model: Model;
-    view: View;
-    navbar: string;
-    //routes: any;
-    history: any;
-    title: string;
-
-  constructor () {
-    this.model = new Model()
-    this.view = new View()
-    this.navbar = ''
-    this.history = []
-    this.title = ''
-
-    
-      this.title =
-      `<title 
-          data-text="Meugenom"
-          style="color: white;"
-          >
-              Meugenom
-      </title>
-      `
-    
+  constructor() {
+    this.model = new Model();
+    this.view = new View();
+    this.navbar = '';
+    this.history = [];
+    this.title = this.getTitle('Meugenom', 'white');
   }
 
-  async render () {
-    this.navbar = await this.view.appendNav()
-    return this.navbar
+  async render() {
+    this.navbar = await this.view.appendNav();
+    return this.navbar;
   }
 
-  async afterRender () { 
-    
+  async afterRender() {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const currentTheme = localStorage.getItem('theme') || 'light';
-  
 
-    if (currentTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-      this.title = 
-          `<title 
-              data-text="Meugenom"
-              class="text-light-text"
-              >
-              Meugenom
-          </title>
-          `;    
-      document.getElementById('_title').innerHTML = this.title;
-    } else {
-      document.documentElement.classList.add('light');
-    }
+    this.applyTheme(currentTheme);
 
     document.getElementById('_title').innerHTML = this.title;
 
     themeToggleBtn.addEventListener('click', () => {
-      
-    //console.log('themeToggleBtn clicked');
-    //console.log(document.getElementById('theme-block').classList);
-      
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-        localStorage.setItem('theme', 'light');
-       
-          this.title =
-          `<title 
-              data-text="Meugenom"
-              style="color: white;"
-              >
-                  Meugenom
-          </title>
-          `
-      } else {
-        document.documentElement.classList.remove('light');
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-        
-        this.title = 
-          `<title 
-              data-text="Meugenom"
-              class="text-light-text"
-              >
-              Meugenom
-          </title>
-          `;      
-      }
-
-      document.getElementById('_title').innerHTML = this.title;
-
-    });   
+      this.toggleTheme();
+    });
 
     // Add transition classes to the root element
     document.documentElement.classList.add('transition-colors', 'duration-1500');
-
   }
 
+  getTitle(text: string, colorClass: string) {
+    return `<title data-text="${text}" class="${colorClass}">${text}</title>`;
+  }
+
+  toggleTheme() {
+    const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+    this.applyTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.getElementById('_title').innerHTML = this.title;
+  }
+
+  applyTheme(theme: string) {
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
+    this.title = this.getTitle('Meugenom', theme === 'dark' ? 'text-light-text' : 'text-dark-text');
+  }
 }
 
-export default Navbar
+export default Navbar;

@@ -18,6 +18,10 @@ import TagsGarten from './components/tags-garten'
 import About from './components/about'
 import Illustration from './components/illustration'
 
+// import errors pages
+import Error404 from './components/error404'
+import Error500 from './components/error500'
+import Error502 from './components/error502'
 
 // Define routes
 
@@ -30,6 +34,9 @@ let routes : IRoutes = {
   '/tags': new TagsGarten(),
   '/about': new About(),
   '/illustration': new Illustration(),
+  '/error404': new Error404(),
+  '/error500': new Error500(),
+  '/error502': new Error502()
   }
 
 // Listen on hash change:
@@ -38,6 +45,6 @@ window.addEventListener('popstate', function () {
 })
 
 // Listen on page load:
-window.addEventListener('load', function () {  
-  new Router(routes)
+window.addEventListener('load', function () {
+  new Router(routes)  
 })

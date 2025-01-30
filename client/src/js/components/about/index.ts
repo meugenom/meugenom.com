@@ -15,18 +15,18 @@ class About {
     view: View;
     about: string;
 
-    constructor () {
+    constructor() {
         this.model = new Model()
         this.view = new View()
         this.about = ''
     }
 
-    async render () {
+    async render() {
         this.about = await this.view.appendAbout()
         return this.about
     }
 
-    afterRender () { 
+    afterRender() {
         // lazy load images
         const images = document.querySelectorAll('.lazy');
         images.forEach((img) => {

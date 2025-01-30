@@ -18,6 +18,26 @@ class View {
 
     let letters: ILetter[] = [];
 
+    // need to check if tags is object null or undefined
+    if (tags === null || tags === undefined) {
+      return `
+      <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
+          <article>
+            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
+              Tags Garten:
+            </h4>
+            <ul>
+              <li class="text-blue-400 hover:text-bold">
+                <a href="#/tag/">
+                  No tags available
+                </a>              
+              </li>
+            </ul>
+          </article>
+        </div>
+      `;
+    }
+
     // from object to array
     Object.entries(tags).forEach(([key, value]) => {      
       (value as unknown as any[]).map((tag: ITags) => {   
