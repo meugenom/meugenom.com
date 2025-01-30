@@ -37,7 +37,7 @@ class View {
     // main content
     let PageHTMLElement = document.createElement('div');
     PageHTMLElement.setAttribute('id', 'page');
-    PageHTMLElement.setAttribute('class', 'w-full lg:w-4/6 min-w-[650px] overflow-y-auto overflow-x-auto border-r border-l border-gray-300');
+    PageHTMLElement.setAttribute('class', 'w-full lg:w-4/6 min-w-[650px] overflow-y-auto overflow-x-auto border-r border-l border-gray-300 mb-5');
 
     // right side bar
     let SideBarRightHTMLElement = document.createElement('div');
