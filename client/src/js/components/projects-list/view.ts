@@ -5,8 +5,6 @@ import Config from '../../config'
 import ILanguage from '../interfaces/ILanguage';
 import IProject from '../interfaces/IProject';
 
-import TagsGartenModel from "../tags-garten/model";
-import TagsGartenView from "../tags-garten/view";
 
 /**
  * View for component Project List
@@ -22,6 +20,9 @@ class View {
 
     //console.log('project', project)
 
+    if(project === null || project === undefined){
+      return;
+    }
     const languages = `
     ${project.node.languages.nodes.map((language: ILanguage) => {      
       if(language.name === 'JavaScript'
@@ -47,9 +48,27 @@ class View {
 
   async appendProjectsList (projects: IProject[]) {
     
-    //console.log('projects', projects)
-    const tags = await new TagsGartenModel().getTags();
-    
+    //console.log('projects', projects)    
+
+        // if articlesList is null or undefined
+        if (projects === null || projects === undefined) {
+          return /* html */`
+          <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">              
+              <article>
+                <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
+                  Projects:
+                </h4>
+                <ul>
+                  <li class=" text-blue-400 hover:font-bold">
+                    <a href="/Error502">
+                      No articles available
+                    </a>                      
+                  </li>
+                </ul>
+              </article>
+            </div>
+          `
+        }
     const view = await /* html */`                                                                  
                   <!-- Projects content -->                                    
                     <div class="font-sans text-base antialiased leading-7 z-0 mb-5">                    

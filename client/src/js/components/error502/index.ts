@@ -1,25 +1,33 @@
 'use strict'
+import Model from './model'
+import View from './view'
 
 /**
-* Controller for component Error502
-* @returns html to view error 502 then we have some error
-*/
+ * controller Footer
+ * @param model
+ * @param view
+ * @return html to view footer
+ */
 
 class Error502 {
-  async render () {
-    const view = /* html */`        
-       <div class="items-center justify-center mt-20">          
-      <div 
-        class="error" 
-        data-text="502">
-          502
-        </div>        
-      </div>  
-        `
-    return view
-  }
+    model: Model;
+    view: View;
+    footer: string;
 
-  afterRender () {
-  }
+    constructor () {
+        this.model = new Model()
+        this.view = new View()
+        this.footer = ''
+    }
+
+    async render () {
+        this.footer = await this.view.appendPage()
+        return this.footer
+    }
+
+    afterRender () { 
+        //nothing
+    }
 }
+
 export default Error502

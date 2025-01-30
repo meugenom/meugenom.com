@@ -13,6 +13,26 @@ class View {
 
     const list: IArticle[] = [];
 
+    // if articlesList is null or undefined
+    if (articlesList === null || articlesList === undefined) {
+      return /* html */`
+      <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">              
+          <article>
+            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
+              Articles:
+            </h4>
+            <ul>
+              <li class=" text-blue-400 hover:text-blue-400">
+                <a href="/Error502">
+                  No articles available
+                </a>                      
+              </li>
+            </ul>
+          </article>
+        </div>
+      `
+    }
+
     // from object to array
     Object.entries(articlesList).forEach(([key, value]) => {      
       (value as unknown as any[]).map((article: any) => {        
