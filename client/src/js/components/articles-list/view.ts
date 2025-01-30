@@ -18,9 +18,9 @@ class View {
       return /* html */`
       <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">              
           <article>
-            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
+            <h1 class="text-3xl font-normal leading-normal mt-5">
               Articles:
-            </h4>
+            </h1>
             <ul>
               <li class=" text-blue-400 hover:text-blue-400">
                 <a href="/Error502">

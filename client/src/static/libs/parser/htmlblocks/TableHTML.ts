@@ -13,9 +13,13 @@ export class TableHTML {
     }
 
     private createTableHead(headArray: string[]): string {
-        let tableHead = "<thead><tr>";
+        let tableHead = `<thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                         <tr>
+                         `;
         headArray.forEach(head => {
-            tableHead += `<th class="bg-blue-100 border text-left px-8 py-4">${head}</th>`;
+            tableHead += `<th class="px-6 py-3">
+                ${head}
+                </th>`;
         });
         return tableHead + '</tr></thead>';
     }
@@ -32,7 +36,7 @@ export class TableHTML {
         const children = this.token.children;
         let table = '';
         let tableNode = this.DomUtilites.createElement("table");
-        tableNode.className = "shadow-lg bg-white mb-4 text-light-text";
+        tableNode.className = "w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400";
 
         for (let i = 0; i < children.length; i++) {
             let rowArray = children[i].value.split("|");

@@ -53,11 +53,11 @@ class View {
         // if articlesList is null or undefined
         if (projects === null || projects === undefined) {
           return /* html */`
-          <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">              
+          <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0">              
               <article>
-                <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
+                <h1 class="text-2xl font-normal leading-normal ml-5">
                   Projects:
-                </h4>
+                </h1>
                 <ul>
                   <li class=" text-blue-400 hover:font-bold">
                     <a href="/Error502">
@@ -71,24 +71,24 @@ class View {
         }
     const view = await /* html */`                                                                  
                   <!-- Projects content -->                                    
-                    <div class="font-sans text-base antialiased leading-7 z-0 mb-5">                    
+                    <div class="font-sans text-base antialiased leading-7 z-0">                    
                           <article>
-                            <h4 class="text-2xl font-normal leading-normal mt-1 mb-1 ml-12">
+                            <h1 class="text-2xl font-normal leading-normal ml-5">
                               Projects:
-                            </h4>
+                            </h1>
                                                                             
-                            <ul class="grid justify-items-center grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 gap-6 w-full mt-10 overflow-y-scroll">                              
+                            <ul class="grid justify-items-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 gap-6 w-full mt-5 overflow-y-scroll">
                             
                             ${projects.map((project: { node: any }) => /* html */`                                                        
                                   <li>                          
                                     <div class="shadow-lg hover:shadow-md  
                                       light:bg-light-background dark:bg-dark-background                                      
                                       rounded-lg overflow-hidden relative" 
-                                      style = "height: 450px; width: 302px; border: 1px solid #e2e8f0;">
+                                      style = "height: 400px; width: 250px; border: 1px solid #e2e8f0;">
                                       <img
                                         class="object-cover w-full h-48 w-70max-w-70 min-w-70"
                                         src="${project.node.openGraphImageUrl}"
-                                        alt="project_picture"/>
+                                        alt="language-svg"/>
                                         
                                         <div class="absolute" style="top: 0px; right: 0px;">
                                           ${this.renderLanguages(project)}
@@ -119,15 +119,14 @@ class View {
 
                                         ):("")}
 
-
                                         <div class="relative p-4 h-60 max-h-60">
-                                          <h3 class="text-base md:text-xl font-medium underline decoration-pink-500">
+                                          <h1 class="text-base font-medium underline decoration-pink-500 -mt-3 -mb-3">
                                             ${project.node.name}
-                                          </h3>
-                                          <p class="mt-4 text-base md:text-xs">
-                                            (updated ${new Date(project.node.pushedAt).getDate()}.
-                                                     ${new Model().getMonth(new Date(project.node.pushedAt).getMonth())}.
-                                                      ${new Date(project.node.pushedAt).getFullYear()})
+                                          </h1>
+                                          <p class="mt-4 text-base md:text-xs font-bold">
+                                            updated: ${new Date(project.node.pushedAt).getDate()}-
+                                                     ${new Model().getMonth(new Date(project.node.pushedAt).getMonth())}-
+                                                     ${new Date(project.node.pushedAt).getFullYear()}
                                           </p>
 
                                           <p>
@@ -151,7 +150,7 @@ class View {
                                             </a>`
                                             )}
                                           </p>
-                                          <p className="mt-2 text-base md:text-sx text-gray-600">
+                                          <p class="mt-2 text-sm">
                                             ${project.node.description}
                                           </p>                                        
                                         </div>
