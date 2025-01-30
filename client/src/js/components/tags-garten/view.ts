@@ -83,15 +83,15 @@ class View {
               ${letters.map((letter: any) => 
                 /* html */
                 `              
-                <li class="text-slate-600 font-medium hover:text-blue-600">
-                  <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
+                <li class="text-slate-600 hover:text-blue-600">
+                  <span class="text-[8px] font-semibold py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
                   ${letter.letter}
                   </span>                    
                     ${letter.tags.map((tag: any) => 
                     `
                       <a key="${tag.name}" 
                         href="${`#/tag/${tag.name}`}"
-                        class="text-xx font-medium inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">                        
+                        class="text-[8px] font-semibold py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">                        
                         ${tag.name}
                       </a>                                              
                     `).join('')}
