@@ -18,9 +18,9 @@ class View {
       return /* html */`
       <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">              
           <article>
-            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
+            <h1 class="text-3xl font-normal leading-normal mt-5">
               Articles:
-            </h4>
+            </h1>
             <ul>
               <li class=" text-blue-400 hover:text-blue-400">
                 <a href="/Error502">
@@ -57,19 +57,17 @@ class View {
                   ${article.title.substring(1, article.title.length - 1)}
                 </a>                      
                 &nbsp;
-                &nbsp;
                 <span class="tag-container">
                   ${article.tags.split(" ").map((tag: any) => 
                   `
                   <a href="${`#/tag/${tag}`}"                
-                  class="text-xx font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">
+                  class="text-[8px] font-semibold py-1 px-1 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">
                   ${tag}
               </a>`).join('')}
               
             </span>
             &nbsp;
-            &nbsp;
-            <span class="invisible md:visible text-xx font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
+            <span class="invisible lg:visible text-[8px] font-semibold py-1 px-1 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
               ${article.date}
             </span>
           </li>
