@@ -17,7 +17,7 @@ class View {
     // add layout html nodes
     let layoutAboveHTMLElement = document.createElement('div');
     layoutAboveHTMLElement.setAttribute('id', 'layout');
-    layoutAboveHTMLElement.setAttribute('class', 'h-screen overflow-hidden');
+    layoutAboveHTMLElement.setAttribute('class', 'h-screen');
 
     let layoutMiddleHTMLElement = document.createElement('div');
     layoutMiddleHTMLElement.setAttribute('class', 'flex justify-center items-center h-full');
@@ -37,7 +37,7 @@ class View {
     // main content
     let PageHTMLElement = document.createElement('div');
     PageHTMLElement.setAttribute('id', 'page');
-    PageHTMLElement.setAttribute('class', 'w-full lg:w-4/6 min-w-[660px] overflow-y-auto h-full border-r border-l border-gray-300 px-5');
+    PageHTMLElement.setAttribute('class', 'w-full lg:w-4/6 min-w-[650px] overflow-y-auto overflow-x-auto border-r border-l border-gray-300');
 
     // right side bar
     let SideBarRightHTMLElement = document.createElement('div');

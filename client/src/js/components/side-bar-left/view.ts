@@ -12,7 +12,7 @@ class View {
     
     const view = await /* html */`    
           <!-- Left Sidebar (hidden on small screens) -->
-          <div class="hidden lg:block w-full md:w-1/6 min-w-[300px] max-w-[300px] sidebar">
+          <div class="hidden lg:block w-full sm:w-1/6 min-w-[300px] max-w-[300px] sidebar">
             <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
             
             <aside class="w-64 p-6 flex flex-col items-center">
