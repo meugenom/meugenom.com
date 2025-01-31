@@ -14,11 +14,16 @@ pipeline {
             }
         }
 
-        stage('Change Directory') {
-            steps {
-                sh 'npm install --prefix client'
+    stage('Install Dependencies') {
+        tools {
+            nodejs 'NodeJS' 
+        }
+        steps {
+            dir('client') { 
+                sh 'npm install'
             }
         }
+    }
 
         stage('Build Frontend') {
             steps {
