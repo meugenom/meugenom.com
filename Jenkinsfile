@@ -4,10 +4,8 @@ pipeline {
     stages {
 
         stage('Update Repository') {
-            steps {
-                script {
-                    sh 'cd /var/lib/jenkins/workspace/meugenom.com && git pull'
-                }
+            steps {                
+                sh 'cd /var/lib/jenkins/workspace/meugenom.com && git pull'                
             }
         }
 
