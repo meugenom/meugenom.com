@@ -3,9 +3,17 @@ pipeline {
 
     stages {
 
+        stage('Update Repository') {
+            steps {
+                script {
+                    sh 'cd /var/lib/jenkins/workspace/meugenom.com && git pull origin main'
+                }
+            }
+        }
+
         stage('Copy .env to client directory') {
             steps {
-                sh 'cp /home/eugen/www/meugenom.com.env/client client/.env'
+                sh 'cp /home/eugen/www/meugenom.com.env/client/.env /var/lib/jenkins/workspace/meugenom.com/client/.env'
             }
         }
 
