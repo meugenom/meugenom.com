@@ -6,14 +6,14 @@ pipeline {
         stage('Update Repository') {
             steps {
                 script {
-                    sh 'cd /var/lib/jenkins/workspace/meugenom.com && git pull origin main'
+                    sh 'cd /var/lib/jenkins/workspace/meugenom.com && git pull origin master'
                 }
             }
         }
 
         stage('Copy .env to client directory') {
             steps {
-                 sh 'cp /var/lib/jenkins/workspace/meugenom.com.env/.env /var/lib/jenkins/workspace/meugenom.com/client/.env'
+                sh 'cp /var/lib/jenkins/workspace/meugenom.com.env/.env /var/lib/jenkins/workspace/meugenom.com/client/.env'
             }
         }
 
