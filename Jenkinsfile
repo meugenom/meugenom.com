@@ -14,15 +14,23 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Change Directory') {
             steps {
-                sh 'cd client && npm install'
+                sh 'cd client'
             }
         }
 
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        
+
         stage('Build Frontend') {
             steps {
-                sh 'cd client && npm run build'
+                sh 'npm run build'
             }
         }
 
