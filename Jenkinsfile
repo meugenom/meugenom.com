@@ -6,7 +6,7 @@ pipeline {
         stage('Update Repository') {
             steps {
                 script {
-                    sh 'cd /var/lib/jenkins/workspace/meugenom.com && git pull origin master'
+                    sh 'cd /var/lib/jenkins/workspace/meugenom.com && git pull'
                 }
             }
         }
