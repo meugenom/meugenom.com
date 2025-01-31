@@ -5,7 +5,9 @@ pipeline {
 
         stage('Copy .env to client directory') {
             steps {
-                sh 'cp /var/lib/jenkins/workspace/meugenom.com.env/.env /var/lib/jenkins/workspace/meugenom.com/client/.env'
+                fileOperations([
+                    fileCopyOperation(sourceFiles: '/var/lib/jenkins/workspace/meugenom.com.env/.env', targetLocation: '/var/lib/jenkins/workspace/meugenom.com/client/')
+                ])                
             }
         }
 
