@@ -7,7 +7,7 @@ pipeline {
             steps {
                 fileOperations([
                     fileCopyOperation(
-                        includes: '/home/eugen/www/meugenom.com.env/client/.env',
+                        includes: 'meugenom.com.env/client/.env',
                         targetLocation: 'client/.env'
                     )
                 ])
