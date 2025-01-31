@@ -15,11 +15,8 @@ pipeline {
         }
 
     stage('Install Dependencies') {
-        tools {
-            nodejs 'node' 
-        }
         steps {
-            dir('client') { 
+            dir('client') {
                 sh 'npm install'
             }
         }
