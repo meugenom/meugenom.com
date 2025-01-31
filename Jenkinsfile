@@ -16,17 +16,9 @@ pipeline {
 
         stage('Change Directory') {
             steps {
-                sh 'cd client'
+                sh 'npm install --prefix client'
             }
         }
-
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
-        
 
         stage('Build Frontend') {
             steps {
