@@ -13,7 +13,7 @@ pipeline {
 
         stage('Copy .env to client directory') {
             steps {
-                sh 'cp /home/eugen/www/meugenom.com.env/client/.env /var/lib/jenkins/workspace/meugenom.com/client/.env'
+                 sh 'cp /var/lib/jenkins/workspace/meugenom.com.env/.env /var/lib/jenkins/workspace/meugenom.com/client/.env'
             }
         }
 
