@@ -16,7 +16,7 @@ pipeline {
 
     stage('Install Dependencies') {
         tools {
-            nodejs 'NodeJS' 
+            nodejs 'NodeJS 16.20.2' 
         }
         steps {
             dir('client') { 
