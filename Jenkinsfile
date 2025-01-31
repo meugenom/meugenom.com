@@ -5,7 +5,7 @@ pipeline {
 
         stage('Copy .env to client directory') {
             steps {
-                sh 'cp /home/eugen/www/meugenom.com.env client/.env'
+                sh 'cp /home/eugen/www/meugenom.com.env/client client/.env'
             }
         }
 
