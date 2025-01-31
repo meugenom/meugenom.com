@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Copy .env to client directory') {
             steps {
                 sh 'cp /home/eugen/www/meugenom.com.env client/.env'
@@ -34,15 +35,15 @@ pipeline {
         }
 
         stage('Start Backend') {
-            script {
-            def processId = sh(script: "pgrep -f 'target/spring-data-graphql*'", returnStdout: true).trim()
-            if (processId) {
-                sh "kill -9 ${processId}"  // Kill old process
+            steps {
+                script {
+                    def processId = sh(script: "pgrep -f 'target/spring-data-graphql*'", returnStdout: true).trim()
+                    if (processId) {
+                        sh "kill -9 ${processId}"  // Kill old process
+                    }
+                    sh 'cd server && ./start-prod-server-background.sh'
                 }
             }
-            steps {
-                sh 'cd server && ./start-prod-server-background.sh'
-            }
-        }
+        }   
     }
 }
