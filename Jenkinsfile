@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Update Repository') {
-            steps {                
-                sh 'rm -rf /var/lib/jenkins/workspace/meugenom.com'                
-            }
-        }
-
         stage('Copy .env to client directory') {
             steps {
                 sh 'cp /var/lib/jenkins/workspace/meugenom.com.env/.env /var/lib/jenkins/workspace/meugenom.com/client/.env'
@@ -27,9 +21,14 @@ pipeline {
             }
         }
 
-        stage('Start Frontend') {
+        stage('Delete Frontend Server from runtime') {
             steps {
-                sh 'pm2 delete meugenom-server.js || true'
+                sh 'pm2 delete meugenom-server.js || true'                
+            }
+        }
+
+        stage('Statr Frontend Server in the PM2') {
+            steps {
                 sh 'pm2 restart frontend || pm2 start client/meugenom-server.js'
             }
         }
