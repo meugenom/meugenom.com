@@ -33,8 +33,7 @@ class View {
                 I've learned a lot from the world, and I want to share my knowledge and motivation through this site.
               </p>  
               <p>
-                My website has no ads, sponsors, no affilated links, no tracking or analytics, 
-                no paywell or sponsored posts.
+                My website has no ads, sponsors, no affilated links, no paywell or sponsored posts.
                 I want to create a space where I can freely share my thoughts and ideas. My goal is to inspire others to build their own projects and share them with the world.              
               </p>
               <p>
