@@ -23,7 +23,7 @@ export class Grammar {
 		COLOR: /((.?)[^\s]+)\.(blue|gray|red|green|yellow|indigo|purple|pink)/g,
 
 		// badge
-		BADGE: /((.?)[^\s]+)\@(blue|gray|red|green|yellow|indigo|purple|pink)/g,
+		BADGE: /((.?)[^\s]+)\|(blue|gray|red|green|yellow|indigo|purple|pink)/g,
 
 		// list		
 		LIST: /\S.*:\n(\s*(-|\[\]|\[.\])\s*\S.*){1,20}/g,
