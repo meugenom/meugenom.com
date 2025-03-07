@@ -1,5 +1,4 @@
-module.exports = {
-	//content: ['./src/**/*.{html,js,ts}'],
+module.exports = {	
 	prefix: '',
 	important: false,
 	separator: ':',
@@ -12,20 +11,7 @@ module.exports = {
 	],
 
 	theme: {
-		extend: {
-			colors: {
-			  light: {
-				background: '#FFFFFF', // Light Background
-				text: '#000000', // Text
-				title: '#FFFFFF', // Title
-			  },
-			  dark: {
-				background:  '#1C202A', // Dark Background
-				text: '#E2EAF4', // Text
-				title: '#1C202A', // Title
-			  },
-			},
-		},
+		extend: {		
 		
 			screens: {
 			  sm: '640px',
@@ -62,17 +48,7 @@ module.exports = {
 			  purple: colors.purple,
 			  fuchsia: colors.fuchsia,
 			  pink: colors.pink,
-			  rose: colors.rose,
-			  light: {
-				background: '#FFFFFF', // Light Background
-				text: '#000000', // Text
-				title: '#FFFFFF', // Title
-			  },
-			  dark: {
-				background:  '#1C202A', // Dark Background
-				text: '#ffffff', // Text
-				title: '#1C202A', // Title
-			  },
+			  rose: colors.rose			  
 			}),
 			columns: {
 			  auto: 'auto',
@@ -996,4 +972,5 @@ module.exports = {
 		  },
 		  plugins: [],
 		}
+	}
   
