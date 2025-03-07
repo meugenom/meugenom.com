@@ -10,34 +10,34 @@ tags: macos shortcuts
 
 # Mac OS Shortcuts
 
-Spotlight search: ⌘Space@yellow
-Character Viewer: ⌃⌘Space@yellow
-Force quit an app: ⌥⌘Esc@yellow
-Lock screen: ⌃⌘Q@yellow
-Show or hide the Dock: ⌥⌘D@yellow
-Show all windows: ⌃Arrow-Up@yellow
-Show all windows of the front app: ⌃Arrow-Down@yellow
-Forward delete: fnDelete@yellow
-Paste without formatting: ⇧⌘V@yellow
+Spotlight search: ⌘|yellow + Space|yellow
+Character Viewer: ⌃|yellow + ⌘|yellow + Space|yellow
+Force quit an app: ⌥|yellow + ⌘|yellow + Esc|yellow
+Lock screen: ⌃|yellow + ⌘|yellow + Q|yellow
+Show or hide the Dock: ⌥|yellow + ⌘|yellow + D|yellow
+Show all windows: ⌃|yellow + Arrow-Up|yellow
+Show all windows of the front app: ⌃|yellow + Arrow-Down|yellow
+Forward delete: fn|yellow + Delete|yellow
+Paste without formatting: ⇧|yellow + ⌘|yellow + V|yellow
 
 ### Screenshot
 
-Open Screenshot app: ⇧⌘5@red
-Save screenshot of the screen: ⇧⌘3@red
-Save screenshot of a portion of screen: ⇧⌘4@red
-Save screenshot of a window: ⇧⌘4Space@red
-Copy screenshot of the screen: ⇧⌃⌘3@red
-Copy screenshot of a portion of screen: ⇧⌃⌘4@red
-Copy screenshot of a window: ⇧⌃⌘4Space@red
+Open Screenshot app: ⇧|red + ⌘|red + 5|red
+Save screenshot of the screen: ⇧|red + ⌘|red + 3|red
+Save screenshot of a portion of screen: ⇧|red + ⌘|red + 4|red
+Save screenshot of a window: ⇧|red + ⌘|red + 4|red + Space|red
+Copy screenshot of the screen: ⇧ ⌃|red + ⌘|red + 3|red
+Copy screenshot of a portion of screen: ⇧|red + ⌃|red + ⌘|red + 4|red
+Copy screenshot of a window: ⇧|red + ⌃|red + ⌘|red + 4|red + Space|red
 
 ### Finder
 
-Open the home folder: ⇧⌘H@purple
-Open the desktop folder. ⇧⌘D@purple
-Open the parent folder: ⌘Arrow-Up@purple
-Go to the previous folder: ⌘[@purple
-Go to the next folder: ⌘]@purple
-Show or hide hidden files: ⇧⌘@purple
+Open the home folder: ⇧|purple + ⌘|purple + H|purple
+Open the desktop folder. ⇧|purple + ⌘|purple + D|purple
+Open the parent folder: ⌘|purple + Arrow-Up|purple
+Go to the previous folder: ⌘|purple [|purple
+Go to the next folder: ⌘|purple + ]|purple
+Show or hide hidden files: ⇧|purple + ⌘|purple
 
 
 ### Used Photo

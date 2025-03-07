@@ -395,8 +395,8 @@ export class Tokenizer {
 
 			badges?.forEach((badge: string) => {
 
-				const body = badge.split("@")[0];
-				const colorName: any = badge.split("@")[1];
+				const body = badge.split("|")[0];
+				const colorName: any = badge.split("|")[1];
 
 				const badgeToken = {} as Token.bagdeToken;
 				badgeToken.type = TokenType.BADGE;

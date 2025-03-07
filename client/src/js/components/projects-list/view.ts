@@ -123,7 +123,7 @@ class View {
                                           <h1 class="text-base font-medium underline decoration-pink-500 -mt-3 -mb-3">
                                             ${project.node.name}
                                           </h1>
-                                          <p class="mt-4 text-base md:text-xs font-bold">
+                                          <p class="mt-4 text-xs font-bold">
                                             updated: ${new Date(project.node.pushedAt).getDate()}-
                                                      ${new Model().getMonth(new Date(project.node.pushedAt).getMonth())}-
                                                      ${new Date(project.node.pushedAt).getFullYear()}

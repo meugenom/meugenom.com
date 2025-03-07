@@ -82,7 +82,7 @@ class Article {
         script.setAttribute('repo', 'meugenom/comments');
         script.setAttribute('issue-term', 'title');
         script.setAttribute('label', 'comments');
-        script.setAttribute('theme', 'github-light');
+        script.setAttribute('theme', 'photon-dark');
         script.setAttribute('crossorigin', 'anonymous');
         script.async = true;
 

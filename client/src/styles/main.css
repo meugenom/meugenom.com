@@ -1,14 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@import "tailwindcss";
 
 
-@import url('./base/comments.css');
-@import url('./base/errors.css');
-@import url('./base/loader.css');
-@import url('./base/navbar.css');
-@import url('./base/social-links.css');
 
+@import './base/comments.css';
+@import './base/errors.css';
+@import './base/loader.css';
+@import './base/navbar.css';
+@import './base/social-links.css';
 
 
 .no-inherit-font-size {
@@ -18,13 +17,13 @@
 /* Themes */
 
 .dark {
-  @apply bg-dark-background;
-  @apply text-dark-text;
+  background-color: theme('colors.black');
+  color: theme('colors.gray.300');    
 }
 
 .light {
-  @apply bg-light-background;
-  @apply text-light-text;
+  background-color: theme('colors.neutral.100');
+  color: theme('colors.gray.800');
 }
 
 /*clearfix for checkboxes*/

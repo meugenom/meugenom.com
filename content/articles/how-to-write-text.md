@@ -225,19 +225,19 @@ Lorem.green ipsum.indigo dolor.red sit amet.purple , consectetur.pink adipisicin
 ## Color Badges
 
 \*
-	Blue@blue color
-	Gray@gray color
-	Red@red color
-	Green@green color
-	Yellow@yellow color
-	Indigo@indigo color 
-	Purple@purple color
-	Pink@pink color
+	Blue|blue color
+	Gray|gray color
+	Red|red color
+	Green|green color
+	Yellow|yellow color
+	Indigo|indigo color 
+	Purple|purple color
+	Pink|pink color
 \* 
 
 in out:
 
-Lorem@green ipsum@indigo dolor@red sit amet@purple , consectetur@pink adipisicing@yellow elit.
+Lorem|green ipsum|indigo dolor|red sit amet|purple , consectetur|pink adipisicing|yellow elit mango@y.com|blue.
 
 ## Ignoring Markdown formatting
 

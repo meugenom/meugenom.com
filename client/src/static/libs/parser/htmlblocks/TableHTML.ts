@@ -1,5 +1,6 @@
 import * as Token from "../Token";
 import { DomUtilites } from "./DomUtilites";
+import "../static/styles/table.css";
 
 export class TableHTML {
     private DomUtilites: DomUtilites;
@@ -13,7 +14,7 @@ export class TableHTML {
     }
 
     private createTableHead(headArray: string[]): string {
-        let tableHead = `<thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        let tableHead = `<thead class="text-xs uppercase">
                          <tr>
                          `;
         headArray.forEach(head => {
@@ -36,7 +37,7 @@ export class TableHTML {
         const children = this.token.children;
         let table = '';
         let tableNode = this.DomUtilites.createElement("table");
-        tableNode.className = "w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400";
+        tableNode.className = "w-full text-sm text-left rtl:text-right";
 
         for (let i = 0; i < children.length; i++) {
             let rowArray = children[i].value.split("|");
