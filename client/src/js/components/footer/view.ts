@@ -17,7 +17,7 @@ class View {
                     ">
             <div class="flex justify-center">
                 <div class="text-sm align-middle text-center pt-5">
-                    © 2025 &nbsp;
+                    meugenom 2025 &nbsp;
                 </div>
                 <div class="flex justify-center mt-0">
                     <div class="social-buttons">`
