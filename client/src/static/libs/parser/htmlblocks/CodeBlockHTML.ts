@@ -39,7 +39,6 @@ export class CodeBlockHTML {
 		
 		const CodeBlockNode = this.DomUtilites.createElement("pre");
 		CodeBlockNode.className = `"+language-${this.token.language} border-r border-l border-t border-b border-gray-300 rounded-md overflow-x-auto"`;		
-		CodeBlockNode.style.backgroundColor = "#d1d5db";
 		
 		Prism.highlightAll(codeBlock);
 
