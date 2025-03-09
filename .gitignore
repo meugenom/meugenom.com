@@ -5,7 +5,13 @@ server/.factorypath
 server/target
 client/dist
 client/build
-client/node_modules
+client/node_modules/
+node_modules/
+client/.vscode
+client/.env
+client/.idea
+client/.git
+client/.gitignore
 client/node
 client/temp
 client/*.log
@@ -15,4 +21,5 @@ client/.env
 content/articles/how-to-write-text.md
 content/articles/mac-os-shortcuts.md
 nginx/
+client/coverage
 
