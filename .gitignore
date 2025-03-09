@@ -22,4 +22,5 @@ content/articles/how-to-write-text.md
 content/articles/mac-os-shortcuts.md
 nginx/
 client/coverage
+client/package-lock.json
 
