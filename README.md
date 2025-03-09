@@ -89,6 +89,18 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 	}
 ```
 
+### Frontend Tests:
+
+For testing web client is used jest framework in the `/client`
+
+```
+	npm run test
+```
+or run to see tests coverage:
+```
+	npm run test --coverage
+```
+
 ### How to see web page:
 
 open web browser with link:  http://localhost:8080 after starting both servers (front and back).
