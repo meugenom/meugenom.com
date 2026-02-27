@@ -64,6 +64,7 @@
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
     "file-loader": "^6.2.0",
+    "katex": "^0.16.33",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.5.3",
     "postcss-import": "^15.1.0",
