@@ -31,6 +31,6 @@ type QueryType {
   articlesList: [Article]
   tagsList: [Tag]
   articlesListByTag(tag: String) : [Article]  
-  getArticleById(id: Long) : Article
+  getArticleById(id: Int) : Article
   getAllSpecificationTextByArticleSlug(slug: String) : String
 }

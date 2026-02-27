@@ -8,7 +8,7 @@ import com.meugenom.article.repository.ArticleRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 
 /**
  * @author meugenom graphqlquery file implements graphqlqueryresolver and
@@ -86,11 +86,11 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 	 * @param id
 	 * @return all fields of article by articles id
 	 */
-	public Article getArticleById(Long id) {
+	public Article getArticleById(Integer id) {
 		List<Article> articles = new ArrayList<Article>();
 		articles = (List<Article>) articleRepository.findAll();
 		Article result = articles.stream().filter(a -> {
-			if (id == a.getId()) {
+			if (id.longValue() == a.getId()) {
 				return true;
 			}
 			return false;

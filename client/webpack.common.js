@@ -29,10 +29,23 @@ module.exports = {
       },
 	  {
 		test: /\.css$/i,
-		use: [
-			devMode ? "style-loader" : MiniCssExtractPlugin.loader,
-			'css-loader',
-			"postcss-loader",
+		oneOf: [
+		  {
+			// Third-party CSS inside parser libs — no Tailwind/postcss needed
+			include: path.resolve(__dirname, 'src/static/libs'),
+			use: [
+				devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+				'css-loader',
+			],
+		  },
+		  {
+			// Own styles processed through postcss / Tailwind
+			use: [
+				devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+				'css-loader',
+				"postcss-loader",
+			],
+		  },
 		],
 	  },
       {
