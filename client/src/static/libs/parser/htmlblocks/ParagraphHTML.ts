@@ -47,7 +47,7 @@ export class ParagraphHTML {
 			if (child.type == TokenType.LINK) {
 				text = text + `<a href="${child.url}" class="text-blue-500">
 					${child.name}
-					<a/>`
+					</a>`
 			}
 
 			if (child.type == TokenType.STRONG) {

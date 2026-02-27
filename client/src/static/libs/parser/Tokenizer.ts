@@ -493,21 +493,20 @@ export class Tokenizer {
 
 	init = (): void => {
 
-		//need to find all paragraphs in the article and change them to tokens
-		const paragraphStartToken = {} as Token.paragraphStartToken;
-		paragraphStartToken.type = TokenType.PARAGRAPH_START;
-
-		const paragraphEndToken = {} as Token.paragraphEndToken;
-		paragraphEndToken.type = TokenType.PARAGRAPH_END;
-
 		//console.log(this.text);
-
 		//console.log(this.tokensMap);
 
 		this.text.split("\n").forEach((paragraph: string) => {
 			if (paragraph.length != 0
 				&& paragraph != undefined
 				&& paragraph.trim() != " ") {
+
+				// create new token objects per paragraph — do NOT share references
+				const paragraphStartToken = {} as Token.paragraphStartToken;
+				paragraphStartToken.type = TokenType.PARAGRAPH_START;
+				const paragraphEndToken = {} as Token.paragraphEndToken;
+				paragraphEndToken.type = TokenType.PARAGRAPH_END;
+
 				//console.log(paragraph);
 				this.tokens.push(paragraphStartToken);
 				paragraph.split(" ").forEach((word: string) => {

@@ -29,7 +29,11 @@ export class HeaderHTML {
 
 		if (this.token.children[0]) {
 
-			HeaderNode.innerHTML = this.token.children[0].value;
+			const headingText: string = this.token.children[0].value;
+			// Generate anchor id: lowercase, spaces → dashes, strip non-alphanumeric
+			const headingId = headingText.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+			HeaderNode.setAttribute('id', headingId);
+			HeaderNode.innerHTML = headingText;
 
 			const app = this.htmlOutput;
 			const elemChildren = app?.children
