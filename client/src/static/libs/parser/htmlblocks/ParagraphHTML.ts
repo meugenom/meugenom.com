@@ -6,6 +6,7 @@
  * @return dom element for headType <h?/> for example <h?> ...<h?>
  */
 
+import * as katex from 'katex';
 import { TokenType } from "../Types";
 import { DomUtilites } from "./DomUtilites";
 
@@ -61,6 +62,17 @@ export class ParagraphHTML {
 					${child.value.substring(1, child.value.length - 1)}
 				</code>
 				`
+			}
+
+			if (child.type === TokenType.FORMULA_INLINE) {
+				try {
+					text = text + ' ' + katex.renderToString(child.formula, {
+						displayMode: false,
+						throwOnError: false
+					});
+				} catch (e) {
+					text = text + ' $' + child.formula + '$';
+				}
 			}
 
 			if (child.type == TokenType.COLOR) {

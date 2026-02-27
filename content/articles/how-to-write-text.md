@@ -50,6 +50,28 @@ How to use:
 How to use: This word is \* **strong** and **unknown for me** \*
 in out: This word is **strong** and **unknown for me**.
 
+## Formulas Inline
+
+\*
+Pythagoras Theorem $a^2 + b^2 = c^2$ in the text
+\*
+
+Pythagoras Theorem $a^2 + b^2 = c^2$ in the text
+
+
+## Formulas in the Block
+
+\*
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}\quad\(1.0)
+$$
+\*
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}\quad\(1.0)
+$$
+
+
 ## Code Block: 
 
 \*		

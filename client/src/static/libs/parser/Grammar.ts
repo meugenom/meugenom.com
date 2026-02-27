@@ -61,7 +61,7 @@ export class Grammar {
 		// horizontal line
 		UNDER_LINE: /(_{1})([^_.]+)(_{1})/g,
 
-		UNMARKABLE: /\\\*\s[^\\]+\\\*/g,
+		UNMARKABLE: /\\\*\s[\s\S]+?\\\*/g,
 
 		// bold text
 		STRONG: /\*\*([\w|\s]+)\*\*/g,
@@ -70,6 +70,9 @@ export class Grammar {
 
 		// table
 		TABLE: /((\|[\w\d\s]+)+\|)/g,
+
+		FORMULA_BLOCK: /\$\$([\s\S]+?)\$\$/g,
+		FORMULA_INLINE: /\$(?!\$)(?!token\.)([^$\n]+?)\$(?!\$)/g,
 
 		PARAGRAPH: /([^\n]+)/g,
 

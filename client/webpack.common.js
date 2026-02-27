@@ -30,9 +30,9 @@ module.exports = {
 	  {
 		test: /\.css$/i,
 		oneOf: [
-		  {
-			// Third-party CSS inside parser libs — no Tailwind/postcss needed
-			include: path.resolve(__dirname, 'src/static/libs'),
+	{
+		// Third-party CSS inside parser libs and katex — no Tailwind/postcss needed
+				include: [path.resolve(__dirname, 'src/static/libs'), path.resolve(__dirname, 'node_modules/katex')],
 			use: [
 				devMode ? "style-loader" : MiniCssExtractPlugin.loader,
 				'css-loader',
@@ -56,6 +56,10 @@ module.exports = {
         // path.resolve(__dirname, '/components/*/')
         // ],
         use: [MiniCssExtractPlugin.loader, 'css-loader', "postcss-loader"]
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)$/i,
+        type: 'asset/resource',
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,

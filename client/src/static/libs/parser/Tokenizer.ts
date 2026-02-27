@@ -30,6 +30,8 @@ export class Tokenizer {
 		| Token.codeInCodeToken
 		| Token.unmarkableToken
 		| Token.tableToken
+		| Token.formulaBlockToken
+		| Token.formulaInlineToken
 	)[];
 
 	public text: string;	
@@ -50,6 +52,7 @@ export class Tokenizer {
 		this.findUnmarkable();
 		this.findCodeInCode();
 		this.findCodeBlock();
+		this.findFormulaBlock();
 		this.findHeadings();
 		this.findQuotes();
 		this.findStrong();
@@ -58,6 +61,7 @@ export class Tokenizer {
 		this.findUnderlines();
 		this.findColors();
 		this.findBadges();
+		this.findFormulaInline();
 		this.findLists();
 		this.findTables();
 		this.init();
@@ -128,6 +132,34 @@ export class Tokenizer {
 			}
 		});
 		return;
+	}
+
+	//find block formulas $$...$$
+	private findFormulaBlock(): void {
+		const matches = this.text.match(Grammar.BLOCKS.FORMULA_BLOCK);
+		matches?.forEach((match: string) => {
+			const inner = match.slice(2, match.length - 2).trim();
+			const token = {} as Token.formulaBlockToken;
+			token.type = TokenType.FORMULA_BLOCK;
+			token.formula = inner;
+			const uuid = uuidv4();
+			this.tokensMap.set("$token." + uuid, token);
+			this.text = this.text.replace(match, ` $token.${uuid}`);
+		});
+	}
+
+	//find inline formulas $...$
+	private findFormulaInline(): void {
+		const matches = this.text.match(Grammar.BLOCKS.FORMULA_INLINE);
+		matches?.forEach((match: string) => {
+			const inner = match.slice(1, match.length - 1).trim();
+			const token = {} as Token.formulaInlineToken;
+			token.type = TokenType.FORMULA_INLINE;
+			token.formula = inner;
+			const uuid = uuidv4();
+			this.tokensMap.set("$token." + uuid, token);
+			this.text = this.text.replace(match, ` $token.${uuid} `);
+		});
 	}
 
 	//find simple code blocks

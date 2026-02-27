@@ -5,6 +5,7 @@
 /* eslint-disable no-new */
 'use strict'
 import "../styles/main.css";
+import 'katex/dist/katex.min.css';
 
 import Router from './router/router'
 import IRoutes from './components/interfaces/IRoutes'
