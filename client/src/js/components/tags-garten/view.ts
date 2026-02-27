@@ -84,14 +84,14 @@ class View {
                 /* html */
                 `              
                 <li class="text-slate-600 hover:text-blue-600">
-                  <span class="text-[8px] font-semibold py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
+                  <span class="text-[11px] font-mono font-semibold text-blue-400 mr-2">
                   ${letter.letter}
                   </span>                    
                     ${letter.tags.map((tag: any) => 
                     `
                       <a key="${tag.name}" 
                         href="${`#/tag/${tag.name}`}"
-                        class="text-[8px] font-semibold py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">                        
+                        class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500 last:mr-0 mr-1">                        
                         ${tag.name}
                       </a>                                              
                     `).join('')}

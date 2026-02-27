@@ -131,7 +131,7 @@ class View {
 
                                           <p>
                                             <a
-                                              class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400 hover:bg-slate-500 last:mr-0 mr-1"
+                                              class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500 last:mr-0 mr-1"
                                               href="${"https://github.com" + project.node.resourcePath}">
                                               Source
                                               <i class="bi bi-github"></i>
@@ -143,7 +143,7 @@ class View {
                                             ) : (
                                               `
                                             <a
-                                              class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 hover:bg-blue-500 last:mr-0 mr-1"
+                                              class="text-[11px] font-mono border border-blue-300 dark:border-blue-700 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-full hover:border-blue-500 hover:text-blue-600 last:mr-0 mr-1"
                                               href="${project.node.homepageUrl}">
                                               Show Web
                                               <i class="bi bi-browser-chrome"></i>

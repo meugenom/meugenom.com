@@ -53,11 +53,11 @@ class View {
                   ${article.tags.split(" ").map((tag: any) => 
                   `
                   <a href="${`#/tag/${tag}`}"                
-                  class="text-[8px] font-semibold py-1 px-1 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1">
+                  class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500 last:mr-0 mr-1">
                   #${tag}
               </a>`).join('')}              
             </span>        
-            <span class="invisible sm:visible text-[8px] font-semibold py-1 px-1 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1 ml-1">
+            <span class="invisible sm:visible text-[11px] font-mono border border-slate-200 dark:border-slate-700 text-slate-400 px-2 py-0.5 rounded-full ml-1">
               ${article.date}
             </span>
           </li>
