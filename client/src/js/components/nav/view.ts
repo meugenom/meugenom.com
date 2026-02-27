@@ -13,7 +13,7 @@ class View {
         <div class="container mx-auto border-b border-gray-300">
             <nav class="relative flex flex-wrap items-center justify-between py-3">
                 
-                <div class="px-4 mx-auto flex flex-wrap items-center justify-between mb-2 ml-2 hidden sm:flex">
+                <div class="px-4 mx-auto flex-wrap items-center justify-between mb-2 ml-2 hidden sm:flex">
                     
                     <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     

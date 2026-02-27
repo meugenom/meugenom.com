@@ -55,9 +55,9 @@ class View {
           return /* html */`
           <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0">              
               <article>
-                <h1 class="text-2xl font-normal leading-normal ml-5">
-                  Projects:
-                </h1>
+                <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+                  <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Projects</p>
+                </div>
                 <ul>
                   <li class=" text-blue-400 hover:font-bold">
                     <a href="/Error502">
@@ -73,11 +73,11 @@ class View {
                   <!-- Projects content -->                                    
                     <div class="font-sans text-base antialiased leading-7 z-0">                    
                           <article>
-                            <h1 class="text-2xl font-normal leading-normal ml-5">
-                              Projects:
-                            </h1>
+                            <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+                              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Projects</p>
+                            </div>
                                                                             
-                            <ul class="grid justify-items-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 gap-6 w-full mt-5 overflow-y-scroll">
+                            <ul class="grid justify-items-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6 w-full mt-5">
                             
                             ${projects.map((project: { node: any }) => /* html */`                                                        
                                   <li>                          
@@ -86,7 +86,7 @@ class View {
                                       rounded-lg overflow-hidden relative" 
                                       style = "height: 400px; width: 250px; border: 1px solid #e2e8f0;">
                                       <img
-                                        class="object-cover w-full h-48 w-70max-w-70 min-w-70"
+                                        class="object-cover w-full h-48"
                                         src="${project.node.openGraphImageUrl}"
                                         alt="language-svg"/>
                                         
@@ -131,7 +131,7 @@ class View {
 
                                           <p>
                                             <a
-                                              class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400  hover:bg-slate-500 uppercase last:mr-0 mr-1"
+                                              class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-slate-400 hover:bg-slate-500 last:mr-0 mr-1"
                                               href="${"https://github.com" + project.node.resourcePath}">
                                               Source
                                               <i class="bi bi-github"></i>
@@ -143,7 +143,7 @@ class View {
                                             ) : (
                                               `
                                             <a
-                                              class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400  hover:bg-blue-500 uppercase last:mr-0 mr-1"
+                                              class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 hover:bg-blue-500 last:mr-0 mr-1"
                                               href="${project.node.homepageUrl}">
                                               Show Web
                                               <i class="bi bi-browser-chrome"></i>

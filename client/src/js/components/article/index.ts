@@ -8,6 +8,7 @@
 import Model from './model'
 import ArticleView from './view'
 import Utils from '../services/utils'
+import SideBarLeftView, { TocHeading } from '../side-bar-left/view'
 
 // import parser for markable text
 import { Tokenizer } from "../../../static/libs/parser/Tokenizer";
@@ -27,28 +28,22 @@ import * as Prism from "prismjs";
 
 class Article {
     
-    private article: {
+    private article!: {
         spec: string
     };
-    private slug: string;
+    private slug!: string;
 
     constructor () {        
     }
 
     async render () {
-        
-        const request = new Utils().parseRequestURL()
-        //console.log(request)
-        this.slug = request.id;                
-        //console.log('slug', this.slug) 
 
-        //change url without reloading page
-        //window.history.replaceState({}, null, `/article/${slug}`);
+        const request = new Utils().parseRequestURL();
+        this.slug = request.id ?? '';
 
         this.article = await new Model().getArticle(this.slug);
-        const section = await new ArticleView().appendArticles();
-        return section;
 
+        return new ArticleView().appendArticles();
     }
 
     parse(article: string) {
@@ -68,37 +63,85 @@ class Article {
 
 
     async afterRender () {
-        // console.log('afterRender')
-        await this.parse(this.article.spec);        
-        await Prism.highlightAll();        
 
-        //set title page
+        // Set title FIRST — utterances reads document.title when the script loads
         document.title = this.slug;
 
-        // add utterances comments
-        const script = document.createElement('script');
-        script.src = 'https://utteranc.es/client.js';
-        script.type = 'application/javascript';
-        script.setAttribute('repo', 'meugenom/comments');
-        script.setAttribute('issue-term', 'title');
-        script.setAttribute('label', 'comments');
-        script.setAttribute('theme', 'photon-dark');
-        script.setAttribute('crossorigin', 'anonymous');
-        script.async = true;
-
-        // check if utterances comments is not already added
-        if((document.getElementById('utterance-comments').contains(script) == false) && 
-            (document.getElementById('utterance-comments').childElementCount == 0 )){            
-                await document.getElementById('utterance-comments').appendChild(script);
+        // Parse and highlight article content
+        try {
+            this.parse(this.article.spec);
+            Prism.highlightAll();
+        } catch (parseError) {
+            console.error('Error parsing article content:', parseError);
         }
-        
-        // lazy load images
+
+        // Build Table of Contents from parsed headings and inject into sidebar-left
+        this.renderToc();
+
+        // Attach utterances comments after browser has finished painting the article content
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                const utteranceEl = document.getElementById('utterance-comments');
+                if (utteranceEl && utteranceEl.childElementCount === 0) {
+                    const script = document.createElement('script');
+                    script.src = 'https://utteranc.es/client.js';
+                    script.type = 'application/javascript';
+                    script.setAttribute('repo', 'meugenom/comments');
+                    script.setAttribute('issue-term', 'title');
+                    script.setAttribute('label', 'comments');
+                    const currentTheme = localStorage.getItem('theme') || 'light';
+                    const utterancesTheme = currentTheme === 'dark' ? 'photon-dark' : 'github-light';
+                    script.setAttribute('theme', utterancesTheme);
+                    script.setAttribute('crossorigin', 'anonymous');
+                    script.async = true;
+                    utteranceEl.appendChild(script);
+                }
+            });
+        });
+
+        // Lazy load images
         const images = document.querySelectorAll('.lazy');
         images.forEach((img) => {
             Utils.lazyLoadImage(img as HTMLImageElement);
         });
-
     }
+    private renderToc(): void {
+        const articleEl = document.getElementById('article');
+        if (!articleEl) return;
+
+        const headingEls = articleEl.querySelectorAll('h1, h2, h3, h4');
+        if (headingEls.length === 0) return;
+
+        const headings: TocHeading[] = [];
+        headingEls.forEach((el) => {
+            const level = parseInt(el.tagName.replace('H', ''), 10);
+            const text = el.textContent?.trim() ?? '';
+            const id = el.getAttribute('id') ?? '';
+            if (text && id) headings.push({ level, text, id });
+        });
+
+        const sidebarEl = document.getElementById('side-bar-left');
+        if (!sidebarEl) return;
+
+        sidebarEl.innerHTML = new SideBarLeftView().renderToc(headings);
+
+        // Show left border on #page only when sidebar-left is present
+        const pageEl = document.getElementById('page');
+        if (pageEl) pageEl.classList.add('border-l');
+
+        sidebarEl.querySelectorAll<HTMLElement>('.toc-link').forEach((link) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('data-tocid');
+                if (!targetId) return;
+                const target = document.getElementById(targetId);
+                if (target && pageEl) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    }
+
 }
 
 export default Article

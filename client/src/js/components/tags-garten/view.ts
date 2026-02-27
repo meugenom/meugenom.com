@@ -23,9 +23,9 @@ class View {
       return `
       <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
           <article>
-            <h1 class="text-3xl font-normal leading-normal mt-0 mb-2">
-              Tags Garten:
-            </h1>
+            <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Tags Garten</p>
+            </div>
             <ul>
               <li class="text-blue-400 hover:text-bold">
                 <a href="#/tag/">
@@ -75,9 +75,9 @@ class View {
     const view = /* html */`      
       <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
           <article>
-            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
-              Tags Garten:
-            </h4>
+            <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Tags Garten</p>
+            </div>
             <ul>
 
               ${letters.map((letter: any) => 

@@ -18,9 +18,9 @@ class View {
         <div class="mx-10 font
         -sans text-base antialiased leading-7 z-0">
           <article>
-            <h1 class="text-2xl font-normal leading-normal mt-0 mb-2">
-              No writings found.
-            </h1>
+            <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">No writings found</p>
+            </div>
           </article>
         </div>
       `
@@ -38,9 +38,9 @@ class View {
     const view = /* html */`
       <div class="mx-10 font-sans text-base antialiased leading-7 z-0">      
           <article>
-            <h1 class="text-2xl font-normal leading-normal mt-0 mb-2">
-              Writings found:
-            </h1>
+            <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Found</p>
+            </div>
             <ul class="list-decimal">
 
               ${list.map((article: any) => `              

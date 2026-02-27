@@ -14,7 +14,9 @@ class View {
           <div class="py-2 px-2 w-full max-w-[300px] float-right ml-4 mb-4 bg-white shadow-lg hidden lg:block">
             <img class="lazy w-full h-auto object-cover" data-src="/images/foto_me.jpg" alt="Me"/>              
           </div>  
-          <h1 class="text-3xl font-normal leading-normal mt-0 mb-2">About</h1>
+          <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+            <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">About</p>
+          </div>
               <p>
                 Hey I'm Eugen.
               </p>

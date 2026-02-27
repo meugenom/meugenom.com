@@ -62,7 +62,16 @@ class Navbar {
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
     this.title = this.getTitle('Meugenom', theme === 'dark' ? 'text-light-text' : 'text-dark-text');    
-     
+
+    // Sync utterances comments iframe theme
+    const utterancesTheme = theme === 'dark' ? 'photon-dark' : 'github-light';
+    const utterancesFrame = document.querySelector<HTMLIFrameElement>('.utterances-frame');
+    if (utterancesFrame) {
+      utterancesFrame.contentWindow?.postMessage(
+        { type: 'set-theme', theme: utterancesTheme },
+        'https://utteranc.es'
+      );
+    }
     
     // need timer to wait for the pre elements to be created
     setTimeout(() => {

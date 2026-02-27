@@ -1,7 +1,5 @@
 'use strict'
 
-import SideBarLeft from '../side-bar-left'
-
 /**
  * View for component Layout
  * @param posts
@@ -9,8 +7,6 @@ import SideBarLeft from '../side-bar-left'
  */
 
 class View {
-
-  sideBarLeftComponent: SideBarLeft;
   
   async getLayoutHTMLElement () {
     
@@ -20,24 +16,20 @@ class View {
     layoutAboveHTMLElement.setAttribute('class', 'h-screen');
 
     let layoutMiddleHTMLElement = document.createElement('div');
-    layoutMiddleHTMLElement.setAttribute('class', 'flex justify-center items-center h-full');
+    layoutMiddleHTMLElement.setAttribute('class', 'flex justify-center items-start h-full');
 
     let layoutBelowHTMLElement = document.createElement('div');
     layoutBelowHTMLElement.setAttribute('class','container max-w-screen-2xl flex flex-col sm:flex-row h-full');
 
-    // left side bar
+    // left side bar — empty and hidden by default, ToC is injected by Article controller
     let SideBarLeftHTMLElement = document.createElement('div');
     SideBarLeftHTMLElement.setAttribute('id', 'side-bar-left');
     SideBarLeftHTMLElement.setAttribute('class', 'flex-shrink-0');
-    // render side bar left
-    this.sideBarLeftComponent = new SideBarLeft();
-    const sideBarLeftInnerText = await this.sideBarLeftComponent.render()
-    SideBarLeftHTMLElement.innerHTML = sideBarLeftInnerText;
 
     // main content
     let PageHTMLElement = document.createElement('div');
     PageHTMLElement.setAttribute('id', 'page');
-    PageHTMLElement.setAttribute('class', 'w-full lg:w-4/6 min-w-[500px] overflow-y-auto overflow-x-auto border-r border-l border-gray-300 mb-5');
+    PageHTMLElement.setAttribute('class', 'w-full lg:w-4/6 min-w-[500px] overflow-y-auto overflow-x-auto border-r border-gray-300 mb-5');
 
     // right side bar
     let SideBarRightHTMLElement = document.createElement('div');

@@ -49,9 +49,9 @@ class View {
     const view = /* html */`      
       <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
           <article>
-            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
-              Latest Posts:
-            </h4>
+            <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Latest Posts</p>
+            </div>
             <ul>
 
               ${list.map((article: any) => `              

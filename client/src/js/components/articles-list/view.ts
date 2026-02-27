@@ -18,9 +18,9 @@ class View {
       return /* html */`
       <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">              
           <article>
-            <h1 class="text-3xl font-normal leading-normal mt-5">
-              Articles:
-            </h1>
+            <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Articles</p>
+            </div>
             <ul>
               <li class=" text-blue-400 hover:text-blue-400">
                 <a href="/Error502">
@@ -45,9 +45,9 @@ class View {
     const view = /* html */`    
       <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">              
           <article>
-            <h4 class="text-2xl font-normal leading-normal mt-0 mb-2">
-              Articles:
-            </h4>
+            <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Articles</p>
+            </div>
             <ul>
               ${list.map((article: any) => `              
             
