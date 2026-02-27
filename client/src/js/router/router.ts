@@ -26,17 +26,17 @@ import Utils from '../components/services/utils'
  */
 class Router {
   routes: IRoutes;
-  header: HTMLElement;
-  content: HTMLElement;
-  footer: HTMLElement;
-  layout: HTMLElement;
+  header!: HTMLElement;
+  content!: HTMLElement;
+  footer!: HTMLElement;
+  layout!: HTMLElement;
 
   headerComponent: Navbar;
   footerComponent: Footer;
   layoutComponent: Layout;
   sideBarRightComponent: SideBarRight;
 
-  request: {
+  request!: {
     resource: string | null;
     id: string | null;
     verb: string | null;
@@ -46,9 +46,9 @@ class Router {
 
   constructor(routes: IRoutes) {
     this.routes = routes;
-    this.header = document.getElementById('header');
-    this.footer = document.getElementById('footer');
-    this.layout = document.getElementById('layout');
+    this.header = document.getElementById('header') as HTMLElement;
+    this.footer = document.getElementById('footer') as HTMLElement;
+    this.layout = document.getElementById('layout') as HTMLElement;
 
     this.headerComponent = new Navbar();
     this.footerComponent = new Footer();
@@ -82,11 +82,12 @@ class Router {
     }
 
     const sideBarRight = await this.sideBarRightComponent.render();
-    document.getElementById('side-bar-right').innerHTML = sideBarRight;
+    const sideBarRightEl = document.getElementById('side-bar-right');
+    if (sideBarRightEl) sideBarRightEl.innerHTML = sideBarRight;
   }
 
   async renderContent() {
-    this.content = document.getElementById('page');
+    this.content = document.getElementById('page') as HTMLElement;
     const parsedURL = this.parseUrl();
     await this.renderPage(parsedURL);
   }
@@ -105,9 +106,26 @@ class Router {
   // Render page from hash
   async renderPage(parsedURL: string) {
     this.footer.innerHTML = "";
+
+    // Hide sidebar-left on all non-article pages (ToC is injected by Article controller)
+    // Note: check for '/:id' to avoid matching '/articles' (blog list page)
+    if (!(parsedURL.includes('/article') && parsedURL.includes('/:id'))) {
+      const sidebarEl = document.getElementById('side-bar-left');
+      if (sidebarEl) sidebarEl.innerHTML = '';
+      // Remove left border from #page when sidebar-left is cleared
+      const pageEl = document.getElementById('page');
+      if (pageEl) pageEl.classList.remove('border-l');
+    }
     const page = this.routes[parsedURL] ? this.routes[parsedURL] : new Error404();
-    this.content.innerHTML = await page.render();
-    await page.afterRender();
+    try {
+      this.content.innerHTML = await page.render();
+      await page.afterRender();
+    } catch (err) {
+      console.error('renderPage error:', err);
+      const errPage = new Error502();
+      this.content.innerHTML = await errPage.render();
+      await errPage.afterRender();
+    }
 
     //rerender footer
     await this.renderFooter();
@@ -123,7 +141,7 @@ class Router {
     event.preventDefault();
 
     const clickedLink = event.target as HTMLElement;
-    const navigateLinkTo = clickedLink.getAttribute('navigateLinkTo');
+    const navigateLinkTo = clickedLink.getAttribute('navigateLinkTo') ?? '/';
 
     window.history.pushState({}, navigateLinkTo, window.location.origin + navigateLinkTo);
 

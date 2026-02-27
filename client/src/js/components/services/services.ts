@@ -18,7 +18,7 @@ export default class Service {
     const loader = new Loader();
     page.appendChild(await loader.render());
 
-    //try{
+    try {
       response = await fetch(
         host, {
         method: 'POST',
@@ -31,8 +31,13 @@ export default class Service {
           query,
           variables
         })
-      })
-    
+      });
+    } catch (fetchError) {
+      console.error('Network error:', fetchError);
+      window.history.pushState({}, '502', window.location.origin + '/error502');
+      return;
+    }
+
     let data;
     try {
       if (response){  
@@ -62,6 +67,6 @@ export default class Service {
       return;
     }
     
-    return data.data;
+    return data?.data;
   }
 }

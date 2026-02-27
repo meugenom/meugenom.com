@@ -44,7 +44,7 @@ class Utils {
       
       const loaderElement = document.createElement('div');
       loaderElement.classList.add('imageLoader');
-      imageElement.parentNode.insertBefore(loaderElement, imageElement);
+      imageElement.parentNode?.insertBefore(loaderElement, imageElement);
     
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(async (entry) => {
@@ -75,26 +75,6 @@ class Utils {
     }
 
     
-    static async _lazyLoadImage(imageElement: HTMLImageElement) {
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(async (entry) => {
-          if (entry.isIntersecting) {
-            const img = entry.target as HTMLImageElement;
-            if (img.dataset.src) {
-              const response = await fetch(img.dataset.src);
-              if (response.ok) {
-                const blob = await response.blob();
-                const objectURL = URL.createObjectURL(blob);
-                img.src = objectURL;
-              }
-            }
-            observer.unobserve(img);
-          }
-        });
-      });
-    
-      observer.observe(imageElement);
-    }
   }
   
   export default Utils

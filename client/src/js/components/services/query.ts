@@ -88,7 +88,7 @@ const Query = {
     },
     getAllSpecificationTextByArticleId: {
 		  host: Environment.host,
-      query: 'query Query($id: Long!) {\n  getAllSpecificationTextByArticleId(id: $id) \n}\n'
+      query: 'query Query($id: Int!) {\n  getAllSpecificationTextByArticleId(id: $id) \n}\n'
     },
 	  getAllSpecificationTextByArticleSlug: {
 		  host: Environment.host,
