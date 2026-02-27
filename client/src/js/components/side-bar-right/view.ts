@@ -14,7 +14,7 @@ class View {
   async appendSideBarRight () {
     const tags = await new TagsGartenModel().getTags();
     const view = await /* html */`    
-        <div class="hidden lg:block w-full min-w-[300] max-w-[300] sidebar">
+        <div class="w-full sidebar">
           `
           +            
             await new TagsGartenView().appendTags(tags)

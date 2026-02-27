@@ -77,14 +77,14 @@ class View {
                               <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Projects</p>
                             </div>
                                                                             
-                            <ul class="grid justify-items-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6 w-full mt-5">
+                            <ul class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6 w-full mt-5">
                             
                             ${projects.map((project: { node: any }) => /* html */`                                                        
-                                  <li>                          
+                                  <li class="w-full flex justify-center">                          
                                     <div class="shadow-lg hover:shadow-md  
                                       light:bg-light-background dark:bg-dark-background                                      
-                                      rounded-lg overflow-hidden relative" 
-                                      style = "height: 400px; width: 250px; border: 1px solid #e2e8f0;">
+                                      rounded-lg overflow-hidden relative w-full" 
+                                      style="height: 400px; min-width: 180px; max-width: 320px; border: 1px solid #e2e8f0;">
                                       <img
                                         class="object-cover w-full h-48"
                                         src="${project.node.openGraphImageUrl}"
@@ -131,7 +131,7 @@ class View {
 
                                           <p>
                                             <a
-                                              class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500 last:mr-0 mr-1"
+                                              class="text-[13px] font-sans font-medium border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 px-3 py-1 rounded-full hover:border-blue-400 hover:text-blue-500 transition-colors"
                                               href="${"https://github.com" + project.node.resourcePath}">
                                               Source
                                               <i class="bi bi-github"></i>
@@ -143,7 +143,7 @@ class View {
                                             ) : (
                                               `
                                             <a
-                                              class="text-[11px] font-mono border border-blue-300 dark:border-blue-700 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-full hover:border-blue-500 hover:text-blue-600 last:mr-0 mr-1"
+                                              class="text-[13px] font-sans font-medium border border-blue-300 dark:border-blue-700 text-blue-500 dark:text-blue-400 px-3 py-1 rounded-full hover:border-blue-500 hover:text-blue-600 transition-colors"
                                               href="${project.node.homepageUrl}">
                                               Show Web
                                               <i class="bi bi-browser-chrome"></i>

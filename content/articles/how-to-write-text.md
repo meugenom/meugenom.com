@@ -173,14 +173,14 @@ List 4 with mixed attributes:
 ## Quoting text
 
 \*
-    > Quote
-    > <cite> - Author </cite>
+    > The day is very good to die
+    > <cite> - Warcraft </cite>
 \* 
 
 in out:
 
-> Example Quote
-> <cite> - Albert Rouge </cite>
+> The day is very good to die!
+> <cite> - Warcraft </cite>
 
 ## Links
 

@@ -29,12 +29,12 @@ class View {
     // main content
     let PageHTMLElement = document.createElement('div');
     PageHTMLElement.setAttribute('id', 'page');
-    PageHTMLElement.setAttribute('class', 'w-full lg:w-4/6 min-w-[500px] overflow-y-auto overflow-x-auto border-r border-gray-300 mb-5');
+    PageHTMLElement.setAttribute('class', 'flex-1 min-w-0 overflow-y-auto overflow-x-auto border-r border-gray-300 mb-5');
 
     // right side bar
     let SideBarRightHTMLElement = document.createElement('div');
     SideBarRightHTMLElement.setAttribute('id', 'side-bar-right');
-    SideBarRightHTMLElement.setAttribute('class', 'flex-shrink-0');
+    SideBarRightHTMLElement.setAttribute('class', 'hidden lg:flex flex-col flex-shrink-0 w-[25%] max-w-[25%] overflow-y-auto');
     
     // append layout html nodes
     await layoutBelowHTMLElement.appendChild(SideBarLeftHTMLElement);

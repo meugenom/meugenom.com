@@ -83,18 +83,20 @@ class View {
               ${letters.map((letter: any) => 
                 /* html */
                 `              
-                <li class="text-slate-600 hover:text-blue-600">
-                  <span class="text-[11px] font-mono font-semibold text-blue-400 mr-2">
+                <li class="flex items-start py-1">
+                  <span class="text-[11px] font-mono font-semibold text-blue-400 flex-shrink-0 w-5 pt-0.5">
                   ${letter.letter}
-                  </span>                    
+                  </span>
+                  <div class="flex flex-wrap gap-1">
                     ${letter.tags.map((tag: any) => 
                     `
                       <a key="${tag.name}" 
                         href="${`#/tag/${tag.name}`}"
-                        class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500 last:mr-0 mr-1">                        
+                        class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500">
                         ${tag.name}
-                      </a>                                              
+                      </a>
                     `).join('')}
+                  </div>
                 </li>
             `).join('')}
           </ul>
