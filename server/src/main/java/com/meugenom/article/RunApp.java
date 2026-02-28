@@ -46,9 +46,15 @@ public class RunApp implements CommandLineRunner {
                 }
 
                 // Build current list from Redis keyed by fileName for stable comparison
-                List<Article> existingArticles = (List<Article>) articleRepository.findAll();
+                List<Article> existingArticles = new ArrayList<>();
+                articleRepository.findAll().forEach(existingArticles::add);
 
-                long id = 0;
+                // Next ID = max existing + 1 (avoids collision with existing articles)
+                long nextId = existingArticles.stream()
+                        .mapToLong(Article::getId)
+                        .max()
+                        .orElse(-1L) + 1;
+
                 for (String fileName : fileList) {
                         String filePath = articlesPath + "/" + fileName;
                         try {
@@ -68,9 +74,10 @@ public class RunApp implements CommandLineRunner {
 
                                 if (existing == null) {
                                         // New article — assign next available id
-                                        draft.setId(id);
-                                        logger.info("New article: {} (id={})", fileName, id);
+                                        draft.setId(nextId);
+                                        logger.info("New article: {} (id={})", fileName, nextId);
                                         articleRepository.save(draft);
+                                        nextId++;
                                 } else if (!existing.getChecksum().equals(checksum)) {
                                         // Changed — keep same id, update
                                         draft.setId(existing.getId());
@@ -80,8 +87,6 @@ public class RunApp implements CommandLineRunner {
                                 } else {
                                         logger.debug("Unchanged: {}", fileName);
                                 }
-
-                                id++;
                         } catch (IOException | NoSuchAlgorithmException e) {
                                 logger.error("Error processing {}: {}", fileName, e.getMessage());
                         }

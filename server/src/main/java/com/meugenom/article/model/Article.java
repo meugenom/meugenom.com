@@ -3,11 +3,13 @@ package com.meugenom.article.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 @RedisHash("Article")
 public class Article implements Serializable {
 
+	@Id
 	private long id;
 
 	private String title;

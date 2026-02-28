@@ -43,6 +43,7 @@ class Router {
   };
 
   static instance: Router | null = null;
+  private boundHandleLinkClick: (event: Event) => void;
 
   constructor(routes: IRoutes) {
     this.routes = routes;
@@ -54,6 +55,9 @@ class Router {
     this.footerComponent = new Footer();
     this.layoutComponent = new Layout();
     this.sideBarRightComponent = new SideBarRight();
+
+    // Bind once — required for removeEventListener to work correctly
+    this.boundHandleLinkClick = this.handleLinkClick.bind(this);
 
     // Listen on hash change:
     this.init();
@@ -67,9 +71,8 @@ class Router {
       await this.renderLayout();
       Router.instance = this;
     }
-    // Always re-render content and footer on navigation
+    // Always re-render content on navigation (footer is rendered inside renderPage)
     await this.renderContent();
-    await this.renderFooter();
     this.attachLinkListeners();
   }
 
@@ -165,8 +168,8 @@ class Router {
   attachLinkListeners() {
     const links = document.querySelectorAll<HTMLElement>('[navigateLinkTo]');
     links.forEach(link => {
-      link.removeEventListener('click', this.handleLinkClick); // Avoid duplicates
-      link.addEventListener('click', (event: Event) => this.handleLinkClick(event));
+      link.removeEventListener('click', this.boundHandleLinkClick);
+      link.addEventListener('click', this.boundHandleLinkClick);
     });
   }
 }
