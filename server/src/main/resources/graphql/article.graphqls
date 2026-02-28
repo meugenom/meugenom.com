@@ -33,4 +33,5 @@ type QueryType {
   articlesListByTag(tag: String) : [Article]  
   getArticleById(id: Int) : Article
   getAllSpecificationTextByArticleSlug(slug: String) : String
+  searchArticles(term: String!) : [Article]
 }

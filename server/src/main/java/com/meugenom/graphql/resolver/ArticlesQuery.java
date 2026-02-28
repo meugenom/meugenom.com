@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import com.meugenom.article.model.Article;
 import com.meugenom.tag.model.Tag;
 import com.meugenom.article.repository.ArticleRepository;
+import com.meugenom.search.SearchService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +22,8 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 	@Autowired
 	private ArticleRepository articleRepository;
 
-	/**
-	 * graphql request { articlesList { title } }
-	 * 
-	 * @return list of all articles in the "/content/articles"
-	 */
+        @Autowired
+        private SearchService searchService;
 
 	public List<Article> articlesList() {
 		//sort by date
@@ -122,7 +120,15 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 		return result;
 	}
 
-	public String getAllSpecificationTextByArticleSlug(String slug) {
+/**
+         * graphql request: searchArticles(term: "typescript"){ id title slug date tags }
+         * Performs full-text search (title + tags + text) via SearchService.
+         */
+        public List<Article> searchArticles(String term) {
+                return searchService.searchArticles(term);
+        }
+
+        public String getAllSpecificationTextByArticleSlug(String slug) {
 
 	
 		System.out.println("Slug is: " + slug);

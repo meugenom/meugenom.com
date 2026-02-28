@@ -43,6 +43,24 @@ class Navbar {
       this.toggleTheme();
     });
 
+    // Search input: trigger on Space key, min 3 chars, only safe chars
+    const searchInput = document.getElementById('nav-search') as HTMLInputElement;
+    if (searchInput) {
+      searchInput.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === ' ' || e.code === 'Space' || e.key === 'Enter') {
+          e.preventDefault();
+          const rawTerm = searchInput.value.trim();
+          // Validate: min 3 chars, only letters/digits/spaces/hyphens — no garbage
+          if (rawTerm.length < 3) return;
+          if (!/^[a-zA-Z0-9\s\-]{3,50}$/.test(rawTerm)) return;
+          searchInput.value = '';
+          const encoded = encodeURIComponent(rawTerm);
+          window.history.pushState({}, 'search', window.location.origin + '/search/' + encoded);
+          window.dispatchEvent(new PopStateEvent('popstate'));
+        }
+      });
+    }
+
     // Add transition classes to the root element
     document.documentElement.classList.add('transition-colors', 'duration-1500');
   }

@@ -97,7 +97,11 @@ const Query = {
     articlesListByTag: {
       host: Environment.host,
       query: 'query Query($tag: String!) {\n  articlesListByTag(tag: $tag){id\n title\n date\n tags\n slug\n} \n}\n'
-    },    
+    },
+    searchArticles: {
+      host: Environment.host,
+      query: 'query Query($term: String!) {\n  searchArticles(term: $term){ id title slug date tags }\n}\n'
+    },
   }
 
 export default Query

@@ -75,13 +75,13 @@ public class ParseToArticle {
                         if (shablon.equals(".*template:.*")) {
                             article.setTemplate(line.replace("template: ", ""));
                         }
-                        if (shablon == ".*thumbnail:.*")
+                        if (shablon.equals(".*thumbnail:.*"))
                             article.setThumbnail(line.replace("thumbnail: ", ""));
-                        if (shablon == ".*slug:.*")
+                        if (shablon.equals(".*slug:.*"))
                             article.setSlug(line.replace("slug: ", ""));
-                        if (shablon == ".*categories:.*")
+                        if (shablon.equals(".*categories:.*"))
                             article.setCategories(line.replace("categories: ", ""));
-                        if (shablon == ".*tags:.*")
+                        if (shablon.equals(".*tags:.*"))
                             article.setTags(line.replace("tags: ", ""));
                     }
                 });

@@ -116,6 +116,16 @@ class View {
                                 </div>						        						        						        
 					        </a>
                         </li>
+                        <li class="nav-item flex pl-8 lg:pl-0 ml-2 lg:ml-3 items-center" style="align-self: center; margin-top: -3px;">
+                            <input
+                                id="nav-search"
+                                type="text"
+                                placeholder="search..."
+                                autocomplete="off"
+                                maxlength="50"
+                                class="text-xs font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 placeholder-slate-400 dark:placeholder-slate-500 px-2 py-2 h-9 rounded-full bg-transparent focus:outline-none focus:border-blue-400 focus:text-blue-500 w-16 sm:w-20 lg:w-32 transition-all duration-300 focus:w-28 sm:focus:w-36 lg:focus:w-48"
+                            />
+                        </li>
                     </ul>                    
                 </div>        
             </nav>
