@@ -1,33 +1,26 @@
 'use strict'
-import IArticle from '../interfaces/IArticle';
 
 /**
- * View for component Articles List
+ * View for component Home
  * @param posts
- * @returns html view for articles list page
+ * @returns html view for articlesList by the tag page
  */
 
 class View {
 
-  async appendArticlesList (articlesList: IArticle[]) {
+  appendTagArticlesList (articlesList: {spec: string}) {
 
-    const list: IArticle[] = [];
+    const list: string[] = [];
 
-    // if articlesList is null or undefined
-    if (articlesList === null || articlesList === undefined) {
+    // check if articlesList is empty
+    if (!articlesList) {
       return /* html */`
-      <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">              
+        <div class="mx-10 font
+        -sans text-base antialiased leading-7 z-0">
           <article>
             <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
-              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Articles</p>
+              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">No writings found</p>
             </div>
-            <ul>
-              <li class=" text-blue-400 hover:text-blue-400">
-                <a href="/Error502">
-                  No articles available
-                </a>                      
-              </li>
-            </ul>
           </article>
         </div>
       `
@@ -48,8 +41,7 @@ class View {
       'Juli','August','September','Oktober','November','Dezember'
     ];
 
-    // group by year → month
-    type MonthGroup = { month: number; articles: IArticle[] };
+    type MonthGroup = { month: number; articles: any[] };
     type YearGroup  = { year: number; months: MonthGroup[] };
     const groups: YearGroup[] = [];
     list.forEach((article: any) => {
@@ -63,11 +55,11 @@ class View {
       mg.articles.push(article);
     });
 
-    const view = /* html */`    
-      <div class="container mx-auto px-4 sm:px-8 font-sans text-base antialiased leading-7 z-0 ml-5">              
+    const view = /* html */`
+      <div class="mx-10 font-sans text-base antialiased leading-7 z-0">      
           <article>
             <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
-              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Articles</p>
+              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Found</p>
             </div>
 
             ${groups.map((yg: YearGroup) => `
@@ -79,13 +71,13 @@ class View {
                     <ul>
                       ${mg.articles.map((article: any) => `
                         <li class="font-medium hover:text-blue-400 py-2">
-                          <a key="${article.slug}" href="#/article/${article.slug}">
+                          <a href="#/article/${article.slug}">
                             ${article.title.substring(1, article.title.length - 1)}
                           </a>
                           &nbsp;
                           <span class="inline-flex flex-wrap gap-1 items-center">
                             ${article.tags.split(" ").map((tag: any) =>
-                              `<a href="#/tag/${tag}" class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500">${tag}</a>`
+                              `<a href="#/tag/${tag}" class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500">#${tag}</a>`
                             ).join('')}
                           </span>
                         </li>
@@ -97,7 +89,7 @@ class View {
             `).join('')}
 
         </article>
-    </div>    
+    </div>
     `
     return view
   }

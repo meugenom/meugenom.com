@@ -23,10 +23,10 @@ export class FormulaHTML {
 		OuterNode.className = 'code-block-outer my-5';
 
 		const WrapperNode = this.DomUtilites.createElement('div');
-		WrapperNode.className = 'rounded-md border border-gray-200 overflow-hidden z-10';
+		WrapperNode.className = 'rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden z-10';
 
 		const HeaderNode = this.DomUtilites.createElement('div');
-		HeaderNode.className = 'flex items-center px-4 py-2 bg-gray-100 border-b border-gray-200';
+		HeaderNode.className = 'flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700';
 
 		const LabelNode = this.DomUtilites.createElement('span');
 		LabelNode.className = 'text-[11px] font-bold uppercase tracking-widest opacity-50';
@@ -34,7 +34,7 @@ export class FormulaHTML {
 		HeaderNode.appendChild(LabelNode);
 
 		const BodyNode = this.DomUtilites.createElement('div');
-		BodyNode.className = 'p-5 overflow-x-auto bg-white text-center';
+		BodyNode.className = 'p-5 overflow-x-auto bg-white dark:bg-gray-900 dark:text-slate-200 text-center';
 
 		try {
 			BodyNode.innerHTML = katex.renderToString(this.token.formula, {

@@ -63,12 +63,12 @@ Pythagoras Theorem $a^2 + b^2 = c^2$ in the text
 
 \*
 $$
-\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}\quad\(1.0)
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}\quad \text{(1.0)}
 $$
 \*
 
 $$
-\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}\quad\(1.0)
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}\quad \text{(1.0)}
 $$
 
 

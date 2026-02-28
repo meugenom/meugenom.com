@@ -2,7 +2,15 @@ import Loader from '../loader';
 
 export default class Service {
 
+  private static cache = new Map<string, any>();
+
   async graphql(dataType: string, token: string, host: string, query: string, variables: object) {
+
+    // Return cached response immediately (skip loader + network)
+    const cacheKey = `${host}::${query}::${JSON.stringify(variables)}`;
+    if (Service.cache.has(cacheKey)) {
+      return Service.cache.get(cacheKey);
+    }
 
     let response: any;
 
@@ -67,6 +75,9 @@ export default class Service {
       return;
     }
     
-    return data?.data;
+    // Store in cache before returning
+    const result = data?.data;
+    Service.cache.set(cacheKey, result);
+    return result;
   }
 }

@@ -1,7 +1,8 @@
 
 @import "tailwindcss";
 
-
+/* Tell Tailwind v4 to use class-based dark mode (.dark on <html>) */
+@variant dark (&:where(.dark, .dark *));
 
 @import './base/comments.css';
 @import './base/errors.css';

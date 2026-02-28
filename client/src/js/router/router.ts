@@ -61,8 +61,13 @@ class Router {
 
   // render header, content and footer
   async init() {
-    await this.renderHeader();
-    await this.renderLayout();
+    if (!Router.instance) {
+      // First load — render static shell once
+      await this.renderHeader();
+      await this.renderLayout();
+      Router.instance = this;
+    }
+    // Always re-render content and footer on navigation
     await this.renderContent();
     await this.renderFooter();
     this.attachLinkListeners();

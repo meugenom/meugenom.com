@@ -90,6 +90,19 @@ class View {
                                     </div>
                                 </div>						        						        						        
 					        </a>
+                        </li>
+                        <li class="nav-item hidden sm:flex ml-2 -mt-3.5 lg:-mt-3.5 lg:ml-0">
+                            <a  href="https://www.linkedin.com/in/meugenom/"
+                                class="sl_container linkedin_no_touch">
+                                <div class="sl_circle">
+                                    <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200">
+						                <circle cx="100" cy="100" r="50"/>
+						            </svg>
+                                    <div class="sl_social">
+                                        <i class="bi bi-linkedin"></i>
+                                    </div>
+                                </div>
+					        </a>
                         </li>                        
                         <li class="nav-item sm:flex ml-2 -mt-3.5 lg:-mt-3.5 lg:ml-0">
                             <a  id="theme-toggle" class="sl_container sun_no_touch">
