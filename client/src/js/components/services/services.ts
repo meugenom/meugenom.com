@@ -53,21 +53,19 @@ export default class Service {
         
         switch (response.status) {
           case 404:
-            window.history.pushState({}, '404', window.location.origin + '/error404');          
-            break;
+            window.history.pushState({}, '404', window.location.origin + '/error404');
+            return;
           case 500:
-            window.history.pushState({}, '500', window.location.origin + '/error500');          
-            break;
-          case 502:            
-            window.history.pushState({}, '502', window.location.origin + '/error502');             
-            break;
+            window.history.pushState({}, '500', window.location.origin + '/error500');
+            return;
+          case 502:
+            window.history.pushState({}, '502', window.location.origin + '/error502');
+            return;
           default:
-            //window.history.pushState({}, '404', window.location.origin + '/error404');          
             break;
         }
            
-        //data = await response.json();
-        data = await (dataType === 'json' ? response.json() : await response.text());
+        data = await (dataType === 'json' ? response.json() : response.text());
       }
     
     } catch (error) {      
@@ -75,9 +73,11 @@ export default class Service {
       return;
     }
     
-    // Store in cache before returning
+    // Store in cache only on success
     const result = data?.data;
-    Service.cache.set(cacheKey, result);
+    if (result !== undefined) {
+      Service.cache.set(cacheKey, result);
+    }
     return result;
   }
 }
