@@ -23,4 +23,5 @@ content/articles/mac-os-shortcuts.md
 nginx/
 client/coverage
 client/package-lock.json
+replace/*
 
