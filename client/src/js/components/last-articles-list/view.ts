@@ -67,11 +67,11 @@ class View {
                   class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500">
                   #${tag}
               </a>`).join('')}
-              
+              <span class="invisible sm:visible text-[11px] font-mono border border-slate-200 dark:border-slate-700 text-slate-400 px-2 py-0.5 rounded-full">
+                ${article.date}
+              </span>  
             </span>
-            <span class="invisible sm:visible text-[11px] font-mono border border-slate-200 dark:border-slate-700 text-slate-400 px-2 py-0.5 rounded-full">
-              ${article.date}
-            </span>
+            
           </li>
             `).join('')}
           </ul>
