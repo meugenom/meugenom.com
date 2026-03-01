@@ -31,32 +31,27 @@ class View {
                 <a class="text-blue-600 font-medium hover:font-bold" href="https://github.com/meugenom/spa-mvc-router">
                  SPA MVC Router
                 </a>, der blitzschnelle Übergänge ermöglicht.
-              </p>
-              <p>
-                Mein Ziel ist es, einen "digitalen Garten" zu pflegen, der frei von Werbung, Tracking и Sponsoring ist. 
-                Ein Ort für reines Engineering, Architektur und den Austausch von Wissen.
-              </p>  
-              <p>
-                Hast du Fragen zur Architektur или möchtest du einfach "Hallo" sagen? Schreib mir an: 📧 <strong>hallo at meugenom.com</strong>.
-              </p>
+              </p>              
           </div>
 
-          <h1 class="text-xl font-normal leading-normal mt-10 mb-2">
+          <h1 class="text-xl font-normal leading-normal mt-8 mb-2">
             Technische Philosophie
           </h1>
-          <ul>
-            <li class="list-disc ml-8 text-sm mb-2">
+          <ul class="space-y-2">
+            <li class="list-disc ml-8">
               <span class="font-bold">DIY-Architektur:</span> Keine Abhängigkeit von React/Vue. Volle Kontrolle über das DOM und den State.
             </li>
-            <li class="list-disc ml-8 text-sm mb-2">
+            <li class="list-disc ml-8">
               <span class="font-bold">Performance:</span> Datenspeicherung in Redis für Antwortzeiten im Millisekundenbereich.
             </li>
-            <li class="list-disc ml-8 text-sm mb-2">
+            <li class="list-disc ml-8">
               <span class="font-bold">Minimalismus:</span> Clean Code und TailwindCSS für ein modernes, schlankes Design ohne Overhead.
             </li>
           </ul>
         
-          <h1 class="text-xl font-normal leading-normal mt-8 mb-2"> Der Tech-Stack </h1>
+          <h1 class="text-xl font-normal leading-normal mt-8"> 
+            Der Tech-Stack 
+          </h1>
             <ul class="space-y-2">
               <li class="list-disc ml-8">
                 <span class="font-bold">Backend:</span> Java, Spring Boot & Spring Data, GraphQL
@@ -71,10 +66,9 @@ class View {
                 <span class="font-bold">Deployment:</span> VPS, Nginx, Jenkins (CI/CD Pipeline)
               </li>
             </ul>
-
-          <h1 class="text-xl font-normal leading-normal mt-10">Tools & Workspace</h1>  
           
-          <h1 class="text-lg font-normal leading-normal mt-2">Software:</h1>
+          
+          <h1 class="text-lg font-normal leading-normal mt-8">Software:</h1>
           <ul>
             <li class="list-disc ml-8">
               <span class="font-bold">Editor:</span> VSCode (mit Vim-Binding)
@@ -87,14 +81,14 @@ class View {
             </li>
           </ul>
 
-          <h1 class="text-lg font-normal leading-normal mt-4">Hardware:</h1>
+          <h1 class="text-lg font-normal leading-normal mt-8 mb-2">Hardware:</h1>
           <ul>
             <li class="list-disc ml-8">
               MacBook Pro 14" (als Workstation)
             </li>
           </ul>            
 
-          <h1 class="text-xl font-normal leading-normal mt-10 mb-2">
+          <h1 class="text-xl font-normal leading-normal mt-8 mb-2">
             Status
           </h1>
           <ul>
