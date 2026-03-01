@@ -36,9 +36,10 @@ export class ParagraphHTML {
 			}
 
 			if (child.type == TokenType.IMAGE) {
+				const imgSrc = ('/' + child.url.replace(/^\.?\//, ''));
 				text = text + `
 				<figure class="flex flex-col items-center my-5">
-					<img data-src="${child.url}" alt="${child.alt}" class="lazy shadow-md rounded-md max-w-full h-auto w-full sm:w-10/12 border border-gray-200">
+					<img data-src="${imgSrc}" alt="${child.alt}" class="lazy shadow-md rounded-md max-w-full h-auto w-full sm:w-10/12 border border-gray-200">
 					${child.alt ? `<figcaption class="mt-2 text-[12px] font-mono text-slate-400 text-center">${child.alt}</figcaption>` : ''}
 				</figure>
 				`

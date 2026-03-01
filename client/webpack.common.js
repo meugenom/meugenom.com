@@ -13,7 +13,8 @@ module.exports = {
   entry: path.join(__dirname, './src/js/index.ts'),
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.[chunkhash].js'
+    filename: 'bundle.[chunkhash].js',
+    publicPath: '/'
   },
   module: {
     rules: [

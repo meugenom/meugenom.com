@@ -29,7 +29,7 @@ class View {
             </h1>
             <ul>
               <li class="text-blue-400 hover:text-bold">
-                <a href="#/tag/">
+                <a href="/tags">
                   No tags available
                 </a>              
               </li>
@@ -91,7 +91,7 @@ class View {
                     ${letter.tags.map((tag: any) => 
                     `
                       <a key="${tag.name}" 
-                        href="${`#/tag/${tag.name}`}"
+                        navigateLinkTo="/tag/${tag.name}" href="/tag/${tag.name}"
                         class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500 last:mr-0 mr-1">                        
                         ${tag.name}
                       </a>                                              

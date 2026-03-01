@@ -59,6 +59,9 @@ class Router {
     // Bind once — required for removeEventListener to work correctly
     this.boundHandleLinkClick = this.handleLinkClick.bind(this);
 
+    // Reagiere auf Browser-Navigation (Zurück/Vorwärts)
+    window.addEventListener('popstate', () => this.renderContent());
+
     // Listen on hash change:
     this.init();
   }
@@ -78,7 +81,7 @@ class Router {
 
   async renderHeader() {
     this.header.innerHTML = await this.headerComponent.render();
-    await this.headerComponent.afterRender();
+    //await this.headerComponent.afterRender();
   }
 
   async renderLayout() {
@@ -96,8 +99,10 @@ class Router {
 
   async renderContent() {
     this.content = document.getElementById('page') as HTMLElement;
-    const parsedURL = this.parseUrl();
+    const parsedURL = this.parseUrl();    
     await this.renderPage(parsedURL);
+    // Links nach jedem Content-Update neu binden
+    this.attachLinkListeners();
   }
 
   async renderFooter() {
@@ -108,7 +113,10 @@ class Router {
   // Parse URL and return resource, id and verb
   parseUrl() {
     this.request = new Utils().parseRequestURL();
-    return (this.request.resource ? '/' + this.request.resource : '/') + (this.request.id ? '/:id' : '') + (this.request.verb ? '/' + this.request.verb : '');
+    return (this.request.resource ? '/' + this.request.resource : '/') + 
+           (this.request.id ? '/:id' : '') + 
+           (this.request.verb ? '/' + this.request.verb : '');
+
   }
 
   // Render page from hash
@@ -140,7 +148,7 @@ class Router {
 
     if (parsedURL.includes('/:id')) {
       const cleanParsedId = parsedURL.replace('/:id', '');
-      window.history.pushState({}, cleanParsedId, window.location.origin + '/#' + cleanParsedId + '/' + this.request.id);
+      window.history.pushState({}, cleanParsedId, window.location.origin + cleanParsedId + '/' + this.request.id);
     }
   }
 
@@ -148,12 +156,20 @@ class Router {
   async handleLinkClick(event: Event) {
     event.preventDefault();
 
-    const clickedLink = event.target as HTMLElement;
+    //const clickedLink = event.target as HTMLElement;
+
+    // Findet den Link, auch wenn man auf ein Icon darin klickt
+    const clickedLink = (event.target as HTMLElement).closest('[navigateLinkTo]');
+    if (!clickedLink) return;
+
     const navigateLinkTo = clickedLink.getAttribute('navigateLinkTo') ?? '/';
 
-    window.history.pushState({}, navigateLinkTo, window.location.origin + navigateLinkTo);
+    //window.history.pushState({}, navigateLinkTo, window.location.origin + navigateLinkTo);
+    // 3. FIX: URL sauber in die History pushen (ohne #)
+    window.history.pushState({}, '', window.location.origin + navigateLinkTo);
 
-    await this.renderPage(navigateLinkTo);
+
+    await this.renderContent();    
 
     //make inactive links
     const links = document.querySelectorAll('[navigateLinkTo]');

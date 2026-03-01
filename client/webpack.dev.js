@@ -7,7 +7,7 @@ module.exports = {
   devtool: "inline-source-map",
   mode: "development",
   devServer: {
-    static: path.join(__dirname, './dist'),
+    static: path.join(__dirname, './build'),
     port: 8082,
     open: true,
     historyApiFallback: true, 

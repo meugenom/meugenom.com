@@ -86,13 +86,13 @@ class View {
                                 <ul>
                                     ${mg.articles.map((article: any) => `
                                         <li class="font-medium hover:text-blue-400 py-2">
-                                            <a href="#/article/${article.slug}">
+                                            <a navigateLinkTo="/article/${article.slug}" href="/article/${article.slug}">
                                                 ${article.title.substring(1, article.title.length - 1)}
                                             </a>
                                             &nbsp;
                                             <span class="inline-flex flex-wrap gap-1 items-center">
                                                 ${article.tags.split(' ').map((tag: any) =>
-                                                    `<a href="#/tag/${tag}" class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500">#${tag}</a>`
+                                                    `<a navigateLinkTo="/tag/${tag}" href="/tag/${tag}" class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500">#${tag}</a>`
                                                 ).join('')}
                                             </span>
                                         </li>

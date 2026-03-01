@@ -13,13 +13,19 @@ class Utils {
     constructor () {
             
       //private case for home page then location.hash is empty and location.pathname is empty
-      if(location.hash.slice(1).toLowerCase() == '' && location.pathname.toLowerCase() == '') {
-        this.url = '/'
-      }else{
-        this.url = location.hash.slice(1).toLowerCase() == '' 
-          ? location.pathname.toLowerCase() : location.hash.slice(1).toLowerCase();
-      }
-            
+      //if(location.hash.slice(1).toLowerCase() == '' && location.pathname.toLowerCase() == '') {
+      //  this.url = '/'
+      //}else{
+      //  this.url = location.hash.slice(1).toLowerCase() == '' 
+      //    ? location.pathname.toLowerCase() : location.hash.slice(1).toLowerCase();
+      //}
+      // Greift jetzt direkt auf den Pfad zu. 
+      // Wenn pathname "/" ist, bleibt url "/"
+      const path = location.pathname.toLowerCase();
+      this.url = path === '' ? '/' : path;
+      
+      // Splitte den Pfad. 
+      // Bei "/article/123" ist r = ["", "article", "123"]
       this.r = this.url.split('/')
 
       this.request = {
@@ -31,10 +37,11 @@ class Utils {
     }
   
     parseRequestURL () {
-
-      this.request.resource = this.r[1]
-      this.request.id = this.r[2]
-      this.request.verb = this.r[3]
+      // Da r[0] immer ein leerer String vor dem ersten Slash ist, 
+      // fangen wir bei Index 1 an.
+      this.request.resource = this.r[1] || null;
+      this.request.id = this.r[2] || null;
+      this.request.verb = this.r[3] || null;
 
       return this.request
     }
