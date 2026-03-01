@@ -123,15 +123,15 @@ class View {
                                           <h1 class="text-base font-medium underline decoration-pink-500 -mt-3 -mb-3">
                                             ${project.node.name}
                                           </h1>
-                                          <p class="mt-4 text-xs font-bold">
+                                          <p class="mt-4 text-xs font-bold mb-1">
                                             updated: ${new Date(project.node.pushedAt).getDate()}-
                                                      ${new Model().getMonth(new Date(project.node.pushedAt).getMonth())}-
                                                      ${new Date(project.node.pushedAt).getFullYear()}
                                           </p>
 
-                                          <p>
+                                          <p class="inline-flex items-center">
                                             <a
-                                              class="text-[13px] font-sans font-medium border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 px-3 py-1 rounded-full hover:border-blue-400 hover:text-blue-500 transition-colors"
+                                              class="text-[11px] font-sans font-medium border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500 transition-colors whitespace-nowrap"
                                               href="${"https://github.com" + project.node.resourcePath}">
                                               Source
                                               <i class="bi bi-github"></i>
@@ -143,7 +143,7 @@ class View {
                                             ) : (
                                               `
                                             <a
-                                              class="text-[13px] font-sans font-medium border border-blue-300 dark:border-blue-700 text-blue-500 dark:text-blue-400 px-3 py-1 rounded-full hover:border-blue-500 hover:text-blue-600 transition-colors"
+                                              class="text-[11px] font-sans font-medium border border-blue-300 dark:border-blue-700 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-full hover:border-blue-500 hover:text-blue-600 transition-colors whitespace-nowrap"
                                               href="${project.node.homepageUrl}">
                                               Show Web
                                               <i class="bi bi-browser-chrome"></i>

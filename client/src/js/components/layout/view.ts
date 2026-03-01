@@ -13,7 +13,7 @@ class View {
     // add layout html nodes
     let layoutAboveHTMLElement = document.createElement('div');
     layoutAboveHTMLElement.setAttribute('id', 'layout');
-    layoutAboveHTMLElement.setAttribute('class', 'h-screen');
+    layoutAboveHTMLElement.setAttribute('class', 'h-full');
 
     let layoutMiddleHTMLElement = document.createElement('div');
     layoutMiddleHTMLElement.setAttribute('class', 'flex justify-center items-start h-full');
@@ -29,7 +29,7 @@ class View {
     // main content
     let PageHTMLElement = document.createElement('div');
     PageHTMLElement.setAttribute('id', 'page');
-    PageHTMLElement.setAttribute('class', 'flex-1 min-w-0 overflow-y-auto overflow-x-auto border-r border-gray-300 mb-5');
+    PageHTMLElement.setAttribute('class', 'flex-1 min-w-0 overflow-y-auto overflow-x-auto border-r border-gray-300 mb-5 pb-10');
 
     // right side bar
     let SideBarRightHTMLElement = document.createElement('div');
