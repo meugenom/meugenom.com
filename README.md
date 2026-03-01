@@ -5,6 +5,7 @@
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white)
+![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
 </br>
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)
@@ -32,9 +33,19 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 ### How to set up:
 
 1. Need preinstalled java 21 2023-09-19 LTS, npm(10.2.3), node(18.19.0), mvn(3.8.1), nginx(1.29.5 stable);
+
 2. for information about projects you need  personal access token [https://github.com/settings/tokens](https://github.com/settings/tokens);
-3. Create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to GITHUB_TOKEN= and github user name to GITHUB_USER_NAME=
-4. For production please change your `.env` APP_MODE=production (by default APP_MODE=development)
+
+3. Create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to
+```bash
+  # client/.env
+  # Token see 2. 
+  GITHUB_TOKEN=
+  # Your Github Name
+  GITHUB_USER_NAME=
+  # by default APP_MODE=development
+  APP_MODE=production 
+```
 
 ### How to start:
 
