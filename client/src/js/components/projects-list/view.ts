@@ -83,7 +83,7 @@ class View {
                                   <li class="w-full flex justify-center">                          
                                     <div class="shadow-lg hover:shadow-md  
                                       light:bg-light-background dark:bg-dark-background                                      
-                                      rounded-lg overflow-hidden relative w-full" 
+                                      rounded-lg overflow-hidden relative w-full mb-5" 
                                       style="height: 400px; min-width: 180px; max-width: 320px; border: 1px solid #e2e8f0;">
                                       <img
                                         class="object-cover w-full h-48"
