@@ -68,8 +68,10 @@ class View {
             </ul>
           
           
-          <h1 class="text-lg font-normal leading-normal mt-8">Software:</h1>
-          <ul>
+          <h1 class="text-lg font-normal leading-normal mt-8">
+            Software:
+          </h1>
+          <ul class="space-y-2">
             <li class="list-disc ml-8">
               <span class="font-bold">Editor:</span> VSCode (mit Vim-Binding)
             </li>
@@ -77,7 +79,7 @@ class View {
               <span class="font-bold">Terminal:</span> iTerm2 & OhMyZsh
             </li>
             <li class="list-disc ml-8">
-              <span class="font-bold">Knowledge:</span> Obsidian für technisches Second Brain
+              <span class="font-bold">Knowledge:</span> Obsidian für technisches "Second Brain"
             </li>
           </ul>
 
