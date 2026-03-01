@@ -1,6 +1,13 @@
 ## Personal Web Site:
 [![Website Status](https://img.shields.io/badge/My_Site-Live-brightgreen?style=for-the-badge&logo=google-chrome)](https://meugenom.com)
-
+</br>
+![TypeScript](https://img.shields.io/badge/typescript-%23007acc.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white)
+![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+</br>
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)
 
 <center>
 	<img alt="" src="./assets/panda-meugenom.png"/>
@@ -174,4 +181,3 @@ open web browser with link:  `http://localhost:8080` after starting both servers
 
 [meugenom](https://meugenom.com)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
