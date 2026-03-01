@@ -81,7 +81,7 @@ class Router {
 
   async renderHeader() {
     this.header.innerHTML = await this.headerComponent.render();
-    //await this.headerComponent.afterRender();
+    await this.headerComponent.afterRender();
   }
 
   async renderLayout() {
