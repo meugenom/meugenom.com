@@ -74,13 +74,24 @@ module.exports = {
           implementation: ImageMinimizerPlugin.sharpMinify,
           options: {
             encodeOptions: {
-              jpeg: { quality: 75 },
-              webp: { quality: 80 },
-              png: { compressionLevel: 9 },
+              jpeg: {
+                  quality: 75,
+                  progressive: true
+                },
+              webp: {
+                  quality: 80,
+                  alphaQuality: 80 
+                },
+              png: {
+                  compressionLevel: 9,
+                  adaptiveFiltering: true,
+                  palette: true
+                },
             },
           },
         },
-        // --- Generation WEBP
+        // --- Generation WEBP, doesnt work, need paths ---
+        /*
         generator: [
           {
             type: "asset",
@@ -92,7 +103,7 @@ module.exports = {
             },
           },
         ],
-
+          */
       }),
     ],
   },
