@@ -39,12 +39,16 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 3. Create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to
 ```bash
   # client/.env
+  
   # Token see 2. 
-  GITHUB_TOKEN=
+  GITHUB_TOKEN=YOUR_GITHUB_TOKEN
   # Your Github Name
-  GITHUB_USER_NAME=
-  # by default APP_MODE=development
-  APP_MODE=production 
+  GITHUB_USER_NAME=YOUR_GITHUB_NAME
+  # by default APP_MODE=development or production
+  APP_MODE=development
+  # your graphql hostname
+  GRAPHQL_HOST=http://localhost:8080/graphql
+
 ```
 
 ### How to start:

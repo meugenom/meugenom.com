@@ -1,12 +1,12 @@
 import Config from '../../config';
 
-//by development
+//by development is default localhost will be used, but in production it will be taken from env variable or fallback to public host
 const Environment = {
 	host : Config.localHost
 }
 
 if(process.env.APP_MODE == "production"){
-	Environment.host = Config.publicHost;
+	Environment.host = process.env.GRAPHQL_HOST
 }
 
 const Query = {
