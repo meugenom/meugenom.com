@@ -32,7 +32,7 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 
 ### How to set up:
 
-1. Need preinstalled java 21 2023-09-19 LTS, npm(10.2.3), node(18.19.0), mvn(3.8.1), nginx(1.29.5 stable);
+1. Need preinstalled java 21 2023-09-19 LTS, npm(10.8.2), node(20.20.0), mvn(3.8.1), nginx(1.29.5 stable);
 
 2. for information about projects you need  personal access token [https://github.com/settings/tokens](https://github.com/settings/tokens);
 
@@ -60,10 +60,10 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 `cd meugenom.com/client`
 
 3. install npm libraries
-`npm install`
+`yarn install`
 
 4. for building frontend part:
-`npm run build`
+`yarn build`
 
 5. create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to GITHUB_TOKEN= and github user name to GITHUB_USER_NAME=
 
@@ -71,7 +71,7 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 	**for development:**	
 	- change .env file in the `client/.env`directory (see `client/simple.env`)  and add to APP_MODE=development
 	- start frontend dev server (for development)
-	`npm run start`
+	`yarn start`
 
 	**for production:**	
 	- change .env file in the `client/.env`directory (see `client/simple.env`)  and add to APP_MODE=production
@@ -178,14 +178,14 @@ For testing web client is used jest framework in the `/client`
 
 ```bash
 	cd client &&
-	npm run test
+	yarn test
 ```
 
 or run to see tests coverage:
 
 ```bash
 	cd client &&
-	npm run test --coverage
+	yarn test --coverage
 ```
 
 ### How to see web page:
@@ -195,4 +195,3 @@ open web browser with link:  `http://localhost:8080` after starting both servers
 ### Author 
 
 [meugenom](https://meugenom.com)
-
