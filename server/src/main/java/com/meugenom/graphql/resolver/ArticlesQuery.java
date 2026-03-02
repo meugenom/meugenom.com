@@ -26,21 +26,18 @@ public class ArticlesQuery implements GraphQLQueryResolver {
         private SearchService searchService;
 
 	public List<Article> articlesList() {
-		//sort by date
-		//List<Article> list = (List<Article>) articleRepository.findAllByOrderByDateDesc();
-		List<Article> list = (List<Article>) articleRepository.findAll();
-		//sorting list of articles by date DESC
-		list.sort((a1, a2) -> a2.getDate().compareTo(a1.getDate()));
-		
-		
-
+		List<Article> list = articleRepository.findAllByOrderByDateDesc();
+		// print in the console all articles titles
+		for (Article article : list) {
+			System.out.println("Article title is: " + article.getTitle());
+		}
 		return list;
 	}
 	
 	// return list of articles by tag
 	public List<Article> articlesListByTag(String tag) {
-		//get all articles
-		List<Article> list = (List<Article>) articleRepository.findAll();
+		//get all articles sorted by date
+		List<Article> list = articleRepository.findAllByOrderByDateDesc();
 
 		//find articles where tag is in tags
 		List<Article> result = new ArrayList<Article>();
@@ -49,19 +46,15 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 				result.add(article);			
 			}
 		}
-		//sorting list of articles by date DESC
-		result.sort((a1, a2) -> a2.getDate().compareTo(a1.getDate()));		
 		return result;
-		
 	}
 
 	// return not more then 5 last articles
 	public List<Article> lastArticlesList() {
-
-		List<Article> list = (List<Article>) articleRepository.findAll();
+		List<Article> list = articleRepository.findAllByOrderByDateDesc();
 		List<Article> result = new ArrayList<Article>();
 		
-		//return only 5 last articles or then less
+		//return only 5 last articles or less
 		if (list.size() > 5) {
 			for (int i = 0; i < 5; i++) {
 				result.add(list.get(i));
@@ -69,9 +62,6 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 		} else {
 			result = list;
 		}
-		
-		//sorting list of articles by date DESC
-		result.sort((a1, a2) -> a2.getDate().compareTo(a1.getDate()));
 		
 		return result;
 	}
