@@ -1,12 +1,11 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin"); // Импорт уже был
 const Dotenv = require('dotenv-webpack');
- 
-
-// copy files from /client..  to /build/..
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const devMode = process.env.NODE_ENV !== "production"
 
 module.exports = {
@@ -18,80 +17,95 @@ module.exports = {
   },
   module: {
     rules: [
-        {
-	test: /\.tsx?$/,
-	loader: 'ts-loader',
-	exclude: /node_modules/,
-	},
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         enforce: 'pre',
         test: /\.js$/,
         loader: 'source-map-loader'
       },
-	  {
-		test: /\.css$/i,
-		oneOf: [
-	{
-		// Third-party CSS inside parser libs and katex — no Tailwind/postcss needed
-				include: [path.resolve(__dirname, 'src/static/libs'), path.resolve(__dirname, 'node_modules/katex')],
-			use: [
-				devMode ? "style-loader" : MiniCssExtractPlugin.loader,
-				'css-loader',
-			],
-		  },
-		  {
-			// Own styles processed through postcss / Tailwind
-			use: [
-				devMode ? "style-loader" : MiniCssExtractPlugin.loader,
-				'css-loader',
-				"postcss-loader",
-			],
-		  },
-		],
-	  },
+      {
+        test: /\.css$/i,
+        oneOf: [
+          {
+            include: [path.resolve(__dirname, 'src/static/libs'), path.resolve(__dirname, 'node_modules/katex')],
+            use: [
+              devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+              'css-loader',
+            ],
+          },
+          {
+            use: [
+              devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+              'css-loader',
+              "postcss-loader",
+            ],
+          },
+        ],
+      },
       {
         test: /\.s(a|c)ss$/,
-        // include: /styles/,
         include: [/(.*?)\/(.*?)\/(.*?).scss/],
-        // [ path.resolve(__dirname, 'styles') //,
-        // path.resolve(__dirname, '/components/*/')
-        // ],
         use: [MiniCssExtractPlugin.loader, 'css-loader', "postcss-loader"]
       },
       {
         test: /\.(woff|woff2|ttf|eot)$/i,
         type: 'asset/resource',
       },
+      // --- ПРАВИЛО ДЛЯ КАРТИНОК (ОБНОВЛЕНО) ---
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        use: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true // webpack@2.x and newer
-            }
-          }
-        ]
+        type: 'asset/resource', // Используем встроенный Asset Modules Webpack 5
+        generator: {
+          filename: 'images/[name][ext]'
+        }
       }
     ]
+  },
+  // --- СЕКЦИЯ ОПТИМИЗАЦИИ (ДОБАВЛЕНО) ---
+  optimization: {
+    minimizer: [
+      "...", // Магия: сохраняет стандартную минимизацию JS/CSS
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.sharpMinify,
+          options: {
+            encodeOptions: {
+              jpeg: { quality: 75 },
+              webp: { quality: 80 },
+              png: { compressionLevel: 9 },
+            },
+          },
+        },
+        // --- Generation WEBP
+        generator: [
+          {
+            type: "asset",
+            implementation: ImageMinimizerPlugin.sharpGenerate,
+            options: {
+              encodeOptions: {
+                webp: { quality: 75 },
+              },
+            },
+          },
+        ],
+
+      }),
+    ],
   },
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.css'],
   },
   plugins: [
-	new Dotenv(),
-    // new HtmlWebpackPlugin({
-    //  template: './src/main/resources/templates/index.html'
-    // }),
-    //new ExtractTextPlugin('./style.css'),
+    new Dotenv(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      //filename: '/css/main.css',
-	    filename: "[name].css",
-            chunkFilename: "[id].css"
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./src/templates/index.html"),
@@ -101,34 +115,17 @@ module.exports = {
         collapseWhitespace: false
       }
     }),
-
     new CopyWebpackPlugin({
       patterns: [
-        {
-          from: './src/static/fonts',
-          to: './fonts'
-        },
-        {
-          from: './src/static/favicon',
-          to: './favicon'
-        },
-        {
-          from: './src/static/images',
-          to: './images'
-        },
-        {
-          from: '../content/images',
-          to: './images'
-        },
-        {
-          from: '../content/thumbnails',
-          to: './thumbnails'
-        }
+        { from: './src/static/fonts', to: './fonts' },
+        { from: './src/static/favicon', to: './favicon' },
+        { from: './src/static/images', to: './images' },
+        { from: '../content/images', to: './images' },
+        { from: '../content/thumbnails', to: './thumbnails' }
       ],
       options: {
         concurrency: 100
       }
     })
-
   ]
 }
