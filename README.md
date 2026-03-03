@@ -51,6 +51,15 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 
 ```
 
+4. Change please title and description for meta tags in `client/src/js/config.ts`
+ 
+```ts
+  title : "my title", // by default is "meugenom.com content platform",
+  description : "My Personal Content System", // by default is "Meugenom is a personal blog about software development, technology, and programming."
+```
+  
+
+
 ### How to start:
 
 1. clone repository 
