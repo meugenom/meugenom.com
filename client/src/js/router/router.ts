@@ -46,6 +46,7 @@ class Router {
 
   static instance: Router | null = null;
   private boundHandleLinkClick: (event: Event) => void;
+  private lastRenderedPath: string = '';
 
   constructor(routes: IRoutes) {
     this.routes = routes;
@@ -62,7 +63,14 @@ class Router {
     this.boundHandleLinkClick = this.handleLinkClick.bind(this);
 
     // Reagiere auf Browser-Navigation (Zurück/Vorwärts)
-    window.addEventListener('popstate', () => this.renderContent());
+    // Nur neu rendern wenn sich der Pfad wirklich geändert hat.
+    // Giscus und andere Bibliotheken können history.replaceState aufrufen
+    // und so einen spurious popstate auslösen.
+    window.addEventListener('popstate', () => {
+      if (location.pathname !== this.lastRenderedPath) {
+        this.renderContent();
+      }
+    });
 
     // Listen on hash change:
     this.init();
@@ -110,7 +118,8 @@ class Router {
     
     // Set content element and parse URL for every content render (e.g. after hash change or link click)
     this.content = document.getElementById('page') as HTMLElement;
-    const parsedURL = this.parseUrl();    
+    const parsedURL = this.parseUrl();
+    this.lastRenderedPath = location.pathname;
     await this.renderPage(parsedURL);
     
     // Links nach jedem Content-Update neu binden
@@ -161,7 +170,11 @@ class Router {
 
     if (parsedURL.includes('/:id')) {
       const cleanParsedId = parsedURL.replace('/:id', '');
-      window.history.pushState({}, cleanParsedId, window.location.origin + cleanParsedId + '/' + this.request.id);
+      const targetPath = cleanParsedId + '/' + this.request.id;
+      const targetUrl = window.location.origin + targetPath + window.location.search + window.location.hash;
+      if (window.location.href !== targetUrl) {
+        window.history.pushState({}, cleanParsedId, targetUrl);
+      }
     }
   }
 

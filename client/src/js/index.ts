@@ -42,12 +42,7 @@ let routes : IRoutes = {
   '/error502': new Error502()
   }
 
-// Listen on hash change:
-window.addEventListener('popstate', function () {
-  new Router(routes)  
-})
-
-// Listen on page load:
+// Listen on page load (single Router instance):
 window.addEventListener('load', function () {
   new Router(routes)  
 })
