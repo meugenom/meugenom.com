@@ -46,6 +46,38 @@ class Article {
         this.article = await new Model().getArticle(this.slug);
         this.article.spec; // Article spec as string, e.g. from markdown file with front matter metadata
 
+                // Find meta description where name="description" and set content to first 150 chars of article spec (without markdown syntax)
+        const metaDescription = document.querySelector('meta[name="description"]');        
+        if (metaDescription) {
+            const tempDiv = document.createElement('div');                        
+            // Need only the text spec from --- to --- in article spec for meta description, as it contains the actual article content without title and metadata
+            const specMatch =this.article.spec.match(/---\s*([\s\S]*?)\s*---/);   
+            
+            // get "title: 'text text text...' "            
+            const titleMatch = specMatch ? specMatch[1].match(/title:\s*['"]([^'"]+)['"]/) : null;            
+            const title = titleMatch ? titleMatch[1] : null;
+
+            this.article_title = title ?? '';
+
+            
+            // get "categories: cat1 cat2 ... " as comma separated string
+            const categoriesMatch = specMatch ? specMatch[1].match(/categories:\s*([^\n]+)/) : null;
+            const categories = categoriesMatch ? categoriesMatch[1].split(/\s+/).join(', ') : null;
+
+            // get "tags : tag1 tag2 ... " as comma separated string
+            const tagsMatch = specMatch ? specMatch[1].match(/tags:\s*([^\n]+)/) : null;
+            const tags = tagsMatch ? tagsMatch[1].split(/\s+/).join(', ') : null;
+
+            // summarize title, categories, tags            
+            const metaInfo = [title, categories, tags].filter(Boolean).join(' | ');            
+
+            tempDiv.innerHTML = metaInfo; // Use metaInfo instead of article.spec to avoid markdown syntax in meta description
+
+            console.log(tempDiv.textContent);
+            const textContent = tempDiv.textContent || tempDiv.innerText || '';
+            metaDescription.setAttribute('content', textContent.substring(0, 200));
+        }
+
         return new ArticleView().appendArticles();
     }
 
@@ -67,37 +99,7 @@ class Article {
 
     async afterRender () { 
 
-        // Find meta description where name="description" and set content to first 150 chars of article spec (without markdown syntax)
-        const metaDescription = document.querySelector('meta[name="description"]');
-        if (metaDescription) {
-            const tempDiv = document.createElement('div');                        
-            // Need only the text spec from --- to --- in article spec for meta description, as it contains the actual article content without title and metadata
-            const specMatch =this.article.spec.match(/---\s*([\s\S]*?)\s*---/);   
-            
-            // get "title: 'text text text...' "            
-            const titleMatch = specMatch ? specMatch[1].match(/title:\s*['"]([^'"]+)['"]/) : null;            
-            const title = titleMatch ? titleMatch[1] : null;
-
-            // Set title FIRST — utterances reads document.title when the script loads
-            document.title = title ? `${title} | ${document.title}` : document.title;
-
-            // get "categories: cat1 cat2 ... " as comma separated string
-            const categoriesMatch = specMatch ? specMatch[1].match(/categories:\s*([^\n]+)/) : null;
-            const categories = categoriesMatch ? categoriesMatch[1].split(/\s+/).join(', ') : null;
-
-            // get "tags : tag1 tag2 ... " as comma separated string
-            const tagsMatch = specMatch ? specMatch[1].match(/tags:\s*([^\n]+)/) : null;
-            const tags = tagsMatch ? tagsMatch[1].split(/\s+/).join(', ') : null;
-
-            // summarize title, categories, tags            
-            const metaInfo = [title, categories, tags].filter(Boolean).join(' | ');            
-
-            tempDiv.innerHTML = metaInfo; // Use metaInfo instead of article.spec to avoid markdown syntax in meta description
-
-            console.log(tempDiv.textContent);
-            const textContent = tempDiv.textContent || tempDiv.innerText || '';
-            metaDescription.setAttribute('content', textContent.substring(0, 200));
-        }
+        document.title = this.article_title;
 
         // Parse and highlight article content
         try {
@@ -107,29 +109,35 @@ class Article {
             console.error('Error parsing article content:', parseError);
         }
 
-        // Build Table of Contents from parsed headings and inject into sidebar-left
-        this.renderToc();
-
-        // Attach utterances comments after browser has finished painting the article content
+        // Attach giscus comments after browser has finished painting the article content
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-                const utteranceEl = document.getElementById('utterance-comments');
-                if (utteranceEl && utteranceEl.childElementCount === 0) {
+                const giscusEl = document.getElementById('giscus-comments');
+                if (giscusEl && giscusEl.childElementCount === 0) {
                     const script = document.createElement('script');
-                    script.src = 'https://utteranc.es/client.js';
-                    script.type = 'application/javascript';
-                    script.setAttribute('repo', 'meugenom/comments');
-                    script.setAttribute('issue-term', 'title');
-                    script.setAttribute('label', 'comments');
-                    const currentTheme = localStorage.getItem('theme') || 'light';
-                    const utterancesTheme = currentTheme === 'dark' ? 'photon-dark' : 'github-light';
-                    script.setAttribute('theme', utterancesTheme);
+                    script.src = 'https://giscus.app/client.js';
+                    script.setAttribute('data-repo', 'meugenom/comments');
+                    script.setAttribute('data-repo-id', 'R_kgDOKam9-w');
+                    script.setAttribute('data-category', 'Announcements');
+                    script.setAttribute('data-category-id', 'DIC_kwDOKam9-84C3muT');
+                    script.setAttribute('data-mapping', 'pathname');
+                    script.setAttribute('data-strict', '0');
+                    script.setAttribute('data-reactions-enabled', '1');
+                    script.setAttribute('data-emit-metadata', '0');
+                    script.setAttribute('data-input-position', 'bottom');
+                    script.setAttribute('data-theme', 'preferred_color_scheme');
+                    script.setAttribute('data-lang', 'en');
+                    script.setAttribute('data-loading', 'lazy');
                     script.setAttribute('crossorigin', 'anonymous');
                     script.async = true;
-                    utteranceEl.appendChild(script);
+                    giscusEl.appendChild(script);
                 }
             });
         });
+
+        // Build Table of Contents from parsed headings and inject into sidebar-left
+        this.renderToc();
+
 
         // Lazy load images
         const images = document.querySelectorAll('.lazy');

@@ -13,7 +13,7 @@ class ArticleView {
                 <div id="article" class="px-5"></div>
 
                 <!-- Comments -->
-                <div id="utterance-comments"></div>
+                <div id="giscus-comments" class="giscus"></div>
         `;
     }
 }
