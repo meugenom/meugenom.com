@@ -3,6 +3,8 @@
  * @data 20.11.2023
  */
 
+import Config from '../config'
+
 import Navbar from './../components/nav'
 
 import Layout from '../components/layout'
@@ -98,11 +100,22 @@ class Router {
   }
 
   async renderContent() {
+    
+    // if rendering layout after articles, need to make title and meta description again as 
+    document.title = Config.title;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', Config.description);
+    }
+    
+    // Set content element and parse URL for every content render (e.g. after hash change or link click)
     this.content = document.getElementById('page') as HTMLElement;
     const parsedURL = this.parseUrl();    
     await this.renderPage(parsedURL);
+    
     // Links nach jedem Content-Update neu binden
     this.attachLinkListeners();
+
   }
 
   async renderFooter() {

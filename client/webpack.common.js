@@ -55,20 +55,20 @@ module.exports = {
         test: /\.(woff|woff2|ttf|eot)$/i,
         type: 'asset/resource',
       },
-      // --- ПРАВИЛО ДЛЯ КАРТИНОК (ОБНОВЛЕНО) ---
+      // --- Regeln für Bilder ---
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        type: 'asset/resource', // Используем встроенный Asset Modules Webpack 5
+        type: 'asset/resource', // Nutzt die neue Asset Modules API
         generator: {
           filename: 'images/[name][ext]'
         }
       }
     ]
   },
-  // --- СЕКЦИЯ ОПТИМИЗАЦИИ (ДОБАВЛЕНО) ---
+  // --- OPTIMIERUNGSABSCHNITT (HINZUGEFÜGT) ---
   optimization: {
     minimizer: [
-      "...", // Магия: сохраняет стандартную минимизацию JS/CSS
+      "...", // Magie: behält die Standard-Minimierung von JS/CSS bei
       new ImageMinimizerPlugin({
         minimizer: {
           implementation: ImageMinimizerPlugin.sharpMinify,

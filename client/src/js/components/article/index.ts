@@ -31,7 +31,9 @@ class Article {
     private article!: {
         spec: string
     };
+
     private slug!: string;
+    private article_title!: string;
 
     constructor () {        
     }
@@ -42,6 +44,7 @@ class Article {
         this.slug = request.id ?? '';
 
         this.article = await new Model().getArticle(this.slug);
+        this.article_title = this.article.spec; // Assuming the title is part of the article spec
 
         return new ArticleView().appendArticles();
     }
@@ -65,7 +68,38 @@ class Article {
     async afterRender () {
 
         // Set title FIRST — utterances reads document.title when the script loads
-        document.title = this.slug;
+        document.title = this.article_title;
+
+        // Find meta description where name="description" and set content to first 150 chars of article spec (without markdown syntax)
+        const metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+            const tempDiv = document.createElement('div');                        
+            // Need only the text spec from --- to --- in article spec for meta description, as it contains the actual article content without title and metadata
+            const specMatch =this.article.spec.match(/---\s*([\s\S]*?)\s*---/);   
+            
+            // get "title: 'text text text...' "            
+            const titleMatch = specMatch ? specMatch[1].match(/title:\s*['"]([^'"]+)['"]/) : null;
+            if (titleMatch) {
+                this.article_title = titleMatch[1];
+            }
+
+            // get "categories: cat1 cat2 ... " as comma separated string
+            const categoriesMatch = specMatch ? specMatch[1].match(/categories:\s*([^\n]+)/) : null;
+            const categories = categoriesMatch ? categoriesMatch[1].split(/\s+/).join(', ') : null;
+
+            // get "tags : tag1 tag2 ... " as comma separated string
+            const tagsMatch = specMatch ? specMatch[1].match(/tags:\s*([^\n]+)/) : null;
+            const tags = tagsMatch ? tagsMatch[1].split(/\s+/).join(', ') : null;
+
+            // summarize title, categories, tags
+            const metaInfo = [this.article_title, categories, tags].filter(Boolean).join(' | ');            
+
+            tempDiv.innerHTML = metaInfo; // Use metaInfo instead of article.spec to avoid markdown syntax in meta description
+
+            console.log(tempDiv.textContent);
+            const textContent = tempDiv.textContent || tempDiv.innerText || '';
+            metaDescription.setAttribute('content', textContent.substring(0, 200));
+        }
 
         // Parse and highlight article content
         try {

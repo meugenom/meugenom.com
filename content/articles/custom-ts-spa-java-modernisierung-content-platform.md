@@ -1,11 +1,11 @@
 ---
 date: 2026-03-01
-title: 'New Webpage Updates'
+title: 'Custom TS-SPA & Java Backend: Modernisierung meiner Content-Plattform'
 template: post
-thumbnail: './thumbnails/update_meugenom_03_2026.png'
-slug: new-webpage-updates-03-2026
-categories: helping to write text
-tags: website update german
+thumbnail: './thumbnails/content-platform-modernisierung-neon.png'
+slug: custom-ts-spa-java-modernisierung-content-platform
+categories: update custom content platform
+tags: custom content update modernisierung
 ---
 
 ## Was ist neu?
