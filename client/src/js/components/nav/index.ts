@@ -105,10 +105,12 @@ class Navbar {
     // Fix: Check if code elements exist before trying to style them  
     const codeElements = document.getElementsByTagName("code");
     if (codeElements.length > 0) {
-      // Apply style to all code elements
+      // Apply style only to block code elements (inside <pre>), skip inline code
       for (let i = 0; i < codeElements.length; i++) {
-        codeElements[i].style.backgroundColor = theme === 'dark' ? '#18181b' : '#f5f5f5';
-        codeElements[i].style.color = theme === 'dark' ? '#d1d5db' : '#1f2937';
+        if (codeElements[i].parentElement?.tagName === 'PRE') {
+          codeElements[i].style.backgroundColor = theme === 'dark' ? '#18181b' : '#f5f5f5';
+          codeElements[i].style.color = theme === 'dark' ? '#d1d5db' : '#1f2937';
+        }
         }
       }
       // Fix: Check if a elements exist before trying to style them
