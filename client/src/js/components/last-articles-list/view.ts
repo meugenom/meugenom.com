@@ -40,11 +40,12 @@ class View {
     // from object to array
     Object.entries(lastArticlesList).forEach(([key, value]) => {      
       (value as unknown as any[]).map((article: any) => {        
-        //console.log(article)
         list.push(article)
-
       })
     })
+
+    // sort descending by date — newest first
+    list.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     const view = /* html */`      
       <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
