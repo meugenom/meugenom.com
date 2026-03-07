@@ -59,7 +59,7 @@ export class ParagraphHTML {
 
 			if (child.type == TokenType.CODE_INLINE) {
 				text = text + " " + `
-				<code class="inline-block py-1 px-2 bg-blue-400 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+				<code class="inline-block py-1 px-2 bg-blue-200 dark:bg-blue-800 text-sm font-medium rounded">
 					${child.value.substring(1, child.value.length - 1)}
 				</code>
 				`
