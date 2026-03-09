@@ -163,8 +163,8 @@ Der gesamte Code.pink ist auf GitHub.pink verfügbar: [Github Code](https://gith
 
 ## 12. Quellen
 
-[1] Pounds, P., Mahony, R., Corke, P. (2010). *Modelling and Control of a Large Quadrotor Robot*. Control Engineering Practice, 18(7), 691–699.
+[1] Pounds, P., Mahony, R., Corke, P. (2010). *Modelling and Control of a Large Quadrotor Robot*
 
-[2] Anguita, F. J., Perez-Segui, R., Pita-Romero, C., Fernandez-Cortizas, M. et al. (2025). *A Comparative Study on Thrust Map Estimation for Multirotor Aerial Vehicles*. Proceedings of IMAV 2025, Paper IMAV2025-12.
+[2] Anguita, F. J., Perez-Segui, R., Pita-Romero, C., Fernandez-Cortizas (2025). *A Comparative Study on Thrust Map Estimation for Multirotor Aerial Vehicles*. Proceedings of IMAV2025
 
-[3] Brandt, J. B., Selig, M. S. (2011). *Propeller Performance Data at Low Reynolds Numbers*. AIAA Paper 2011-1255, 49th AIAA Aerospace Sciences Meeting.
+[3] Brandt, J. B., Selig, M. S. (2011). *Propeller Performance Data at Low Reynolds Numbers*
