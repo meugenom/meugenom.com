@@ -71,7 +71,7 @@ class View {
         }
     const view = await /* html */`                                                                  
                   <!-- Projects content -->                                    
-                    <div class="font-sans text-base antialiased leading-7 z-0">                    
+                    <div class="mx-5 font-sans text-base antialiased leading-7 z-0">                    
                           <article>
                             <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
                               <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Projects</p>

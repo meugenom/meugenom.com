@@ -165,6 +165,10 @@ class Article {
 
         sidebarEl.innerHTML = new SideBarLeftView().renderToc(headings);
 
+        // Show sidebar on large screens
+        sidebarEl.classList.remove('hidden');
+        sidebarEl.classList.add('lg:block');
+
         // Show left border on #page only when sidebar-left is present
         const pageEl = document.getElementById('page');
         if (pageEl) pageEl.classList.add('border-l');
