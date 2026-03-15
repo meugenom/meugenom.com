@@ -1,7 +1,7 @@
 import * as Token from "../Token";
 import { TokenType } from "../Types";
 import { DomUtilites } from "./DomUtilites";
-import katex from 'katex';
+import * as katex from 'katex';
 
 export class ListHTML {
     private DomUtilites: DomUtilites;
