@@ -149,7 +149,11 @@ class Router {
     // Note: check for '/:id' to avoid matching '/articles' (blog list page)
     if (!(parsedURL.includes('/article') && parsedURL.includes('/:id'))) {
       const sidebarEl = document.getElementById('side-bar-left');
-      if (sidebarEl) sidebarEl.innerHTML = '';
+      if (sidebarEl) {
+        sidebarEl.innerHTML = '';
+        sidebarEl.classList.add('hidden');
+        sidebarEl.classList.remove('lg:block');
+      }
       // Remove left border from #page when sidebar-left is cleared
       const pageEl = document.getElementById('page');
       if (pageEl) pageEl.classList.remove('border-l');
