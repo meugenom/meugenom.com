@@ -8,26 +8,20 @@ import SocialLinksView from '../social-links/view';
 class View {
   appendFooter () {
     const view = /* html */`
-        <footer
-            class="container mx-auto border-t border-gray-300
-                    relative
-                    fixed inset-x-0
-                    bottom-0
-                    z-10
-                    ">
-            <div class="flex justify-center">
-                <div class="text-sm align-middle text-center pt-5">
-                    meugenom 2026 &nbsp;
+        <footer class="w-full border-t border-gray-300 relative fixed inset-x-0 bottom-0 z-10">
+            <div class="container mx-auto">
+            <div class="flex flex-row items-center justify-center py-4 gap-4">
+                <div class="text-sm opacity-50">
+                    meugenom 2026
                 </div>
-                <div class="flex justify-center mt-0">
-                    <div class="social-buttons">`
+                <div class="social-buttons">`
                     +                    
                     // Social links as nested component
                     new SocialLinksView().appendSocialLinks()        
                     +
                     `
-                    </div>
                 </div>
+            </div>
             </div>
         </footer>
         `
