@@ -10,7 +10,8 @@ class View {
 
         const view = /* html */
             ` 
-        <div class="container mx-auto border-b border-gray-300">
+        <div class="w-full border-b border-gray-300">
+        <div class="container mx-auto">
             <nav class="relative flex flex-wrap items-center justify-between py-3">
                 
                 <div class="px-4 mx-auto flex-wrap items-center justify-between mb-2 ml-2 hidden sm:flex">
@@ -129,6 +130,7 @@ class View {
                     </ul>                    
                 </div>        
             </nav>
+        </div>
         </div>
         `
 

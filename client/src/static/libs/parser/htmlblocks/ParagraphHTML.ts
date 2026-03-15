@@ -25,7 +25,7 @@ export class ParagraphHTML {
 	render(): any {
 
 		const ParagraphNode = this.DomUtilites.createElement("p")
-		ParagraphNode.className = "block leading-7 font-mono mt-2";
+		ParagraphNode.className = "block leading-7 font-mono mt-4";
 
 		let text = "";
 		
@@ -59,7 +59,7 @@ export class ParagraphHTML {
 
 			if (child.type == TokenType.CODE_INLINE) {
 				text = text + " " + `
-				<code class="inline-block py-1 px-2 bg-blue-200 dark:bg-blue-800 text-sm font-medium rounded">
+				<code class="inline-block py-1 px-2 bg-blue-200 dark:bg-blue-800 text-sm font-mono font-medium rounded">
 					${child.value.substring(1, child.value.length - 1)}
 				</code>
 				`
