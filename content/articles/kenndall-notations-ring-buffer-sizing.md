@@ -2,7 +2,7 @@
 date: 2026-03-15
 title: 'Kendall-Notation — Ring Buffer Sizing'
 template: post
-thumbnail: './thumbnails/ring_buffer_title.png'
+thumbnail: ''
 slug: kendall-notation-ring-buffer-sizing
 categories: ring-buffer queueing-theory embedded kendall-notation
 tags: ring-buffer queueing-theory embedded kendall-notation
