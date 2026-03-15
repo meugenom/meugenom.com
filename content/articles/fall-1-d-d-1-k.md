@@ -2,7 +2,7 @@
 date: 2026-03-15
 title: 'Fall 1: D/D/1/K — Deterministisch, konstante Chunks, konstante Frequenzen, kein Jitter'
 template: post
-thumbnail: './thumbnails/ring_buffer_title.png'
+thumbnail: ''
 slug: fall-1-d-d-1-k
 categories: ring-buffer queueing-theory embedded fall-1-d-d-1-k
 tags: ring-buffer queueing-theory embedded fall-1-d-d-1-k
@@ -17,11 +17,11 @@ Hauptartikel: [Modeling and Analysis of Ring Buffers: A Journey from Queueing Th
 
 ## 1. Gegebene Daten (Eingangswerte)
 
-- **$f_{in}$ / $f_{out}$:** Konstante Frequenzen in Hz (z. B. 20 Hz und 30 Hz).
-- **$S_{frame}$:** **2 Bytes** (Die kleinste atomare Einheit/Hardware-Takt).
-- **$S_{in}$:** Konstante Eingangsgröße (z. B. 128 Bytes = 64 Frames).
-- **$S_{out}$:** Konstante Ausgangsgröße (z. B. 192 Bytes = 96 Frames).
-- **Jitter:** 0 (Perfektes Timing).
+- $f_{in}$ / $f_{out}$: Konstante Frequenzen in Hz (z. B. 20 Hz und 30 Hz).
+- $S_{frame}$: **2 Bytes** (Die kleinste atomare Einheit/Hardware-Takt).
+- $S_{in}$: Konstante Eingangsgröße (z. B. 128 Bytes = 64 Frames).
+- $S_{out}$: Konstante Ausgangsgröße (z. B. 192 Bytes = 96 Frames).
+- Jitter: 0 (Perfektes Timing).
 
 ## 2. Die Berechnung nach dem Double-Buffering-Prinzip
 
@@ -37,10 +37,10 @@ In der Welt der Mikrocontroller nutzen wir das **Double Buffering** Prinzip auf 
 3. **Frame-Anpassung:** Da $K$ durch $S_{frame}$ (2 Bytes) teilbar sein muss:
    $$K_{final} = \lceil (S_{in} + S_{out}) / 2 \rceil \cdot 2$$
 
-**Beispiel mit deinen Werten:**
+**Beispiel:**
 * $S_{in} = 128$ Bytes
 * $S_{out} = 192$ Bytes
-* **$K = 128 + 192 = 320$ Bytes** (Da 320 durch 2 teilbar ist, bleibt es bei 320 Bytes).
+* $K = 128 + 192 = 320$ Bytes (Da 320 durch 2 teilbar ist, bleibt es bei 320 Bytes).
 
 **Hinweis:** $K_{base} = S_{in} + S_{out}$ ist ein Double-Buffering-Prinzip, keine Queueing-Formel. Kleinrock (1975), Formel 2.29 definiert $\rho = \lambda/\mu$ und wird erst ab Fall 2 relevant.
 
@@ -57,7 +57,7 @@ Obwohl $S_{in}$ und $S_{out}$ viel größer sind, bestimmt der **Frame** (2 Byte
 | **Minimale Latenz** | Entspricht der Zeit, bis genug Frames für $S_{out}$ bereitstehen. |
 
 
-- **Methodologischer Hinweis:** Fall 1 ist der einzige vollstaendig deterministische Fall.
+- **Methodologischer Hinweis:** Fall 1 ist der einzige vollständig deterministische Fall.
 
 $K_{final} = S_{in} + S_{out}$ ist hier eine exakte physische Berechnung.
 
@@ -68,5 +68,5 @@ Stattdessen werden zwei Ebenen getrennt behandelt:
 2. deterministische Safety-Regeln fuer $K_{base}$, Watermark und Frame-Ausrichtung.
 
 ## 4. Fazit
-In Fall 1 ist $K$ die Summe aus Eingangs- und Ausgangschunk, wobei die Frame-Größe von 2 Bytes die "Rasterung" des Speichers vorgibt. 
+In Fall 1 ist $K$ die Summe aus Eingangs- und Ausgangschunk, wobei die Frame-Größe von 2 Bytes die "Rasterung" des Speichers vorgibt.
 320 Bytes sind hier das absolute Minimum, um sicherzustellen, dass während eines Schreibvorgangs von 128 Bytes immer ein vollständiger Satz von 192 Bytes für den Ausgang bereitsteht.
