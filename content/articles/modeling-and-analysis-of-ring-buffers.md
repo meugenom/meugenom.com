@@ -4,8 +4,8 @@ title: 'Modeling and Analysis of Ring Buffers: A Journey from Queueing Theory to
 template: post
 thumbnail: './thumbnails/ring_buffer_title.png'
 slug: modeling-and-analysis-of-ring-buffers
-categories: ring-buffer queueing-theory embedded-c
-tags: ring-buffer queueing-theory embedded-c
+categories: ring-buffer queueing-theory embedded
+tags: ring-buffer queueing-theory embedded
 ---
 
 # Ring Buffer, have you calculated or designed intuitively? 
