@@ -7,6 +7,7 @@ import com.meugenom.tag.model.Tag;
 import com.meugenom.article.repository.ArticleRepository;
 import com.meugenom.search.SearchService;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;
@@ -26,44 +27,32 @@ public class ArticlesQuery implements GraphQLQueryResolver {
         private SearchService searchService;
 
 	public List<Article> articlesList() {
-		List<Article> list = articleRepository.findAllByOrderByDateDesc();
-		// print in the console all articles titles
-		for (Article article : list) {
-			System.out.println("Article title is: " + article.getTitle());
-		}
+		List<Article> list = new ArrayList<>(articleRepository.findAllByOrderByDateDesc());
+		list.sort(Comparator.comparing(Article::getDate).reversed());
 		return list;
 	}
 	
-	// return list of articles by tag
 	public List<Article> articlesListByTag(String tag) {
-		//get all articles sorted by date
-		List<Article> list = articleRepository.findAllByOrderByDateDesc();
+		List<Article> list = new ArrayList<>(articleRepository.findAllByOrderByDateDesc());
+		list.sort(Comparator.comparing(Article::getDate).reversed());
 
-		//find articles where tag is in tags
 		List<Article> result = new ArrayList<Article>();
 		for (Article article : list) {
 			if (article.getTags().contains(tag)) {
-				result.add(article);			
+				result.add(article);
 			}
 		}
 		return result;
 	}
 
-	// return not more then 5 last articles
 	public List<Article> lastArticlesList() {
-		List<Article> list = articleRepository.findAllByOrderByDateDesc();
-		List<Article> result = new ArrayList<Article>();
-		
-		//return only 5 last articles or less
+		List<Article> list = new ArrayList<>(articleRepository.findAllByOrderByDateDesc());
+		list.sort(Comparator.comparing(Article::getDate).reversed());
+
 		if (list.size() > 5) {
-			for (int i = 0; i < 5; i++) {
-				result.add(list.get(i));
-			}
-		} else {
-			result = list;
+			return list.subList(0, 5);
 		}
-		
-		return result;
+		return list;
 	}
 
 	/**
