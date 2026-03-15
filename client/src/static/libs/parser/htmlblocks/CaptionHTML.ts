@@ -35,14 +35,21 @@ export class CaptionHTML {
 				"</a>"
 		}
 
-		const thumbnail = '/' + this.token.children[0].thumbnail.trim().replace(/['"]/g, '').replace(/^\.?\//, '');
+		const rawThumbnail = this.token.children[0].thumbnail.trim().replace(/['"]/g, '').replace(/^\.?\//, '');
+		const hasThumbnail = rawThumbnail.length > 0;
+		const thumbnail = '/' + rawThumbnail;
+
+		const thumbnailBlock = hasThumbnail
+			? `<div class="flex-none">
+				<img data-src="${thumbnail}" 
+				 class="lazy float-left object-contain h-64 w-full max-w-xs"/>
+			</div>`
+			: '';
+
 		const CaptionBlock =
 		`
 		<div class = "flex flex-col md:flex-row gap-6">
-			<div class = "flex-none">
-				<img data-src="${thumbnail}" 
-				 class="lazy float-left object-contain h-64 w-full max-w-xs"/>
-			</div>
+			${thumbnailBlock}
 			<div class="flex-auto justify-start">
 				<h3 class="text-3xl font-sans font-semibold leading-tight mt-0 mb-2">
 					${this.token.children[0].title.slice(2, this.token.children[0].title.length-1)}</h3>
