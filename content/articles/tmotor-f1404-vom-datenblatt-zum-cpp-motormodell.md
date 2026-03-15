@@ -44,29 +44,35 @@ Um daraus eine konsistente Lookup-Tabelle zu bauen, müssen alle Messwerte auf e
 ```matlab
 drehzahl_norm = drehzahl_upm .* (16.0 ./ spannung_v)
 strom_a_norm  = strom_a .* (16.0 ./ spannung_v).^2
+strom_a_norm(1) = MOTOR_I_IDLE   % Leerlaufstrom: Reibung, nicht V^2-abhängig
 ```
 
 16,0 V wurde als Referenz gewählt — nahe an den tatsächlichen Testbedingungen (Abweichung < 0,25 V) und ein praktischer Rundwert für eine volle 4S-LiPo (4x4.0 V). Der Normierungsfehler beträgt weniger als 1,5%.
 
+**Wichtig:** Der Leerlaufstrom (0,6 A bei 0 % Gas) wird *nicht* mit $V^2$ skaliert. Dieser Strom entsteht durch Lagerreibung und Wirbelströme im Stator — mechanische Verluste, die nicht dem aerodynamischen $V^2$-Gesetz folgen. Die Skalierung gilt nur für den lastabhängigen Strom unter Propellerlast.
 
-## 4. Der versteckte Fehler. Warum die Parabel falsch war?
 
-Beim ersten Modellversuch wurde der Schubpolynomfit direkt auf den Rohdaten aufgebaut:
+## 4. Der versteckte Fehler. Wo die Normierung hilft — und wo sie schadet
 
-```matlab
-    p_schub = polyfit(drehzahl_upm, schub_g, 2)
-```
+Die Normierung auf 16,0 V löst das Problem der inkonsistenten Spannungen — aber nicht überall gleich.
 
-Das Ergebnis war geometrisch falsch: Die Kurve verlief **konkav nach oben** — also mit abnehmender Steigung bei höheren Drehzahlen. Physikalisch muss aber gelten: $F \propto n^2$, also eine **nach oben geöffnete Parabel mit zunehmender Steigung**.
+Entscheidend ist, *welche* Beziehung gefittet wird:
 
-Der Grund: `polyfit` sah 11 Messpunkte, die scheinbar bei der **gleichen** Spannung aufgenommen wurden — in Wirklichkeit aber bei 15,93 V, 15,91 V, ... 15,64 V.
-Die sinkende Spannung unter Last reduziert die Drehzahl, und dieser systematische Effekt verzerrte die Kurvenform.
-
-Nach der Normierung auf 16,0 V liegen alle Punkte im gleichen physikalischen Raum und die Parabel öffnet sich korrekt nach oben. Dies entspricht dem physikalischen Modell $F = k·n^2$ .
+**Gas → RPM:** Hier ist die Normierung zwingend. Ohne sie sieht `polyfit` Drehzahlen, die bei 50 % Gas unter 15,93 V und bei 100 % Gas unter 15,64 V gemessen wurden — als ob die Drehzahl bei höherem Gas langsamer zunimmt als sie tatsächlich sollte. Die Normierung auf 16,0 V bringt alle Punkte in denselben physikalischen Raum:
 
 ```matlab
-    p_schub = polyfit(drehzahl_norm, schub_g, 2)
+    p_rpm_fit = polyfit(gas_pct/100, drehzahl_norm, 2)
 ```
+
+**RPM → Schub:** Hier darf *nicht* normiert werden. Jedes Messpunkt-Paar (RPM, Schub) wurde *gleichzeitig* am Standtest aufgenommen — der Motor drehte tatsächlich 26.532 U/min und erzeugte dabei tatsächlich 184,21 g. Es gibt keine Inkonsistenz. Schub ist eine rein aerodynamische Funktion der Drehzahl: $F \propto n^2$.
+
+Wenn man hier normierte RPM einsetzt, verschiebt man die x-Achse nach rechts (höhere RPM), lässt aber die y-Achse (Schub) unverändert. Das Ergebnis: der Fit *unterschätzt* den Schub systematisch.
+
+```matlab
+    p_schub = polyfit(drehzahl_upm, schub_g, 2)   % echte RPM × echter Schub
+```
+
+Dieser Fehler war im ersten Modell enthalten und kostete ~1 % Genauigkeit — der mittlere Fehler sank nach der Korrektur von 3,2 % auf 2,1 %.
 
 ## 5. Drei Modelle — drei Ebenen der Wahrheit
 
@@ -110,7 +116,7 @@ Zwei Skalierungsgesetze sind analytisch korrekt und wurden bewusst beibehalten:
 
 Das zweite Gesetz folgt direkt aus der Drehmomentgleichung von Pounds [1]:
 
-$Q = C_Q·ρ·A·r^3·\omega²$
+$Q = C_Q·ρ·A·r^3·\omega^2$
 
 Da der Motorstrom proportional zum Drehmoment ist ($I = Q·KV_rad$), und $\omega \propto V$ gilt, ergibt sich $I \propto V^2$ keine Annahme, sondern physikalische Konsequenz.
 
@@ -131,15 +137,15 @@ Der Hover-Punkt bei 62,5 g pro Motor liegt in der **Extrapolationszone** (unter 
 ## 9. Ergebnis
 
 ```bash
-✓ Schub bei 50 %:   1,874 N   (Messung: 1,807 N, Fehler +3,7 %)
-✓ Schub bei 75 %:   2,718 N   (Messung: 2,821 N, Fehler -3,7 %)
-✓ Schub bei 100 %:  3,303 N   (Messung: 3,382 N, Fehler -2,3 %)
+✓ Schub bei 50 %:   1,875 N   (Messung: 1,807 N, Fehler +3,7 %)
+✓ Schub bei 75 %:   2,773 N   (Messung: 2,821 N, Fehler -1,7 %)
+✓ Schub bei 100 %:  3,406 N   (Messung: 3,382 N, Fehler +0,7 %)
 
-Mittlerer Fehler: 3,2 %
+Mittlerer Fehler: 2,1 %
 Toleranz gesetzt auf +/-5% Schub, +/-10% Strom
 ```
 
-Hover-Analyse für einen 250-g-Quadrocopter: **17,7 % Gasstellung** bei 15,8 V in der Extrapolationszone, aber physikalisch plausibel. Der Test verwendet ±10 % Toleranz für den Hover-Wert.
+Hover-Analyse für einen 250-g-Quadrocopter: **18,5 % Gasstellung** bei 15,8 V in der Extrapolationszone, aber physikalisch plausibel. Der Test verwendet ±10 % Toleranz für den Hover-Wert.
 
 ## 10. Was das Modell noch nicht kann
 
@@ -147,12 +153,12 @@ Ehrlichkeit gehört dazu:
 
 **Thermische Drift:** Bei heißem Motor (~80 °C) steigt der Wicklungswiderstand um ~12% (Kupfer: $\alpha = 0,00393°C$), k_M sinkt, der Schub fällt um 5–8%. Die Standtestdaten wurden bei 8°C Umgebungstemperatur aufgenommen. Dieser Effekt ist im Modell nicht abgebildet.
 
-**Extrapolation unter 50 % Gas:** Das Polynom wurde auf dem Bereich 50–100 % trainiert. Der Hover-Punkt liegt bei 17,7 % — doppelte Extrapolation. Brandt & Selig zeigen, dass Propeller im niedrigen Reynolds-Zahl-Bereich (<100.000) stark nichtlineares Verhalten zeigen [3]. Die Modellgüte dort ist unbekannt.
+**Extrapolation unter 50 % Gas:** Das Polynom wurde auf dem Bereich 50–100 % trainiert. Der Hover-Punkt liegt bei 18,5 % — doppelte Extrapolation. Brandt & Selig zeigen, dass Propeller im niedrigen Reynolds-Zahl-Bereich (<100.000) stark nichtlineares Verhalten zeigen [3]. Die Modellgüte dort ist unbekannt.
 
 **Batteriealterung und Spannungsabfall:** Im Standtest betrug der Spannungsabfall unter Volllast nur **0,29 V bei 17,5 A** (1,8 %), die Batterie war neu. Bei einer gealterten Batterie (100+ Zyklen) kann der Innenwiderstand 2–4x höher sein, was bei gleichem Gaswert zu 1-2 V weniger Klemmenspannung führt.
 Das senkt die effektive Drehzahl und Schubkraft um 5–10 % ohne dass das Modell dies erkennt. In [2] beschreibt genau diesen Effekt und führen einen Korrekturfaktor $\gamma$ ein, der den Drosselfehler von ~4,4 % auf unter 0,5 % reduziert [2].
 
-**Strom bei niedrigem Gas:** Das Strommodell zeigt bei 50 % Gas einen Fehler von +9,7 % (5,74 A statt 5,23 A). Das Modell wurde primär auf Schubgenauigkeit optimiert, der Strom ist dort weniger präzise.
+**Strom bei niedrigem Gas:** Das Strommodell zeigt bei 50 % Gas einen Fehler von +9,6 % (5,73 A statt 5,23 A). Das Modell wurde primär auf Schubgenauigkeit optimiert, der Strom ist dort weniger präzise.
 
 **Motor-zu-Motor-Streuung:** ~3 % auf KV ist nicht abgebildet.
 
@@ -161,7 +167,7 @@ Das senkt die effektive Drehzahl und Schubkraft um 5–10 % ohne dass das Modell
 Für Antriebssysteme mit nichtlinearer Last (Propeller, Pumpen, Gebläse) liefert eine sauber aufgenommene empirische Kennlinie schneller ein belastbares Modell als der Versuch, alle physikalischen Konstanten zu identifizieren.
 Entscheidend ist dabei Ehrlichkeit über den Gültigkeitsbereich. Das Modell ist gut für 50–100 % Gas auf einer frischen 4S-Batterie bei moderater Temperatur. Außerhalb dieser Bedingungen braucht es Korrekturfaktoren.
 
-**Ebenso wichtig**: Die Rohdaten müssen vor dem Fit physikalisch konsistent gemacht werden. Eine Normierung auf eine gemeinsame Referenzspannung ist kein optionaler Schritt, sondern Voraussetzung für einen geometrisch korrekten Polynomfit.
+**Ebenso wichtig**: Normierung ist kein pauschaler Schritt. Sie ist nötig, wo Messbedingungen inkonsistent sind (Gas → RPM bei schwankender Spannung), aber schädlich, wo beide Achsen im gleichen Experiment gemessen wurden (RPM → Schub). Blindes Normieren kann die Modellgenauigkeit verschlechtern statt verbessern.
 
 Der gesamte **Code** ist auf GitHub verfügbar: [Github Code](https://github.com/meugenom/tmotor-f1404-model)
 
