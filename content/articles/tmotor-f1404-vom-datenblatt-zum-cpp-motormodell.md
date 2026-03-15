@@ -167,8 +167,10 @@ Der gesamte **Code** ist auf GitHub verfügbar: [Github Code](https://github.com
 
 ## 12. Quellen
 
+
 [1] Pounds, P., Mahony, R., Corke, P. (2010). **Modelling and Control of a Large Quadrotor Robot.**
 
 [2] Anguita, F. J., Perez-Segui, R., Pita-Romero, C., Fernandez-Cortizas, **A Comparative Study on Thrust Map Estimation for Multirotor Aerial Vehicles** IMAV 2025.
 
 [3] Brandt, J. B., Selig, M. S. (2011). **Propeller Performance Data at Low Reynolds Numbers.** Paper 2011-1255, 49th Aerospace Sciences Meeting.
+
