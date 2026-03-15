@@ -21,10 +21,10 @@ class View {
     // need to check if tags is object null or undefined
     if (tags === null || tags === undefined) {
       return `
-      <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
+      <div class="mx-5 font-mono text-base antialiased leading-7 z-0">
           <article>
             <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
-              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Tags Garten</p>
+              <p class="text-[11px] font-mono font-bold uppercase tracking-widest opacity-50">Tags Garten</p>
             </div>
             <ul>
               <li class="text-blue-400 hover:text-bold">
@@ -73,33 +73,25 @@ class View {
 
 
     const view = /* html */`      
-      <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
+      <div class="mx-5 font-mono text-base antialiased leading-7 z-0">
           <article>
             <div class="pt-6 pb-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
-              <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">Tags Garten</p>
+              <p class="text-[11px] font-mono font-bold uppercase tracking-widest opacity-50">Tags Garten</p>
             </div>
-            <ul>
-
+            <ul class="py-1">
               ${letters.map((letter: any) => 
-                /* html */
-                `              
-                <li class="flex items-start py-1">
-                  <span class="text-[11px] font-mono font-semibold text-blue-400 flex-shrink-0 w-5 pt-0.5">
-                  ${letter.letter}
-                  </span>
+                `<li class="flex items-start py-1">
+                  <span class="text-[11px] font-mono font-semibold text-blue-400 flex-shrink-0 w-5 pt-0.5">${letter.letter}</span>
                   <div class="flex flex-wrap gap-1">
                     ${letter.tags.map((tag: any) => 
-                    `
-                      <a key="${tag.name}" 
-                        navigateLinkTo="/tag/${tag.name}" href="/tag/${tag.name}"
-                        class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500">
-                        ${tag.name}
-                      </a>
-                    `).join('')}
+                      `<a key="${tag.name}" 
+                          navigateLinkTo="/tag/${tag.name}" href="/tag/${tag.name}"
+                          class="text-[11px] font-mono border border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500">
+                          ${tag.name}
+                        </a>`).join('')}
                   </div>
-                </li>
-            `).join('')}
-          </ul>
+                </li>`).join('')}
+            </ul>
         </article>
       </div>
     `

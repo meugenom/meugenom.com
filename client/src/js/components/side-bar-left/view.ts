@@ -39,9 +39,9 @@ class View {
     });
 
     return /* html */`
-      <div class="hidden lg:flex lg:flex-col w-full sm:w-1/6 min-w-[220px] max-w-[260px] sidebar sticky top-0 h-screen overflow-hidden">
+      <div class="hidden lg:flex lg:flex-col w-full sidebar sticky top-0 h-screen overflow-hidden">
         <div class="pt-6 pb-4 px-4 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
-          <p class="text-[11px] font-bold uppercase tracking-widest opacity-50">On this page</p>
+          <p class="text-[11px] font-mono font-bold uppercase tracking-widest opacity-50 text-right">On this page</p>
         </div>
         <nav class="flex-1 overflow-y-auto overflow-x-hidden px-4 py-3 scrollbar-thin">
           <ul class="space-y-0">
@@ -56,10 +56,10 @@ class View {
     
     const view = await /* html */`    
           <!-- Left Sidebar (hidden on small screens) -->
-          <div class="hidden lg:block w-full sm:w-1/6 min-w-[300px] max-w-[300px] sidebar">
-            <div class="mx-5 font-sans text-base antialiased leading-7 z-0">
+          <div class="w-full sidebar">
+            <div class="mx-3 font-mono text-base antialiased leading-7 z-0">
             
-            <aside class="w-64 p-6 flex flex-col items-center">
+            <aside class="w-full px-3 py-6 flex flex-col items-center">
               
               <img src="../../images/ai-generated.png" alt="Profile Picture" class="w-24 h-24 rounded-full mb-4 border-2 border-gray-300"/>
               
