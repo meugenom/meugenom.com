@@ -88,13 +88,18 @@ export class TableHTML {
         HeaderNode.className = "flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700";
         HeaderNode.innerHTML = `<span class="text-[11px] font-mono font-bold uppercase tracking-widest opacity-50">Table</span>`;
 
+        // Scrollable container for horizontal overflow on small screens
+        const scrollContainer = this.DomUtilites.createElement("div");
+        scrollContainer.className = "overflow-x-auto";
+
         // Table
         const tableNode = this.DomUtilites.createElement("table");
         tableNode.className = "w-full text-sm text-left";
         tableNode.innerHTML = `${thead}<tbody>${tbodyRows}</tbody>`;
 
+        scrollContainer.appendChild(tableNode);
         WrapperNode.appendChild(HeaderNode);
-        WrapperNode.appendChild(tableNode);
+        WrapperNode.appendChild(scrollContainer);
         OuterNode.appendChild(WrapperNode);
 
         const app = this.htmlOutput;
