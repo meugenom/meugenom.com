@@ -25,14 +25,20 @@ class View {
     }
     const languages = `
     ${project.node.languages.nodes.map((language: ILanguage) => {      
-      if(language.name === 'JavaScript'
+      if(         
+         language.name === 'C'
+      || language.name === 'CSS'
+      || language.name === 'C++'   
+      || language.name === 'CMake'      
       || language.name === 'HTML' 
-      || language.name === 'CSS' 
-      || language.name === 'TypeScript'
-      || language.name === 'Python'
-      || language.name === 'SCSS'
       || language.name === 'Java'
+      || language.name === 'JavaScript'
+      || language.name === 'MATLAB'
+      || language.name === 'Saas'      
+      || language.name === 'SCSS'
       || language.name === 'Shell'
+      || language.name === 'Python'
+      || language.name === 'TypeScript'
     ){
       return `
         <div class="relative" style="right: 0px;margin-bottom: -35px;">					
