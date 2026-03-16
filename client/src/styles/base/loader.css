@@ -6,17 +6,16 @@
     min-height: 40vh;
 }
 .loader {
-    border: 6px solid #f3f3f3;
-    border-top: 6px solid #42A5F5;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #42A5F5;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     animation: spin 2s linear infinite;
 }
 
 
 /* css for elements ImageLoader */
-
 .imageLoader {
     border: 4px solid #f3f3f3; /* Light grey */
     border-top: 4px solid #9fa1a3; /* Blue */
