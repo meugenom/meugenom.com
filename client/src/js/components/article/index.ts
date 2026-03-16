@@ -165,8 +165,7 @@ class Article {
 
         sidebarEl.innerHTML = new SideBarLeftView().renderToc(headings);
 
-        // Show sidebar on large screens
-        sidebarEl.classList.remove('hidden');
+        // Show sidebar only on large screens (keep hidden on small screens like right sidebar)
         sidebarEl.classList.add('lg:block');
 
         // Show left border on #page only when sidebar-left is present
