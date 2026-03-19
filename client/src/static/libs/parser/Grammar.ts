@@ -14,7 +14,7 @@ export class Grammar {
 		HEADING_LEVEL: /(#{1,5})/g,
 
 		// caption
-		CAPTION: /^---\sdate:((.*))\stitle:((.*))\stemplate:((.*))\sthumbnail:((.*))\sslug:((.*))\scategories:((.*))\stags:((.*))\s---/,
+		CAPTION: /^---\sdate:((.*))\stitle:((.*))\stemplate:((.*))\sthumbnail:((.*))\sslug:((.*))\stags:((.*))\scluster:((.*))\sorder:((.*))\s---/,
 
 		SPACE: / /,
 		LINE: /\n/,
@@ -37,7 +37,7 @@ export class Grammar {
 		CODE_BLOCK_BODY: /\n([\s\S]+)[^\`\`\`]/gs,
 
 		// code in code block
-		CODE_IN_CODE: /\`\`\`(cpp|c|python|bash|java|javascript|typescript|swift|text)?\n([^\`\`\`]+)\`\`\`(python|bash|java|javascript|typescript|swift)\n([^\`\`\`]+)\`\`\`\n\`\`\`\n/g,
+		CODE_IN_CODE: /\`\`\`(cpp|c|python|matlab|bash|java|javascript|typescript|swift|text)?\n([^\`\`\`]+)\`\`\`(cpp|c|python|matlab|bash|java|javascript|typescript|swift)\n([^\`\`\`]+)\`\`\`\n\`\`\`\n/g,
 		INLINE_CODE: /([^\`\`\`]+)/gs,
 		INLINE_CODE_PARAMS: /([^\n]+)/sg,
 

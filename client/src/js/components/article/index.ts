@@ -59,17 +59,20 @@ class Article {
 
             this.article_title = title ?? '';
 
-            
-            // get "categories: cat1 cat2 ... " as comma separated string
-            const categoriesMatch = specMatch ? specMatch[1].match(/categories:\s*([^\n]+)/) : null;
-            const categories = categoriesMatch ? categoriesMatch[1].split(/\s+/).join(', ') : null;
+            // get "cluster: name as slug name"
+            const clusterMatch = specMatch ?  specMatch[1].match(/cluster:\s*([^\n]+)/) : null;
+            const cluster = clusterMatch ? clusterMatch[1] : null;
+
+            // get "order: number as 0 ..."
+            const orderMatch = specMatch ?  specMatch[1].match(/order:\s*([^\n]+)/) : null;
+            const order = orderMatch ? orderMatch[1] : null;
 
             // get "tags : tag1 tag2 ... " as comma separated string
             const tagsMatch = specMatch ? specMatch[1].match(/tags:\s*([^\n]+)/) : null;
             const tags = tagsMatch ? tagsMatch[1].split(/\s+/).join(', ') : null;
 
-            // summarize title, categories, tags            
-            const metaInfo = [title, categories, tags].filter(Boolean).join(' | ');            
+            // summarize title, cluster, tags            
+            const metaInfo = [title, tags, cluster, order].filter(Boolean).join(' | ');            
 
             tempDiv.innerHTML = metaInfo; // Use metaInfo instead of article.spec to avoid markdown syntax in meta description
 

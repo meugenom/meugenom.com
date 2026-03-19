@@ -34,10 +34,12 @@ export class Caption {
 			thumbnail,
 			,
 			slug,
-			,
-			categories,
-			,
+			,			
 			tags,
+			,
+			cluster,
+			,
+			order,
 		] = match;
 
 		const token: captionToken = {
@@ -48,8 +50,9 @@ export class Caption {
 			template: template as string,
 			thumbnail: thumbnail as string,
 			slug: slug as string,
-			categories: categories as string,
 			tags: tags as string,
+			cluster: cluster as string,
+			order: order as string
 		};
 		
 		//remove caption from text

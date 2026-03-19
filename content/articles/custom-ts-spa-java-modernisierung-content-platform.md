@@ -4,8 +4,9 @@ title: 'Custom TS-SPA & Java Backend: Modernisierung meiner Content-Plattform'
 template: post
 thumbnail: './thumbnails/content-platform-modernisierung-neon.png'
 slug: custom-ts-spa-java-modernisierung-content-platform
-categories: update custom content platform
 tags: custom content update modernisierung
+cluster: custom-ts-spa-java-modernisierung-content-platform
+order: 0
 ---
 
 ## Was ist neu?

@@ -21,19 +21,24 @@ export class CaptionHTML {
 		this.token.children[0].tags.toString().split(" ").map((tag: string) => {
 			if (tag.length > 0) {
 				tagsBlock = tagsBlock +
-					'<a navigateLinkTo="/tag/' + tag + '" href="/tag/' + tag + '" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-orange-400  hover:bg-orange-500 uppercase last:mr-0 mr-1">' +
-					tag +
-					"</a>"
+					'<a navigateLinkTo="/tag/' + tag + '" href="/tag/' + tag + '" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-orange-400  hover:bg-orange-600 last:mr-0 mr-1">' +
+						tag +	
+					'</a>'
 			}
 		});
 
-		let categoriesBlock = "";
-		if (this.token.children[0].categories.length > 0) {
-			categoriesBlock =
-				'<a class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-gray-400  hover:bg-gray-500 uppercase last:mr-0 mr-1">' +
-				this.token.children[0].categories +
-				"</a>"
-		}
+		
+		let clusterBlock = "";
+		if (this.token.children[0].cluster != undefined) {
+			let cluster = this.token.children[0].cluster.split(" ");
+			cluster = cluster.slice(1);
+			clusterBlock =
+				'<a navigateLinkTo="/article/' + cluster + '" href="/article/' + cluster + '" class="text-xs font-semibold inline-block py-1 px-2 rounded  text-white bg-gray-400  hover:bg-gray-600 uppercase last:mr-0 mr-1">' +
+					' -> Return to Main Article ' + 
+				'</a>'
+
+			}
+		
 
 		const rawThumbnail = this.token.children[0].thumbnail.trim().replace(/['"]/g, '').replace(/^\.?\//, '');
 		const hasThumbnail = rawThumbnail.length > 0;
@@ -46,30 +51,41 @@ export class CaptionHTML {
 			</div>`
 			: '';
 
-		const CaptionBlock =
+		let CaptionBlock =
 		`
 		<div class = "flex flex-col md:flex-row gap-6">
 			${thumbnailBlock}
 			<div class="flex-auto justify-start">
 				<h3 class="text-3xl font-sans font-semibold leading-tight mt-0 mb-2">
-					${this.token.children[0].title.slice(2, this.token.children[0].title.length-1)}</h3>
+					${this.token.children[0].title.slice(2, this.token.children[0].title.length-1)}
+				</h3>
 				<time class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
 					${this.token.children[0].date}
 				</time> 
 				<div class="tag-container mt-3 py-1">
 					${tagsBlock}
-				</div>
-				<div class="categories-container mt-2 py-1">
-					${categoriesBlock}
-				</div>
-			</div>
+				</div>				
+		`	
+			// if cluster is main article, no need to show
+			if(this.token.children[0].order!=0){
+				CaptionBlock +=
 
+				`
+				<div class=" mt-2 py-1">
+					${clusterBlock}
+				</div>				
+				`
+			}
+
+		CaptionBlock += 	
+		`
+			</div>
 		</div>
 		<hr/>
 		`;
 
 		//add caption to htmlOutput
-		const captionNode = this.DomUtilites.createElement('p')
+		const captionNode = this.DomUtilites.createElement('p');
 		captionNode.innerHTML = CaptionBlock;
 		this.htmlOutput.appendChild(captionNode);
 		

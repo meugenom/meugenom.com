@@ -84,8 +84,9 @@ export interface captionToken extends basisToken {
 	template: string,
 	thumbnail: string,
 	slug: string,
-	categories: string,
-	tags: string
+	tags: string,
+	cluster: string,
+	order: string
 }
 
 

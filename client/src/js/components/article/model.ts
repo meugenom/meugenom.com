@@ -11,10 +11,9 @@ import IArticle from '../interfaces/IArticle'
 
 class Model {
 
-    private specifications: 
-        { 
-            spec: string
-        };
+    private specifications: { 
+        spec: string 
+    };
 
     constructor () {
     }

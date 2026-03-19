@@ -4,8 +4,9 @@ title: 'How to Write Text'
 template: post
 thumbnail: './thumbnails/writing.png'
 slug: how-to-write-text
-categories: helping to write text
 tags: instruction texter writer
+cluster: how-to-write-text
+order: 0
 ---
 
 ## Formatting syntax
@@ -23,8 +24,10 @@ title: 'Instruction to Write Text'
 template: post
 thumbnail: './thumbnails/writing.png'
 slug: instruction-to-write-text
-categories: 
-tags: instruction texter writer 
+categories: instruction writer texter
+tags: instruction texter writer
+cluster: how-to-write-text
+order: 0
 ---
 \*
 

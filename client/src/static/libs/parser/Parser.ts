@@ -69,8 +69,9 @@ export class Parser {
 						template: token.template,
 						thumbnail: token.thumbnail,
 						slug: token.slug,
-						categories: token.categories,
-						tags: token.tags
+						tags: token.tags,
+						cluster: token.cluster,
+						order: token.order
 					}
 				];								
 				children.push(captionElement);

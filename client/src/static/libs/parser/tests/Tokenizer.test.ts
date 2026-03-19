@@ -14,8 +14,9 @@ describe('Tokenizer class tests', () => {
         "template: post\n" +
         "thumbnail: ./thumbnails/writing.png\n" +
         "slug: how-to-write-text\n" +
-        "categories: helping to write text\n" +
         "tags: instruction texter writer\n" +
+        "cluster: how-to-write-text\n" +
+        "order: 0\n" +
         "---\n";
 
         const tokenizer = new Tokenizer(text);
