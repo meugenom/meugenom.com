@@ -56,7 +56,8 @@ public class ParseToArticle {
                 shablons.add(".*template:.*");
                 shablons.add(".*thumbnail:.*");
                 shablons.add(".*slug:.*");
-                shablons.add(".*categories:.*");
+                shablons.add(".*cluster:.*");
+                shablons.add(".*order:.*");
                 shablons.add(".*tags:.*");
 
                 shablons.forEach((shablon) -> {
@@ -79,8 +80,10 @@ public class ParseToArticle {
                             article.setThumbnail(line.replace("thumbnail: ", ""));
                         if (shablon.equals(".*slug:.*"))
                             article.setSlug(line.replace("slug: ", ""));
-                        if (shablon.equals(".*categories:.*"))
-                            article.setCategories(line.replace("categories: ", ""));
+                        if (shablon.equals(".*cluster:.*"))
+                            article.setCluster(line.replace("cluster: ", ""));
+                        if (shablon.equals(".*order:.*"))
+                            article.setOrder(line.replace("order: ", ""));
                         if (shablon.equals(".*tags:.*"))
                             article.setTags(line.replace("tags: ", ""));
                     }
