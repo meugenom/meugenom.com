@@ -1,11 +1,14 @@
 /* eslint-disable */
 
-interface IArticle {
-    slug: string;
+interface IArticle {    
+    id: string;  
     title: string;
     date: string;
+    slug: string;
     tags: string;
-    id: string;    
+    cluster: string;
+    order: string;      
+    
 }
 
 export default IArticle;

@@ -32,7 +32,7 @@ class Article {
         spec: string
     };
 
-    private slug!: string;
+    private slug!: string;    
     private article_title!: string;
 
     constructor () {        
