@@ -4,8 +4,9 @@ title: 'Kendall-Notation — Ring Buffer Sizing'
 template: post
 thumbnail: ''
 slug: kendall-notation-ring-buffer-sizing
-categories: ring-buffer queueing-theory embedded kendall-notation
 tags: ring-buffer queueing-theory embedded kendall-notation
+cluster: modeling-and-analysis-of-ring-buffers
+order: 1
 ---
 
 # Kendall-Notation — Ring Buffer Sizing

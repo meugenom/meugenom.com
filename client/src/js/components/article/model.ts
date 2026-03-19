@@ -11,10 +11,9 @@ import IArticle from '../interfaces/IArticle'
 
 class Model {
 
-    private specifications: 
-        { 
-            spec: string
-        };
+    private specifications: { 
+        spec: string 
+    };
 
     constructor () {
     }
@@ -25,7 +24,9 @@ class Model {
             const token = "";
             const host = Query.getAllSpecificationTextByArticleSlug.host;
             const query = Query.getAllSpecificationTextByArticleSlug.query;
-            const variables = { slug: slug };
+            const variables = { 
+                slug: slug                
+            };
             const dataType = "json";            
 
             const response = await new Service().graphql(

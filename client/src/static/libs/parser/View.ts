@@ -32,9 +32,9 @@ export class View {
 		if(children) {
 			children.forEach((token) => {
 				if (token.type == TokenType.CAPTION) {
-					if (this.htmlOutput) {
-						const caption = new CaptionHTML(token, this.htmlOutput);
-						caption.render();				
+					if (this.htmlOutput) {						
+						const caption = new CaptionHTML(token, this.htmlOutput);					
+						caption.render();										
 					}
 				}
 

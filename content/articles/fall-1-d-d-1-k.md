@@ -4,8 +4,9 @@ title: 'Fall 1: D/D/1/K — Deterministisch, konstante Chunks, konstante Frequen
 template: post
 thumbnail: ''
 slug: fall-1-d-d-1-k
-categories: ring-buffer queueing-theory embedded fall-1-d-d-1-k
 tags: ring-buffer queueing-theory embedded fall-1-d-d-1-k
+cluster: modeling-and-analysis-of-ring-buffers
+order: 2
 ---
 
 

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SearchService — отдельный модуль для полнотекстового поиска по статьям в Redis.
- * Ищет по полям: title, tags, text (полный контент).
+ * SearchService — modul for searching by redis
+ * search by title, tags, text
  */
 @Service
 public class SearchService {
@@ -19,11 +19,9 @@ public class SearchService {
     private ArticleRepository articleRepository;
 
     /**
-     * Ищет статьи по ключевому слову.
-     * Поиск case-insensitive по полям: title, tags, text.
-     *
-     * @param term — строка поиска (не пустая, минимум 3 символа — валидация на фронте)
-     * @return список совпадающих статей, отсортированных по дате DESC
+     * 
+     * @param term — search word
+     * @return valid list of articles
      */
     public List<Article> searchArticles(String term) {
 
@@ -40,11 +38,11 @@ public class SearchService {
             boolean matchesTitle = article.getTitle() != null
                     && article.getTitle().toLowerCase().contains(lowerTerm);
             boolean matchesTags = article.getTags() != null
-                    && article.getTags().toLowerCase().contains(lowerTerm);
+                    && article.getTags().toLowerCase().contains(lowerTerm);            
             boolean matchesText = article.getText() != null
                     && article.getText().toLowerCase().contains(lowerTerm);
 
-            if (matchesTitle || matchesTags || matchesText) {
+            if (matchesTitle || matchesTags  || matchesText) {
                 results.add(article);
             }
         }

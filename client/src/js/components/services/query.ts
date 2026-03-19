@@ -12,11 +12,11 @@ if(process.env.APP_MODE == "production"){
 const Query = {
     lastArticlesList: {
       host: Environment.host,
-      query: '{ lastArticlesList { slug title id date tags}}'
+      query: '{ lastArticlesList { slug title id date tags cluster order}}'
     },
     articlesList: {
 		host: Environment.host,
-      query: '{ articlesList { slug title id date tags}}'
+      query: '{ articlesList { id title date slug tags cluster order}}'
     },
     tagsList: {
       host: Environment.host,
@@ -96,11 +96,11 @@ const Query = {
 	  },
     articlesListByTag: {
       host: Environment.host,
-      query: 'query Query($tag: String!) {\n  articlesListByTag(tag: $tag){id\n title\n date\n tags\n slug\n} \n}\n'
+      query: 'query Query($tag: String!) {\n  articlesListByTag(tag: $tag){id\n title\n date\n tags\n slug\n cluster\n order\n} \n}\n'
     },
     searchArticles: {
       host: Environment.host,
-      query: 'query Query($term: String!) {\n  searchArticles(term: $term){ id title slug date tags }\n}\n'
+      query: 'query Query($term: String!) {\n  searchArticles(term: $term){ id title slug date tags cluster order }\n}\n'
     },
   }
 

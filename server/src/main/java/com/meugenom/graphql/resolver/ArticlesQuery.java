@@ -115,6 +115,7 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 		List<Article> articles = new ArrayList<Article>();
 		articles = (List<Article>) articleRepository.findAll();
 		
+		System.out.println(articles);
 		
 		Article result = articles.stream().filter(a -> {		
 			

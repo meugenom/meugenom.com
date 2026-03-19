@@ -14,9 +14,10 @@ type Article {
   title: String,    
   template: String,
   thumbnail: String,
-  slug: String,
-  categories: String,
+  slug: String,  
   tags: String,
+  cluster: String,
+  order: String,
   fileName: String,
   text: String
 }

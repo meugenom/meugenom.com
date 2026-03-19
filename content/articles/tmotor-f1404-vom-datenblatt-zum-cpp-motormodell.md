@@ -4,8 +4,9 @@ title: 'T-Motor F1404 - Vom Datenblatt zum C++ Motormodell für SIL-Simulation'
 template: post
 thumbnail: './thumbnails/tmotor_v1_title.png'
 slug: tmotor-f1404-vom-datenblatt-zum-cpp-motormodell
-categories: tmotor f1404 cpp motormodell sil simulation
 tags: tmotor f1404 cpp motormodell sil simulation
+cluster: tmotor-f1404-vom-datenblatt-zum-cpp-motormodell
+order: 0
 ---
 
 # Teil 1: Vom Datenblatt zum Standtest - STATIC

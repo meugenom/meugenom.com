@@ -14,8 +14,6 @@ public class Article implements Serializable {
 
 	private String title;
 
-	private String categories;
-
 	private String tags;
 
 	private String template;
@@ -23,6 +21,10 @@ public class Article implements Serializable {
 	private String thumbnail;
 
 	private String slug;
+
+	private String cluster;
+
+	private String order;
 
 	private LocalDate date;
 
@@ -36,15 +38,16 @@ public class Article implements Serializable {
 
 	}
 
-	public Article(LocalDate date, String title, String template, String thumbnail, String slug, String categories,
+	public Article(LocalDate date, String title, String template, String thumbnail, String slug, String cluster, String order,
 			String tags, String fileName, String checksum, String text) {
 		this.date = date;
 		this.title = title;
 		this.template = template;
 		this.thumbnail = thumbnail;
-		this.slug = slug;
-		this.categories = categories;
+		this.slug = slug;		
 		this.tags = tags;
+		this.cluster = cluster;
+		this.order = order;
 		this.fileName = fileName;
 		this.text = text;
 		this.checksum = checksum;
@@ -66,12 +69,20 @@ public class Article implements Serializable {
 		this.title = title;
 	}
 
-	public String getCategories() {
-		return categories;
+	public String getCluster() {
+		return cluster;
 	}
 
-	public void setCategories(String categories) {
-		this.categories = categories;
+	public void setCluster(String cluster) {
+		this.cluster = cluster;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
 	}
 
 	public String getTags() {
@@ -145,7 +156,7 @@ public class Article implements Serializable {
 	@Override
 	public String toString() {
 		return " Article[id = " + id + ", title = " + title + ", date = " + date + ", template = " + template
-				+ ", thumbnail = " + thumbnail + ", slug = " + slug + ", categories = " + categories + ", fileName = "
+				+ ", thumbnail = " + thumbnail + ", slug = " + slug + ", cluster = " + cluster + ", order = " + order + ", fileName = "
 				+ fileName + " text = " + text + "]";
 	}
 
