@@ -44,7 +44,7 @@ export class TableHTML {
     private createTableHead(headArray: string[]): string {
         let cells = '';
         headArray.forEach(head => {
-            cells += `<th class="px-4 py-2 text-left text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 border-r last:border-r-0 border-gray-200 dark:border-gray-700">${this.resolveTokens(head.trim())}</th>`;
+            cells += `<th class="px-4 py-2 text-left text-[11px] font-mono font-bold tracking-widest text-slate-500 dark:text-slate-400 border-r last:border-r-0 border-gray-200 dark:border-gray-700">${this.resolveTokens(head.trim())}</th>`;
         });
         return `<thead class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"><tr>${cells}</tr></thead>`;
     }
