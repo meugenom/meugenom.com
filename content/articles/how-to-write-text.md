@@ -200,14 +200,14 @@ List 4 with mixed attributes:
 ## Quoting text
 
 \*
-    > The day is very good to die
-    > <cite> - Warcraft </cite>
+    > This is a
+	> quoting text
 \* 
 
 in out:
 
-> The day is very good to die!
-> <cite> - Warcraft </cite>
+> This is a
+> quoting text
 
 ## Links
 
@@ -220,8 +220,6 @@ You can create an inline link by wrapping link text in brackets, and then wrappi
 in out:
 
 This site was built using [Javascript ES6](https://en.wikipedia.org/wiki/ECMAScript) and it's an example.
-
-[How to define types for process environment](https://meugenom.com/#/article/how-to-define-types-for-process-environment)
 
 
 ## Simple Underline decoration

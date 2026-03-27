@@ -95,8 +95,8 @@ describe('Tokenizer class tests', () => {
     test('find Quote from begin of line', () => {
             
             const text = 
-            "> Quote\n"+
-            "> <cite> - Author\n";
+            "> Quote 1\n"+
+            "> continue Quote 1";
             
             const tokenizer = new Tokenizer(text);
             tokenizer.tokenize();
@@ -110,8 +110,8 @@ describe('Tokenizer class tests', () => {
             
             const text = 
             "Text\n"+
-            "   > Quote\n"+
-            "     > <cite> - Author\n";
+            "   > Quote 1\n"+
+            "     > continue Quote 1\n";
             
             const tokenizer = new Tokenizer(text);
             tokenizer.tokenize();
