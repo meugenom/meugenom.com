@@ -245,23 +245,25 @@ export class Tokenizer {
 
 		if (this.text.match(Grammar.BLOCKS.QUOTE) != null) {
 
-			const quotes = this.text.match(Grammar.BLOCKS.QUOTE);
+			const quotes = this.text.match(Grammar.BLOCKS.QUOTE);				
 
 			quotes?.forEach((quote: string) => {
 
-				const matchResult = quote.match(Grammar.BLOCKS.QUOTE_PARAMS);
-				if(matchResult){
-					const author : any = matchResult[3];
-					const text = matchResult[0];
+				console.log(quote);
+
+				const matchResult = quote.match(Grammar.BLOCKS.QUOTE_PARAMS);							
+
+				if(matchResult){					
+					
+					// text array need ot join					
+					const text = matchResult.join("\n");					
 
 					const quoteToken = {} as Token.quoteToken;
 					quoteToken.type = TokenType.QUOTE;
-					quoteToken.quote = text as string;
-					quoteToken.author = author;
+					quoteToken.quote = text as string;						
 
 					const uuid = uuidv4();
 					this.tokensMap.set("$token." + uuid, quoteToken);
-
 					this.text = this.text.replace(quote,
 						` $token.${uuid} `);
 				}

@@ -192,10 +192,8 @@ export class Parser {
 
 				const quoteElement =  {} as Token.quoteToken;
 				quoteElement.type = TokenType.QUOTE;
-				quoteElement.row = ">" + token.quote + "\n> <cite> - " + token.author + "</cite>";
-				quoteElement.quote = token.quote;
-				quoteElement.author = token.author;
-				
+				quoteElement.row = ">" + token.quote;
+				quoteElement.quote = token.quote;			
 				children.push(quoteElement);
 			}
 

@@ -32,7 +32,7 @@ const Query = {
               repositories
               (last: 20,
                   orderBy:
-                  {field: STARGAZERS,
+                  {field: UPDATED_AT,
                       direction: DESC
                   })
               {

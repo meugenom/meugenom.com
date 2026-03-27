@@ -27,7 +27,6 @@ export class Grammar {
 
 		// list		
 		LIST: /\S.*:\n(\s*(-(?!>)|\[\]|\[.\])\s*\S.*){1,20}/g,
-
 		LIST_ATTRIBUTE: /(-|\[\]|\[x\])/g,
 
 
@@ -44,8 +43,8 @@ export class Grammar {
 		// inline code
 		INLINE_CODE_BLOCK: /\`([^\`\n]+)\`/g,
 
-		// quote
-		QUOTE: />[^\n].*\n(\s){0,10}> <cite> - [^\n]+/g,
+		// quote		
+		QUOTE: />[^\n].*\n(\s){0,10}>[^\n]+/g,
 		QUOTE_PARAMS: /[^<>]+/g,
 
 		// links
