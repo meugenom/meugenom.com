@@ -27,17 +27,23 @@ export class QuoteHTML {
 
 		if (this.token.quote) {			
 
-			// if the text has strokes > 1
-			const formattedQuote = this.token.quote.replace(/\n/g, '<br>');
+			//numbers of paragraphs
+			const paragraphs = this.token.quote
+    			.split('\n')
+    			.map(p => p.trim())
+    			.filter(p => p.length > 0);			
 
 			// Outer wrapper — drop shadows (same as code block)
 			const OuterNode = this.DomUtilites.createElement("div");			
 					
 			// Body
 			const BodyNode = this.DomUtilites.createElement("div");		
-			BodyNode.innerHTML = `
-				<p class="font-mono leading-3 text-slate-700 dark:text-slate-300 border-l-4 border-blue-400 pl-4">${formattedQuote}</p>				
-			`;
+			
+			BodyNode.innerHTML = paragraphs.map(text => `
+    			<p class="mb-4 leading-5 text-slate-700 dark:text-slate-300 border-l-4 border-blue-400 pl-4">
+        			${text}
+    			</p>
+				`).join('');
 						
 			OuterNode.appendChild(BodyNode);
 
