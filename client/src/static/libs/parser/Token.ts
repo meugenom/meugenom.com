@@ -33,6 +33,10 @@ export interface unknownTextToken extends basisToken {
 	type: string,
 }
 
+export interface paragraphTextToken extends basisToken {
+	type: string,
+}
+
 export interface textToken extends basisToken {
 	type: string,
 }

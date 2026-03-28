@@ -12,8 +12,7 @@ import SideBarLeftView, { TocHeading } from '../side-bar-left/view'
 
 // import parser for markable text
 import { Tokenizer } from "../../../static/libs/parser/Tokenizer";
-import { Parser } from "../../../static/libs/parser/Parser";
-import { View } from "../../../static/libs/parser/View";
+import { Render } from "../../../static/libs/parser/Render";
 
 // import prismjs
 import * as Prism from "prismjs";
@@ -76,7 +75,7 @@ class Article {
 
             tempDiv.innerHTML = metaInfo; // Use metaInfo instead of article.spec to avoid markdown syntax in meta description
 
-            console.log(tempDiv.textContent);
+            //console.log(tempDiv.textContent);
             const textContent = tempDiv.textContent || tempDiv.innerText || '';
             metaDescription.setAttribute('content', textContent.substring(0, 200));
         }
@@ -84,18 +83,27 @@ class Article {
         return new ArticleView().appendArticles();
     }
 
+
+    // BLOCK implementation of parser for MARKDOWN
     parse(article: string) {
         //console.log(article);
-        const tokenizer = new Tokenizer(article);    
+        const tokenizer = new Tokenizer(article);         
 
-        //console.log(tokenizer);
-        const parser = new Parser(tokenizer.tokens);
-        
+        // For debugging: log the AST node structure to the console
+        console.log(tokenizer);        
+            
+
         // find html element with id="article" in the DOM
-        const virtualDOM = document.createElement('div');        
-        
-        const result: any = new View(parser.ast, virtualDOM).init();
-        document.getElementById("article")?.append(result);
+        const virtualDOM = document.createElement('div');
+        const result =  new Render(tokenizer.getAST(), virtualDOM);      
+        // Find html element with id="article" in the DOM and append rendered content to it
+        const rootElement = document.getElementById('article');    
+
+        // Clear existing content in rootElement before appending new content
+        if (rootElement) {
+            rootElement.innerHTML = ''; // remove any existing content before appending new content
+            rootElement.appendChild(virtualDOM); // Append the rendered result to the browser
+        }
 
     }  
 

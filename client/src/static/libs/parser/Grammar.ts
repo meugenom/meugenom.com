@@ -10,8 +10,8 @@ export class Grammar {
 	public static BLOCKS = {
 
 		// heading‚
-		HEADING: /[^\S](#{1,6})([^\n]+)/g,
-		HEADING_LEVEL: /(#{1,5})/g,
+		HEADING: /^#{1,6}\s+[^\n]*(?:\n|$)/,
+		HEADING_LEVEL: /^(#{1,5})/,
 
 		// caption
 		CAPTION: /^---\sdate:((.*))\stitle:((.*))\stemplate:((.*))\sthumbnail:((.*))\sslug:((.*))\stags:((.*))\scluster:((.*))\sorder:((.*))\s---/,
@@ -26,17 +26,17 @@ export class Grammar {
 		BADGE: /((.?)[^\s]+)\|(blue|gray|red|green|yellow|indigo|purple|pink)/g,
 
 		// list		
-		LIST: /\S.*:\n(\s*(-(?!>)|\[\]|\[.\])\s*\S.*){1,20}/g,
+		LIST: /^\S.*:\n(\s*(-(?!>)|\[\]|\[.\])\s*\S.*){1,20}/,
 		LIST_ATTRIBUTE: /(-|\[\]|\[x\])/g,
 
 
 		// code block
-		CODE_BLOCK: /\`\`\`(cpp|c|matlab|octave|python|bash|java|javascript|typescript|swift|text)?([^(\`){3}].*\n){1,200}\`\`\`/g,
+		CODE_BLOCK: /^\`\`\`(cpp|c|matlab|octave|python|bash|java|javascript|typescript|swift|text)?([^(\`){3}].*\n){1,200}\`\`\`/,
 		CODE_BLOCK_LANG: /[^\`\`\`](\w+)\n/gs,
 		CODE_BLOCK_BODY: /\n([\s\S]+)[^\`\`\`]/gs,
 
 		// code in code block
-		CODE_IN_CODE: /\`\`\`(cpp|c|python|matlab|bash|java|javascript|typescript|swift|text)?\n([^\`\`\`]+)\`\`\`(cpp|c|python|matlab|bash|java|javascript|typescript|swift)\n([^\`\`\`]+)\`\`\`\n\`\`\`\n/g,
+		CODE_IN_CODE: /^\`\`\`(cpp|c|python|matlab|bash|java|javascript|typescript|swift|text)?\n([^\`\`\`]+)\`\`\`(cpp|c|python|matlab|bash|java|javascript|typescript|swift)\n([^\`\`\`]+)\`\`\`\n\`\`\`\n/,
 		INLINE_CODE: /([^\`\`\`]+)/gs,
 		INLINE_CODE_PARAMS: /([^\n]+)/sg,
 
@@ -44,36 +44,43 @@ export class Grammar {
 		INLINE_CODE_BLOCK: /\`([^\`\n]+)\`/g,
 
 		// quote		
-		QUOTE: />[^\n].*\n(\s){0,10}>[^\n]+/g,
+		QUOTE: /^(>[^\n]*(\n|$))+/,
+		
+		//TODO: need to remove
 		QUOTE_PARAMS: /[^<>]+/g,
 
 		// links
-		LINK: /[^!]\[([^)]\S.+)\]\(https:\/\/\S.+\)/g,
+		LINK: /^\[([^\]]+)\]\((\S+)\)/,
+		
+		// need remove
 		LINK_NAME: /\[\S.+\]/g,
 		LINK_URL: /\(\S.+\)/g,
 
+		
 		// images
-		IMAGE: /!\[([^)]+)\]\(\S+\)/g,
+		IMAGE: /^!\[([^)]+)\]\(\S+\)/,
 		IMAGE_NAME: /!\[\S.+\]/g,
 		IMAGE_URL: /\(\S.+\)/g,
 
 		// horizontal line
 		UNDER_LINE: /(?<!\w)_([^_\n]+?)_(?!\w)/g,
 
-		UNMARKABLE: /\\\*\s[\s\S]+?\\\*/g,
+		UNMARKABLE_BLOCK: /^\\\*\s?([\s\S]*?)\\\*/,
+		//UNMARKABLE_INLINE: /\\\*\s([^\n]+?)\s\\\*/,
 
-		// bold text
-		STRONG: /\*\*([^*]+)\*\*/g,
-		STRONG_TEXT: /[^\*]+/g,
+		// need remove
+		STRONG: /^\*\*(.*?)\*\*/,
+		
+		STRONG_TEXT: /^\*\*([\s\S]*?)\*\*/,
 
 
 		// table: matches one or more rows of the form | ... | per line
 		// [^\n|] ensures at least one non-pipe non-newline char so pure
 		// pipe-only lines (e.g. stray |) are not matched
-		TABLE: /(\|[^\n|][^\n]*\|[ \t]*\n?)+/g,
+		TABLE: /^(\|[^\n|][^\n]*\|[ \t]*\n?)+/,
 
-		FORMULA_BLOCK: /\$\$([\s\S]+?)\$\$/g,
-		FORMULA_INLINE: /\$(?!\$)(?!token\.)([^$\n]+?)\$(?!\$)/g,
+		FORMULA_BLOCK: /^\$\$([\s\S]+?)\$\$/,
+		FORMULA_INLINE: /^\$(?!\$)(?!token\.)([^$\n]+?)\$(?!\$)/,
 
 		PARAGRAPH: /([^\n]+)/g,
 
