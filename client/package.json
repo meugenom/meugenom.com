@@ -69,8 +69,7 @@
     "postcss-import": "^15.1.0",
     "postcss-preset-env": "^9.3.0",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.0.12",
-    "uuid": "^9.0.1"
+    "tailwindcss": "^4.0.12"
   },
   "optionalDependencies": {
     "@tailwindcss/oxide-darwin-arm64": "^4.2.1",
