@@ -415,7 +415,7 @@ export class Tokenizer {
 					headCell.forEach(cell => {
 						const cellToken = {} as Token.tableCellToken;
 						cellToken.type = TokenType.UNKNOWN_TEXT;
-						cellToken.value = cell;
+						cellToken.value = cell;						
 						headCellArray.push({
 							type: TokenType.UNKNOWN_TEXT,
 							token: cellToken,
@@ -654,7 +654,7 @@ export class Tokenizer {
 			if(match) {				
 
 				const body = match[0].substring(1, match[0].length - 1);
-				console.log(`Found underline: ${body}`);
+				//console.log(`Found underline: ${body}`);
 				const token = {} as Token.underLineToken;
 				token.type = TokenType.UNDER_LINE;
 				token.value = body;

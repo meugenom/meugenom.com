@@ -6,7 +6,6 @@ import { CodeBlockHTML } from "./htmlblocks/CodeBlockHTML";
 import { CodeInlineHTML } from "./htmlblocks/CodeInlineHTML";
 import {QuoteHTML} from "./htmlblocks/QuoteHTML";
 import { ImageHTML } from "./htmlblocks/ImageHTML";
-import { TableHTML } from "./htmlblocks/TableHTML";
 import { FormulaHTML } from "./htmlblocks/FormulaHTML";
 import { BadgeHTML } from "./htmlblocks/BadgeHTML";
 import { ColorTextHTML } from "./htmlblocks/ColorTextHTML";
@@ -14,6 +13,7 @@ import { TokenType } from "./Types";
 import { ASTNode } from "./interfaces/astNode";
 
 import './static/styles/list.css';
+import './static/styles/table.css';
 
 
 
@@ -196,11 +196,43 @@ export class Render {
 
 				// Table Block
 				case TokenType.TABLE:
-																				
-						const table = new TableHTML(node.token as any);
-						element = table.renderAsElement();
-						//console.log('Rendered Table:', element);
-						this.renderNodes(node.children, element);					
+																																						
+						const table = document.createElement('table');
+						table.className = "w-full border-collapse border border-slate-300 my-4 text-sm font-mono";
+						
+						const header = table.createTHead();
+						const body = table.createTBody();
+						
+						// Building Table
+						node.children.forEach((rowNode, index) => {
+							if(rowNode.type === TokenType.TABLE_HEAD_ROW) {
+								const tr = document.createElement('tr');								
+								rowNode.children.forEach(headNode => {									
+									const th = document.createElement('th');																										
+									th.className = "border border-slate-300 p-2 text-center";
+									// FIX: Render inline children (für Links, Bold, etc. im Table-Header)
+									this.renderNodes(headNode.children, th);																							
+									tr.appendChild(th);
+								});	
+								header.appendChild(tr);																		
+							} else if(rowNode.type === TokenType.TABLE_BODY_ROW) {
+								if(rowNode.type === TokenType.TABLE_BODY_ROW) {
+									const tr = document.createElement('tr');									
+									rowNode.children.forEach(bodyNode => {									
+										const td = document.createElement('td');																										
+										td.className = "border border-slate-300 p-2 text-center";
+										// FIX: Render inline children (für Links, Bold, etc. im Table-Body)
+										this.renderNodes(bodyNode.children, td);																							
+										tr.appendChild(td);
+									});	
+									body.appendChild(tr);
+								}
+							}	
+						});												
+						
+						
+						element = table;
+						//this.renderNodes(node.children, element); // Render body rows and cells					
 					
 					break;
 				
