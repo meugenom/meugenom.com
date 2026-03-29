@@ -66,7 +66,10 @@ export class CodeBlockHTML {
         codeToHtml(rawCode, { 
             lang, 
             themes: { light: 'github-light', dark: 'min-dark' },           
-        }).then(html => {
+        }).then(shikiHtml => {
+            
+            CodeContainer.innerHTML = shikiHtml;
+            
             // Replace the entire content of the container with Shiki's result
             const shikiPre = CodeContainer.querySelector('pre');			
     		if (shikiPre) {
@@ -74,7 +77,8 @@ export class CodeBlockHTML {
 				// TODO: Hard Code
         		// remove all inline styles from Shiki's <pre> and <code> elements to allow Tailwind classes to work properly
         		// It kills the blue background in light theme, but we need it to be transparent for both themes
-        		shikiPre.removeAttribute('style');				
+        		//shikiPre.removeAttribute('style');				
+                shikiPre.style.backgroundColor = 'transparent';
 
         		// add new classes
         		// Add !bg-transparent, because Tailwind blocks background-color
@@ -85,7 +89,8 @@ export class CodeBlockHTML {
 				
 				// TODO: Hard Code
         		if (shikiCode) {
-            		shikiCode.removeAttribute('style');
+            		//shikiCode.removeAttribute('style');
+                    shikiCode.style.backgroundColor = 'transparent';
             		shikiCode.className ="leading-6 text-[13px] !bg-transparent";
         		}
             }
