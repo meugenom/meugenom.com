@@ -20,7 +20,8 @@ export class Grammar {
 		LINE: /\n/,
 
 		// color line 
-		COLOR: /((.?)[^\s]+)\.(blue|gray|red|green|yellow|indigo|purple|pink)/g,
+		//COLOR: /((.?)[^\s]+)\.(blue|gray|red|green|yellow|indigo|purple|pink)/,
+		COLOR: /([^\s]+)\.(blue|gray|red|green|yellow|indigo|purple|pink)(?!\w)/,
 		// badge
 		BADGE: /((.?)[^\s]+)\|(blue|gray|red|green|yellow|indigo|purple|pink)/g,
 
