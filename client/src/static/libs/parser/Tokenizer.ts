@@ -35,7 +35,7 @@ export class Tokenizer {
 	private ast : ASTNode = {
 		type: "Root",
 		token: null,
-		raw:  "",			
+		raw:  "",					
 		children: []
 	};
 	
@@ -119,7 +119,7 @@ export class Tokenizer {
 					});
 
 				// remove unmarkable block from text
-				this.text = this.text.slice(match[0].length);								
+				this.text = this.text.slice(match[0].length);							
 				continue;				
 			}
 				
@@ -131,14 +131,15 @@ export class Tokenizer {
 			if (match) {
 				
 
-					const languageMatchResult = match[0].match(Grammar.BLOCKS.INLINE_CODE);
-					const bodyMatchResult = match[0].match(Grammar.BLOCKS.INLINE_CODE);
+					const languageMatchResult = match[2];
+					const bodyMatchResult = match[3];
+
+					
 
 					if (languageMatchResult && bodyMatchResult) {
 
-						const language = languageMatchResult[0];
-						const body = bodyMatchResult[1] ?? ''; // Add nullish coalescing operator to assign a non-null value to 'body'
-
+						const language = languageMatchResult;
+						const body = bodyMatchResult ?? ''; // Add nullish coalescing operator to assign a non-null value to 'body'						
 					
 						const codeToken = {} as Token.codeInCodeToken;
 						codeToken.type = TokenType.CODE_IN_CODE;
@@ -149,12 +150,11 @@ export class Tokenizer {
 						this.ast.children.push ({
 							type: TokenType.CODE_IN_CODE,
 							token: codeToken,
-    						raw: body,
+    						raw: body, // <- put in next raw clear value
     						children: [],					
 						})
 						// remove code in code block from text
-						this.text = this.text.slice(body.length);
-						
+						this.text = this.text.slice(match[0].length); // slice dirty value						
 
 					}
 				
@@ -204,13 +204,13 @@ export class Tokenizer {
 							let node : ASTNode = {
 								type: TokenType.CODE_BLOCK,
 								token: codeToken,
-    							raw: body,  
+    							raw: body, // <- put in next raw clear value
     							children: []
 							}
 			
 							this.ast.children.push(node);
 							// remove code block from text
-							this.text = this.text.slice(body.length);
+							this.text = this.text.slice(match[0].length); // slice dirty value
 
 						}
 					
@@ -240,6 +240,8 @@ export class Tokenizer {
 						TokenType.HEADING_FORTH,
 						TokenType.HEADING_FIFTH
 					]
+
+					const contentOnly = match[0].replace(/^#{1,6}\s+/, '').replace(/\n$/, '');
 					
 					//private case
 					if (!level || level.length > types.length) {
@@ -250,13 +252,13 @@ export class Tokenizer {
 
 					const headToken = {} as Token.headToken;
 					headToken.type = types[itype];
-					headToken.value = body;
+					headToken.value = contentOnly;
 
 				    //add to the astNode		
 					this.ast.children.push({
 						type: headToken.type,
 						token: headToken,
-    					raw: headToken.value,  
+    					raw: contentOnly,  
     					children: []
 					});
 
@@ -302,24 +304,56 @@ export class Tokenizer {
 			// find lists
 			match = this.text.match(Grammar.BLOCKS.LIST);
 			if (match) {
-				
-				const body = match[1];
-				const listToken = {} as Token.listToken;
-				listToken.type = TokenType.LIST;				
-				listToken.value = body;
-				listToken.tokensMap = this.tokensMap;
+    			const rawBlock = match[0];
+    
+    			// FIX: cases - remove leading and trailing list markers and trim whitespace
+    			const cleanBlock = rawBlock.replace(/^\s*\\\*\s*|\s*\\\*\s*$/g, '');
+    			const lines = cleanBlock.split('\n').filter(l => l.trim() !== '');
+ 
+    			// FIX: Check if the first line is a title (does not start with list marker) and extract it
+    			const firstLine = lines[0];
+    			const hasTitle = !firstLine.trim().match(/^\s*(-|\[\]|\[x\])/);
+    			const title = hasTitle ? firstLine.trim().replace(/:$/, '') : undefined;
+    			const itemLines = hasTitle ? lines.slice(1) : lines;
+ 
+    			const listNode: ASTNode = {
+        			type: TokenType.LIST,
+        				token: {
+            			type: TokenType.LIST,
+            			title: title,  // FIX: Title is now correctly extracted
+            			value: cleanBlock
+        				},
+        			raw: cleanBlock,
+        			children: []
+    			};
 
-				//add to the astNode
-				this.ast.children.push({
-					type: TokenType.LIST,
-					token: listToken,
-					raw: body,  
-					children: []
+				// List Item-Nodes
+    			itemLines.forEach(line => {
+        			const trimmed = line.trim();
+        			if (trimmed.length > 0) {
+            			listNode.children.push({
+                			type: TokenType.LIST_ITEM,
+                			token: {
+                    		type: TokenType.LIST_ITEM,
+                    		value: trimmed
+                			},
+                		raw: trimmed,  // FIX: raw enthält den kompletten Text für Inline-Parsing
+                		children: []   // Wird später durch putInlineChildren gefüllt
+            			});
+        			}
+    			});
+ 
+    			this.ast.children.push(listNode);
+
+				 
+				// FIX: Quickly parse inline tokens in list items to avoid issues with remaining text parsing
+				listNode.children.forEach(itemNode => {
+    				this.putInlineChildren(itemNode);
 				});
-				
-				// remove list from text
-				this.text = this.text.slice(match[0].length);								
-				continue;
+ 
+
+    			this.text = this.text.slice(match[0].length);
+    			continue;
 			}
 
 		
@@ -329,21 +363,17 @@ export class Tokenizer {
 	
 				const quoteToken = {} as Token.quoteToken;
 				quoteToken.type = TokenType.QUOTE;
-
-				const cleanContent = match[0]
-        			.split("\n")
-        			.map(line => line.replace(/^>\s?/, "")) // REmove leading '>' and optional space from each line
-        			.join("\n")
-        			.trim();
-
-				quoteToken.quote = cleanContent;						
+				
+				
+				const cleanContent = match[0].replace(/^>\s?/gm, "\n"); // Remove leading '>' and optional space from each line
+				quoteToken.value = cleanContent;						
 
 
 				//add to the astNode
 				this.ast.children.push({
 					type: TokenType.QUOTE,
 					token: quoteToken,
-					raw: match[0],  
+					raw: cleanContent, // for next step level raw is clean content 
 					children: []
 					});
 						
@@ -357,8 +387,7 @@ export class Tokenizer {
 			// find tables
 			match = this.text.match(Grammar.BLOCKS.TABLE);
 			if(match) {
-				
-
+								
 					const tableToken = {} as Token.tableToken;
 					tableToken.type = TokenType.TABLE;
 					tableToken.row = match[0];
@@ -420,9 +449,19 @@ export class Tokenizer {
   		//console.log(`Checking node: ${node.type}`);
   
   		// Logic to find inline tokens in node.raw and replace them with token placeholders and add to ast
-  		if (node.type === TokenType.QUOTE || node.type === TokenType.LIST || node.type === TokenType.TABLE || node.type === TokenType.PARAGRAPH) {
+  		if (node.type === TokenType.QUOTE 
+			//|| node.type === TokenType.LIST
+			|| node.type === TokenType.LIST_ITEM			
+			|| node.type === TokenType.TABLE 
+			|| node.type === TokenType.PARAGRAPH
+			|| node.type === TokenType.HEADING_FIRST
+			|| node.type === TokenType.HEADING_SECOND
+			|| node.type === TokenType.HEADING_THIRD
+			|| node.type === TokenType.HEADING_FORTH
+			|| node.type === TokenType.HEADING_FIFTH		
+		) {
     					
-			console.log(`Checking node: ${node.type}`);
+			//console.log(`Checking node: ${node.type}`);
 
 			
 			while (node.raw.length > 0) {
@@ -443,12 +482,12 @@ export class Tokenizer {
 
 			// hier logic to find inline tokens in node.raw and replace them with token placeholders and add to ast
 
-			// find strong text
+			// STRONG TEXT
 			match = node.raw.match(Grammar.BLOCKS.STRONG_TEXT);
 			if (match) {			
 									
 					const strongToken = {} as Token.strongTextToken;
-					strongToken.type = TokenType.STRONG;
+					strongToken.type = TokenType.STRONG;					
 					strongToken.value = match[1];
 
 
@@ -456,26 +495,26 @@ export class Tokenizer {
 					node.children.push({
 						type: TokenType.STRONG,
 						token: strongToken,
-    					raw: match[0],  
+    					raw: match[1],  // <- put in next raw clear value
     					children: []
 					});
 			
 					// remove strong text from node.raw
-					node.raw = node.raw.slice(match[0].length);					
+					node.raw = node.raw.slice(match[0].length);				
 				
 				continue;
 			}
 
 
 			
-			// find links
+			// LINKS
 			match = node.raw.match(Grammar.BLOCKS.LINK);
 			if (match) {
     			const fullMatch = match[0];
     			const linkName = match[1];
     			const linkUrl = match[2];
 
-    			console.log(`Found link: ${fullMatch}`);
+    			//console.log(`Found link: ${fullMatch}`);
 
     			// create link token
     			const linkToken: Token.linkToken = {
@@ -549,6 +588,7 @@ export class Tokenizer {
 			if(match) {				
 
 				const body = match[0].substring(1, match[0].length - 1);
+				console.log(`Found underline: ${body}`);
 				const token = {} as Token.underLineToken;
 				token.type = TokenType.UNDER_LINE;
 				token.value = body;
@@ -557,7 +597,7 @@ export class Tokenizer {
 				node.children.push({
 					type: TokenType.UNDER_LINE,
 					token: token,
-					raw: match[0],  
+					raw: body,  
 					children: []
 				});
 
@@ -622,7 +662,7 @@ export class Tokenizer {
 
 			// FALLBACK - ANY OTHER UNKNOWN INLINE - FALL BACK TO TEXT
 			// NEXT WORD TO SPECIAL CHARACTER OR END OF STRING
-			const specialChars = /[*[$`]/; 
+			const specialChars = /[*[$_`|#</]/;
 			const nextSpecial = node.raw.search(specialChars);
 
 			let end: number;

@@ -1,41 +1,19 @@
 import * as Token from "../Token";
 import { TokenType } from "../Types";
-import { DomUtilites } from "./DomUtilites";
-import * as katex from 'katex';
 
 export class ListHTML {
-    private DomUtilites: DomUtilites;
+    
     private token: Token.listToken;
-    private htmlOutput: HTMLElement;
 
-    constructor(token: Token.listToken, htmlOutput: HTMLElement) {
+    constructor(token: Token.listToken) {
         this.token = token;
-        this.htmlOutput = htmlOutput;
-        this.DomUtilites = new DomUtilites();
     }
 
     private resolveTokens(text: string): string {
         if (!this.token.tokensMap) return text;
         const tokenRegex = /\$token\.([0-9a-f-]{36})/g;
         return text.replace(tokenRegex, (match) => {
-            const t = this.token.tokensMap!.get(match);
-            if (!t) return match;
-            if (t.type === TokenType.STRONG) {
-                return `<strong>${t.value}</strong>`;
-            }
-            if (t.type === TokenType.CODE_INLINE) {
-                return `<code class="inline-block py-1 px-2 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium rounded">${t.value.substring(1, t.value.length - 1)}</code>`;
-            }
-            if (t.type === TokenType.FORMULA_INLINE) {
-                try {
-                    return katex.renderToString(t.formula, { displayMode: false, throwOnError: false });
-                } catch (e) {
-                    return `$${t.formula}$`;
-                }
-            }
-            if (t.type === TokenType.UNDER_LINE) {
-                return `<u>${t.value}</u>`;
-            }
+            const t = this.token.tokensMap!.get(match);            
             return match;
         });
     }
@@ -55,12 +33,15 @@ export class ListHTML {
         }
     }
 
-    render(): Element | void {
-        const value = this.token.value;
+    renderAsElement(): HTMLElement | void {
+        
+        const value = this.token.value;        
         if (!value) return;
 
+        console.log('Rendering List Block with value:', value);
+
         let list = value.split("\n");
-        let listBlockNode = this.DomUtilites.createElement("div");
+        let listBlockNode = document.createElement("div");
         const title = list.shift();
 
         if (list && list.length > 0) {
@@ -70,8 +51,7 @@ export class ListHTML {
             </div>`;
             listBlockNode.innerHTML = listBlock;
         }
-
-        const app = this.htmlOutput;
-        app?.lastChild?.appendChild(listBlockNode);
+        console.log('Rendered List Block:', listBlockNode);
+        return listBlockNode;
     }
 }

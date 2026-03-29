@@ -96,8 +96,7 @@ export interface captionToken extends basisToken {
 
 
 export interface quoteToken extends basisToken {
-	type: string,
-	quote: string
+	type: string
 }
 
 export interface linkToken extends basisToken {
