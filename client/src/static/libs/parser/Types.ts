@@ -28,7 +28,9 @@ export enum TokenType {
 	QUOTE = "Quote", // A blockquote element
 	STRONG = "Strong", // A strong or bold text element
 	TABLE = "Table", // A table element
-	TABLE_ROW = "TableRow", // A table row element
+	TABLE_HEAD_ROW = "TableHeadRow", // A table head row element
+	TABLE_BODY_ROW = "TableBodyRow", // A table body row element
+	TABLE_CELL = "TableCell", // A table cell element	
 	TEXT = "Text", // A plain text element
 	UNDER_LINE = "UnderLine", // An underlined text element
 	UNKNOWN_TEXT = "UnknownText", // An unknown or unrecognized text element

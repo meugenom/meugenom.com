@@ -69,11 +69,8 @@ export class Grammar {
 		
 		STRONG_TEXT: /^\*\*([\s\S]*?)\*\*/,
 
-
-		// table: matches one or more rows of the form | ... | per line
-		// [^\n|] ensures at least one non-pipe non-newline char so pure
-		// pipe-only lines (e.g. stray |) are not matched
 		TABLE: /^(\|[^\n|][^\n]*\|[ \t]*\n?)+/,
+		TABLE_CELL: /([^|]+)(?=\|)/g,
 
 		FORMULA_BLOCK: /^\$\$([\s\S]+?)\$\$/,
 		FORMULA_INLINE: /^\$(?!\$)(?!token\.)([^$\n]+?)\$(?!\$)/,

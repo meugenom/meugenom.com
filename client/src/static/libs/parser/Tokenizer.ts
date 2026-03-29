@@ -27,6 +27,9 @@ export class Tokenizer {
 		| Token.codeInCodeToken
 		| Token.unmarkableToken
 		| Token.tableToken
+		| Token.tableHeadRowToken
+		| Token.tableBodyRowToken
+		| Token.tableCellToken
 		| Token.formulaBlockToken
 		| Token.formulaInlineToken
 		| Token.paragraphTextToken
@@ -336,11 +339,11 @@ export class Tokenizer {
             			listNode.children.push({
                 			type: TokenType.LIST_ITEM,
                 			token: {
-                    		type: TokenType.LIST_ITEM,
-                    		value: trimmed
+                    			type: TokenType.LIST_ITEM,
+                    			value: trimmed
                 			},
-                		raw: rawValue,  // FIX: raw enthält den kompletten Text für Inline-Parsing
-                		children: []   // Wird später durch putInlineChildren gefüllt
+                			raw: rawValue,  // FIX: raw enthält den kompletten Text für Inline-Parsing
+                			children: []   // Wird später durch putInlineChildren gefüllt
             			});
         			}
     			});
@@ -386,37 +389,99 @@ export class Tokenizer {
 			}
 
 			
-			// find tables
+			// find tables Cells and next in function putInlineChildren as UNKNOWN_TEXT
 			match = this.text.match(Grammar.BLOCKS.TABLE);
-			if(match) {
-								
-					const tableToken = {} as Token.tableToken;
-					tableToken.type = TokenType.TABLE;
-					tableToken.row = match[0];
-					tableToken.children = [] as Token.tableRowToken[];					
+			if(match) {					
 
-					//add children
-					const rows = match[0].split("\n");
-					rows.forEach((row: string) => {
-						const rowToken = {} as Token.tableRowToken;
-						rowToken.type = TokenType.TABLE_ROW;
-						rowToken.value = row;
-						tableToken.children.push(rowToken);
-					});
+					// match[0] -- whole table
+					const tableBlock = match[0].trim(); // Remove leading/trailing whitespace
+					const rows = tableBlock.split('\n');
 
-					//add to the astNode
-					this.ast.children.push({
-						type: TokenType.TABLE,
-						token: tableToken,
-						raw: match[0],  
-						children: []
+					//find components of the table
+					const rawHeader = rows[0];
+					const rawSeparator = rows[1]; // often contains --- | :--- | ---: etc. for alignment, but we can ignore it for now
+					const rawBody = rows.slice(2);
+
+
+
+																														
+					const headRowToken = {} as Token.tableHeadRowToken;
+					headRowToken.type = TokenType.TABLE_HEAD_ROW;
+					headRowToken.value = rawHeader;
+					headRowToken.row = rawHeader; // <- null while we implemented children 
+
+					const headCell = rawHeader.split('|').map(cell => cell.trim()).filter(cell => cell.length > 0);
+					const headCellArray : ASTNode[] = [];
+					headCell.forEach(cell => {
+						const cellToken = {} as Token.tableCellToken;
+						cellToken.type = TokenType.UNKNOWN_TEXT;
+						cellToken.value = cell;
+						headCellArray.push({
+							type: TokenType.UNKNOWN_TEXT,
+							token: cellToken,
+							raw: cell,
+							children: [] // Initialize children array for potential inline tokens in header cells
+						});						
 					});
 					
+					const headRowAST : ASTNode = {
+						type: TokenType.TABLE_HEAD_ROW,
+						token: headRowToken,
+						raw: "",
+						children: [...headCellArray] // Will be filled with table cell nodes in the next step
+					}					
+
+					// table body rows
+					const bodyArray : ASTNode[] = [];
+					rawBody.forEach((bodyRow: string) => {
+						const bodyRowToken = {} as Token.tableBodyRowToken;
+						bodyRowToken.type = TokenType.TABLE_BODY_ROW;
+						bodyRowToken.value = bodyRow;
+						bodyRowToken.row = bodyRow; // <- null while we implemented children 
+						bodyRowToken.children = []; // Initialize children array for potential inline tokens in body cells
+						
+						const bodyCellArray : ASTNode[] = [];
+						bodyRow.split('|').map(cell => cell.trim()).filter(cell => cell.length > 0).forEach(cell => {
+							const cellToken = {} as Token.tableCellToken;
+							cellToken.type = TokenType.UNKNOWN_TEXT;
+							cellToken.value = cell;
+							bodyCellArray.push({
+								type: TokenType.UNKNOWN_TEXT,
+								token: cellToken,
+								raw: cell,
+								children: [] // Initialize children array for potential inline tokens in body cells
+							});
+						});
+
+						const bodyRowAST : ASTNode = {
+							type: TokenType.TABLE_BODY_ROW,
+							token: bodyRowToken,
+							raw: "", // for next step level raw is body row
+							children: [...bodyCellArray] // Will be filled with table cell nodes in the next step
+						}
+						bodyArray.push(bodyRowAST);
+					});
+
+					
+
+					this.ast.children.push({
+						type: TokenType.TABLE,
+						token: {
+							type: TokenType.TABLE,
+							value: tableBlock,
+							row: "", // <- null while we implemented children 
+							children: [] // Initialize children array for potential inline tokens in table rows
+						},
+						raw: "",   
+						children: [headRowAST, ...bodyArray]
+					});
+				
 					// remove table from text
 					this.text = this.text.slice(match[0].length);
-				
+								
 				continue;
 			}
+			
 
 
 			// ANY OTHER UNKNOWN BLOCK - FALL BACK TO TEXT
@@ -452,8 +517,8 @@ export class Tokenizer {
   		// Logic to find inline tokens in node.raw and replace them with token placeholders and add to ast
   		if (node.type === TokenType.QUOTE 
 			//|| node.type === TokenType.LIST
-			|| node.type === TokenType.LIST_ITEM			
-			|| node.type === TokenType.TABLE 
+			|| node.type === TokenType.LIST_ITEM		
+			|| node.type === TokenType.UNKNOWN_TEXT			
 			|| node.type === TokenType.PARAGRAPH
 			|| node.type === TokenType.HEADING_FIRST
 			|| node.type === TokenType.HEADING_SECOND
@@ -659,11 +724,9 @@ export class Tokenizer {
 				continue;
 			}
 
-
-
 			// FALLBACK - ANY OTHER UNKNOWN INLINE - FALL BACK TO TEXT
 			// NEXT WORD TO SPECIAL CHARACTER OR END OF STRING
-			const specialChars = /[*[$_`|#</]/;
+			const specialChars = /[*[$_`#</]/;
 			const nextSpecial = node.raw.search(specialChars);
 
 			let end: number;
