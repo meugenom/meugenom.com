@@ -21,6 +21,7 @@ export enum TokenType {
 	IMAGE = "Image", // An image element
 	LINK = "Link", // A hyperlink element
 	LIST = "List", // A list element
+	LIST_ITEM = "ListItem", // A list item element
 	PARAGRAPH = "Paragraph", // A paragraph element
 	PARAGRAPH_START = "ParagraphStart", // The start of a paragraph element
 	PARAGRAPH_END = "ParagraphEnd", // The end of a paragraph element
