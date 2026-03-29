@@ -330,6 +330,8 @@ export class Tokenizer {
 				// List Item-Nodes
     			itemLines.forEach(line => {
         			const trimmed = line.trim();
+					// need replace -, [ ], [x] with empty string for raw value, but keep them in token value for later use in render
+					const rawValue = trimmed.replace(/^\s*(-|\[\s?\]|\[x\])\s*/, '').trim();
         			if (trimmed.length > 0) {
             			listNode.children.push({
                 			type: TokenType.LIST_ITEM,
@@ -337,7 +339,7 @@ export class Tokenizer {
                     		type: TokenType.LIST_ITEM,
                     		value: trimmed
                 			},
-                		raw: trimmed,  // FIX: raw enthält den kompletten Text für Inline-Parsing
+                		raw: rawValue,  // FIX: raw enthält den kompletten Text für Inline-Parsing
                 		children: []   // Wird später durch putInlineChildren gefüllt
             			});
         			}
@@ -391,8 +393,7 @@ export class Tokenizer {
 					const tableToken = {} as Token.tableToken;
 					tableToken.type = TokenType.TABLE;
 					tableToken.row = match[0];
-					tableToken.children = [] as Token.tableRowToken[];
-					tableToken.tokensMap = this.tokensMap;
+					tableToken.children = [] as Token.tableRowToken[];					
 
 					//add children
 					const rows = match[0].split("\n");

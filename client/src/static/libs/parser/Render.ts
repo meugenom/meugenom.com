@@ -13,6 +13,8 @@ import { ColorTextHTML } from "./htmlblocks/ColorTextHTML";
 import { TokenType } from "./Types";
 import { ASTNode } from "./interfaces/astNode";
 
+import './static/styles/list.css';
+
 
 
 export class Render {
@@ -73,7 +75,7 @@ export class Render {
 				// Block Code
 				case TokenType.CODE_BLOCK:					
 					const codeBlock = new CodeBlockHTML(node.token as any);
-					element = codeBlock.renderAsElement();			
+					element = codeBlock.renderAsElement();					
 					// no need to render children
 					break;
 				
@@ -164,45 +166,31 @@ export class Render {
 
 				
 				// LIST Items - FIX: Rendert jetzt den raw-Text korrekt
-				case TokenType.LIST_ITEM:
-    				const itemText = node.token.value.trim();
-    									
-
-    				if (itemText.startsWith('[]')) {
+				case TokenType.LIST_ITEM:    				
+					const itemText = node.token.value.trim();    									
+    				
+					if (itemText.startsWith('[]')) {
         				// Checkbox unchecked
         				element = document.createElement('li');
-        				element.className = "list-none ml-5 flex items-start gap-2";
-        				
-						element.innerHTML = `
-            				<input class="form-check-input appearance-none flex-shrink-0 h-4 w-4 border-solid border-gray-200 border-2 rounded-sm disabled:bg-white disabled:border-blue-400 mt-1 bg-no-repeat bg-center bg-contain" 
-                   				type="checkbox" disabled/>
-            				<label class="form-check-label opacity-100">${itemText.replace(/^\[\]\s*/, '')}</label>							
-        				`;
-						
+        				element.className = "task-list-item list-none ml-5 flex items-start gap-2";        				
 
     				} else if (itemText.startsWith('[x]')) {
         				// Checkbox checked
-        				element = document.createElement('li');
-        				element.className = "list-none ml-5 flex items-start gap-2";
-        				element.innerHTML = `
-            				<input class="form-check-input appearance-none flex-shrink-0 h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-400 checked:border-blue-400 focus:outline-none transition duration-200 mt-1 bg-no-repeat bg-center bg-contain" 
-                   				type="checkbox" checked disabled/>
-            				<label class="form-check-label opacity-100">${itemText.replace(/^\[x\]\s*/, '')}</label>
-        				`;
+        				element = document.createElement('li');        				
+        				element.className = "task-list-item task-list-item-checked list-none ml-5 flex items-start gap-2";        				
 						
     				} else {
         				// Normal bullet point
         				element = document.createElement('li');
-        				element.className = "list-disc ml-5 font-mono text-sm leading-6";
-        				const cleanText = itemText.replace(/^-\s*/, '');
+        				element.className = "list-disc ml-5 font-mono text-sm leading-6";        										
         				
-        				// FIX: Render inline children (für Links, Bold, etc. im List-Item)
-        				if (node.children && node.children.length > 0) {
-            				this.renderNodes(node.children, element);
-        				} else {
-            				element.textContent = cleanText;
-        				}
+						
     				}
+
+					// FIX: Render inline children (für Links, Bold, etc. im List-Item)
+        			if (node.children && node.children.length > 0) {							
+            			this.renderNodes(node.children, element); 				
+        			}
     				break;
 				
 
