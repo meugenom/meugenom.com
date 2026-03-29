@@ -21,41 +21,36 @@ export class Grammar {
 
 		// color line 
 		COLOR: /((.?)[^\s]+)\.(blue|gray|red|green|yellow|indigo|purple|pink)/g,
-
 		// badge
 		BADGE: /((.?)[^\s]+)\|(blue|gray|red|green|yellow|indigo|purple|pink)/g,
 
 		// list		
-		LIST: /^\S.*:\n(\s*(-(?!>)|\[\]|\[.\])\s*\S.*){1,20}/,
+		LIST: /^(?:([^\n]+):)?\s*\n?(\s*(-(?!>)|\[\]|\[x\])\s*[^\n]+(?:\n|$)){1,20}/,
 		LIST_ATTRIBUTE: /(-|\[\]|\[x\])/g,
 
 
 		// code block
-		CODE_BLOCK: /^\`\`\`(cpp|c|matlab|octave|python|bash|java|javascript|typescript|swift|text)?([^(\`){3}].*\n){1,200}\`\`\`/,
+		CODE_BLOCK: /^(\`){3}(cpp|c|matlab|octave|python|bash|java|javascript|typescript|swift|text)?([^(\`){3}].*\n){1,2000}\`\`\`/,
 		CODE_BLOCK_LANG: /[^\`\`\`](\w+)\n/gs,
 		CODE_BLOCK_BODY: /\n([\s\S]+)[^\`\`\`]/gs,
 
-		// code in code block
-		CODE_IN_CODE: /^\`\`\`(cpp|c|python|matlab|bash|java|javascript|typescript|swift|text)?\n([^\`\`\`]+)\`\`\`(cpp|c|python|matlab|bash|java|javascript|typescript|swift)\n([^\`\`\`]+)\`\`\`\n\`\`\`\n/,
+		
+		// code in code block		
+		CODE_IN_CODE: /^(`{4,})([a-z0-9+]*)[\n\r]([\s\S]*?)\n\1(?![`])/,
+		// match [0] - all 
+		// match [3] - clear code
+
 		INLINE_CODE: /([^\`\`\`]+)/gs,
 		INLINE_CODE_PARAMS: /([^\n]+)/sg,
 
 		// inline code
-		INLINE_CODE_BLOCK: /\`([^\`\n]+)\`/g,
+		INLINE_CODE_BLOCK: /^\`([^\`\n]+)\`/,
 
 		// quote		
-		QUOTE: /^(>[^\n]*(\n|$))+/,
-		
-		//TODO: need to remove
-		QUOTE_PARAMS: /[^<>]+/g,
+		QUOTE: /^(>[^\n]*(\n|$))+/,				
 
 		// links
 		LINK: /^\[([^\]]+)\]\((\S+)\)/,
-		
-		// need remove
-		LINK_NAME: /\[\S.+\]/g,
-		LINK_URL: /\(\S.+\)/g,
-
 		
 		// images
 		IMAGE: /^!\[([^)]+)\]\(\S+\)/,
@@ -63,10 +58,11 @@ export class Grammar {
 		IMAGE_URL: /\(\S.+\)/g,
 
 		// horizontal line
-		UNDER_LINE: /(?<!\w)_([^_\n]+?)_(?!\w)/g,
+		UNDER_LINE: /^(?<!\w)_([^_\n]+?)_(?!\w)/,
+		
 
 		UNMARKABLE_BLOCK: /^\\\*\s?([\s\S]*?)\\\*/,
-		//UNMARKABLE_INLINE: /\\\*\s([^\n]+?)\s\\\*/,
+		
 
 		// need remove
 		STRONG: /^\*\*(.*?)\*\*/,
