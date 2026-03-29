@@ -14,9 +14,6 @@ import SideBarLeftView, { TocHeading } from '../side-bar-left/view'
 import { Tokenizer } from "../../../static/libs/parser/Tokenizer";
 import { Render } from "../../../static/libs/parser/Render";
 
-// import prismjs
-import * as Prism from "prismjs";
-
 
 /**
  * controller Article
@@ -114,8 +111,7 @@ class Article {
 
         // Parse and highlight article content
         try {
-            this.parse(this.article.spec);
-            Prism.highlightAll();
+            this.parse(this.article.spec);            
         } catch (parseError) {
             console.error('Error parsing article content:', parseError);
         }
