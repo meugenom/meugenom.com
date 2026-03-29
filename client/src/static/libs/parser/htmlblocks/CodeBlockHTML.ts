@@ -1,111 +1,99 @@
 'use strict'
-/**
- * Returns an html element if line is code block
- * @param line as block of the text
- * @return dom element as code block
- */
-
-
 import * as Token from "../Token";
-
-// import languages
-import { transformerTwoslash, } from '@shikijs/twoslash'
-import { codeToHtml, } from 'shiki';
-
-
+import { codeToHtml } from 'shiki';
 
 export class CodeBlockHTML {
   
-	private token: Token.codeBlockToken;
-	
-	
-	constructor(token: Token.codeBlockToken) {
-		this.token = token;	
-	}
+    private token: Token.codeBlockToken;
+    
+    constructor(token: Token.codeBlockToken) {
+        this.token = token; 
+    }
 
-  renderAsElement () : HTMLElement {
+    renderAsElement() : HTMLElement {
+        const lang = this.token.language || 'code';
+        let rawCode = this.token.code;
 
-		const lang = this.token.language || 'code';
-		const rawCode = this.token.code;
-		
+        // Remove newline at the start
+        if (rawCode.startsWith('\n')) {
+            rawCode = rawCode.slice(1);
+        }
 
-		// Split into lines for line numbers
-		const lines = rawCode.split('\n');
-		
-		// Remove trailing empty line if present
-		if (lines[lines.length - 1] === '') lines.pop();	
+        const lines = rawCode.split('\n');
+        if (lines[lines.length - 1] === '') lines.pop();        
 
-		// Outer wrapper
-		const OuterNode = document.createElement("div");
-		OuterNode.className = "code-block-outer my-5";
+        // 1. Main containers
+        const OuterNode = document.createElement("div");
+        OuterNode.className = "code-block-outer my-5";
 
-		// Wrapper — overflow-hidden to clip header rounded-t corners, body shadow is outside via BodyShadowNode
-		const WrapperNode = document.createElement("div");
-		WrapperNode.className = "relative rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden font-mono z-10";
+        const WrapperNode = document.createElement("div");
+        WrapperNode.className = "relative rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden font-mono z-10 bg-white dark:bg-[#1e293b]";
 
-		// Header bar: rounded corners handled by WrapperNode overflow-hidden
-		const HeaderNode = document.createElement("div");
-		HeaderNode.className = "flex items-center justify-between px-4 py-2 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700";
-		HeaderNode.innerHTML = `
-			<span class="text-[11px] font-mono font-bold uppercase tracking-widest opacity-50">${lang}</span>
-			<button class="code-copy-btn text-[11px] font-mono opacity-50 hover:opacity-100 transition-opacity" title="Copy code">
-				copy
-			</button>
-		`;
+        // 2. Header
+        const HeaderNode = document.createElement("div");
+        HeaderNode.className = "flex items-center justify-between px-4 py-2 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700";
+        HeaderNode.innerHTML = `
+            <span class="text-[11px] font-mono font-bold uppercase tracking-widest opacity-50 text-slate-700 dark:text-slate-300">${lang}</span>
+            <button class="code-copy-btn text-[11px] font-mono opacity-50 hover:opacity-100 transition-opacity text-slate-700 dark:text-slate-300" title="Copy code">
+                copy
+            </button>
+        `;
 
-		// Line numbers column
-		const LineNumsNode = document.createElement("div");
-		LineNumsNode.className = "select-none text-right pr-4 pl-3 py-4 text-[13px] leading-6 text-slate-400 dark:text-slate-600 border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 flex-shrink-0";
-		
-		LineNumsNode.innerHTML = lines.map((_: string, i: number) =>		
-			`<div>${i + 1}</div>`
-		).join('');
+        // 3. Body (Columns for line numbers and code)
+        const BodyNode = document.createElement("div");
+        BodyNode.className = "flex overflow-x-auto";
 
-		// Pre + code
-		const PreNode = document.createElement("pre");
-		PreNode.className = `language-${lang} flex-1 overflow-x-auto m-0 rounded-none py-4 px-4 text-[13px] leading-6`;
+        // Line numbers column
+        const LineNumsNode = document.createElement("div");
+        LineNumsNode.className = "select-none text-right pr-4 pl-3 py-4 text-[13px] leading-6 text-slate-400 dark:text-slate-600 border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 flex-shrink-0";
+        LineNumsNode.innerHTML = lines.map((_, i) => `<div>${i + 1}</div>`).join('');
 
-		const CodeNode = document.createElement("code");
-		CodeNode.className = `language-${lang}`;
-		
-		CodeNode.textContent = lines.join('\n');
+        // Code container (Shiki will insert its HTML here)
+        const CodeContainer = document.createElement("div");
+        CodeContainer.className = "flex-1 min-w-0"; 
+        
+        // While Shiki is loading, show raw text to avoid layout "jump"
+        CodeContainer.innerHTML = `<pre class="p-4 text-[13px] leading-6"><code>${rawCode}</code></pre>`;
 
-		PreNode.appendChild(CodeNode);
+        BodyNode.appendChild(LineNumsNode);
+        BodyNode.appendChild(CodeContainer);
 
-		// Code body: line numbers + code side by side
-		const BodyNode = document.createElement("div");
-		BodyNode.className = "flex overflow-x-auto";
+        WrapperNode.appendChild(HeaderNode);
+        WrapperNode.appendChild(BodyNode);
+        OuterNode.appendChild(WrapperNode);
 
-		BodyNode.appendChild(LineNumsNode);
-		BodyNode.appendChild(PreNode);
+        // 4. Shiki highlighting
+        codeToHtml(rawCode, { 
+            lang, 
+            themes: { light: 'min-light', dark: 'min-dark' },           
+        }).then(html => {
+            // Replace the entire content of the container with Shiki's result
+            CodeContainer.innerHTML = html;
+            
+            // Adjust the <pre> element from Shiki
+            const shikiPre = CodeContainer.querySelector('pre');
+            if (shikiPre) {
+                // Remove Shiki's inline background to allow Tailwind dark mode
+                shikiPre.style.backgroundColor = 'transparent';
+                shikiPre.style.margin = '0';
+                // Add the same padding and line height as the line numbers
+                shikiPre.className += " p-4 text-[13px] leading-6 overflow-x-auto";
+            }
+        }).catch(err => {
+            console.error('Shiki error:', err);
+        });
 
-		WrapperNode.appendChild(HeaderNode);
-		WrapperNode.appendChild(BodyNode);
-		OuterNode.appendChild(WrapperNode);
-
-		// Highlight after building DOM				
-		codeToHtml(rawCode, { 
-			lang, 
-			themes: { light: 'min-light', dark: 'min-dark' },			
-		}).then(html => {
-			CodeNode.innerHTML = html;
-		}).catch(err => {
-			console.error('Error highlighting code:', err);
-			CodeNode.textContent = rawCode; // Fallback to raw code on error
-		});
-
-
-		// Copy button handler
-		const copyBtn = HeaderNode.querySelector('.code-copy-btn') as HTMLButtonElement;
-		if (copyBtn) {
-			copyBtn.addEventListener('click', () => {
-				navigator.clipboard.writeText(lines.join('\n')).then(() => {
-					copyBtn.textContent = 'copied!';
-					setTimeout(() => { copyBtn.textContent = 'copy'; }, 2000);
-				});
-			});
-		}
-	
-		return OuterNode;
-  }
+        // 5. Copy logic
+        const copyBtn = HeaderNode.querySelector('.code-copy-btn') as HTMLButtonElement;
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(lines.join('\n')).then(() => {
+                    copyBtn.textContent = 'copied!';
+                    setTimeout(() => { copyBtn.textContent = 'copy'; }, 2000);
+                });
+            });
+        }
+    
+        return OuterNode;
+    }
 }
