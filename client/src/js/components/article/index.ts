@@ -10,7 +10,7 @@ import ArticleView from './view'
 import Utils from '../services/utils'
 import SideBarLeftView, { TocHeading } from '../side-bar-left/view'
 
-// import parser for markable text
+// import parser and render
 import { Tokenizer } from "../../../static/libs/parser/Tokenizer";
 import { Render } from "../../../static/libs/parser/Render";
 
@@ -94,7 +94,9 @@ class Article {
         const virtualDOM = document.createElement('div');
         const result =  new Render(tokenizer.getAST(), virtualDOM);      
         // Find html element with id="article" in the DOM and append rendered content to it
-        const rootElement = document.getElementById('article');    
+        const rootElement = document.getElementById('article');  
+        
+        console.log('Rendering article content to DOM...');
 
         // Clear existing content in rootElement before appending new content
         if (rootElement) {
@@ -107,7 +109,7 @@ class Article {
 
     async afterRender () { 
 
-        document.title = this.article_title;
+        document.title = this.article_title;        
 
         // Parse and highlight article content
         try {
@@ -143,7 +145,7 @@ class Article {
         });
 
         // Build Table of Contents from parsed headings and inject into sidebar-left
-        this.renderToc();
+        //this.renderToc();
 
 
         // Lazy load images
@@ -156,20 +158,39 @@ class Article {
         const articleEl = document.getElementById('article');
         if (!articleEl) return;
 
-        const headingEls = articleEl.querySelectorAll('h1, h2, h3, h4');
-        if (headingEls.length === 0) return;
+        //console.log('Rendering Table of Contents...');        
+        
+        const headingEls = articleEl.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        //console.log(`Found ${headingEls.length} headings for TOC`);
 
+        if (headingEls.length === 0) return;        
+        
         const headings: TocHeading[] = [];
-        headingEls.forEach((el) => {
-            const level = parseInt(el.tagName.replace('H', ''), 10);
-            const text = el.textContent?.trim() ?? '';
-            const id = el.getAttribute('id') ?? '';
-            if (text && id) headings.push({ level, text, id });
+        headingEls.forEach((el, index) => {
+            
+            const level = parseInt(el.tagName.replace('H', ''), 10);            
+            const text = el.textContent?.trim() ?? '';            
+            const id = el.getAttribute('id'); // if we have an already existing id
+
+            // 0 this is a Caption ... not need to TOC
+            if (text && !id && index != 0) { 
+                // Generate an ID from the text content if not already present
+                const generatedId  = text
+                                        .toLowerCase()
+                                        .replace(/\s+/g, '-')  // whitespace and dashes to single dash
+                                        .replace(/[^\w\u0400-\u04FF-]+/g, ''); // remove non-alphanumeric characters 
+                el.setAttribute('id', generatedId);
+                headings.push({ level, text, id: generatedId });
+            } else if (text && id && index != 0) {
+                headings.push({ level, text, id });
+            }
+
         });
 
         const sidebarEl = document.getElementById('side-bar-left');
         if (!sidebarEl) return;
 
+        //console.log(headings);
         sidebarEl.innerHTML = new SideBarLeftView().renderToc(headings);
 
         // Show sidebar only on large screens (keep hidden on small screens like right sidebar)
