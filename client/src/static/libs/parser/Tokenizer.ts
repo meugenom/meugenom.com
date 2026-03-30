@@ -86,23 +86,40 @@ export class Tokenizer {
 
 			// find CAPTION
 			if (this.text.match(Grammar.BLOCKS.CAPTION) != null) {
-				const caption = new Caption(this.text);			
+				const caption = new Caption(this.text);		
 				let token = {} as Token.captionToken;
-				token = caption.get();			
-			
+				token = caption.get();
+				
 				// caption.get removed caption and return other text
-				this.text = caption.text;				
+				this.text = caption.text;
 
-				//add to the astNode		
-				this.ast.children.push({
-					type: TokenType.CAPTION,
-					token: token,
-    				raw: "",  
-    				children: []
-				})				
-						
-        		continue;
-			
+				// if broken cases for UNMARKABLE			
+				if(token.type == TokenType.CAPTION){
+					
+					//add to the astNode		
+					this.ast.children.push({
+						type: TokenType.CAPTION,
+						token: token,
+    					raw: "",  
+    					children: []
+					})				
+					
+					console.log("Caption token added to AST:", token);
+				
+				// if caption is broken and return UNMARKABLE with error message
+				} else if(token.type == TokenType.UNMARKABLE) {					
+					const unmarkableToken = token as Token.unmarkableToken;
+					unmarkableToken.value = "\n\\* \n Error: Incorrectly formatted Caption block. Please check the format. \n\\* \n";
+
+					this.ast.children.push({
+						type: TokenType.UNMARKABLE,
+						token: unmarkableToken,
+						raw: unmarkableToken.value,
+						children: []
+					})
+				}
+								
+				continue;
 			}
 
     		// find unmarkable blocks

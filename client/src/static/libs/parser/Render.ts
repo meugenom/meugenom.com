@@ -304,6 +304,8 @@ export class Render {
 						element.className = "italic text-md opacity-50";
 						
 						// FIX: Proper newline handling ohne concatenation
+						console.log(node.token.value);
+						console.log('Rendering Unmarkable Text:', node);
 						const lines = node.token.value.split('\n');
 						lines.forEach((line: string, idx: number) => {
 							if (idx > 0) element.appendChild(document.createElement('br'));

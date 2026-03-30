@@ -9,16 +9,22 @@ export class Grammar {
 
 	public static BLOCKS = {
 
+		SPACE: / /,
+		LINE: /\n/,
+
+
 		// heading‚
 		HEADING: /^#{1,6}\s+[^\n]*(?:\n|$)/,
 		HEADING_LEVEL: /^(#{1,5})/,
 
-		// caption
-		CAPTION: /^---\sdate:((.*))\stitle:((.*))\stemplate:((.*))\sthumbnail:((.*))\sslug:((.*))\stags:((.*))\scluster:((.*))\sorder:((.*))\s---/,
-
-		SPACE: / /,
-		LINE: /\n/,
-
+		// caption regex getested		
+		CAPTION: /^---[\s\S]*?---/,		
+		CAPTION_PARAMETER: /^---\s*date:\s*(.*?)\s*title:\s*(.*?)\s*template:\s*(.*?)\s*thumbnail:\s*(.*?)\s*slug:\s*(.*?)\s*tags:\s*(.*?)\s*cluster:\s*(.*?)\s*order:\s*(.*?)\s*---$/m,
+		CAPTION_DATE: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
+		CAPTION_THUMBNAIL: /^'[\.\/a-zA-Z0-9\-_]+\.(png|jpg|jpeg|webp)'$/,
+		CAPTION_SLUG: /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+		CAPTION_CLUSTER: /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+		
 		// color line 
 		//COLOR: /((.?)[^\s]+)\.(blue|gray|red|green|yellow|indigo|purple|pink)/,
 		COLOR: /([^\s]+)\.(blue|gray|red|green|yellow|indigo|purple|pink)(?!\w)/,
