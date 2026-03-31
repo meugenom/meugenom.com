@@ -1,9 +1,9 @@
 'use strict'
 import { Grammar } from "./Grammar"
-import { Caption } from "./Caption"
 import * as Token from "./Token";
 import { TokenType } from "./Types";
 import { ASTNode } from "./interfaces/astNode";
+import { ValidateCaption } from "./validation/validateCaption";
 
 
 export class Tokenizer {
@@ -83,30 +83,42 @@ export class Tokenizer {
 
 
 			// find CAPTION
-			if (this.text.match(Grammar.BLOCKS.CAPTION) != null) {
-				const caption = new Caption(this.text);		
-				let token = {} as Token.captionToken;
-				token = caption.get();
+			if (this.text.match(Grammar.BLOCKS.CAPTION) != null) {				
+				const match = this.text.match(Grammar.BLOCKS.CAPTION_PARAMETER);	
 				
-				// caption.get removed caption and return other text
-				this.text = caption.text;
+				if (match) {
+					let token : Token.captionToken = {
+						type: TokenType.CAPTION,
+						date: match[1],
+						title: match[2],
+						template: match[3],
+						thumbnail: match[4],
+						slug: match[5],
+						tags: match[6],
+						cluster: match[7],
+						order: match[8]
+					};
 
-				// if broken cases for UNMARKABLE			
-				if(token.type == TokenType.CAPTION){
-					
+					token = ValidateCaption.validate(token); // validate the caption token and set error messages for incorrect fields
+
+					// Case format is correct but user can see error messages about incorrect fields
+					this.text = this.text.replace(Grammar.BLOCKS.CAPTION_PARAMETER, ""); // Remove the caption block from the text
+
 					//add to the astNode		
 					this.ast.children.push({
 						type: TokenType.CAPTION,
 						token: token,
     					raw: "",  
     					children: []
-					})				
-					
-					//console.log("Caption token added to AST:", token);
-				
-				// if caption is broken and return UNMARKABLE with error message
-				} else if(token.type == TokenType.UNMARKABLE) {					
-					const unmarkableToken = token as Token.unmarkableToken;
+					})	
+			
+				} else {
+
+					// Case is broken, return UNMARKABLE_BLOCK with error message about missing fields	
+					this.text = this.text.replace(Grammar.BLOCKS.CAPTION, ""); 
+
+					let unmarkableToken = {} as Token.unmarkableToken;
+					unmarkableToken.type = TokenType.UNMARKABLE;
 					unmarkableToken.value = "\n\\* \n Error: Incorrectly formatted Caption block. Please check the format. \n\\* \n";
 
 					this.ast.children.push({
@@ -115,7 +127,7 @@ export class Tokenizer {
 						raw: unmarkableToken.value,
 						children: []
 					})
-				}
+				}				
 								
 				continue;
 			}
