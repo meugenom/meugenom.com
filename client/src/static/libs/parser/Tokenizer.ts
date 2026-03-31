@@ -45,14 +45,12 @@ export class Tokenizer {
 
 
 	private text: string;
-	private tokensMap: Map<string, any>;
 
 	constructor(text: string) {
 
 		this.text = text;
-
 		this.tokens = [];		
-		this.tokensMap = new Map();
+
 		
 		// first going through text and finding all block level tokens and removing them from text and adding to ast
 		this.putRootChildren();
@@ -104,7 +102,7 @@ export class Tokenizer {
     					children: []
 					})				
 					
-					console.log("Caption token added to AST:", token);
+					//console.log("Caption token added to AST:", token);
 				
 				// if caption is broken and return UNMARKABLE with error message
 				} else if(token.type == TokenType.UNMARKABLE) {					
@@ -257,11 +255,13 @@ export class Tokenizer {
 						TokenType.HEADING_FIRST,
 						TokenType.HEADING_SECOND,
 						TokenType.HEADING_THIRD,
-						TokenType.HEADING_FORTH,
+						TokenType.HEADING_FOURTH,
 						TokenType.HEADING_FIFTH
 					]
 
+					//console.log(`Found heading: ${match[0]} with level: ${level.length} and body: ${body}`);
 					const contentOnly = match[0].replace(/^#{1,6}\s+/, '').replace(/\n$/, '');
+					//console.log(`Content only for heading: ${contentOnly}`);
 					
 					//private case
 					if (!level || level.length > types.length) {
@@ -540,7 +540,7 @@ export class Tokenizer {
 			|| node.type === TokenType.HEADING_FIRST
 			|| node.type === TokenType.HEADING_SECOND
 			|| node.type === TokenType.HEADING_THIRD
-			|| node.type === TokenType.HEADING_FORTH
+			|| node.type === TokenType.HEADING_FOURTH
 			|| node.type === TokenType.HEADING_FIFTH		
 		) {
     					
@@ -557,8 +557,8 @@ export class Tokenizer {
 			// remove leading whitespace
 			const whitespace = node.raw.match(/^\s+/);
     		if (whitespace) {
-        		node.raw = node.raw.slice(whitespace[0].length);
-        		if (node.raw.length === 0) break; 
+        		//node.raw = node.raw.slice(whitespace[0].length); //TODO: we should not remove leading whitespaces
+        		if (node.raw.length === 0) break;
     		}
 
 

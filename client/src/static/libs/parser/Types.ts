@@ -16,7 +16,7 @@ export enum TokenType {
 	HEADING_FIRST = "HeadingFirst", // A first-level heading element
 	HEADING_SECOND = "HeadingSecond", // A second-level heading element
 	HEADING_THIRD = "HeadingThird", // A third-level heading element
-	HEADING_FORTH = "HeadingForth", // A fourth-level heading element
+	HEADING_FOURTH = "HeadingFourth", // A fourth-level heading element
 	HEADING_FIFTH = "HeadingFifth", // A fifth-level heading element
 	IMAGE = "Image", // An image element
 	LINK = "Link", // A hyperlink element

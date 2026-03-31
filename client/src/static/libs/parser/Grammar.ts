@@ -8,14 +8,9 @@
 export class Grammar {
 
 	public static BLOCKS = {
-
-		SPACE: / /,
-		LINE: /\n/,
-
-
-		// heading‚
-		HEADING: /^#{1,6}\s+[^\n]*(?:\n|$)/,
-		HEADING_LEVEL: /^(#{1,5})/,
+		
+		// badge
+		BADGE: /((.?)[^\s]+)\|(blue|gray|red|green|yellow|indigo|purple|pink)/g,
 
 		// caption regex getested		
 		CAPTION: /^---[\s\S]*?---/,		
@@ -25,17 +20,6 @@ export class Grammar {
 		CAPTION_SLUG: /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
 		CAPTION_CLUSTER: /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
 		
-		// color line 
-		//COLOR: /((.?)[^\s]+)\.(blue|gray|red|green|yellow|indigo|purple|pink)/,
-		COLOR: /([^\s]+)\.(blue|gray|red|green|yellow|indigo|purple|pink)(?!\w)/,
-		// badge
-		BADGE: /((.?)[^\s]+)\|(blue|gray|red|green|yellow|indigo|purple|pink)/g,
-
-		// list		
-		LIST: /^(?:([^\n]+):)?\s*\n?(\s*(-(?!>)|\[\]|\[x\])\s*[^\n]+(?:\n|$)){1,20}/,
-		LIST_ATTRIBUTE: /(-|\[\]|\[x\])/g,
-
-
 		// code block
 		CODE_BLOCK: /^(\`){3}(cpp|c|matlab|octave|python|bash|java|javascript|typescript|swift|text)?([^(\`){3}].*\n){1,2000}\`\`\`/,
 		CODE_BLOCK_LANG: /[^\`\`\`](\w+)\n/gs,
@@ -47,45 +31,52 @@ export class Grammar {
 		// match [0] - all 
 		// match [3] - clear code
 
+		//word inline color				
+		COLOR: /([^\s]+)\.(blue|gray|red|green|yellow|indigo|purple|pink)(?!\w)/,
+		
+		FORMULA_BLOCK: /^\$\$([\s\S]+?)\$\$/,
+		FORMULA_INLINE: /^\$(?!\$)(?!token\.)([^$\n]+?)\$(?!\$)/,
+
+		// heading‚
+		HEADING: /^#{1,6}\s+[^\n]*(?:\n|$)/,
+		HEADING_LEVEL: /^(#{1,5})/,
+
 		INLINE_CODE: /([^\`\`\`]+)/gs,
 		INLINE_CODE_PARAMS: /([^\n]+)/sg,
 
 		// inline code
 		INLINE_CODE_BLOCK: /^\`([^\`\n]+)\`/,
 
-		// quote		
-		QUOTE: /^(>[^\n]*(\n|$))+/,				
-
-		// links
-		LINK: /^\[([^\]]+)\]\((\S+)\)/,
-		
 		// images
 		IMAGE: /^!\[([^)]+)\]\(\S+\)/,
 		IMAGE_NAME: /!\[\S.+\]/g,
 		IMAGE_URL: /\(\S.+\)/g,
 
-		// horizontal line
-		UNDER_LINE: /^(?<!\w)_([^_\n]+?)_(?!\w)/,
+		LINE: /\n/,
 		
+		// links
+		LINK: /^\[([^\]]+)\]\((\S+)\)/,
 
-		UNMARKABLE_BLOCK: /^\\\*\s?([\s\S]*?)\\\*/,
+		// list		
+		LIST: /^(?:([^\n]+):)?\s*\n?(\s*(-(?!>)|\[\]|\[x\])\s*[^\n]+(?:\n|$)){1,20}/,
+		LIST_ATTRIBUTE: /(-|\[\]|\[x\])/g,
 		
+		PARAGRAPH: /([^\n]+)/g,
 
-		// need remove
-		STRONG: /^\*\*(.*?)\*\*/,
-		
+		SPACE: / /,				
 		STRONG_TEXT: /^\*\*([\s\S]*?)\*\*/,
+
 
 		TABLE: /^(\|[^\n|][^\n]*\|[ \t]*\n?)+/,
 		TABLE_CELL: /([^|]+)(?=\|)/g,
-
-		FORMULA_BLOCK: /^\$\$([\s\S]+?)\$\$/,
-		FORMULA_INLINE: /^\$(?!\$)(?!token\.)([^$\n]+?)\$(?!\$)/,
-
-		PARAGRAPH: /([^\n]+)/g,
-
 		TOKEN: /\$token.(\S{35}[^\s\.\*\`])/g,
-
 		TXT_TOKEN: /[^\$token.\w\b-](\w)+/g,
+
+		UNDER_LINE: /^_([^_]+)_(?!\w)/,
+		UNMARKABLE_BLOCK: /^\\\*\s?([\s\S]*?)\\\*/,
+		
+		// quote		
+		QUOTE: /^(>[^\n]*(\n|$))+/,				
+
 	}
 }

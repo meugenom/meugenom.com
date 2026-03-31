@@ -31,7 +31,7 @@ export class HeaderHTML {
 			case TokenType.HEADING_THIRD:
 				this.dept = 3;
 				break;
-			case TokenType.HEADING_FORTH:
+			case TokenType.HEADING_FOURTH:
 				this.dept = 4;
 				break;
 			case TokenType.HEADING_FIFTH:

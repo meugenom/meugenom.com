@@ -55,7 +55,7 @@ export class Render {
 				case TokenType.HEADING_FIRST:
 				case TokenType.HEADING_SECOND:
 				case TokenType.HEADING_THIRD:
-				case TokenType.HEADING_FORTH:
+				case TokenType.HEADING_FOURTH:
 				case TokenType.HEADING_FIFTH:
 					if(node.children && node.children.length > 0) {
 						const header = new HeaderHTML(node.token as any);
