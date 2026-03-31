@@ -1,25 +1,23 @@
 ---
-date: 2019-08-30
+date: 2021-08-30
 title: 'How to Write Text'
 template: post
 thumbnail: './thumbnails/writing.png'
 slug: how-to-write-text
 tags: instruction texter writer
-cluster: how-to-write-text
-order: 0
+cluster: content-system-updates
+order: 1
 ---
 
 ## Formatting syntax
 
-This is a small guide. "How to write markdown text and get HTML document out". See code on my GitHub: [markable parser](https://github.com/meugenom/markable-to-html)
-
-## Caption Block about article
+> This is a small guide. "How to write _markdown text_ and get _HTML document_ out". See code on my GitHub: [markable parser](https://github.com/meugenom/markable-to-html)
 
 How to use: write caption block like the example below:
-<br/>
+
 \*
 ---
-date: 2019-08-30
+date: 2021-08-30
 title: 'Instruction to Write Text'
 template: post
 thumbnail: './thumbnails/writing.png'
@@ -34,14 +32,15 @@ order: 0
 ## Headings
 
 How to use:
+
 \*
 # The h1 heading
 ## The h2 heading
 ### The h3 heading
 #### The h4 heading
 ##### The h5 heading
-\* 
-<br/>
+\*
+
 # The h1 heading
 ## The h2 heading
 ### The h3 heading
@@ -83,7 +82,7 @@ $$
 		return `
     		minimal value is ${min}
     	`
-	}‚
+	}
 ```
 \* 
 
@@ -98,7 +97,7 @@ $$
 ## Code In Code Block
 
 \*
-	```bash
+	````bash
 		```javascript
 			let getMin = async (min)=> {
 				return `
@@ -106,10 +105,11 @@ $$
 					`
 			}
 		```
-	```
+	````
 \*
 
-```bash
+
+````bash
 	```javascript
 		let getMin = async (min)=> {
 			return `
@@ -117,7 +117,7 @@ $$
 				`
 		}
 	```
-```
+````
 
 ## Code Inline
 
@@ -132,69 +132,68 @@ in out:
 
 \*
 	List 1 :
-	  - one
-	  - two
-	  - three and more
+	  - the formula $a^2 + b^2 = c^2$
+	  - the `code inline`
+	  - _the underdashed text_
 
 	List 2 :
-	  [] one
-	  [] two
-	  [] three and more
+	  [] the formula $a^2 + b^2 = c^2$
+	  [] the `code inline`
+	  [] _the underdashed text_
 
 	List  simple 3:
-	  [x] one
-	  [x] two
-	  [x] three and more
+	  [x] the formula $a^2 + b^2 = c^2$
+	  [x] the `code inline`
+	  [x] _the underdashed text_
 
 	List 4 with mixed attributes:
-	   - one
-	  [] two
-	  [x] three and more
+	   - the formula $a^2 + b^2 = c^2$
+	  [] the the `code inline`
+	  [x] _the underdashed text_
 
 \*
-<br/>
+
 in out:
-<br/>
+
 List 1:
-	- one
-	- two
-	- three and more
-<br/>
+	- the formula $a^2 + b^2 = c^2$
+	- the `code inline`
+	- _the underdashed text_
+
 List 2:
-	[] one
-	[] two
-	[] three and more
-<br/>
+	[] the formula $a^2 + b^2 = c^2$
+	[] the `code inline`
+	[] _the underdashed text_
+
 List 3:
-	[x] one
-	[x] two
-	[x] three and more
-<br/>
+	[x] the formula $a^2 + b^2 = c^2$
+	[x] the `code inline`
+	[x] _the underdashed text_
+
 List 4 with mixed attributes:
-	- one
-	[] two
-	[x] three and more
+	- the formula $a^2 + b^2 = c^2$
+	[] the `code inline`
+	[x] _the underdashed text_
 
 
 ## Table
 
 \*
-| Name | Age | Auto | Town | Pet |
+| Name | **Age** | $a^2 + b^2 = c^2$ | Town | $a^2 + b^2 = c^2$ |
 |---|---|---|---|---|
 | Bob | 17 | BMW | Baku | Fish |
-| John | 52 | Fiat | Berlin | Dog |
-| Lisa | 32 | Toyota | Frankfurt | Snake |
-| Eugen | 45 | Mazda | Dresden | Cat | 
+| John | _52_ | **Fiat** | $a^2 + b^2 = c^2$ | Dog |
+| **Lisa** | 32 | _Toyota_ | Frankfurt | Snake |
+| Eugen | _45_ | Mazda | **Dresden** | $a^2 + b^2 = c^2$ | 
 \*
 
-<br/>
 
-| Name | Age | Auto | Town | Pet |
+| Name | **Age** | $a^2 + b^2 = c^2$ | Town.yellow | $a^2 + b^2 = c^2$ |
 |---|---|---|---|---|
 | Bob | 17 | BMW | Baku | Fish |
-| John | 52 | Fiat | Berlin | Dog |
-| Lisa | 32 | Toyota | Frankfurt | Snake |
-| Eugen | 45 | Mazda | Dresden | Cat |
+| John | _52_ | **Fiat** | $a^2 + b^2 = c^2$ | Dog |
+| **Lisa** | 32 | _Toyota_ | Frankfurt | Snake.pink |
+| Eugen | _45_ | Mazda | **Dresden** | $a^2 + b^2 = c^2$ |
 
 
 ## Quoting text
@@ -245,7 +244,7 @@ _underdash_
 
 in out:
 
-Lorem.green ipsum.indigo dolor.red sit amet.purple , consectetur.pink adipisicing.yellow elit. 
+Lorem.green ipsum.indigo dolor.red sit amet.purple , consectetur.pink adipisicing.yellow elit@test.pink
 
 ## Color Badges
 
@@ -278,4 +277,5 @@ in out:
 
 in out:
 
-This is an ![Github image](./images/github.png)
+This is an 
+![Github image](./images/github.png)
