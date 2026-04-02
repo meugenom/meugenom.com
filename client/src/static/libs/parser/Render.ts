@@ -35,12 +35,12 @@ export class Render {
 
 	renderNodes(nodes: ASTNode[], container: HTMLElement) {
     
-		let element: HTMLElement | Text;
+		let element: HTMLElement | Text | null;
 
 		nodes.forEach(node => {
 
 			// every time we start processing a new node, we reset the element variable to null
-			element = null as any; // initialize element as null for each node			
+			element = null;			
 
 			switch (node.type) {
 				
@@ -302,8 +302,8 @@ export class Render {
 						element.className = "font-mono italic text-md opacity-50";
 						
 						// FIX: Proper newline handling ohne concatenation
-						console.log(node.token.value);
-						console.log('Rendering Unmarkable Text:', node);
+						//console.log(node.token.value);
+						//console.log('Rendering Unmarkable Text:', node);
 						const lines = node.token.value.split('\n');
 						lines.forEach((line: string, idx: number) => {
 							if (idx > 0) element.appendChild(document.createElement('br'));
@@ -330,6 +330,18 @@ export class Render {
 						element = ParagraphNode;
 					}
                 	break;
+
+				// Block Paragraph - default type for text without any specific formatting
+            	default:
+					if(node.children && node.children.length > 0) {
+						element = document.createElement("p");
+						element.className = "block leading-7 font-mono mt-4";
+						this.renderNodes(node.children, element);
+					} else {	
+						const ParagraphNode = document.createElement("p")
+						ParagraphNode.className = "block leading-7 font-mono mt-4";
+						element = ParagraphNode;
+					}
 
             // ... when something new to add
         }

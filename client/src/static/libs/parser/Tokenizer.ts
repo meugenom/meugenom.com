@@ -442,7 +442,7 @@ export class Tokenizer {
 			match = this.text.match(Grammar.BLOCKS.TABLE);
 			if(match) {					
 
-				console.log(`Found table: ${match[0]}`);
+				//console.log(`Found table: ${match[0]}`);
 
 				// match[0] -- whole table
 				const tableBlock = match[0].trim(); // Remove leading/trailing whitespace
@@ -548,7 +548,11 @@ export class Tokenizer {
                 //add to the astNode
 					this.ast.children.push({
 						type: TokenType.PARAGRAPH,						
-						raw: chunk,  
+						raw: chunk,
+						token: {
+							type: TokenType.PARAGRAPH,
+							value: chunk
+						},  
 						children: []
 					});
             }

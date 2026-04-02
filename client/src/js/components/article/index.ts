@@ -87,7 +87,7 @@ class Article {
         const tokenizer = new Tokenizer(article);         
 
         // For debugging: log the AST node structure to the console
-        console.log(tokenizer);        
+        //console.log(tokenizer);        
             
 
         // find html element with id="article" in the DOM
@@ -96,7 +96,7 @@ class Article {
         // Find html element with id="article" in the DOM and append rendered content to it
         const rootElement = document.getElementById('article');  
         
-        console.log('Rendering article content to DOM...');
+        //console.log('Rendering article content to DOM...');
 
         // Clear existing content in rootElement before appending new content
         if (rootElement) {
