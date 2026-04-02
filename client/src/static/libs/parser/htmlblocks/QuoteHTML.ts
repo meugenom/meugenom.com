@@ -27,7 +27,7 @@ export class QuoteHTML {
     element.innerHTML = paragraphs
       .map(
         (text) => `
-    			<p class="mb-4 leading-7 text-slate-700 dark:text-slate-300 border-l-4 border-blue-400 pl-4">
+    			<p class="mb-4 leading-7 font-mono text-slate-700 dark:text-slate-300 border-l-4 border-blue-400 pl-4">
         			${text}
     			</p>
 				`,

@@ -62,7 +62,7 @@ export class Render {
 						const dept = header.getDept(node.token as any);
 						const sizeClass = header.getSizeClass(dept);
 						element = document.createElement('h' + dept);
-						element.className = `${sizeClass} font-sans font-bold mt-0 mb-3 pr-10 pt-6`;
+					element.className = `${sizeClass} font-mono font-bold mt-0 mb-3 pr-10 pt-6`;
 						this.renderNodes(node.children, element);
 					} else {
 
@@ -101,7 +101,7 @@ export class Render {
 				case TokenType.QUOTE:
 					if(node.children && node.children.length > 0) {
 						element = document.createElement('p');
-						element.className = "mb-4 leading-7 text-slate-700 dark:text-slate-300 border-l-4 border-blue-400 pl-4";
+						element.className = "mb-4 leading-7 font-mono text-slate-700 dark:text-slate-300 border-l-4 border-blue-400 pl-4";
 						this.renderNodes(node.children, element);
 					}else {
 						const quote = new QuoteHTML(node.token as any);
@@ -262,9 +262,7 @@ export class Render {
 
 						element = document.createElement('a');
 						element.setAttribute('href', node.token.url);
-						element.className = "text-blue-800 hover:text-blue-500 underline";
-					
-						console.log('Rendering Link:', node.token.url, 'with text:', node.token.name + " ");
+					element.className = "font-mono text-blue-800 hover:text-blue-500 underline";
 
 						// FIX: Render link text from token or children
 						if (node.token.name) {
@@ -277,7 +275,7 @@ export class Render {
 				case TokenType.STRONG:
 					
 					element = document.createElement('strong');
-					element.className = "font-bold";
+					element.className = "font-mono font-bold";
 					element.textContent = node.token.value + " "; // Ensure it's a string
 					this.renderNodes(node.children, element);
 					break;
@@ -301,7 +299,7 @@ export class Render {
 						this.renderNodes(node.children, element);					
 					} else {	
 						element = document.createElement('div');
-						element.className = "italic text-md opacity-50";
+						element.className = "font-mono italic text-md opacity-50";
 						
 						// FIX: Proper newline handling ohne concatenation
 						console.log(node.token.value);
@@ -323,7 +321,8 @@ export class Render {
 				// Block Paragraph - default type for text without any specific formatting
             	case TokenType.PARAGRAPH:
 					if(node.children && node.children.length > 0) {
-						element = document.createElement("p");					
+						element = document.createElement("p");
+						element.className = "block leading-7 font-mono mt-4";
 						this.renderNodes(node.children, element);
 					} else {	
 						const ParagraphNode = document.createElement("p")

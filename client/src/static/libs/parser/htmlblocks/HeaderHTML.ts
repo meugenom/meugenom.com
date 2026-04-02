@@ -59,7 +59,7 @@ export class HeaderHTML {
 		// h1→h6: one step smaller than browser defaults for compact article layout
 		const sizeMap: string[] = ['text-2xl', 'text-xl', 'text-lg', 'text-base', 'text-sm', 'text-xs'];
 		const sizeClass = this.getSizeClass(dept);
-		HeaderNode.className = `${sizeClass} font-sans font-bold mt-0 mb-3 pr-10 pt-6`;
+		HeaderNode.className = `${sizeClass} font-mono font-bold mt-0 mb-3 pr-10 pt-6`;
 
 		
 
