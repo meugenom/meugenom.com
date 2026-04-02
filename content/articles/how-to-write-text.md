@@ -34,18 +34,18 @@ order: 0
 How to use:
 
 \*
-# The h1 heading
-## The h2 heading
-### The h3 heading
-#### The h4 heading
-##### The h5 heading
+# The h1 _heading_
+## The h2 [[heading:green]]
+### The h3 heading $a^2 + b^2 = c^2$
+#### The h4 [[heading:yellow]]
+##### The h5 [[heading::pink]]
 \*
 
-# The h1 heading
-## The h2 heading
-### The h3 heading
-#### The h4 heading
-##### The h5 heading
+# The h1 _heading_
+## The h2 [[heading:green]]
+### The h3 heading $a^2 + b^2 = c^2$
+#### The h4 [[heading:yellow]]
+##### The h5 [[heading::pink]]
 
 ## Styling bold text
 
@@ -139,17 +139,17 @@ in out:
 	List 2 :
 	  [] the formula $a^2 + b^2 = c^2$
 	  [] the `code inline`
-	  [] _the underdashed text_
+	  [] [[the underdashed text:yellow]]
 
 	List  simple 3:
 	  [x] the formula $a^2 + b^2 = c^2$
 	  [x] the `code inline`
-	  [x] _the underdashed text_
+	  [x] [[the underdashed text:pink]]
 
 	List 4 with mixed attributes:
 	   - the formula $a^2 + b^2 = c^2$
 	  [] the the `code inline`
-	  [x] _the underdashed text_
+	  [x] [[the underdashed text:purple]]
 
 \*
 
@@ -163,36 +163,36 @@ List 1:
 List 2:
 	[] the formula $a^2 + b^2 = c^2$
 	[] the `code inline`
-	[] _the underdashed text_
+	[] [[the underdashed text:yellow]]
 
 List 3:
 	[x] the formula $a^2 + b^2 = c^2$
 	[x] the `code inline`
-	[x] _the underdashed text_
+	[x] [[the underdashed text:pink]]
 
 List 4 with mixed attributes:
 	- the formula $a^2 + b^2 = c^2$
 	[] the `code inline`
-	[x] _the underdashed text_
+	[x] [[the underdashed text:purple]]
 
 
 ## Table
 
 \*
-| Name | **Age** | $a^2 + b^2 = c^2$ | Town | $a^2 + b^2 = c^2$ |
+| Name | **Age** | $a^2 + b^2 = c^2$ | [[Town:yellow]] | $a^2 + b^2 = c^2$ |
 |---|---|---|---|---|
 | Bob | 17 | BMW | Baku | Fish |
 | John | _52_ | **Fiat** | $a^2 + b^2 = c^2$ | Dog |
-| **Lisa** | 32 | _Toyota_ | Frankfurt | Snake |
+| **Lisa** | 32 | _Toyota_ | Frankfurt | [[Snake:pink]] |
 | Eugen | _45_ | Mazda | **Dresden** | $a^2 + b^2 = c^2$ | 
 \*
 
 
-| Name | **Age** | $a^2 + b^2 = c^2$ | Town.yellow | $a^2 + b^2 = c^2$ |
+| Name | **Age** | $a^2 + b^2 = c^2$ | [[Town:yellow]] | $a^2 + b^2 = c^2$ |
 |---|---|---|---|---|
 | Bob | 17 | BMW | Baku | Fish |
 | John | _52_ | **Fiat** | $a^2 + b^2 = c^2$ | Dog |
-| **Lisa** | 32 | _Toyota_ | Frankfurt | Snake.pink |
+| **Lisa** | 32 | _Toyota_ | Frankfurt | [[Snake:pink]] |
 | Eugen | _45_ | Mazda | **Dresden** | $a^2 + b^2 = c^2$ |
 
 
