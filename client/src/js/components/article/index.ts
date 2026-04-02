@@ -10,13 +10,9 @@ import ArticleView from './view'
 import Utils from '../services/utils'
 import SideBarLeftView, { TocHeading } from '../side-bar-left/view'
 
-// import parser for markable text
+// import parser and render
 import { Tokenizer } from "../../../static/libs/parser/Tokenizer";
-import { Parser } from "../../../static/libs/parser/Parser";
-import { View } from "../../../static/libs/parser/View";
-
-// import prismjs
-import * as Prism from "prismjs";
+import { Render } from "../../../static/libs/parser/Render";
 
 
 /**
@@ -76,7 +72,7 @@ class Article {
 
             tempDiv.innerHTML = metaInfo; // Use metaInfo instead of article.spec to avoid markdown syntax in meta description
 
-            console.log(tempDiv.textContent);
+            //console.log(tempDiv.textContent);
             const textContent = tempDiv.textContent || tempDiv.innerText || '';
             metaDescription.setAttribute('content', textContent.substring(0, 200));
         }
@@ -84,30 +80,40 @@ class Article {
         return new ArticleView().appendArticles();
     }
 
+
+    // BLOCK implementation of parser for MARKDOWN
     parse(article: string) {
         //console.log(article);
-        const tokenizer = new Tokenizer(article);    
+        const tokenizer = new Tokenizer(article);         
 
-        //console.log(tokenizer);
-        const parser = new Parser(tokenizer.tokens);
-        
+        // For debugging: log the AST node structure to the console
+        //console.log(tokenizer);        
+            
+
         // find html element with id="article" in the DOM
-        const virtualDOM = document.createElement('div');        
+        const virtualDOM = document.createElement('div');
+        const result =  new Render(tokenizer.getAST(), virtualDOM);      
+        // Find html element with id="article" in the DOM and append rendered content to it
+        const rootElement = document.getElementById('article');  
         
-        const result: any = new View(parser.ast, virtualDOM).init();
-        document.getElementById("article")?.append(result);
+        //console.log('Rendering article content to DOM...');
+
+        // Clear existing content in rootElement before appending new content
+        if (rootElement) {
+            rootElement.innerHTML = ''; // remove any existing content before appending new content
+            rootElement.appendChild(virtualDOM); // Append the rendered result to the browser
+        }
 
     }  
 
 
     async afterRender () { 
 
-        document.title = this.article_title;
+        document.title = this.article_title;        
 
         // Parse and highlight article content
         try {
-            this.parse(this.article.spec);
-            Prism.highlightAll();
+            this.parse(this.article.spec);            
         } catch (parseError) {
             console.error('Error parsing article content:', parseError);
         }
@@ -152,20 +158,39 @@ class Article {
         const articleEl = document.getElementById('article');
         if (!articleEl) return;
 
-        const headingEls = articleEl.querySelectorAll('h1, h2, h3, h4');
-        if (headingEls.length === 0) return;
+        //console.log('Rendering Table of Contents...');        
+        
+        const headingEls = articleEl.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        //console.log(`Found ${headingEls.length} headings for TOC`);
 
+        if (headingEls.length === 0) return;        
+        
         const headings: TocHeading[] = [];
-        headingEls.forEach((el) => {
-            const level = parseInt(el.tagName.replace('H', ''), 10);
-            const text = el.textContent?.trim() ?? '';
-            const id = el.getAttribute('id') ?? '';
-            if (text && id) headings.push({ level, text, id });
+        headingEls.forEach((el, index) => {
+            
+            const level = parseInt(el.tagName.replace('H', ''), 10);            
+            const text = el.textContent?.trim() ?? '';            
+            const id = el.getAttribute('id'); // if we have an already existing id
+
+            // 0 this is a Caption ... not need to TOC
+            if (text && !id && index != 0) { 
+                // Generate an ID from the text content if not already present
+                const generatedId  = text
+                                        .toLowerCase()
+                                        .replace(/\s+/g, '-')  // whitespace and dashes to single dash
+                                        .replace(/[^\w\u0400-\u04FF-]+/g, ''); // remove non-alphanumeric characters 
+                el.setAttribute('id', generatedId);
+                headings.push({ level, text, id: generatedId });
+            } else if (text && id && index != 0) {
+                headings.push({ level, text, id });
+            }
+
         });
 
         const sidebarEl = document.getElementById('side-bar-left');
         if (!sidebarEl) return;
 
+        //console.log(headings);
         sidebarEl.innerHTML = new SideBarLeftView().renderToc(headings);
 
         // Show sidebar only on large screens (keep hidden on small screens like right sidebar)
