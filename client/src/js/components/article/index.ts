@@ -145,7 +145,7 @@ class Article {
         });
 
         // Build Table of Contents from parsed headings and inject into sidebar-left
-        //this.renderToc();
+        this.renderToc();
 
 
         // Lazy load images

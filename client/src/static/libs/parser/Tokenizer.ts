@@ -82,35 +82,55 @@ export class Tokenizer {
     		}
 
 
-			// find CAPTION
-			if (this.text.match(Grammar.BLOCKS.CAPTION) != null) {				
-				const match = this.text.match(Grammar.BLOCKS.CAPTION_PARAMETER);	
+			// 1. Find CAPTION
+			if(this.text.match(Grammar.BLOCKS.CAPTION_PARAMETER)!== null 				
+			){
 				
-				if (match) {
-					let token : Token.captionToken = {
-						type: TokenType.CAPTION,
-						date: match[1],
-						title: match[2],
-						template: match[3],
-						thumbnail: match[4],
-						slug: match[5],
-						tags: match[6],
-						cluster: match[7],
-						order: match[8]
-					};
+				match = this.text.match(Grammar.BLOCKS.CAPTION_PARAMETER);			
+				
+				if (match != null) {												
+					const fullBlock = match[0];
 
-					token = ValidateCaption.validate(token); // validate the caption token and set error messages for incorrect fields
+					//console.log(`Found caption block: ${fullBlock}`);
+
+					const dateMatch = fullBlock.match(Grammar.BLOCKS.CAPTION_FIND_DATE);
+					const titleMatch = fullBlock.match(Grammar.BLOCKS.CAPTION_FIND_TITLE);
+					const templateMatch = fullBlock.match(Grammar.BLOCKS.CAPTION_FIND_TEMPLATE);
+					const thumbnailMatch = fullBlock.match(Grammar.BLOCKS.CAPTION_FIND_THUMBNAIL);
+					const slugMatch = fullBlock.match(Grammar.BLOCKS.CAPTION_FIND_SLUG);
+					const tagsMatch = fullBlock.match(Grammar.BLOCKS.CAPTION_FIND_TAGS);
+					const clusterMatch = fullBlock.match(Grammar.BLOCKS.CAPTION_FIND_CLUSTER);
+					const orderMatch = fullBlock.match(Grammar.BLOCKS.CAPTION_FIND_ORDER);
+
+					//console.log(dateMatch, titleMatch, templateMatch, thumbnailMatch, slugMatch, tagsMatch, clusterMatch, orderMatch);
+
+					let captionToken = {} as Token.captionToken;										
+					captionToken.date = dateMatch ? dateMatch[1].trim() : "";
+					captionToken.title = titleMatch ? titleMatch[1].trim() : "";
+					captionToken.template = templateMatch ? templateMatch[1].trim() : "";
+					captionToken.thumbnail = thumbnailMatch ? thumbnailMatch[1].trim() : "";
+					captionToken.slug = slugMatch ? slugMatch[1].trim() : "";
+					captionToken.tags = tagsMatch ? tagsMatch[1].trim() : "";
+					captionToken.cluster = clusterMatch ? clusterMatch[1].trim() : "";
+					captionToken.order = orderMatch ? orderMatch[1].trim() : "";
+					
+					console.log(`Extracted caption token: ${JSON.stringify(captionToken)}`);										
+					captionToken = ValidateCaption.validate(captionToken); // validate the caption token and set error messages for incorrect fields
+
+					//console.log(`Extracted caption token: ${JSON.stringify(captionToken)}`);
 
 					// Case format is correct but user can see error messages about incorrect fields
-					this.text = this.text.replace(Grammar.BLOCKS.CAPTION_PARAMETER, ""); // Remove the caption block from the text
+					this.text = this.text.replace(Grammar.BLOCKS.CAPTION, ""); // Remove the caption block from the text
 
 					//add to the astNode		
 					this.ast.children.push({
 						type: TokenType.CAPTION,
-						token: token,
+						token: captionToken,
     					raw: "",  
     					children: []
-					})	
+					})						
+
+					//continue;
 			
 				} else {
 
@@ -127,12 +147,12 @@ export class Tokenizer {
 						raw: unmarkableToken.value,
 						children: []
 					})
-				}				
-								
-				continue;
-			}
 
-    		// find unmarkable blocks
+					continue;
+				}				
+			}				
+
+    		// 2. Find UNMARKABLE_BLOCK
 			match = this.text.match(Grammar.BLOCKS.UNMARKABLE_BLOCK);
 			if (match) {				
 									
@@ -154,9 +174,8 @@ export class Tokenizer {
 			}
 				
 
-			
 
-			// find code in code blocks
+			// 3. Find CODE_IN_CODE
 			match = this.text.match(Grammar.BLOCKS.CODE_IN_CODE);
 			if (match) {
 				
@@ -191,7 +210,7 @@ export class Tokenizer {
 				continue;	
 			}
 
-			// find formula blocks
+			// 4. Find formula blocks
 			match = this.text.match(Grammar.BLOCKS.FORMULA_BLOCK);
 			if(match) {				
 
@@ -216,7 +235,7 @@ export class Tokenizer {
 			}
 
 
-			// find code blocks
+			// 5. Find code blocks
 			match = this.text.match(Grammar.BLOCKS.CODE_BLOCK);
 				if (match) {					
 						const languageMatchResult = match[0].match(Grammar.BLOCKS.CODE_BLOCK_LANG);
@@ -248,7 +267,7 @@ export class Tokenizer {
 			}
 
 
-			// find headings
+			// 6. Find headings
 			match = this.text.match(Grammar.BLOCKS.HEADING);
 			if (match) {
 
@@ -301,7 +320,7 @@ export class Tokenizer {
 				continue;
 			}
 
-			// find images			
+			// 7. Find images			
 			match = this.text.match(Grammar.BLOCKS.IMAGE);
 			if (match) {
 				
@@ -333,7 +352,7 @@ export class Tokenizer {
 			}
 
 
-			// find lists
+			// 8. Find Lists
 			match = this.text.match(Grammar.BLOCKS.LIST);
 			if (match) {
     			const rawBlock = match[0];
@@ -391,7 +410,7 @@ export class Tokenizer {
 			}
 
 		
-			// find quotes
+			// 9. Find Quotes
 			match = this.text.match(Grammar.BLOCKS.QUOTE);				
 			if(match) {								
 	
@@ -418,95 +437,94 @@ export class Tokenizer {
 			}
 
 			
-			// find tables Cells and next in function putInlineChildren as UNKNOWN_TEXT
+			// 10. Find Tables
 			match = this.text.match(Grammar.BLOCKS.TABLE);
 			if(match) {					
 
-					// match[0] -- whole table
-					const tableBlock = match[0].trim(); // Remove leading/trailing whitespace
-					const rows = tableBlock.split('\n');
+				console.log(`Found table: ${match[0]}`);
 
-					//find components of the table
-					const rawHeader = rows[0];
-					const rawSeparator = rows[1]; // often contains --- | :--- | ---: etc. for alignment, but we can ignore it for now
-					const rawBody = rows.slice(2);
+				// match[0] -- whole table
+				const tableBlock = match[0].trim(); // Remove leading/trailing whitespace
+				const rows = tableBlock.split('\n');
 
-
-
+				//find components of the table
+				const rawHeader = rows[0];
+				const rawSeparator = rows[1]; // often contains --- | :--- | ---: etc. for alignment, but we can ignore it for now
+				const rawBody = rows.slice(2);
 																														
-					const headRowToken = {} as Token.tableHeadRowToken;
-					headRowToken.type = TokenType.TABLE_HEAD_ROW;
-					headRowToken.value = rawHeader;
-					headRowToken.row = rawHeader; // <- null while we implemented children 
+				const headRowToken = {} as Token.tableHeadRowToken;
+				headRowToken.type = TokenType.TABLE_HEAD_ROW;
+				headRowToken.value = rawHeader;
+				headRowToken.row = rawHeader; // <- null while we implemented children 
 
-					const headCell = rawHeader.split('|').map(cell => cell.trim()).filter(cell => cell.length > 0);
-					const headCellArray : ASTNode[] = [];
-					headCell.forEach(cell => {
+				const headCell = rawHeader.split('|').map(cell => cell.trim()).filter(cell => cell.length > 0);
+				const headCellArray : ASTNode[] = [];
+				headCell.forEach(cell => {
+					const cellToken = {} as Token.tableCellToken;
+					cellToken.type = TokenType.UNKNOWN_TEXT;
+					cellToken.value = cell;						
+					headCellArray.push({
+						type: TokenType.UNKNOWN_TEXT,
+						token: cellToken,
+						raw: cell,
+						children: [] // Initialize children array for potential inline tokens in header cells
+					});						
+				});
+					
+				const headRowAST : ASTNode = {
+					type: TokenType.TABLE_HEAD_ROW,
+					token: headRowToken,
+					raw: "",
+					children: [...headCellArray] // Will be filled with table cell nodes in the next step
+				}					
+
+				// table body rows
+				const bodyArray : ASTNode[] = [];
+				rawBody.forEach((bodyRow: string) => {
+					const bodyRowToken = {} as Token.tableBodyRowToken;
+					bodyRowToken.type = TokenType.TABLE_BODY_ROW;
+					bodyRowToken.value = bodyRow;
+					bodyRowToken.row = bodyRow; // <- null while we implemented children 
+					bodyRowToken.children = []; // Initialize children array for potential inline tokens in body cells
+						
+					const bodyCellArray : ASTNode[] = [];
+					bodyRow.split('|').map(cell => cell.trim()).filter(cell => cell.length > 0).forEach(cell => {
 						const cellToken = {} as Token.tableCellToken;
 						cellToken.type = TokenType.UNKNOWN_TEXT;
-						cellToken.value = cell;						
-						headCellArray.push({
+						cellToken.value = cell;
+						bodyCellArray.push({
 							type: TokenType.UNKNOWN_TEXT,
 							token: cellToken,
 							raw: cell,
-							children: [] // Initialize children array for potential inline tokens in header cells
-						});						
-					});
-					
-					const headRowAST : ASTNode = {
-						type: TokenType.TABLE_HEAD_ROW,
-						token: headRowToken,
-						raw: "",
-						children: [...headCellArray] // Will be filled with table cell nodes in the next step
-					}					
-
-					// table body rows
-					const bodyArray : ASTNode[] = [];
-					rawBody.forEach((bodyRow: string) => {
-						const bodyRowToken = {} as Token.tableBodyRowToken;
-						bodyRowToken.type = TokenType.TABLE_BODY_ROW;
-						bodyRowToken.value = bodyRow;
-						bodyRowToken.row = bodyRow; // <- null while we implemented children 
-						bodyRowToken.children = []; // Initialize children array for potential inline tokens in body cells
-						
-						const bodyCellArray : ASTNode[] = [];
-						bodyRow.split('|').map(cell => cell.trim()).filter(cell => cell.length > 0).forEach(cell => {
-							const cellToken = {} as Token.tableCellToken;
-							cellToken.type = TokenType.UNKNOWN_TEXT;
-							cellToken.value = cell;
-							bodyCellArray.push({
-								type: TokenType.UNKNOWN_TEXT,
-								token: cellToken,
-								raw: cell,
-								children: [] // Initialize children array for potential inline tokens in body cells
-							});
+							children: [] // Initialize children array for potential inline tokens in body cells
 						});
-
-						const bodyRowAST : ASTNode = {
-							type: TokenType.TABLE_BODY_ROW,
-							token: bodyRowToken,
-							raw: "", // for next step level raw is body row
-							children: [...bodyCellArray] // Will be filled with table cell nodes in the next step
-						}
-						bodyArray.push(bodyRowAST);
 					});
+
+					const bodyRowAST : ASTNode = {
+						type: TokenType.TABLE_BODY_ROW,
+						token: bodyRowToken,
+						raw: "", // for next step level raw is body row
+						children: [...bodyCellArray] // Will be filled with table cell nodes in the next step
+					}
+					bodyArray.push(bodyRowAST);
+				});
 
 					
 
-					this.ast.children.push({
+				this.ast.children.push({
+					type: TokenType.TABLE,
+					token: {
 						type: TokenType.TABLE,
-						token: {
-							type: TokenType.TABLE,
-							value: tableBlock,
-							row: "", // <- null while we implemented children 
-							children: [] // Initialize children array for potential inline tokens in table rows
-						},
-						raw: "",   
-						children: [headRowAST, ...bodyArray]
-					});
+						value: tableBlock,
+						row: "", // <- null while we implemented children 
+						children: [] // Initialize children array for potential inline tokens in table rows
+					},
+					raw: "",   
+					children: [headRowAST, ...bodyArray]
+				});
 				
-					// remove table from text
-					this.text = this.text.slice(match[0].length);
+				// remove table from text
+				this.text = this.text.slice(match[0].length);
 								
 				continue;
 			}
@@ -707,8 +725,8 @@ export class Tokenizer {
 			match = node.raw.match(Grammar.BLOCKS.BADGE);
 			if (match) {
 
-				const body = match[0].split("|")[0];
-				const colorName: any = match[0].split("|")[1];
+				const body = match[1]; 
+				const colorName = match[2];
 
 				const badgeToken = {} as Token.bagdeToken;
 				badgeToken.type = TokenType.BADGE;
@@ -733,8 +751,8 @@ export class Tokenizer {
 			// COLOR WORD INLINE
 			match = node.raw.match(Grammar.BLOCKS.COLOR);
 			if (match) {
-				const body = match[0].split(".")[0];
-				const colorName : any = match[0].split(".")[1];
+				const body = match[1]; 
+				const colorName = match[2];
 				const colorToken = {} as Token.colorTextToken;
 				colorToken.type = TokenType.COLOR;
 				colorToken.value = body;

@@ -57,6 +57,26 @@ describe('Heading Tests', () => {
 
         }, 0);
 
+    // Test other text in the heading
+    test('heading with extra symbols', () => {
+        
+        const text = "#### 2. Zweiter Schritt - [[AST-Node-Verarbeitung:green]]\n";
+
+        const tokenizer = new Tokenizer(text);
+        const nodes = tokenizer.getAST();
+        //Waitng the Elements DOM to be created and the tokens to be generated
+        
+        console.log("AST Nodes:", nodes.children[0].children);
+                
+        expect(nodes.children[0].children[0].token.type).toBe(TokenType.TEXT);
+        expect(nodes.children[0].children[0].raw).toBe("2. Zweiter Schritt - ");
+        expect(nodes.children[0].children[1].token.type).toBe(TokenType.COLOR);
+        expect(nodes.children[0].children[1].raw).toBe("[[AST-Node-Verarbeitung:green]]");
+        expect(nodes.children[0].children[1].token.value).toBe("AST-Node-Verarbeitung");
+        expect(nodes.children[0].children[1].token.color).toBe("green");  
+        
+        }, 0);
+
     // Test case incorrect heading formatting
     test('incorrect heading formatting', () => {
         
