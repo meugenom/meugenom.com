@@ -114,7 +114,7 @@ export class Tokenizer {
 					captionToken.cluster = clusterMatch ? clusterMatch[1].trim() : "";
 					captionToken.order = orderMatch ? orderMatch[1].trim() : "";
 					
-					console.log(`Extracted caption token: ${JSON.stringify(captionToken)}`);										
+					//console.log(`Extracted caption token: ${JSON.stringify(captionToken)}`);										
 					captionToken = ValidateCaption.validate(captionToken); // validate the caption token and set error messages for incorrect fields
 
 					//console.log(`Extracted caption token: ${JSON.stringify(captionToken)}`);
@@ -359,7 +359,8 @@ export class Tokenizer {
     
     			// FIX: cases - remove leading and trailing list markers and trim whitespace
     			const cleanBlock = rawBlock.replace(/^\s*\\\*\s*|\s*\\\*\s*$/g, '');
-    			const lines = cleanBlock.split('\n').filter(l => l.trim() !== '');
+    			
+				const lines = cleanBlock.split('\n').filter(l => l.trim() !== '');
  
     			// FIX: Check if the first line is a title (does not start with list marker) and extract it
     			const firstLine = lines[0];
@@ -459,9 +460,11 @@ export class Tokenizer {
 
 				const headCell = rawHeader.split('|').map(cell => cell.trim()).filter(cell => cell.length > 0);
 				const headCellArray : ASTNode[] = [];
+
+				// we put cell text as UNKNOWN_TEXT to parse inline tokens
 				headCell.forEach(cell => {
 					const cellToken = {} as Token.tableCellToken;
-					cellToken.type = TokenType.UNKNOWN_TEXT;
+					cellToken.type = TokenType.UNKNOWN_TEXT; // We will parse inline tokens in header cells in the next step, so we set type to UNKNOWN_TEXT for now
 					cellToken.value = cell;						
 					headCellArray.push({
 						type: TokenType.UNKNOWN_TEXT,

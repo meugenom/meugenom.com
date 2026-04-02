@@ -6,9 +6,14 @@ describe('Caption Tests', () => {
     /*
     Test cases:
     1. Full right caption token
-    2. Caption token with missing fields
-    3. Caption token with extra fields
-    4. Caption token with incorrect fields formatting
+    2. Caption token witj emoji in title
+    3. Caption token with extra whitespace
+    4. Caption token with Windows-style line endings
+    5. Caption token with missing fields
+    6. Caption token with incorrect fields formatting
+
+    
+    * For each test case, we will check the type of the token and the values of the parameters.
 
     Error Handling must be defined but don't break other tests suites and AST Logic
     */
@@ -174,7 +179,7 @@ describe('Caption Tests', () => {
      * @Return UNMARKABLE_BLOCK with Error message about incorrect fields
      */
 
-    test('caption token with incorrect fields', () => {
+    test('caption token with incorrect fields formatting', () => {
         
         const text = 
             "---\n" +

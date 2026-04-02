@@ -81,9 +81,10 @@ export class Grammar {
 		SPACE: / /,				
 		STRONG_TEXT: /^\*\*([\s\S]*?)\*\*/,
 
+		TABLE: /^(\|[^\r\n|][^\r\n]*\|[ \t]*\r?\n?)+/,
 
-		TABLE: /^(\|[^\n|][^\n]*\|[ \t]*\n?)+/,
 		TABLE_CELL: /([^|]+)(?=\|)/g,
+
 		TOKEN: /\$token.(\S{35}[^\s\.\*\`])/g,
 		TXT_TOKEN: /[^\$token.\w\b-](\w)+/g,
 
