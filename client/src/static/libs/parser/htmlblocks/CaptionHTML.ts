@@ -51,7 +51,8 @@ export class CaptionHTML {
 			${thumbnailBlock}
 			<div class="flex-auto justify-start">
 				<h3 class="text-3xl font-sans font-semibold leading-tight mt-0 mb-2">
-					${this.token.title.slice(2, this.token.title.length-1)}
+					${this.token.title}
+
 				</h3>
 				<time class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-white bg-blue-400 uppercase last:mr-0 mr-1">
 					${this.token.date}
