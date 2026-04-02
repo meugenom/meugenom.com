@@ -232,36 +232,36 @@ _underdash_
 ## Color Underline decoration
 
 \*
-	Blue.blue color
-	Gray.gray color
-	Red.red color
-	Green.green color
-	Yellow.yellow color
-	Indigo.indigo color 
-	Purple.purple color
-	Pink.pink color
+	[[Blue:blue]] color
+	[[Gray:gray]] color
+	[[Red:red]] color
+	[[Green:green]] color
+	[[Yellow:yellow]] color
+	[[Indigo:indigo]] color 
+	[[Purple:purple]] color
+	[[Pink:pink]] color
 \*
 
 in out:
 
-Lorem.green ipsum.indigo dolor.red sit amet.purple , consectetur.pink adipisicing.yellow elit@test.pink
+[[Lorem ipsum:green]] [[Lorem ipsum:indigo]] [[dolor:red]] [[sit:purple]] [[amet:pink]] [[consectetur:yellow]] [[adipisicing:blue]] [[elit@test:pink]]
 
 ## Color Badges
 
 \*
-	Blue|blue color
-	Gray|gray color
-	Red|red color
-	Green|green color
-	Yellow|yellow color
-	Indigo|indigo color 
-	Purple|purple color
-	Pink|pink color
+	[[Blue::blue color]]
+	[[Gray::gray color]]
+	[[Red::red color]]
+	[[Green::green color]]
+	[[Yellow::yellow color]]
+	[[Indigo::indigo color]]
+	[[Purple::purple color]]
+	[[Pink::pink color]]
 \* 
 
 in out:
 
-Lorem|green ipsum|indigo dolor|red sit amet|purple , consectetur|pink adipisicing|yellow elit mango@y.com|blue.
+[[Lorem ipsum::green]] [[Lorem ipsum::indigo]] [[dolor::red]] [[sit::purple]] [[amet::pink]] [[consectetur::yellow]] [[adipisicing::blue]] [[elit@test:pink]]
 
 ## Ignoring Markdown formatting
 
