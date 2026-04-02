@@ -23,15 +23,14 @@ export class CaptionHTML {
 
 		
 		let clusterBlock = "";
-		if (this.token.cluster != undefined) {
-			let cluster = this.token.cluster.split(" ");
-			cluster = cluster.slice(1);
+		const validCluster = this.token.cluster && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(this.token.cluster.trim());
+		if (validCluster) {
+			const cluster = this.token.cluster.trim();
 			clusterBlock =
 				'<a navigateLinkTo="/article/' + cluster + '" href="/article/' + cluster + '" class="text-xs font-semibold inline-block py-1 px-2 rounded  text-white bg-gray-400  hover:bg-gray-600 uppercase last:mr-0 mr-1">' +
 					' -> Return to Main Article ' + 
 				'</a>'
-
-			}
+		}
 		
 
 		const rawThumbnail = this.token.thumbnail.trim().replace(/['"]/g, '').replace(/^\.?\//, '');
@@ -61,8 +60,8 @@ export class CaptionHTML {
 					${tagsBlock}
 				</div>				
 		`	
-			// if cluster is main article, no need to show
-			if(this.token.order != "0"){
+			// if cluster is main article (order 0), no need to show
+			if(this.token.order != "0" && validCluster){
 				CaptionBlock +=
 
 				`
