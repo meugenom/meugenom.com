@@ -30,7 +30,7 @@ const Query = {
               location
               websiteUrl
               repositories
-              (last: 20,
+              (last: 50,
                   orderBy:
                   {field: UPDATED_AT,
                       direction: DESC
