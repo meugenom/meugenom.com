@@ -1,10 +1,11 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin"); // Импорт уже был
 const Dotenv = require('dotenv-webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 const devMode = process.env.NODE_ENV !== "production"
 
@@ -13,7 +14,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.[chunkhash].js',
-    publicPath: '/'
+    publicPath: '/',
+    clean: true,
   },
   module: {
     rules: [
@@ -62,7 +64,16 @@ module.exports = {
         generator: {
           filename: 'images/[name][ext]'
         }
-      }
+      },
+      {
+        //find font files and add to sub-folders
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          // [hash] left unicate but put to the sub-folders
+          filename: 'assets/fonts/[name].[hash][ext][query]'
+        },
+      },
     ]
   },
   // --- OPTIMIERUNGSABSCHNITT (HINZUGEFÜGT) ---
@@ -137,6 +148,10 @@ module.exports = {
       options: {
         concurrency: 100
       }
-    })
+    }),
+    // make 1 chunk file and no more
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1, 
+    }),
   ]
 }
