@@ -47,7 +47,10 @@ export class ColorTextHTML {
 				break;
 		}
 		
-		colorTextNode.innerHTML = this.token.value + " "; // Ensure it's a string and add a space after the badge		
-		return colorTextNode;
+		colorTextNode.textContent = this.token.value;
+		const wrapper = document.createElement('span');
+		wrapper.appendChild(colorTextNode);
+		wrapper.appendChild(document.createTextNode(' '));
+		return wrapper;
 	}
 }
