@@ -6,6 +6,7 @@ class View {
   async appendArticlesList(articlesList: IArticle[]) {
 
     const list: IArticle[] = [];
+    document.title = 'meugenom.com | Articles';
 
     if (articlesList === null || articlesList === undefined) {
       return /* html */`

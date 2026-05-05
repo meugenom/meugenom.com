@@ -29,7 +29,7 @@ const Config = {
 
   },
 
-  title : "meugenom content",
+  title : "meugenom.com",
   description : "meugenom.com is a personal blog about software development, technology, and programming."
 
 }

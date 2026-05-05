@@ -143,7 +143,9 @@ module.exports = {
         { from: './src/static/favicon', to: './favicon' },
         { from: './src/static/images', to: './images' },
         { from: '../content/images', to: './images' },
-        { from: '../content/thumbnails', to: './thumbnails' }
+        { from: '../content/thumbnails', to: './thumbnails' },
+        { from: './robots.txt', to: './robots.txt' },
+        { from: './sitemap.xml', to: './sitemap.xml' }
       ],
       options: {
         concurrency: 100

@@ -7,6 +7,7 @@
 
 class View {
   async appendAbout() {
+    document.title = 'meugenom.com | About';
     const view = /* html */`
       <div class="flex text-md">
         <div class="w-full p-8 font-mono">
