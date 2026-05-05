@@ -16,6 +16,7 @@ class View {
 
     const projectsList = await new ProjectsListModel().getProjects();
     const lastArticlesList = await new LastArticlesListModel().getLastArticlesList();
+    document.title = "meugenom.com | Home"
 
     const view = await /* html */
       `    

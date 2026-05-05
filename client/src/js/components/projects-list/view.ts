@@ -20,6 +20,8 @@ class View {
 
     //console.log('project', project)
 
+    document.title = 'meugenom.com | Projects';
+
     if(project === null || project === undefined){
       return;
     }
