@@ -74,3 +74,8 @@ input[type="checkbox"]:checked::before {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
+/* Shiki dual-theme: activate dark token colors when .dark is on <html> */
+.dark .code-block-outer span {
+  color: var(--shiki-dark) !important;
+}
