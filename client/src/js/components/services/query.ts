@@ -30,7 +30,7 @@ const Query = {
               location
               websiteUrl
               repositories
-              (last: 50,
+              (last: 20,
                   orderBy:
                   {field: UPDATED_AT,
                       direction: DESC
@@ -57,7 +57,7 @@ const Query = {
 					  primaryLanguage {
 						name
 					  }
-					  languages(first: 100) {
+					  languages(first: 6) {
 						nodes {
 						  name
 						}
@@ -70,15 +70,7 @@ const Query = {
                             }
                           }
                         }
-                      }
-                      issues(last: 5) {
-                      nodes {
-                          id
-                          number
-                          lastEditedAt
-                          bodyText
-                      }
-                      }
+                      }                      
                   }
                   }
               }
