@@ -31,7 +31,7 @@ class Model {
               query,
               variables
             );
-            const projects = await response.user.repositories.edges;
+            const projects = await response.search.edges;
             const projectsWithDescription = await projects.filter(
               (project: IProject) => String(project.node.description) !== "null"
             );
