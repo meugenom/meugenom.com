@@ -23,54 +23,29 @@ const Query = {
     query: "{ tagsList { name slug}}",
   },
   projectsList: {
-    host: "https://api.github.com/graphql",
+    host: Environment.host,
     query: `{
-    search(
-      query: "user:${process.env.GITHUB_USER_NAME} topic:portfolio",
-      type: REPOSITORY,
-      last: 20
-    ) {
-      edges {
-        node {
-          ... on Repository {
-            id
-            name
-            description
-            updatedAt
-            pushedAt
-            createdAt
-            hasIssuesEnabled
-            homepageUrl
-            resourcePath
-            openGraphImageUrl
-            stargazers {
-              totalCount
-            }
-            forks {
-              totalCount
-            }
-            primaryLanguage {
-              name
-            }
-            languages(first: 6) {
-              nodes {
-                name
-              }
-            }
-            repositoryTopics(first: 7) {
-              edges {
-                node {
-                  topic {
-                    name
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+  githubProjects {
+    name
+    date
+    description
+    pushedAt
+    createdAt
+    hasIssuesEnabled
+    homepageUrl
+    resourcePath
+    openGraphImageUrl
+    stargazers
+    forks
+    primaryLanguage
+    languages {
+      name
     }
-  }`,
+    repositoryTopics {
+      name
+    }
+  }
+}`,
   },
   getAllSpecificationTextByArticleId: {
     host: Environment.host,
