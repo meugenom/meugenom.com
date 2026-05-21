@@ -13,9 +13,15 @@ module.exports = {
   entry: path.join(__dirname, './src/js/index.ts'),
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.[chunkhash].js',
+    filename: 'bundle.[contenthash].js',
+    chunkFilename: '[name].[contenthash].chunk.js',
     publicPath: '/',
     clean: true,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all' 
+    }
   },
   module: {
     rules: [
@@ -150,10 +156,6 @@ module.exports = {
       options: {
         concurrency: 100
       }
-    }),
-    // make 1 chunk file and no more
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1, 
-    }),
+    }),    
   ]
 }
