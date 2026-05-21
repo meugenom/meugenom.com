@@ -27,6 +27,32 @@ type Tag {
   slug: String
 }
 
+type Language {
+  name: String
+}
+
+type Topic {
+  name: String
+}
+
+type Project {
+  id: Int,
+  name: String,
+  description: String,
+  date: String,
+  pushedAt: String,
+  createdAt: String,
+  hasIssuesEnabled: Boolean,
+  homepageUrl: String,
+  resourcePath: String,
+  openGraphImageUrl: String,
+  stargazers: Int,
+  forks: Int,
+  primaryLanguage: String,
+  languages: [Language],
+  repositoryTopics: [Topic]
+}
+
 type QueryType {
   lastArticlesList: [Article]
   articlesList: [Article]
@@ -35,4 +61,5 @@ type QueryType {
   getArticleById(id: Int) : Article
   getAllSpecificationTextByArticleSlug(slug: String) : String
   searchArticles(term: String!) : [Article]
+  githubProjects: [Project]
 }

@@ -16,17 +16,18 @@ import IProject from '../interfaces/IProject';
 
 class View {
 
-  renderLanguages(project: IProject) {
+  renderLanguages(languages: ILanguage[]) {
 
     //console.log('project', project)
 
     document.title = 'meugenom.com | Projects';
 
-    if(project === null || project === undefined){
+    if(languages.length === null || languages === undefined){
       return;
     }
-    const languages = `
-    ${project.node.languages.nodes.map((language: ILanguage) => {      
+    
+const languagesMarkup = `
+    ${languages.map((language: ILanguage) => {      
       if(         
          language.name === 'C'
       || language.name === 'CSS'
@@ -43,7 +44,7 @@ class View {
       || language.name === 'TypeScript'
     ){
       return `
-        <div class="relative" style="right: 0px;margin-bottom: -35px;">					
+        <div class="relative" style="right: 0px;margin-bottom: -35px;">        				
           ${Config.languageToSVG[language.name as keyof typeof Config.languageToSVG]}
           <br/>
         </div>
@@ -51,7 +52,7 @@ class View {
     }}
     ).join('')}
     `;
-    return languages;
+    return languagesMarkup;
 }
 
   async appendProjectsList (projects: IProject[]) {
@@ -87,7 +88,7 @@ class View {
                                                                             
                             <ul class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6 w-full mt-5">
                             
-                            ${projects.map((project: { node: any }) => /* html */`                                                        
+                            ${projects.map((project: any) => /* html */`                                                        
                                   <li class="w-full flex justify-center">                          
                                     <div class="shadow-lg hover:shadow-md  
                                       light:bg-light-background dark:bg-dark-background                                      
@@ -95,14 +96,14 @@ class View {
                                       style="height: 400px; min-width: 180px; max-width: 320px; border: 1px solid #e2e8f0;">
                                       <img
                                         class="object-cover w-full h-48"
-                                        src="${project.node.openGraphImageUrl}"
+                                        src="${project.openGraphImageUrl}"
                                         alt="language-svg"/>
                                         
                                         <div class="absolute" style="top: 0px; right: 0px;">
-                                          ${this.renderLanguages(project)}
+                                          ${this.renderLanguages(project.languages)}
                                         </div>
 
-                                        ${project.node.stargazers.totalCount !="0" ? (                                       `
+                                        ${project.stargazers != 0 ? (                                       `
                                           <div>
                                             <div class="absolute" style="top: -10px; left: -8px;">
                                               <div class="relative">
@@ -118,7 +119,7 @@ class View {
                                             <div class="absolute" style="top: 0px; left:0;">
                                               <div class="relative">
                                                 <div class="my-4 mx-5 text-xs underline subpixel-antialiased text-black font-semibold">
-                                                  ${project.node.stargazers.totalCount}
+                                                  ${project.stargazers}
                                                 </div>						
                                               </div>
                                             </div>
@@ -129,37 +130,37 @@ class View {
 
                                         <div class="relative p-4 h-60 max-h-60">
                                           <h1 class="text-base font-medium underline decoration-pink-500 -mt-3 -mb-3">
-                                            ${project.node.name}
+                                            ${project.name}
                                           </h1>
                                           <p class="mt-4 text-xs font-bold mb-1">
-                                            updated: ${new Date(project.node.pushedAt).getDate()}-
-                                                     ${new Model().getMonth(new Date(project.node.pushedAt).getMonth())}-
-                                                     ${new Date(project.node.pushedAt).getFullYear()}
+                                            updated: ${new Date(project.pushedAt).getDate()}-
+                                                     ${new Model().getMonth(new Date(project.pushedAt).getMonth())}-
+                                                     ${new Date(project.pushedAt).getFullYear()}
                                           </p>
 
                                           <p class="inline-flex items-center">
                                             <a
                                               class="text-[11px] font-sans font-medium border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded-full hover:border-blue-400 hover:text-blue-500 transition-colors whitespace-nowrap"
-                                              href="${"https://github.com" + project.node.resourcePath}">
+                                              href="${"https://github.com" + project.resourcePath}">
                                               Source
                                               <i class="bi bi-github"></i>
                                             </a>
                                             &nbsp;
-                                            ${project.node.homepageUrl === "" ||
-                                            project.node.homepageUrl == null ? (
+                                            ${project.homepageUrl === "" ||
+                                            project.homepageUrl == null ? (
                                             ""
                                             ) : (
                                               `
                                             <a
                                               class="text-[11px] font-sans font-medium border border-blue-300 dark:border-blue-700 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-full hover:border-blue-500 hover:text-blue-600 transition-colors whitespace-nowrap"
-                                              href="${project.node.homepageUrl}">
+                                              href="${project.homepageUrl}">
                                               Show Web
                                               <i class="bi bi-browser-chrome"></i>
                                             </a>`
                                             )}
                                           </p>
                                           <p class="mt-2 text-sm">
-                                            ${project.node.description}
+                                            ${project.description}
                                           </p>                                        
                                         </div>
                                                                                                                       

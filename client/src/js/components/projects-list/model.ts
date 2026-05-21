@@ -31,12 +31,8 @@ class Model {
               query,
               variables
             );
-            const projects = await response.search.edges;
-            const projectsWithDescription = await projects.filter(
-              (project: IProject) => String(project.node.description) !== "null"
-            );
-            
-            return projectsWithDescription;
+            const projects = await response.githubProjects;                        
+            return projects;
     }
 
     getMonth(num: number) {

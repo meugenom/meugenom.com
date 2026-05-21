@@ -23,8 +23,8 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 	@Autowired
 	private ArticleRepository articleRepository;
 
-        @Autowired
-        private SearchService searchService;
+    @Autowired
+    private SearchService searchService;
 
 	public List<Article> articlesList() {
 		List<Article> list = new ArrayList<>(articleRepository.findAllByOrderByDateDesc());

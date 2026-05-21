@@ -3,6 +3,7 @@ server/.private
 server/.settings
 server/.factorypath
 server/target
+server/.env
 client/dist
 client/build
 client/node_modules/
