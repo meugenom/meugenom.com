@@ -36,19 +36,25 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 
 2. for information about projects you need  personal access token [https://github.com/settings/tokens](https://github.com/settings/tokens);
 
-3. Create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to
+3.1 Create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to
 ```bash
   # client/.env
 
-  # Token see 2. 
-  GITHUB_TOKEN=YOUR_GITHUB_TOKEN
-  # Your Github Name
-  GITHUB_USER_NAME=YOUR_GITHUB_NAME
   # by default APP_MODE=development or production
   APP_MODE=development
   # your graphql hostname
   GRAPHQL_HOST=http://localhost:8080/graphql/
 
+```
+
+3.2 Create .env file in the `server/.env`directory (see `server/simple.env`)  and add this token to
+```bash
+  # server/.env
+
+  github.api.url=https://api.github.com/graphql
+  github.api.token=your_github_token
+  github.user.name=your_github_user_name
+  
 ```
 
 4. Change please title and description for meta tags in `client/src/js/config.ts`
