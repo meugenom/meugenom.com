@@ -1,6 +1,25 @@
 'use strict'
 import * as Token from "../Token";
-import { codeToHtml } from 'shiki';
+
+// Cache for Shiki highlighter instance to avoid re-initialization on every code block render.
+let cachedHighlighter: any = null;
+
+async function getShikiHighlighter() {
+    if (cachedHighlighter) {
+        return cachedHighlighter;
+    }
+
+    //const shiki = await import('shiki');
+    const shiki = await import(/* webpackChunkName: "shiki-core" */ 'shiki');
+    
+    // Initialize Shiki with a reasonable set of languages and themes.    
+    cachedHighlighter = await shiki.createHighlighter({
+        themes: ['github-light', 'github-dark'],
+        langs: ['c', 'cpp', 'java', 'json', 'bash', 'python', 'javascript', 'typescript', 'sql', 'yaml', 'markdown', 'xml', 'css']
+    });
+
+    return cachedHighlighter;
+}
 
 export class CodeBlockHTML {
   
@@ -53,7 +72,7 @@ export class CodeBlockHTML {
         CodeContainer.className = "flex-1 min-w-0"; 
         
         // While Shiki is loading, show raw text to avoid layout "jump"
-        CodeContainer.innerHTML = `<pre class="leading-6 p-4 text-[13px]"><code>${rawCode}</code></pre>`;
+        CodeContainer.innerHTML = `<pre class="leading-6 p-4 bg-transparent text-[13px]"><code>${rawCode}</code></pre>`;
 
         BodyNode.appendChild(LineNumsNode);
         BodyNode.appendChild(CodeContainer);
@@ -62,40 +81,29 @@ export class CodeBlockHTML {
         WrapperNode.appendChild(BodyNode);
         OuterNode.appendChild(WrapperNode);
 
-        // 4. Shiki highlighting
-        codeToHtml(rawCode, { 
-            lang, 
-            themes: { light: 'github-light', dark: 'min-dark' },           
-        }).then(shikiHtml => {
+        // 4. Lazy Shiki highlighting
+        getShikiHighlighter().then(highlighter => {
+            // Shiki's codeToHtml returns a full <pre><code> block, so we need to extract the inner HTML to insert into our CodeContainer.            
+            const shikiHtml = highlighter.codeToHtml(rawCode, { 
+                lang: lang,
+                themes: { light: 'github-light', dark: 'github-dark' }
+            });
             
             CodeContainer.innerHTML = shikiHtml;
             
-            // Replace the entire content of the container with Shiki's result
-            const shikiPre = CodeContainer.querySelector('pre');			
-    		if (shikiPre) {
-				
-				// TODO: Hard Code
-        		// remove all inline styles from Shiki's <pre> and <code> elements to allow Tailwind classes to work properly
-        		// It kills the blue background in light theme, but we need it to be transparent for both themes
-        		//shikiPre.removeAttribute('style');				
+            const shikiPre = CodeContainer.querySelector('pre');            
+            if (shikiPre) {
                 shikiPre.style.backgroundColor = 'transparent';
+                shikiPre.className = "leading-6 p-4 text-[13px] overflow-x-auto !bg-transparent";               
 
-        		// add new classes
-        		// Add !bg-transparent, because Tailwind blocks background-color
-        		shikiPre.className = "leading-6 p-4 text-[13px] overflow-x-auto !bg-transparent";				
-
-        		// Clean nested <code>
-        		const shikiCode = shikiPre.querySelector('code');
-				
-				// TODO: Hard Code
-        		if (shikiCode) {
-            		//shikiCode.removeAttribute('style');
+                const shikiCode = shikiPre.querySelector('code');
+                if (shikiCode) {
                     shikiCode.style.backgroundColor = 'transparent';
-            		shikiCode.className ="leading-6 text-[13px] !bg-transparent";
-        		}
+                    shikiCode.className ="leading-6 text-[13px] !bg-transparent";
+                }
             }
-        }).catch(err => {
-            console.error('Shiki error:', err);
+        }).catch((err: any) => {
+            console.error('Shiki loading error:', err);
         });
 
         // 5. Copy logic
@@ -108,9 +116,7 @@ export class CodeBlockHTML {
                 });
             });
         }
-		
-		//console.log(OuterNode);
-		
+        
         return OuterNode;
     }
 }
