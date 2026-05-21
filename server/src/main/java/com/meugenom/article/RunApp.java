@@ -20,6 +20,7 @@ import java.util.Set;
 import com.meugenom.article.model.Article;
 import com.meugenom.article.parser.ParseToArticle;
 import com.meugenom.article.repository.ArticleRepository;
+import com.meugenom.project.ProjectService;
 import com.meugenom.readfile.ReadFile;
 import com.meugenom.readfile.ReadFilenamesFromDirectory;
 
@@ -33,6 +34,14 @@ public class RunApp implements CommandLineRunner {
 
         @Autowired
         private ArticleRepository articleRepository;
+
+        @Autowired
+        private ProjectService projectService;
+
+        public synchronized void reloadProjects(){
+                projectService.deleteAllProjects();
+                projectService.refreshCache();                
+        }
 
         public synchronized void reloadArticles() {
                 logger.info("Start loading articles from: {}", articlesPath);
@@ -98,13 +107,21 @@ public class RunApp implements CommandLineRunner {
         @Override
         public void run(String... args) {
                 reloadArticles();
+                reloadProjects();
         }
 
         // Auto-reload every hour (3600000 ms), starts after 1 hour delay
         @Scheduled(fixedDelay = 3600000, initialDelay = 3600000)
-        public void scheduledReload() {
-                logger.info("Scheduled reload triggered");
+        public void scheduledReloadArticles() {
+                logger.info("Scheduled Articles reload");
                 reloadArticles();
+        }
+
+        // Auto-reload every hour (10800000 ms), starts after 3 hour delay
+        @Scheduled(fixedDelay = 10800000, initialDelay = 10800000)
+        public void scheduledReloadProjects() {
+                logger.info("Scheduled Projects reload");
+                reloadProjects();
         }
 
         private static String getFileChecksum(String filePath) throws IOException, NoSuchAlgorithmException {
