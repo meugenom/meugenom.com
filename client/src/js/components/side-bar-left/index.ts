@@ -17,8 +17,6 @@ class SideBarLeft {
   }
 
   async render () {    
-    const section = await this.view.appendSideBarLeft()
-    return section
   } 
 
   afterRender () {              
