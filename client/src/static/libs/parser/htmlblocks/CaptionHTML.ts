@@ -39,8 +39,9 @@ export class CaptionHTML {
 
 		const thumbnailBlock = hasThumbnail
 			? `<div class="flex-none">
-				<img data-src="${thumbnail}" 
-				 class="lazy float-left object-contain h-64 w-full max-w-xs"/>
+				<img data-src="${thumbnail}"
+					 alt="${this.token.title}"	 
+				 	 class="lazy float-left object-contain h-64 w-full max-w-xs"/>
 			</div>`
 			: '';
 

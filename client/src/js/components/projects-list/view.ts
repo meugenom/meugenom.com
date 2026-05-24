@@ -97,7 +97,7 @@ const languagesMarkup = `
                                       <img
                                         class="object-cover w-full h-48"
                                         src="${project.openGraphImageUrl}"
-                                        alt="language-svg"/>
+                                        alt="${project.name}"/>
                                         
                                         <div class="absolute" style="top: 0px; right: 0px;">
                                           ${this.renderLanguages(project.languages)}
