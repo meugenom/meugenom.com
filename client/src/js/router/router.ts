@@ -149,7 +149,7 @@ class Router {
       const tempPageContainer = document.createElement('div');
       tempPageContainer.innerHTML = pageHTML;
       
-      // Атомарный своп контента страницы
+      // Atomare Swap der Seite, um eventuelle Event-Listener und Zustand zu erhalten
       this.content.replaceChildren(...tempPageContainer.childNodes);
       await page.afterRender();
     } catch (err) {
@@ -162,7 +162,7 @@ class Router {
       await errPage.afterRender();
     }
 
-    // Рендерим футер строго ПОСЛЕ того, как контент встал в DOM и определил высоту
+    // Renders  after Stabilisierung der Maket-Seite
     await this.renderFooter();
 
     if (parsedURL.includes('/:id')) {
@@ -175,13 +175,13 @@ class Router {
     }
   }
 
-  // 3. ИЗМЕНЕНИЕ: Безопасный рендеринг Футера без обнуления DOM
+  // 3. Changes: Sicheres Rendern des Footers ohne komplettes Ersetzen des DOM
   async renderFooter() {
     const footerHTML = await this.footerComponent.render();
     const tempFooterContainer = document.createElement('div');
     tempFooterContainer.innerHTML = footerHTML;
     
-    // Атомарный своп футера
+    // Atomare Swap des Footers
     this.footer.replaceChildren(...tempFooterContainer.childNodes);
     await this.footerComponent.afterRender();
   }
