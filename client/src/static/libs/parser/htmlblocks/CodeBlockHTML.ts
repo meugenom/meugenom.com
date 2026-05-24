@@ -15,7 +15,7 @@ async function getShikiHighlighter() {
     // Initialize Shiki with a reasonable set of languages and themes.    
     cachedHighlighter = await shiki.createHighlighter({
         themes: ['github-light', 'github-dark'],
-        langs: ['c', 'cpp', 'java', 'json', 'bash', 'python', 'javascript', 'typescript', 'sql', 'yaml', 'markdown', 'xml', 'css']
+        langs: ['c', 'cpp', 'java', 'json', 'bash', 'python', 'javascript', 'typescript', 'sql', 'yaml', 'matlab','markdown', 'xml', 'css', 'html']
     });
 
     return cachedHighlighter;
