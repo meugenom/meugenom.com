@@ -17,7 +17,6 @@ import Article from './components/article'
 import TagArticlesList from './components/tag-articles-list'
 import TagsGarten from './components/tags-garten'
 import About from './components/about'
-import Illustration from './components/illustration'
 import Search from './components/search'
 
 // import errors pages
@@ -35,7 +34,6 @@ let routes : IRoutes = {
   '/tag/:id': new TagArticlesList(),
   '/tags': new TagsGarten(),
   '/about': new About(),
-  '/illustration': new Illustration(),
   '/search/:id': new Search(),
   '/error404': new Error404(),
   '/error500': new Error500(),
