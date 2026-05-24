@@ -63,16 +63,12 @@ class Router {
     this.boundHandleLinkClick = this.handleLinkClick.bind(this);
 
     // Reagiere auf Browser-Navigation (Zurück/Vorwärts)
-    // Nur neu rendern wenn sich der Pfad wirklich geändert hat.
-    // Giscus und andere Bibliotheken können history.replaceState aufrufen
-    // und so einen spurious popstate auslösen.
     window.addEventListener('popstate', () => {
       if (location.pathname !== this.lastRenderedPath) {
         this.renderContent();
       }
     });
 
-    // Listen on hash change:
     this.init();
   }
 
@@ -89,8 +85,13 @@ class Router {
     this.attachLinkListeners();
   }
 
+  // 1. Changes: Sicheres Rendern des Headers durch replaceChildren
   async renderHeader() {
-    this.header.innerHTML = await this.headerComponent.render();
+    const headerHTML = await this.headerComponent.render();
+    const tempContainer = document.createElement('div');
+    tempContainer.innerHTML = headerHTML;
+    
+    this.header.replaceChildren(...tempContainer.childNodes);
     await this.headerComponent.afterRender();
   }
 
@@ -108,7 +109,6 @@ class Router {
   }
 
   async renderContent() {
-    
     // if rendering layout after articles, need to make title and meta description again as 
     document.title = Config.title;
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -116,7 +116,7 @@ class Router {
       metaDescription.setAttribute('content', Config.description);
     }
     
-    // Set content element and parse URL for every content render (e.g. after hash change or link click)
+    // Set content element and parse URL for every content render
     this.content = document.getElementById('page') as HTMLElement;
     const parsedURL = this.parseUrl();
     this.lastRenderedPath = location.pathname;
@@ -124,29 +124,12 @@ class Router {
     
     // Links nach jedem Content-Update neu binden
     this.attachLinkListeners();
-
   }
 
-  async renderFooter() {
-    this.footer.innerHTML = await this.footerComponent.render();
-    await this.footerComponent.afterRender();
-  }
+  // 2. Changes: Sicheres Rendern der Seite ohne komplettes Ersetzen des DOM, um eventuelle Event-Listener und Zustand zu erhalten
+  async renderPage(parsedURL: string) {    
 
-  // Parse URL and return resource, id and verb
-  parseUrl() {
-    this.request = new Utils().parseRequestURL();
-    return (this.request.resource ? '/' + this.request.resource : '/') + 
-           (this.request.id ? '/:id' : '') + 
-           (this.request.verb ? '/' + this.request.verb : '');
-
-  }
-
-  // Render page from hash
-  async renderPage(parsedURL: string) {
-    this.footer.innerHTML = "";
-
-    // Hide sidebar-left on all non-article pages (ToC is injected by Article controller)
-    // Note: check for '/:id' to avoid matching '/articles' (blog list page)
+    // Hide sidebar-left on all non-article pages
     if (!(parsedURL.includes('/article') && parsedURL.includes('/:id'))) {
       const sidebarEl = document.getElementById('side-bar-left');
       if (sidebarEl) {
@@ -158,18 +141,28 @@ class Router {
       const pageEl = document.getElementById('page');
       if (pageEl) pageEl.classList.remove('border-l');
     }
+    
     const page = this.routes[parsedURL] ? this.routes[parsedURL] : new Error404();
+    
     try {
-      this.content.innerHTML = await page.render();
+      const pageHTML = await page.render();
+      const tempPageContainer = document.createElement('div');
+      tempPageContainer.innerHTML = pageHTML;
+      
+      // Атомарный своп контента страницы
+      this.content.replaceChildren(...tempPageContainer.childNodes);
       await page.afterRender();
     } catch (err) {
       console.error('renderPage error:', err);
       const errPage = new Error502();
-      this.content.innerHTML = await errPage.render();
+      const tempErrContainer = document.createElement('div');
+      tempErrContainer.innerHTML = await errPage.render();
+      
+      this.content.replaceChildren(...tempErrContainer.childNodes);
       await errPage.afterRender();
     }
 
-    //rerender footer
+    // Рендерим футер строго ПОСЛЕ того, как контент встал в DOM и определил высоту
     await this.renderFooter();
 
     if (parsedURL.includes('/:id')) {
@@ -182,32 +175,45 @@ class Router {
     }
   }
 
+  // 3. ИЗМЕНЕНИЕ: Безопасный рендеринг Футера без обнуления DOM
+  async renderFooter() {
+    const footerHTML = await this.footerComponent.render();
+    const tempFooterContainer = document.createElement('div');
+    tempFooterContainer.innerHTML = footerHTML;
+    
+    // Атомарный своп футера
+    this.footer.replaceChildren(...tempFooterContainer.childNodes);
+    await this.footerComponent.afterRender();
+  }
+
+  // Parse URL and return resource, id and verb
+  parseUrl() {
+    this.request = new Utils().parseRequestURL();
+    return (this.request.resource ? '/' + this.request.resource : '/') + 
+           (this.request.id ? '/:id' : '') + 
+           (this.request.verb ? '/' + this.request.verb : '');
+  }
+
   // Handle hash change
   async handleLinkClick(event: Event) {
     event.preventDefault();
-
-    //const clickedLink = event.target as HTMLElement;
 
     // Findet den Link, auch wenn man auf ein Icon darin klickt
     const clickedLink = (event.target as HTMLElement).closest('[navigateLinkTo]');
     if (!clickedLink) return;
 
     const navigateLinkTo = clickedLink.getAttribute('navigateLinkTo') ?? '/';
-
-    //window.history.pushState({}, navigateLinkTo, window.location.origin + navigateLinkTo);
-    // 3. FIX: URL sauber in die History pushen (ohne #)
     window.history.pushState({}, '', window.location.origin + navigateLinkTo);
-
 
     await this.renderContent();    
 
-    //make inactive links
+    // make inactive links
     const links = document.querySelectorAll('[navigateLinkTo]');
     links.forEach(link => {
       link.classList.remove('active-links');
     });
 
-    //make active clicked link        
+    // make active clicked link        
     clickedLink.classList.add('active-links');
   }
 
