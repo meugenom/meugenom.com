@@ -133,7 +133,7 @@ class Router {
     if (!(parsedURL.includes('/article') && parsedURL.includes('/:id'))) {
       const sidebarEl = document.getElementById('side-bar-left');
       if (sidebarEl) {
-        sidebarEl.innerHTML = '';
+        //sidebarEl.innerHTML = '';
         sidebarEl.classList.add('hidden');
         sidebarEl.classList.remove('lg:block');
       }
