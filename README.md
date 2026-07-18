@@ -20,7 +20,7 @@ This is my personal web page, that you can see [https://meugenom.com](https://me
 
 ### What were used to prepare this page:
 
-- imported own markdown-ts-compiler v1.0.4 (Markdown->HTML [Markdown Typescript Compiler](https://github.com/meugenom/markdown-ts-compiler) with Tailwind CSS);
+- imported own markdown-ts-compiler v0.8.0 (Markdown->HTML [Markdown Typescript Compiler](https://github.com/meugenom/markdown-ts-compiler) with Tailwind CSS);
 - used Typescript own [SPA MVC Router](https://github.com/meugenom/spa-mvc-router) on port 8082;
 - Java and Spring-Boot (backend part on port 4000);
 - GraphQL (frontend and backend part);
