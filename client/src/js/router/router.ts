@@ -1,19 +1,18 @@
 /**
  * @author meugenom
  * @data 20.11.2023
+ * @updated 2026
  */
 
 import Config from '../config'
 
 import Navbar from './../components/nav'
-
 import Layout from '../components/layout'
 import SideBarRight from '../components/side-bar-right'
 import Footer from '../components/footer'
 
 import Error404 from '../components/error404'
 import Error502 from '../components/error502'
-import Error500 from '../components/error500'
 
 import IRoutes from './../components/interfaces/IRoutes'
 import Utils from '../components/services/utils'
@@ -23,8 +22,6 @@ import Utils from '../components/services/utils'
  * @classdesc Router class to handle routing
  * @export
  * @implements {IRouter}
- * @example new Router(routes)
- * @param {IRoutes} routes - routes object
  */
 class Router {
   routes: IRoutes;
@@ -80,12 +77,11 @@ class Router {
       await this.renderLayout();
       Router.instance = this;
     }
-    // Always re-render content on navigation (footer is rendered inside renderPage)
+    // Always re-render content on navigation
     await this.renderContent();
     this.attachLinkListeners();
   }
 
-  // 1. Changes: Sicheres Rendern des Headers durch replaceChildren
   async renderHeader() {
     const headerHTML = await this.headerComponent.render();
     const tempContainer = document.createElement('div');
@@ -109,35 +105,32 @@ class Router {
   }
 
   async renderContent() {
-    // if rendering layout after articles, need to make title and meta description again as 
+    // Meta-Tags актуализируются при каждом рендере
     document.title = Config.title;
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', Config.description);
     }
     
-    // Set content element and parse URL for every content render
     this.content = document.getElementById('page') as HTMLElement;
     const parsedURL = this.parseUrl();
     this.lastRenderedPath = location.pathname;
+    
     await this.renderPage(parsedURL);
     
-    // Links nach jedem Content-Update neu binden
+    // Обновляем слушатели и синхронизируем состояние активных ссылок в меню
     this.attachLinkListeners();
+    this.updateActiveLinks();
   }
 
-  // 2. Changes: Sicheres Rendern der Seite ohne komplettes Ersetzen des DOM, um eventuelle Event-Listener und Zustand zu erhalten
   async renderPage(parsedURL: string) {    
-
     // Hide sidebar-left on all non-article pages
     if (!(parsedURL.includes('/article') && parsedURL.includes('/:id'))) {
       const sidebarEl = document.getElementById('side-bar-left');
       if (sidebarEl) {
-        //sidebarEl.innerHTML = '';
         sidebarEl.classList.add('hidden');
         sidebarEl.classList.remove('lg:block');
       }
-      // Remove left border from #page when sidebar-left is cleared
       const pageEl = document.getElementById('page');
       if (pageEl) pageEl.classList.remove('border-l');
     }
@@ -149,7 +142,6 @@ class Router {
       const tempPageContainer = document.createElement('div');
       tempPageContainer.innerHTML = pageHTML;
       
-      // Atomare Swap der Seite, um eventuelle Event-Listener und Zustand zu erhalten
       this.content.replaceChildren(...tempPageContainer.childNodes);
       await page.afterRender();
     } catch (err) {
@@ -162,26 +154,14 @@ class Router {
       await errPage.afterRender();
     }
 
-    // Renders  after Stabilisierung der Maket-Seite
     await this.renderFooter();
-
-    if (parsedURL.includes('/:id')) {
-      const cleanParsedId = parsedURL.replace('/:id', '');
-      const targetPath = cleanParsedId + '/' + this.request.id;
-      const targetUrl = window.location.origin + targetPath + window.location.search + window.location.hash;
-      if (window.location.href !== targetUrl) {
-        window.history.pushState({}, cleanParsedId, targetUrl);
-      }
-    }
   }
 
-  // 3. Changes: Sicheres Rendern des Footers ohne komplettes Ersetzen des DOM
   async renderFooter() {
     const footerHTML = await this.footerComponent.render();
     const tempFooterContainer = document.createElement('div');
     tempFooterContainer.innerHTML = footerHTML;
     
-    // Atomare Swap des Footers
     this.footer.replaceChildren(...tempFooterContainer.childNodes);
     await this.footerComponent.afterRender();
   }
@@ -194,11 +174,25 @@ class Router {
            (this.request.verb ? '/' + this.request.verb : '');
   }
 
-  // Handle hash change
+  // Автоматическая подсветка активных элементов меню на основе текущего URL
+  private updateActiveLinks() {
+    const currentPath = window.location.pathname;
+    const links = document.querySelectorAll<HTMLElement>('[navigateLinkTo]');
+    
+    links.forEach(link => {
+      const linkPath = link.getAttribute('navigateLinkTo');
+      if (linkPath === currentPath) {
+        link.classList.add('active-links');
+      } else {
+        link.classList.remove('active-links');
+      }
+    });
+  }
+
+  // Handle link click
   async handleLinkClick(event: Event) {
     event.preventDefault();
 
-    // Findet den Link, auch wenn man auf ein Icon darin klickt
     const clickedLink = (event.target as HTMLElement).closest('[navigateLinkTo]');
     if (!clickedLink) return;
 
@@ -206,15 +200,6 @@ class Router {
     window.history.pushState({}, '', window.location.origin + navigateLinkTo);
 
     await this.renderContent();    
-
-    // make inactive links
-    const links = document.querySelectorAll('[navigateLinkTo]');
-    links.forEach(link => {
-      link.classList.remove('active-links');
-    });
-
-    // make active clicked link        
-    clickedLink.classList.add('active-links');
   }
 
   attachLinkListeners() {
