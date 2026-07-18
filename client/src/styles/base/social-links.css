@@ -240,4 +240,13 @@
 		 stroke-dasharray: 40;
 	}
 }
+
+/* Thema for Moon and Sun icons */
+html.light .sun_no_touch:hover .sl_social {
+     color: #6366f1 !important;
+}
+
+html.light .sun_no_touch:hover .sl_circle {
+     stroke: #6366f1 !important;
+}
  

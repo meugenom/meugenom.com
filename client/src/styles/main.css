@@ -79,3 +79,127 @@ input[type="checkbox"]:checked::before {
 .dark .code-block-outer span {
   color: var(--shiki-dark) !important;
 }
+
+/* ==========================================================================
+   Universla Fixes for themes DARK && LIGHT
+   ========================================================================== */
+
+/* Reset */
+#article .code-content-target .line,
+#article .code-content-target span,
+#article pre.shiki .line,
+#article pre.shiki span {
+  background-color: transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   LIGHT THEMA (html.light)
+   -------------------------------------------------------------------------- */
+html.light {
+  /* 1. Blocl Code */
+  #article .code-block-outer > div,
+  #article .code-content-target,
+  #article pre.shiki,
+  #article pre.shiki code {
+    background-color: #ffffff !important;
+    color: #1f2937 !important;
+  }
+  
+  /* Numbers */
+  #article .code-block-outer .select-none.text-right {
+    background-color: #f8fafc !important; /* Soft slate-50 under NUmbers */
+    border-right: 1px solid #e2e8f0 !important;
+  }
+  #article .code-block-outer .select-none.text-right div {
+    color: #94a3b8 !important;
+    background-color: transparent !important;
+  }
+
+  /* 3. Code Inline */
+  :not(pre) > code {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;           
+    padding: 0.2rem 0.4rem !important;
+    border-radius: 0.25rem !important;
+    border: 1px solid #cbd5e1 !important;
+    font-size: 0.9em !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   DARK THEMA (html.dark) — UPDATED FIXES
+   -------------------------------------------------------------------------- */
+html.dark {
+  
+  /* 1. Monolite dark fon */
+  #article .code-block-outer > div,
+  #article .code-content-target,
+  #article pre.shiki,
+  #article pre.shiki code {
+    background-color: #1e293b !important; /* slate-800 Fon */
+  }
+
+  /* Numbers in dark thema */
+  #article .code-block-outer .select-none.text-right {
+    background-color: #0f172a !important; /* Deep slate-900 */
+    border-right: 1px solid #334155 !important;
+  }
+  #article .code-block-outer .select-none.text-right div {
+    color: #475569 !important;
+    background-color: transparent !important;
+  }
+
+  /* 2. Formula Block */
+  #article .bg-white,
+  #article .formula-block,
+  #article .katex-display,
+  #article .relative.rounded-md.border {
+    background-color: #1e293b !important; /* Fon of the card */
+    border-color: #334155 !important;
+  }
+
+  /*  Box with FORMULA */
+  #article .bg-gray-50,
+  #article .bg-gray-100,
+  #article .flex.items-center.justify-between {
+    background-color: #0f172a !important; /* Make header more deeper */
+    border-bottom: 1px solid #334155 !important;
+    color: #94a3b8 !important;
+  }
+
+  /* Formula KaTeX */
+  #article .katex,
+  #article .katex * {
+    color: #ffffff !important;
+    background-color: transparent !important;
+  }
+
+  /* 3. Code Inline */
+  :not(pre) > code {
+    background-color: #334155 !important; 
+    color: #f8fafc !important;            
+    padding: 0.2rem 0.4rem !important;
+    border-radius: 0.25rem !important;
+    border: 1px solid #475569 !important;
+    font-size: 0.9em !important;
+  }
+
+  /* 4. Quote total Reset for CSS Compiler */
+  #article p.border-l-4,
+  #article p.border-l-4 span,
+  #article p.border-l-4 strong {
+    color: #f1f5f9 !important; 
+    border-left-color: #38bdf8 !important; 
+    background-color: #0f172a !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-right: 1rem !important;
+    border-radius: 0 0.375rem 0.375rem 0 !important;
+  }
+
+  /* FIX for inside selector */
+  blockquote * {
+    color: #cbd5e1 !important; /* for readable text */
+    background-color: transparent !important;
+  }
+}
