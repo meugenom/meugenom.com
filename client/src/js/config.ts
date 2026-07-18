@@ -35,3 +35,13 @@ const Config = {
 }
 
 export default Config;
+
+// Tailwind v4 dynamic safelist for purgecss
+const tailwindv4DynamicSafelist = [
+  'flex', 'flex-col', 'md:flex-row', 'gap-6', 
+  'flex-none', 'relative', 'overflow-hidden', 'h-64', 'w-full', 'max-w-xs', 'rounded-md', 'shadow-md',
+  'float-left', 'object-contain', 'flex-auto', 'justify-start',
+  'text-3xl', 'font-sans', 'font-semibold', 'leading-tight', 'mt-0', 'mb-2',
+  'text-xs', 'inline-block', 'py-1', 'px-2', 'uppercase', 'rounded', 'text-white', 'bg-blue-400', 'last:mr-0', 'mr-1',
+  'tag-container', 'mt-3', 'bg-orange-400', 'hover:bg-orange-600'
+];

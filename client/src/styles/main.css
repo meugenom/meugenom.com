@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 /* Tell Tailwind v4 to use class-based dark mode (.dark on <html>) */
-@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Font stacks: Inter for headings (sans), JetBrains Mono for body text */
 @theme {
