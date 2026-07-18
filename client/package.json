@@ -63,6 +63,7 @@
     "image-minimizer-webpack-plugin": "^4.1.4",
     "imagemin-webp": "^8.0.0",
     "katex": "^0.16.33",
+    "markdown-tailwind-css-compiler": "^0.8.0",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.5.3",
     "postcss-import": "^15.1.0",
