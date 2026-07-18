@@ -93,7 +93,7 @@ class View {
           <a class="flex-1"
              navigateLinkTo="/article/${article.slug}"
              href="/article/${article.slug}">
-            ${article.title.substring(1, article.title.length - 1)}
+            ${article.title.replace(/^['"]|['"]$/g, '')}
           </a>
 
           ${showTags && article.tags ? `

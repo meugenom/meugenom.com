@@ -18,11 +18,6 @@ module.exports = {
     publicPath: '/',
     clean: true,
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all' 
-    }
-  },
   module: {
     rules: [
       {
@@ -84,6 +79,9 @@ module.exports = {
   },
   // --- OPTIMIERUNGSABSCHNITT (HINZUGEFÜGT) ---
   optimization: {
+    splitChunks: {
+      chunks: 'all' 
+    }, 
     minimizer: [
       "...", // Magie: behält die Standard-Minimierung von JS/CSS bei
       new ImageMinimizerPlugin({

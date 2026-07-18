@@ -54,12 +54,15 @@ export default class Service {
         switch (response.status) {
           case 404:
             window.history.pushState({}, '404', window.location.origin + '/error404');
+            window.dispatchEvent(new PopStateEvent('popstate'));
             return;
           case 500:
             window.history.pushState({}, '500', window.location.origin + '/error500');
+            window.dispatchEvent(new PopStateEvent('popstate'));
             return;
           case 502:
             window.history.pushState({}, '502', window.location.origin + '/error502');
+            window.dispatchEvent(new PopStateEvent('popstate'));
             return;
           default:
             break;
@@ -68,7 +71,24 @@ export default class Service {
         data = await (dataType === 'json' ? response.json() : response.text());
       }
     
-    } catch (error) {      
+    } catch (error) {  
+      
+      switch (response.status) {
+        case 404:
+          window.history.pushState({}, '404', window.location.origin + '/error404');
+          window.dispatchEvent(new PopStateEvent('popstate'));
+          return;
+        case 500:
+          window.history.pushState({}, '500', window.location.origin + '/error500');
+          window.dispatchEvent(new PopStateEvent('popstate'));
+          return;
+        case 502:
+          window.history.pushState({}, '502', window.location.origin + '/error502');
+          window.dispatchEvent(new PopStateEvent('popstate'));
+          return;
+        default:
+          break;
+      }
       
       return;
     }

@@ -10,10 +10,12 @@ import ArticleView from './view'
 import Utils from '../services/utils'
 import SideBarLeftView, { TocHeading } from '../side-bar-left/view'
 
-// import parser and render
-import { Tokenizer } from "../../../static/libs/parser/Tokenizer";
-import { Render } from "../../../static/libs/parser/Render";
+import 'markdown-tailwind-css-compiler/src/static/styles/list.css';
+import 'markdown-tailwind-css-compiler/src/static/styles/table.css';
+import 'markdown-tailwind-css-compiler/src/static/styles/style.css';
+import 'katex/dist/katex.min.css';
 
+import { convertMDtoHTML } from 'markdown-tailwind-css-compiler';
 
 /**
  * controller Article
@@ -82,17 +84,15 @@ class Article {
 
 
     // BLOCK implementation of parser for MARKDOWN
-    parse(article: string) {
+    async parse(article: string) {
+        
         //console.log(article);
-        const tokenizer = new Tokenizer(article);         
+        
+        let htmlContent = await convertMDtoHTML(article); // Convert markdown to HTML using the parser
 
-        // For debugging: log the AST node structure to the console
-        //console.log(tokenizer);        
-            
+        // hardcode to parse relative paths in src attributes to absolute paths for images and other resources
+        htmlContent = htmlContent.replace(/src="(?!(https?:|\/|data:))([^"]+)"/g, 'src="/$2"');
 
-        // find html element with id="article" in the DOM
-        const virtualDOM = document.createElement('div');
-        const result =  new Render(tokenizer.getAST(), virtualDOM);      
         // Find html element with id="article" in the DOM and append rendered content to it
         const rootElement = document.getElementById('article');  
         
@@ -101,19 +101,17 @@ class Article {
         // Clear existing content in rootElement before appending new content
         if (rootElement) {
             rootElement.innerHTML = ''; // remove any existing content before appending new content
-            rootElement.appendChild(virtualDOM); // Append the rendered result to the browser
+            rootElement.innerHTML = htmlContent; // Append the rendered result to the browser
         }
 
     }  
 
 
-    async afterRender () { 
-
-        document.title = this.article_title;        
+    async afterRender () {               
 
         // Parse and highlight article content
         try {
-            this.parse(this.article.spec);            
+            await this.parse(this.article.spec);            
         } catch (parseError) {
             console.error('Error parsing article content:', parseError);
         }
