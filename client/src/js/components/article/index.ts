@@ -90,6 +90,8 @@ class Article {
         
         let htmlContent = await convertMDtoHTML(article); // Convert markdown to HTML using the parser
 
+        console.log('Parsed HTML content:', htmlContent);
+
         // hardcode to parse relative paths in src attributes to absolute paths for images and other resources
         htmlContent = htmlContent.replace(/src="(?!(https?:|\/|data:))([^"]+)"/g, 'src="/$2"');
 
@@ -164,10 +166,24 @@ class Article {
         if (headingEls.length === 0) return;        
         
         const headings: TocHeading[] = [];
+        
         headingEls.forEach((el, index) => {
             
-            const level = parseInt(el.tagName.replace('H', ''), 10);            
-            const text = el.textContent?.trim() ?? '';            
+            const level = parseInt(el.tagName.replace('H', ''), 10);    
+            
+            const clone = el.cloneNode(true) as HTMLElement;
+
+            clone.querySelectorAll('.katex').forEach(katexEl => {
+            const annotation = katexEl.querySelector('annotation');
+                if (annotation) {
+                    // Replace the KaTeX element with its annotation text content (the LaTeX source) for TOC purposes
+                    katexEl.replaceWith(annotation.textContent || '');
+                } else {
+                    katexEl.remove();
+                }
+            });
+            
+            const text = clone.textContent?.trim() ?? '';                     
             const id = el.getAttribute('id'); // if we have an already existing id
 
             // 0 this is a Caption ... not need to TOC
