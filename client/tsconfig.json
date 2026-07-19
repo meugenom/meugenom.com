@@ -15,6 +15,5 @@
   "include": [
     "./src/js/**/*",
     "./src/types/**/*",
-    "./src/static/libs/parser/**/*"
   ]
 }

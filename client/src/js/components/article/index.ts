@@ -10,12 +10,12 @@ import ArticleView from './view'
 import Utils from '../services/utils'
 import SideBarLeftView, { TocHeading } from '../side-bar-left/view'
 
-import 'markdown-tailwind-css-compiler/src/static/styles/list.css';
-import 'markdown-tailwind-css-compiler/src/static/styles/table.css';
-import 'markdown-tailwind-css-compiler/src/static/styles/style.css';
-import 'katex/dist/katex.min.css';
 
+
+import 'markdown-tailwind-css-compiler/dist/main.css';
+import 'katex/dist/katex.min.css';
 import { convertMDtoHTML } from 'markdown-tailwind-css-compiler';
+
 
 /**
  * controller Article
