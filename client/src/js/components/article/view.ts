@@ -10,7 +10,8 @@ class ArticleView {
     appendArticles () {
         return /* html */`
                 <!-- Main Content -->
-                <div id="article" class="px-5"></div>
+                <div id="article" class="px-5 markdown-content-wraper">                
+                </div>
 
                 <!-- Comments -->
                 <div id="giscus-comments" class="giscus"></div>
