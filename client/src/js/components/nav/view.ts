@@ -20,7 +20,7 @@ class View {
                     <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     
                         <a href="${Config.siteUrl}" class="flex items-center">
-                            <img src="../../images/brain_blue.svg" alt="face-splash" class="mr-3 h-6 sm:h-9">                                                            
+                            <img src="/static/images/brain_blue.svg" alt="face-splash" class="mr-3 h-6 sm:h-9">                                                            
                                 <span id="_title"></span>                                                                
                         </a>
                     </div>                    
