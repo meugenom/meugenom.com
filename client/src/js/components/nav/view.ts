@@ -1,4 +1,5 @@
 'use strict'
+import Config from '../../config';
 
 /**
  * View for component Navbar
@@ -18,16 +19,9 @@ class View {
                     
                     <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     
-                        <a href="https://meugenom.com" class="flex items-center">
-                            <img src="../../images/brain_blue.svg" alt="face-splash" class="mr-3 h-6 sm:h-9">
-                                <!--
-                                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">                                
-                                    <span>meugenom.com</span>
-                                </span>
-                                -->
-                                
-                                <span id="_title"></span>                                
-                                
+                        <a href="${Config.siteUrl}" class="flex items-center">
+                            <img src="../../images/brain_blue.svg" alt="face-splash" class="mr-3 h-6 sm:h-9">                                                            
+                                <span id="_title"></span>                                                                
                         </a>
                     </div>                    
                 </div>
@@ -69,18 +63,8 @@ class View {
                                 Projects
                             </a>
                         </li>
-                        <!--                        
-                        <li class="nav-item hidden sm:flex">
-                            <a 
-                                id="nav-illustration" 
-                                navigateLinkTo="/illustration"                             
-                                class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug opacity-75 cursor-pointer">
-                                Illustration
-                            </a>
-                        </li>                        
-                        -->
                         <li class="nav-item hidden sm:flex ml-2 -mt-3.5 lg:-mt-3.5 lg:ml-0">
-                            <a  href="https://github.com/meugenom"
+                            <a  href="${Config.socialLinks.github}"
                                 class="sl_container github_no_touch">
                                 <div class="sl_circle">
                                     <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200">
@@ -93,7 +77,7 @@ class View {
 					        </a>
                         </li>
                         <li class="nav-item hidden sm:flex ml-2 -mt-3.5 lg:-mt-3.5 lg:ml-0">
-                            <a  href="https://www.linkedin.com/in/meugenom/"
+                            <a  href="${Config.socialLinks.linkedin}"
                                 class="sl_container linkedin_no_touch">
                                 <div class="sl_circle">
                                     <svg  preserveAspectRatio="xMinYMin meet" viewBox="0 0 200 200">

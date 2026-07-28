@@ -7,7 +7,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
-//import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.beans.factory.annotation.Value;
 
 @Configuration("projectRedisConfig") // Eindeutiger Name für diese Konfigurationsklasse
 @EnableRedisRepositories(
@@ -16,10 +16,16 @@ import org.springframework.data.redis.serializer.GenericToStringSerializer;
 )
 public class ProjectRedisConfig {
 
+    @Value("${spring.redis.host}")
+    private String redisHost;
+
+    @Value("${spring.redis.port}")
+    private int redisPort;
+
     @Bean("projectJedisConnectionFactory")
     public JedisConnectionFactory jedisConnectionFactory() {
         // Verbindungsdaten für den Projekt-Cache (Port 9001)
-        RedisStandaloneConfiguration jedisConFactory = new RedisStandaloneConfiguration("localhost", 9001);    
+        RedisStandaloneConfiguration jedisConFactory = new RedisStandaloneConfiguration(redisHost, redisPort);    
         return new JedisConnectionFactory(jedisConFactory);
     }
 

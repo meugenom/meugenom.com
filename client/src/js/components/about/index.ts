@@ -1,33 +1,46 @@
 'use strict'
 import Utils from '../services/utils';
-import Model from './model'
-import View from './view'
+import Model from './model';
+import View from './view';
+import { convertMDtoHTML } from 'markdown-tailwind-css-compiler';
+import 'markdown-tailwind-css-compiler/dist/main.css';
 
 /**
- * controller About
- * @param model
- * @param view
- * @return html to view about page
+ * Controller for About component
  */
-
 class About {
     model: Model;
     view: View;
-    about: string;
+    rawMarkdown: string = '';
 
     constructor() {
-        this.model = new Model()
-        this.view = new View()
-        this.about = ''
+        this.model = new Model();
+        this.view = new View();
     }
 
     async render() {
-        this.about = await this.view.appendAbout()
-        return this.about
+        // Fetch article data before router renders the DOM element
+        this.rawMarkdown = await this.model.getAboutArticle();
+
+        // Return layout template
+        return this.view.appendAbout();
     }
 
-    afterRender() {
-        // lazy load images
+    async afterRender() {
+        // Parse Markdown and inject rendered HTML into DOM
+        if (this.rawMarkdown) {
+            let htmlContent = await convertMDtoHTML(this.rawMarkdown);
+
+            // Convert relative image paths to absolute paths
+            htmlContent = htmlContent.replace(/src="(?!(https?:|\/|data:))([^"]+)"/g, 'src="/$2"');
+
+            const rootElement = document.getElementById('about-article');
+            if (rootElement) {
+                rootElement.innerHTML = htmlContent;
+            }
+        }
+
+        // Lazy load images
         const images = document.querySelectorAll('.lazy');
         images.forEach((img) => {
             Utils.lazyLoadImage(img as HTMLImageElement);
@@ -35,4 +48,4 @@ class About {
     }
 }
 
-export default About
+export default About;

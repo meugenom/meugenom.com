@@ -21,6 +21,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.nio.charset.StandardCharsets;
+import java.util.UUID;
+
 @Service
 public class ProjectService {
 
@@ -269,9 +272,15 @@ public class ProjectService {
     }
 
     private long generateIdFromString(String githubId) {
-        // GitHub ID in GraphQL format is a Base64-encoded string
-        // Convert to a simple hash for our use
-        return Math.abs(githubId.hashCode());
+        if (githubId == null || githubId.isBlank()) {
+            return 0L;
+        }
+        // Generate a deterministic 128-bit UUID from the GitHub Base64 string
+        long mostSigBits = UUID.nameUUIDFromBytes(githubId.getBytes(StandardCharsets.UTF_8))
+                               .getMostSignificantBits();
+        
+        // Mask out the sign bit to guarantee a positive 63-bit long ID
+        return mostSigBits & Long.MAX_VALUE;
     }
 
     public void deleteAllProjects() {

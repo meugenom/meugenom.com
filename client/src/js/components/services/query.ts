@@ -5,7 +5,7 @@ const Environment = {
   host: Config.localHost,
 };
 
-if (process.env.APP_MODE == "production") {
+if (process.env.NODE_ENV === "production") {
   Environment.host = process.env.GRAPHQL_HOST;
 }
 

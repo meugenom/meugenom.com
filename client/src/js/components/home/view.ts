@@ -3,6 +3,7 @@ import ProjectsListModel from "../projects-list/model"
 import ProjectListView from "../projects-list/view"
 import LastArticlesListModel from "../last-articles-list/model";
 import LastArticlesListView from "../last-articles-list/view";
+import Config from '../../config';
 
 /**
  * View for component Home
@@ -16,7 +17,7 @@ class View {
 
     const projectsList = await new ProjectsListModel().getProjects();
     const lastArticlesList = await new LastArticlesListModel().getLastArticlesList();
-    document.title = "meugenom.com | Home"
+    document.title = `${Config.siteName} | Home`;
 
     const view = await /* html */
       `    

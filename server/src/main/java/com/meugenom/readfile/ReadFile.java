@@ -1,38 +1,21 @@
 package com.meugenom.readfile;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 
 public class ReadFile {
 
+    /**
+     * Reads the complete content of a file into a String using UTF-8 encoding.
+     * 
+     * @param dir Path to the file
+     * @return File content as String
+     * @throws IOException If an I/O error occurs reading from the stream
+     */
     
-    public String textFromFile;
-
     public String read(String dir) throws IOException {
-
-        String currentLine;         
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(dir))) {
-
-            while ((currentLine = reader.readLine()) != null) {
-                                
-                System.out.println(currentLine);                
-                //textFromFile.add(currentLine);
-                textFromFile = textFromFile + System.lineSeparator() + currentLine;
-            }
-            reader.close();        
-            
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        return  textFromFile;
-        
+        return Files.readString(Path.of(dir));
     }
-
-    
 }
