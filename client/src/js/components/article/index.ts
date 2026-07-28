@@ -1,3 +1,6 @@
+'use strict'
+import Config from '../../config';
+
 /**
  * @description controller for article page
  * @exports Article
@@ -125,10 +128,12 @@ class Article {
                 if (giscusEl && giscusEl.childElementCount === 0) {
                     const script = document.createElement('script');
                     script.src = 'https://giscus.app/client.js';
-                    script.setAttribute('data-repo', 'meugenom/comments');
-                    script.setAttribute('data-repo-id', 'R_kgDOKam9-w');
-                    script.setAttribute('data-category', 'Announcements');
-                    script.setAttribute('data-category-id', 'DIC_kwDOKam9-84C3muT');
+                    
+                    script.setAttribute('data-repo', Config.giscus.repo);
+                    script.setAttribute('data-repo-id', Config.giscus.repoId);
+                    script.setAttribute('data-category', Config.giscus.category);
+                    script.setAttribute('data-category-id', Config.giscus.categoryId);
+                    
                     script.setAttribute('data-mapping', 'pathname');
                     script.setAttribute('data-strict', '0');
                     script.setAttribute('data-reactions-enabled', '1');

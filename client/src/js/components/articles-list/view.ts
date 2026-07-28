@@ -1,12 +1,13 @@
 'use strict'
 import IArticle from '../interfaces/IArticle';
+import Config from '../../config';
 
 class View {
 
   async appendArticlesList(articlesList: IArticle[]) {
 
     const list: IArticle[] = [];
-    document.title = 'meugenom.com | Articles';
+    document.title = `${Config.siteName} | Articles`;
 
     if (articlesList === null || articlesList === undefined) {
       return /* html */`

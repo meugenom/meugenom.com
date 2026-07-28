@@ -20,7 +20,7 @@ class View {
 
     //console.log('project', project)
 
-    document.title = 'meugenom.com | Projects';
+    document.title = `${Config.siteName} | Projects`;
 
     if(languages.length === null || languages === undefined){
       return;

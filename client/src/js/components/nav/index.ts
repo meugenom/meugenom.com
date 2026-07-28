@@ -1,6 +1,7 @@
 'use strict'
 import Model from './model'
 import View from './view'
+import Config from '../../config';
 
 /**
  * controller Navbar
@@ -21,7 +22,7 @@ class Navbar {
     this.view = new View();
     this.navbar = '';
     this.history = [];
-    this.title = this.getTitle('Meugenom', 'white');
+    this.title = this.getTitle(Config.siteName, 'white');
   }
 
   async render() {
@@ -78,8 +79,8 @@ class Navbar {
 
   applyTheme(theme: string) {
     document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(theme);
-    this.title = this.getTitle('Meugenom', theme === 'dark' ? 'text-light-text' : 'text-dark-text');    
+    document.documentElement.classList.add(theme);    
+    this.title = this.getTitle(Config.siteName, theme === 'dark' ? 'text-light-text' : 'text-dark-text');   
 
     // Icons dynamic: Moon or Sun based on theme
     const themeIcon = document.querySelector('#theme-toggle i');
@@ -89,17 +90,7 @@ class Navbar {
       } else {
         themeIcon.className = 'bi bi-moon-fill';
       }
-    }
-
-    // Sync utterances comments iframe theme
-    const utterancesTheme = theme === 'dark' ? 'photon-dark' : 'github-light';
-    const utterancesFrame = document.querySelector<HTMLIFrameElement>('.utterances-frame');
-    if (utterancesFrame) {
-      utterancesFrame.contentWindow?.postMessage(
-        { type: 'set-theme', theme: utterancesTheme },
-        'https://utteranc.es'
-      );
-    }
+    }        
   }
 }
 
