@@ -23,4 +23,5 @@ nginx/
 client/coverage
 client/package-lock.json
 client/yarn.lock
+private
 
