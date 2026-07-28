@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: meugenom-redis
+    restart: always
+    volumes:
+      - redis_data:/data
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: meugenom-backend
+    restart: always
+    # Environment variables from /server/.env
+    env_file:
+      - ./server/.env
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ARTICLES_PATH=/app/content
+    volumes:
+      - ./content:/app/content:ro
+    depends_on:
+      - redis
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: meugenom-frontend
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      # Direct mount for media assets
+      - ./content/images:/usr/share/nginx/html/images:ro
+      - ./content/thumbnails:/usr/share/nginx/html/thumbnails:ro
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  redis_data:
