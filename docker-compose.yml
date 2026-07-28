@@ -22,7 +22,7 @@ services:
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - ARTICLES_PATH=/app/content
+      - ARTICLES_PATH=/app/content/articles
     volumes:
       - ./content:/app/content:ro
     depends_on:
