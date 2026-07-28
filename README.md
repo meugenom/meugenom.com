@@ -171,7 +171,7 @@ Hello World!
    docker-compose up -d --build
 ```
 
-4. Open your browser at `http://localhost`.
+4. Open your browser at `http://localhost:8080`.
 
 ---
 
