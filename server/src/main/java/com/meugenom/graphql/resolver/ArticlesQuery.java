@@ -77,30 +77,34 @@ public class ArticlesQuery implements GraphQLQueryResolver {
 
 	}
 
-	// return all tags
-	public List<Tag> tagsList() {
-		List<Article> articles = new ArrayList<Article>();
-		articles = (List<Article>) articleRepository.findAll();
-		
-		List<Tag> result = new ArrayList<Tag>();
+// return all tags
+public List<Tag> tagsList() {
+    List<Article> articles = (List<Article>) articleRepository.findAll();
+    List<Tag> result = new ArrayList<>();
 
-		for (Article article : articles) {
-			
-			//String[] tags = article.getTags().split(" "); Errors if tags null
-			if (article.getTags() != null) {
-				String[] tags = article.getTags().split(",");
-			
-				for (String tag : tags) {				
-					if(tag != null && tag != ""){
-						Tag section = new Tag(tag, article.getSlug());				
-						System.out.println("Tag is: " + tag);
-						result.add(section);				
-					}				
-				}
-			}
-		}
-		return result;
-	}
+    if (articles == null) {
+        return result;
+    }
+
+    for (Article article : articles) {
+        String rawTags = article.getTags();
+               
+        if (rawTags != null && !rawTags.isBlank()) {
+            
+            String[] tags = rawTags.split("[,\\s]+");
+
+            for (String tag : tags) {
+                String cleanTag = tag.trim();
+                
+                if (!cleanTag.isEmpty()) {
+                    Tag section = new Tag(cleanTag, article.getSlug());
+                    result.add(section);
+                }
+            }
+        }
+    }
+    return result;
+}
 
 /**
          * graphql request: searchArticles(term: "typescript"){ id title slug date tags }
