@@ -6,48 +6,74 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
- * SearchService — modul for searching by redis
- * search by title, tags, text
+ * SearchService — module for searching articles stored in Redis.
+ * Performs fast case-insensitive search across title, tags, and body text.
  */
 @Service
 public class SearchService {
+
+    private static final int MAX_RESULTS = 50;
 
     @Autowired
     private ArticleRepository articleRepository;
 
     /**
-     * 
-     * @param term — search word
-     * @return valid list of articles
+     * @param term Search query term (minimum 3 characters)
+     * @return List of matching articles sorted by date descending
      */
     public List<Article> searchArticles(String term) {
-
         if (term == null || term.trim().length() < 3) {
             return new ArrayList<>();
         }
 
-        final String lowerTerm = term.toLowerCase().trim();
+        String cleanTerm = term.trim();
+        // Compile literal pattern with CASE_INSENSITIVE flag (avoids creating new String objects via toLowerCase)
+        Pattern searchPattern = Pattern.compile(Pattern.quote(cleanTerm), Pattern.CASE_INSENSITIVE);
 
-        List<Article> all = (List<Article>) articleRepository.findAll();
+        List<Article> allArticles = (List<Article>) articleRepository.findAll();
         List<Article> results = new ArrayList<>();
 
-        for (Article article : all) {
-            boolean matchesTitle = article.getTitle() != null
-                    && article.getTitle().toLowerCase().contains(lowerTerm);
-            boolean matchesTags = article.getTags() != null
-                    && article.getTags().toLowerCase().contains(lowerTerm);            
-            boolean matchesText = article.getText() != null
-                    && article.getText().toLowerCase().contains(lowerTerm);
-
-            if (matchesTitle || matchesTags  || matchesText) {
+        for (Article article : allArticles) {
+            if (matches(article, searchPattern)) {
                 results.add(article);
             }
         }
 
-        results.sort((a1, a2) -> a2.getDate().compareTo(a1.getDate()));
+        // Safe sort by date descending (handles null dates gracefully)
+        results.sort(Comparator.comparing(
+            Article::getDate, 
+            Comparator.nullsLast(Comparator.reverseOrder())
+        ));
+
+        // Limit results payload to prevent OOM / network bottlenecks
+        if (results.size() > MAX_RESULTS) {
+            return results.subList(0, MAX_RESULTS);
+        }
+
         return results;
+    }
+
+    private boolean matches(Article article, Pattern pattern) {
+        if (article == null) {
+            return false;
+        }
+
+        // Short-circuit evaluation: stops early if match is found in title or tags
+        if (article.getTitle() != null && pattern.matcher(article.getTitle()).find()) {
+            return true;
+        }
+        if (article.getTags() != null && pattern.matcher(article.getTags()).find()) {
+            return true;
+        }
+        if (article.getText() != null && pattern.matcher(article.getText()).find()) {
+            return true;
+        }
+
+        return false;
     }
 }
