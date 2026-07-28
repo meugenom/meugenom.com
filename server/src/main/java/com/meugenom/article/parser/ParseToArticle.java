@@ -1,100 +1,106 @@
 package com.meugenom.article.parser;
+
+import com.meugenom.article.model.Article;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.meugenom.article.model.Article;
+import java.time.format.DateTimeParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * @author meugenom
- * @see ArrayList, Regex rules 
- * @param text String value for next parsing and inputing datas to object Article
- * @return object Article that consists of the  article's fields and specifications* 
+ * Parses markdown files containing YAML Frontmatter delimited by "---".
  */
-
 public class ParseToArticle {
 
-    private Article article = new Article();
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    
+  private static final Logger logger = LoggerFactory.getLogger(
+    ParseToArticle.class
+  );
+  private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(
+    "yyyy-MM-dd"
+  );
 
-    public Article parse(String text) {
+  public Article parse(String text) {
+    Article article = new Article();
 
-        int topTextCounter = 0;        
-        String topLine = "---";
-		String strokes = "";
+    if (text == null || text.isBlank()) {
+      article.setText("");
+      return article;
+    }
 
-        List<String> lines = Arrays.asList(text.split("\\r?\\n"));
+    // Set complete raw content for the article body
+    article.setText(text);
 
-        // for (String line: lines) {
-        for (int i = 1; i < lines.size(); i++) {
+    // Split text into lines to process Frontmatter
+    String[] lines = text.split("\\r?\\n");
+    int frontmatterSeparatorCount = 0;
 
-            
+    for (String line : lines) {
+      String trimmedLine = line.trim();
 
-            // System.out.println(lines.get(i));
-            String line = lines.get(i);
+      if ("---".equals(trimmedLine)) {
+        frontmatterSeparatorCount++;
+        if (frontmatterSeparatorCount == 2) {
+          // Reached the end of YAML Frontmatter header
+          break;
+        }
+        continue;
+      }
 
-            // it's begin of post processing
-            if (line.equals(topLine) && topTextCounter == 0) {
-                ++topTextCounter;                
+      // Parse metadata key-value pairs between the first and second '---'
+      if (frontmatterSeparatorCount == 1 && trimmedLine.contains(":")) {
+        int colonIndex = trimmedLine.indexOf(':');
+        String key = trimmedLine.substring(0, colonIndex).trim().toLowerCase();
+        String value = trimmedLine.substring(colonIndex + 1).trim();
 
-            } else if (line.equals(topLine) && topTextCounter == 1) {
-                ++topTextCounter;                
-
-                // we need to the end of post processing
-            } else if (topTextCounter == 2) {
-
-
-            } else if (topTextCounter == 1) {
-
-                CompilePattern compilePattern = new CompilePattern();
-                List<String> shablons = new ArrayList<>();
-
-                shablons.add(".*date:.*");
-                shablons.add(".*title:.*");
-                shablons.add(".*template:.*");
-                shablons.add(".*thumbnail:.*");
-                shablons.add(".*slug:.*");
-                shablons.add(".*cluster:.*");
-                shablons.add(".*order:.*");
-                shablons.add(".*tags:.*");
-
-                shablons.forEach((shablon) -> {
-                    boolean result = compilePattern.compile(line, shablon);
-                    if (result) {
-                        
-                        LocalDate date;
-                        
-                        if (shablon.equals(".*date:.*")) {
-                            date = LocalDate.parse(line.replace("date: ", ""), formatter);
-                            article.setDate(date);
-                        }
-                        if (shablon.equals(".*title:.*")) {
-                            article.setTitle(line.replace("title: ", ""));
-                        }
-                        if (shablon.equals(".*template:.*")) {
-                            article.setTemplate(line.replace("template: ", ""));
-                        }
-                        if (shablon.equals(".*thumbnail:.*"))
-                            article.setThumbnail(line.replace("thumbnail: ", ""));
-                        if (shablon.equals(".*slug:.*"))
-                            article.setSlug(line.replace("slug: ", ""));
-                        if (shablon.equals(".*cluster:.*"))
-                            article.setCluster(line.replace("cluster: ", ""));
-                        if (shablon.equals(".*order:.*"))
-                            article.setOrder(line.replace("order: ", ""));
-                        if (shablon.equals(".*tags:.*"))
-                            article.setTags(line.replace("tags: ", ""));
-                    }
-                });
-            }
-        
-				strokes = strokes + line + "\n";
+        // Strip surrounding single or double quotes from string value
+        if (
+          (value.startsWith("\"") && value.endsWith("\"")) ||
+          (value.startsWith("'") && value.endsWith("'"))
+        ) {
+          if (value.length() >= 2) {
+            value = value.substring(1, value.length() - 1);
+          }
         }
 
-        article.setText(strokes);
-        return article;
-
+        switch (key) {
+          case "date":
+            try {
+              article.setDate(LocalDate.parse(value, DATE_FORMATTER));
+            } catch (DateTimeParseException e) {
+              logger.warn(
+                "Failed to parse date '{}' in article frontmatter",
+                value
+              );
+            }
+            break;
+          case "title":
+            article.setTitle(value);
+            break;
+          case "template":
+            article.setTemplate(value);
+            break;
+          case "thumbnail":
+            article.setThumbnail(value);
+            break;
+          case "slug":
+            article.setSlug(value);
+            break;
+          case "cluster":
+            article.setCluster(value);
+            break;
+          case "order":
+            article.setOrder(value);
+            break;
+          case "tags":
+            article.setTags(value);
+            break;
+          default:
+            // Ignore non-standard or custom properties
+            break;
+        }
+      }
     }
+
+    return article;
+  }
 }
