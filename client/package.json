@@ -1,6 +1,6 @@
 {
   "name": "meugenom",
-  "version": "2.3.1",
+  "version": "0.7.0",
   "description": "",
   "scripts": {
     "start": "arch -arm64 webpack serve --config ./webpack.dev.js",
