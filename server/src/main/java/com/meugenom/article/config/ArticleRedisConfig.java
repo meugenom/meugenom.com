@@ -7,6 +7,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
+import org.springframework.beans.factory.annotation.Value;
 
 @Configuration("articleRedisConfig") // Eindeutiger Name für die Artikel-Konfiguration
 @EnableRedisRepositories(
@@ -15,9 +16,15 @@ import org.springframework.data.redis.serializer.GenericToStringSerializer;
 )
 public class ArticleRedisConfig {
 
+    @Value("${spring.redis.host}")
+    private String redisHost;
+
+    @Value("${spring.redis.port}")
+    private int redisPort;
+
     @Bean("articleJedisConnectionFactory")
     public JedisConnectionFactory jedisConnectionFactory() {
-        RedisStandaloneConfiguration jedisConFactory = new RedisStandaloneConfiguration("localhost", 9001);    
+        RedisStandaloneConfiguration jedisConFactory = new RedisStandaloneConfiguration(redisHost, redisPort);    
         return new JedisConnectionFactory(jedisConFactory);
     }
 
