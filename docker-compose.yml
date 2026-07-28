@@ -43,6 +43,7 @@ services:
     volumes:
       # Direct mount for media assets
       - ./content/images:/usr/share/nginx/html/images:ro
+      - ./client/src/static/images:/usr/share/nginx/html/static/images:ro
       - ./content/thumbnails:/usr/share/nginx/html/thumbnails:ro
     depends_on:
       - backend

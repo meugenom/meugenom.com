@@ -1,16 +1,15 @@
 package com.meugenom.graphql.resolver;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import com.meugenom.article.model.Article;
-import com.meugenom.tag.model.Tag;
 import com.meugenom.article.repository.ArticleRepository;
 import com.meugenom.search.SearchService;
+import com.meugenom.tag.model.Tag;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
-import graphql.kickstart.tools.GraphQLQueryResolver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author meugenom graphqlquery file implements graphqlqueryresolver and
@@ -20,118 +19,131 @@ import graphql.kickstart.tools.GraphQLQueryResolver;
 @Component
 public class ArticlesQuery implements GraphQLQueryResolver {
 
-	@Autowired
-	private ArticleRepository articleRepository;
+  @Autowired
+  private ArticleRepository articleRepository;
 
-    @Autowired
-    private SearchService searchService;
+  @Autowired
+  private SearchService searchService;
 
-	public List<Article> articlesList() {
-		List<Article> list = new ArrayList<>(articleRepository.findAllByOrderByDateDesc());
-		list.sort(Comparator.comparing(Article::getDate).reversed());
-		return list;
-	}
-	
-	public List<Article> articlesListByTag(String tag) {
-		List<Article> list = new ArrayList<>(articleRepository.findAllByOrderByDateDesc());
-		list.sort(Comparator.comparing(Article::getDate).reversed());
+  public List<Article> articlesList() {
+    List<Article> list = new ArrayList<>(
+      articleRepository.findAllByOrderByDateDesc()
+    );
+    list.sort(Comparator.comparing(Article::getDate).reversed());
+    return list;
+  }
 
-		List<Article> result = new ArrayList<Article>();
-		for (Article article : list) {
-			if (article.getTags().contains(tag)) {
-				result.add(article);
-			}
-		}
-		return result;
-	}
+  public List<Article> articlesListByTag(String tag) {
+    List<Article> list = new ArrayList<>(
+      articleRepository.findAllByOrderByDateDesc()
+    );
+    list.sort(Comparator.comparing(Article::getDate).reversed());
 
-	public List<Article> lastArticlesList() {
-		List<Article> list = new ArrayList<>(articleRepository.findAllByOrderByDateDesc());
-		list.sort(Comparator.comparing(Article::getDate).reversed());
+    List<Article> result = new ArrayList<Article>();
+    for (Article article : list) {
+      if (article.getTags().contains(tag)) {
+        result.add(article);
+      }
+    }
+    return result;
+  }
 
-		if (list.size() > 5) {
-			return list.subList(0, 5);
-		}
-		return list;
-	}
+  public List<Article> lastArticlesList() {
+    List<Article> list = new ArrayList<>(
+      articleRepository.findAllByOrderByDateDesc()
+    );
+    list.sort(Comparator.comparing(Article::getDate).reversed());
 
-	/**
-	 * graphqlrequest:
-	 * 
-	 * { getArticleById(id: 1){ id title slug } }
-	 * 
-	 * @param id
-	 * @return all fields of article by articles id
-	 */
-	public Article getArticleById(Integer id) {
-		List<Article> articles = new ArrayList<Article>();
-		articles = (List<Article>) articleRepository.findAll();
-		Article result = articles.stream().filter(a -> {
-			if (id.longValue() == a.getId()) {
-				return true;
-			}
-			return false;
-		}).findAny().orElse(null);
+    if (list.size() > 5) {
+      return list.subList(0, 5);
+    }
+    return list;
+  }
 
-		return result;
+  /**
+   * graphqlrequest:
+   *
+   * { getArticleById(id: 1){ id title slug } }
+   *
+   * @param id
+   * @return all fields of article by articles id
+   */
+  public Article getArticleById(Integer id) {
+    List<Article> articles = new ArrayList<Article>();
+    articles = (List<Article>) articleRepository.findAll();
+    Article result = articles
+      .stream()
+      .filter(a -> {
+        if (id.longValue() == a.getId()) {
+          return true;
+        }
+        return false;
+      })
+      .findAny()
+      .orElse(null);
 
-	}
+    return result;
+  }
 
-// return all tags
-public List<Tag> tagsList() {
+  // return all tags
+  public List<Tag> tagsList() {
     List<Article> articles = (List<Article>) articleRepository.findAll();
     List<Tag> result = new ArrayList<>();
 
     if (articles == null) {
-        return result;
+      return result;
     }
 
     for (Article article : articles) {
-        String rawTags = article.getTags();
-               
-        if (rawTags != null && !rawTags.isBlank()) {
-            
-            String[] tags = rawTags.split("[,\\s]+");
+      String rawTags = article.getTags();
 
-            for (String tag : tags) {
-                String cleanTag = tag.trim();
-                
-                if (!cleanTag.isEmpty()) {
-                    Tag section = new Tag(cleanTag, article.getSlug());
-                    result.add(section);
-                }
-            }
+      if (rawTags != null && !rawTags.isBlank()) {
+        String[] tags = rawTags.split("[,\\s]+");
+
+        for (String tag : tags) {
+          String cleanTag = tag.trim();
+
+          if (!cleanTag.isEmpty()) {
+            Tag section = new Tag(cleanTag, article.getSlug());
+            result.add(section);
+          }
         }
+      }
     }
     return result;
-}
+  }
 
-/**
-         * graphql request: searchArticles(term: "typescript"){ id title slug date tags }
-         * Performs full-text search (title + tags + text) via SearchService.
-         */
-        public List<Article> searchArticles(String term) {
-                return searchService.searchArticles(term);
-        }
+  /**
+   * graphql request: searchArticles(term: "typescript"){ id title slug date tags }
+   * Performs full-text search (title + tags + text) via SearchService.
+   */
+  public List<Article> searchArticles(String term) {
+    return searchService.searchArticles(term);
+  }
 
-        public String getAllSpecificationTextByArticleSlug(String slug) {
+  public String getAllSpecificationTextByArticleSlug(String slug) {
+    System.out.println("Slug is: " + slug);
 
-	
-		System.out.println("Slug is: " + slug);
-	
-		List<Article> articles = new ArrayList<Article>();
-		articles = (List<Article>) articleRepository.findAll();
-		
-		System.out.println(articles);
-		
-		Article result = articles.stream().filter(a -> {		
-			
-		  if (new String(a.getSlug()).equals(slug) == true) {
-			return true;
-		  }
-		  return false;
-		}).findAny().orElse(null);
-	
-		return result.getText();
-	  }
+    if (slug == null) {
+      return "";
+    }
+
+    List<Article> articles = (List<Article>) articleRepository.findAll();
+    if (articles == null) {
+      return "";
+    }
+
+    Article result = articles
+      .stream()
+      .filter(a -> a != null && slug.equals(a.getSlug()))
+      .findAny()
+      .orElse(null);
+
+    // If article with the slug is null
+    if (result == null || result.getText() == null) {
+      return "";
+    }
+
+    return result.getText();
+  }
 }
