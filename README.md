@@ -1,212 +1,212 @@
-## Personal Web Site:
+# Full-Stack Content Platform & Web Framework
+
+![Version](https://img.shields.io/badge/version-0.7.0-blue.svg?style=for-the-badge)
 [![Website Status](https://img.shields.io/badge/My_Site-Live-brightgreen?style=for-the-badge&logo=google-chrome)](https://meugenom.com)
-</br>
 ![TypeScript](https://img.shields.io/badge/typescript-%23007acc.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white)
 ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
-</br>
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)
 
-<center>
-	<img alt="" src="./assets/panda-meugenom.png"/>
-</center>
+<p align="center">
+  <img alt="Panda Logo" src="./assets/panda-meugenom.png"/>
+</p>
 
-### What is it:
+A custom-built, lightweight, zero-framework-overhead **Headless CMS & Single-Page Application (SPA) Framework**
+operating on its own custom architecture and self-developed libraries,
+designed for personal blogs, technical portfolios, and digital gardens.
 
-This is my personal web page, that you can see [https://meugenom.com](https://meugenom.com).
+---
 
-### What were used to prepare this page:
+## Table of Contents
 
-- imported own markdown-ts-compiler v0.8.0 (Markdown->HTML [Markdown Typescript Compiler](https://github.com/meugenom/markdown-ts-compiler) with Tailwind CSS);
-- used Typescript own [SPA MVC Router](https://github.com/meugenom/spa-mvc-router) on port 8082;
-- Java and Spring-Boot (backend part on port 4000);
-- GraphQL (frontend and backend part);
-- Webpack (ES6);
-- Tailwind CSS;
-- maven;
-- Redis (port 9001), set up  etc/redis.conf with port 9001;
-- Github Token and User Name
+- [How It Works](#how-it-works)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Project Configuration](#project-configuration)
+- [Getting Started (Docker)](#getting-started-docker)
+- [Useful Commands](#useful-commands)
+- [Testing](#testing)
+- [License](#license)
 
-### How to set up:
+---
 
-1. Need preinstalled java 21 2023-09-19 LTS, npm(10.8.2), node(20.20.0), mvn(3.8.1), nginx(1.29.5 stable);
+## How It Works
 
-2. for information about projects you need  personal access token [https://github.com/settings/tokens](https://github.com/settings/tokens);
+The platform operates as a Headless CMS with an ultra-fast GraphQL data pipeline:
 
-3.1 Create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to
-```bash
-  # client/.env
+1. **Content Management:** You write articles in standard `.md` (Markdown) with Front Matter metadata inside the `/content/articles/` directory.
+2. **Backend Processing:** The Spring Boot backend parses your Markdown files, calculates file hashes, and caches content directly in Redis for instant retrieval.
+3. **GraphQL API:** Content, tags, search queries, and GitHub repository projects are exposed via a clean GraphQL endpoint.
+4. **Client-Side Rendering:** A lightweight Vanilla TypeScript SPA uses a custom MVC Router to load content dynamically and compile Markdown to HTML on-the-fly (`markdown-tailwind-css-compiler`), complete with syntax highlighting and KaTeX formulas.
 
-  # by default APP_MODE=development or production
-  APP_MODE=development
-  # your graphql hostname
-  GRAPHQL_HOST=http://localhost:8080/graphql/
+---
+
+## Tech Stack
+
+### Frontend Client
+
+- **Language:** TypeScript
+- **Router:** Custom [SPA MVC Router](https://github.com/meugenom/spa-mvc-router)
+- **Markdown Engine:** [Markdown TypeScript Compiler](https://github.com/meugenom/markdown-ts-compiler)
+- **Styling:** Tailwind CSS v4 & KaTeX
+- **Build Tool:** Webpack 5
+
+### Backend Service
+
+- **Language/Framework:** Java 21 LTS, Spring Boot
+- **API Layer:** GraphQL
+- **Cache:** Redis 7 (Alpine)
+
+### Infrastructure & Operations
+
+- **Containerization:** Docker & Docker Compose
+- **Web Server / Proxy:** Nginx (Static assets & Reverse Proxy)
+
+---
+
+## Features
+
+- ⚡ **No UI Framework Overhead:** Built using pure TypeScript without React/Vue bloat.
+- 🚀 **Instant Navigation:** Single-Page Application architecture with zero full page reloads.
+- 🎨 **Dark / Light Theme:** Native theme switcher with system preference detection.
+- 🔍 **Full-Text Search:** Instant GraphQL article search functionality.
+- 💬 **Giscus Integration:** GitHub Discussions-powered commenting system.
+- 📊 **Auto-Synced Projects:** Automatically imports and displays your GitHub repos via GitHub GraphQL API.
+
+---
+
+## Project Configuration
+
+To adapt the framework to your own platform, configure these key files:
+
+### 1. Frontend Settings
+
+Define your site title, social media profiles, and comment settings by `client/src/js/config.ts`:
+
+```typescript
+const Config = {
+  siteName: "My Blog Platform",
+  siteUrl: "http://localhost:8080",
+  author: "Your Name",
+  title: "My Content Platform",
+  description: "Personal Web System and Blog",
+
+  socialLinks: {
+    github: "[https://github.com/your-username](https://github.com/your-username)",
+    linkedin: "[https://www.linkedin.com/in/your-username](https://www.linkedin.com/in/your-username)",
+    coffee: "[https://buymeacoffee.com/your-username](https://buymeacoffee.com/your-username)",
+  },
+
+  giscus: {
+    repo: "your-username/comments-repo",
+    repoId: "R_kgDOXXXXXX",
+    category: "Announcements",
+    categoryId: "DIC_kwDOXXXXXX",
+  },
+
+  localHost: "http://localhost:8080/graphql/",
+};
+
+export default Config;
+```
+
+### 2. Backend Environment Variables
+
+Create or edit `server/.env` to link your GitHub account for project sync:
+
+```env
+GITHUB_API_URL=[https://api.github.com/graphql](https://api.github.com/graphql)
+GITHUB_API_TOKEN=your_github_personal_access_token
+GITHUB_API_NAME=your_github_username
+```
+
+### 3. Adding Content
+
+Simply drop your `hello-world.md` file with Front Matter into the content directory `/content/articles/`:
+
+```markdown
+---
+date: 2026-07-28
+title: 'Hello World'
+template: post
+thumbnail: './thumbnails/face-splash.png'
+slug: hello-world
+tags: general intro
+cluster: hello-world
+order: 0
+---
+
+## Welcome to my new blog!
+
+Hello World! 
 
 ```
 
-3.2 Create .env file in the `server/.env`directory (see `server/simple.env`)  and add this token to
-```bash
-  # server/.env
+---
 
-  github.api.url=https://api.github.com/graphql
-  github.api.token=your_github_token
-  github.user.name=your_github_user_name
-  
-```
+## Getting Started (Docker)
 
-4. Change please title and description for meta tags in `client/src/js/config.ts`
- 
-```ts
-  title : "my title", // by default is "meugenom.com content platform",
-  description : "My Personal Content System", // by default is "Meugenom is a personal blog about software development, technology, and programming."
-```
-  
+### Prerequisites
 
+- [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
 
-### How to start:
+### Launching the Application
 
-1. clone repository 
-`git clone https://github.com/meugenom/meugenom.com.git`
+1. Prepare all settings to customize the blog [See](#project-configuration), the Project makes without personal settings by default.
 
-2. change dir
-`cd meugenom.com/client`
-
-3. install npm libraries
-`yarn install`
-
-4. for building frontend part:
-`yarn build`
-
-5. create .env file in the `client/.env`directory (see `client/simple.env`)  and add this token to GITHUB_TOKEN= and github user name to GITHUB_USER_NAME=
-
-6. start frontend server
-	**for development:**	
-	- change .env file in the `client/.env`directory (see `client/simple.env`)  and add to APP_MODE=development
-	- start frontend dev server (for development)
-	`yarn start`
-
-	**for production:**	
-	- change .env file in the `client/.env`directory (see `client/simple.env`)  and add to APP_MODE=production
-	- start frontend prod server (for production)
-	`node meugenom-server.js`
-
-7. build backend part:
-	**for development:**	
-	- `cd ../server`
-	- `mvn clean package`
-
-	**for production:** when is not local machine
-	- `cd ../server`	
-	- `mvn clean package`
-
-
-8. install Redis server and change port to 9001 in the `etc/redis.conf` file by default it's 6379
-
-9. start backend dev server `mvn clean spring-boot:run`
-	or
-	**for development**
-	- `./start-dev-server.sh`
-
-	**for production**
-	- `./start-prod-server.sh`
-
-### CORS settings:
-1. write to  "/etc/hosts" host:
-127.0.0.1 localhost
-
-2. Open nginx.conf, comment old locations and add this:
-
-```bash
-
-server {
-        listen       8080;
-        server_name  localhost;
-        
-		location / {
-            if ($request_method = OPTIONS) {
-              return 204;
-            }
-
-    	add_header Access-Control-Allow-Origin *;
-    	add_header Access-Control-Max-Age 3600;
-    	add_header Access-Control-Expose-Headers Content-Length;
-    	add_header Access-Control-Allow-Headers Range;
-
-            proxy_http_version  1.1;
-            proxy_cache_bypass  $http_upgrade;
-            proxy_set_header Upgrade           $http_upgrade;
-            proxy_set_header Connection        "upgrade";
-            proxy_set_header Host              $host;
-            proxy_set_header X-Real-IP         $remote_addr;
-            proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_set_header X-Forwarded-Host  $host;
-            proxy_set_header X-Forwarded-Port  $server_port;
-
-            proxy_pass http://localhost:8082;
-        }
-
-          location /graphql/ {
-          if ($request_method = OPTIONS) {
-            add_header Access-Control-Allow-Origin *;
-            add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
-            add_header Access-Control-Allow-Headers 'Authorization, Content-Type, Accept';
-            add_header Access-Control-Max-Age 3600;
-            return 204;
-          }
-
-          add_header Access-Control-Allow-Origin *;
-          add_header Access-Control-Max-Age 3600;
-          add_header Access-Control-Expose-Headers Content-Length;
-          add_header Access-Control-Allow-Headers 'Authorization, Content-Type, Accept';
-
-          client_max_body_size       10M;
-
-          proxy_http_version  1.1;
-          proxy_set_header Upgrade           $http_upgrade;
-          proxy_set_header Connection        "upgrade";
-          proxy_set_header Host              $host;
-          proxy_set_header X-Real-IP         $remote_addr;
-          proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-Host  $host;
-          proxy_set_header X-Forwarded-Port  $server_port;
-
-          # strip upstream CORS headers to avoid duplicates
-          proxy_hide_header Access-Control-Allow-Origin;
-          proxy_hide_header Access-Control-Allow-Methods;
-          proxy_hide_header Access-Control-Allow-Headers;
-          proxy_hide_header Access-Control-Max-Age;
-          proxy_hide_header Access-Control-Expose-Headers;
-
-          proxy_pass http://localhost:4000/graphql;
-        }
-    }
-```
-
-### Frontend Tests:
-
-For testing web client is used jest framework in the `/client`
+2. Clone the repository:
 
 ```bash
-	cd client &&
-	yarn test
+   git clone [https://github.com/meugenom/meugenom.com.git](https://github.com/meugenom/meugenom.com.git)
+   cd meugenom.com
 ```
 
-or run to see tests coverage:
+3. Build and launch all services (Frontend, Backend, Redis, Nginx):
 
 ```bash
-	cd client &&
-	yarn test --coverage
+   docker-compose up -d --build
 ```
 
-### How to see web page:
+4. Open your browser at `http://localhost`.
 
-open web browser with link:  `http://localhost:8080` after starting both servers (front and back).
+---
 
-### Author 
+## Useful Commands
 
-[meugenom](https://meugenom.com)
+- **View container logs:**  
+  `docker-compose logs -f`
+- **View backend logs specifically:**  
+  `docker-compose logs -f backend`
+- **Stop all services:**  
+  `docker-compose down`
+- **Rebuild containers:**  
+  `docker-compose up -d --build`
+
+---
+
+## Testing
+
+Run frontend client unit tests:
+
+```bash
+  cd client
+  yarn install
+  yarn test
+```
+
+To generate a code coverage report:
+
+```bash
+  yarn test --coverage
+```
+
+---
+
+## License && Author
+
+- Author [meugenom](https://github.com/meugenom).
+- Distributed under the [MIT License](LICENSE).
