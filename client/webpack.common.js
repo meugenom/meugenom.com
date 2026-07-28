@@ -155,5 +155,10 @@ module.exports = {
         concurrency: 100
       }
     }),    
-  ]
+  ],
+  performance: {
+    hints: devMode ? false : 'warning',
+    maxEntrypointSize: 1536000,
+    maxAssetSize: 1536000
+  }
 }
