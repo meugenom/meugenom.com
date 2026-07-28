@@ -29,6 +29,8 @@ services:
       - redis
     networks:
       - app-network
+    ports:
+      - "127.0.0.1:4000:4000"
 
   frontend:
     build:
@@ -37,7 +39,7 @@ services:
     container_name: meugenom-frontend
     restart: always
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
     volumes:
       # Direct mount for media assets
       - ./content/images:/usr/share/nginx/html/images:ro
