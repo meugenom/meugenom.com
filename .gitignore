@@ -9,7 +9,6 @@ client/build
 client/node_modules/
 node_modules/
 client/.vscode
-client/.env
 client/.idea
 client/.git
 client/.gitignore
@@ -18,7 +17,6 @@ client/temp
 client/*.log
 .idea/*
 .vscode/*
-client/.env
 nginx/
 client/coverage
 client/package-lock.json
