@@ -318,7 +318,7 @@ public class ProjectService {
 
       try {
         java.util.Set<java.nio.file.attribute.PosixFilePermission> perms = 
-            java.nio.file.attribute.PosixFilePermissions.fromString("rwxrwxrwx"); // Полные права всем (read, write, execute)
+            java.nio.file.attribute.PosixFilePermissions.fromString("rwxrwxrwx"); // (read, write, execute)
         
         // right for file
         java.nio.file.Files.setPosixFilePermissions(targetPath, perms);
