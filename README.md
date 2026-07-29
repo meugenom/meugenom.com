@@ -1,6 +1,6 @@
 # Full-Stack Content Platform & Web Framework
 
-![Version](https://img.shields.io/badge/version-0.7.0-blue.svg?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-0.8.1-blue.svg?style=for-the-badge)
 [![Website Status](https://img.shields.io/badge/My_Site-Live-brightgreen?style=for-the-badge&logo=google-chrome)](https://meugenom.com)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007acc.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
