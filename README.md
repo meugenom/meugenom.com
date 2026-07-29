@@ -108,7 +108,8 @@ const Config = {
     categoryId: "DIC_kwDOXXXXXX",
   },
 
-  localHost: "http://localhost:8080/graphql/",
+  localHost: "/graphql",
+  
 };
 
 export default Config;

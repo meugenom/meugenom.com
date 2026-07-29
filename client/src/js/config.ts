@@ -44,7 +44,6 @@ const Config = {
     "Dec",
   ],
 
-  //localHost: "http://localhost:8080/graphql/",
   localHost: "/graphql",
 
   languageToSVG: {
