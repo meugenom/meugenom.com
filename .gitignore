@@ -17,7 +17,6 @@ client/temp
 client/*.log
 .idea/*
 .vscode/*
-client/.env
 nginx/
 client/coverage
 client/package-lock.json
