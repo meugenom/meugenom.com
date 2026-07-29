@@ -4,22 +4,22 @@ server/.settings
 server/.factorypath
 server/target
 server/.env
+
 client/dist
 client/build
 client/node_modules/
-node_modules/
+
 client/.vscode
 client/.idea
 client/.git
-client/.gitignore
 client/node
 client/temp
 client/*.log
 .idea/*
 .vscode/*
-nginx/
 client/coverage
 client/package-lock.json
 client/yarn.lock
 private
+content/images/projects
 

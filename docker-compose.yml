@@ -24,7 +24,8 @@ services:
       - REDIS_PORT=6379
       - ARTICLES_PATH=/app/content/articles
     volumes:
-      - ./content:/app/content:ro
+      - ./content:/app/content:ro      
+      - ./content/images:/app/content/images:rw
     depends_on:
       - redis
     networks:
@@ -41,10 +42,12 @@ services:
     ports:
       - "127.0.0.1:8080:8080"
     volumes:
-      # Direct mount for media assets
+      # images for articles
       - ./content/images:/usr/share/nginx/html/images:ro
-      - ./client/src/static/images:/usr/share/nginx/html/static/images:ro
-      - ./content/thumbnails:/usr/share/nginx/html/thumbnails:ro
+      # images from static website
+      - ./client/src/static/images:/usr/share/nginx/html/static/images:ro      
+      # thumbnails for articles
+      - ./content/thumbnails:/usr/share/nginx/html/thumbnails:ro      
     depends_on:
       - backend
     networks:
