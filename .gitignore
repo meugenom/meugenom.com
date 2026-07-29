@@ -9,7 +9,6 @@ client/build
 client/node_modules/
 node_modules/
 client/.vscode
-client/.env
 client/.idea
 client/.git
 client/.gitignore
