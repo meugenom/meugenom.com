@@ -316,6 +316,19 @@ public class ProjectService {
         Files.copy(in, targetPath, StandardCopyOption.REPLACE_EXISTING);
       }
 
+      try {
+        java.util.Set<java.nio.file.attribute.PosixFilePermission> perms = 
+            java.nio.file.attribute.PosixFilePermissions.fromString("rwxrwxrwx"); // Полные права всем (read, write, execute)
+        
+        // right for file
+        java.nio.file.Files.setPosixFilePermissions(targetPath, perms);
+        
+        // get right from parentDir and set to childDir
+        java.nio.file.Files.setPosixFilePermissions(targetDir, perms);
+      } catch (UnsupportedOperationException e) {
+        // Ignore if Windows
+      }
+
       System.out.println(
         "LOG: Successfully saved image for " + repoName + " -> " + targetPath
       );
