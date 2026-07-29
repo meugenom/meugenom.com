@@ -1,1 +1,2 @@
-module.exports = 'test-file-stub';
+// Stub string for HTML imports
+module.exports = '';
