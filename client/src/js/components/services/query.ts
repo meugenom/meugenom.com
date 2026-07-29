@@ -5,10 +5,6 @@ const Environment = {
   host: Config.localHost,
 };
 
-if (process.env.NODE_ENV === "production") {
-  Environment.host = process.env.GRAPHQL_HOST;
-}
-
 const Query = {
   lastArticlesList: {
     host: Environment.host,
