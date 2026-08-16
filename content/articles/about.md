@@ -19,7 +19,7 @@ This page is a quick guide to help you configure your site and start publishing 
 
 To customize this platform, update two main configuration files:
 
-### 1.1 Frontend Settings (`client/src/js/config.ts`)
+### 1.1 Frontend Settings
 
 Open `client/src/js/config.ts` and replace the default values with your information
 
@@ -47,7 +47,7 @@ Open `client/src/js/config.ts` and replace the default values with your informat
   }
 ```
 
-### 1.2 Backend Settings (`server/.env`)
+### 1.2 Backend Settings
 
 Create or open the `.env` file inside the `server/` directory. The backend uses this file to connect to GitHub and load your repositories onto the **Projects** page:
 
@@ -73,10 +73,10 @@ All articles are stored as `.md` files in this directory:
 
 Whenever you add or update a file, the backend automatically updates the Redis cache and makes your changes live immediately.
 
-### 2.1 Useful Resources:
+### 2.1 Useful Resources
 
-[x] **Online Formatting Demo:** Test Markdown syntax in real time on the [Markdown TypeScript Compiler Demo](https://meugenom.github.io/markdown-ts-compiler/).
-[x] **Local Syntax Guide:** Check out supported code highlighting and math formulas at [How to Write Text](http://localhost:8080/article/how-to-write-text).
+- Test Markdown syntax in real time on the [Markdown TypeScript Compiler Demo](https://meugenom.github.io/markdown-ts-compiler/).
+- Check out supported code highlighting and math formulas at [How to Write Text](http://localhost:8080/article/how-to-write-text).
 
 ## 3. How to Change This Page
 
