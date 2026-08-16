@@ -18,8 +18,6 @@ client/*.log
 .idea/*
 .vscode/*
 client/coverage
-client/package-lock.json
-client/yarn.lock
 private
 content/images/projects
 
