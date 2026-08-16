@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Copy dependency manifests
 COPY package.json yarn.lock* ./
-RUN yarn install --frozen-lockfile || yarn install
+RUN yarn install --frozen-lockfile
 
 
 # Copy source code and build production bundle (webpack.prod.js)
