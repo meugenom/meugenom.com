@@ -146,8 +146,8 @@ module.exports = {
         { from: 'src/static/fonts', to: './fonts' },
         { from: 'src/static/favicon', to: './favicon' },
         { from: 'src/static/images', to: './images' },        
-        { from: './robots.txt', to: './robots.txt' },
-        { from: './sitemap.xml', to: './sitemap.xml' }
+        //{ from: './robots.txt', to: './robots.txt' },
+        //{ from: './sitemap.xml', to: './sitemap.xml' }
       ],
       options: {
         concurrency: 100
