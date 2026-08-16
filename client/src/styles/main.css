@@ -17,6 +17,10 @@
 @import './base/social-links.css';
 
 
+body {
+  @apply font-sans antialiased text-slate-800 dark:text-slate-200;
+}
+
 .no-inherit-font-size {
   font-family: revert;
 }

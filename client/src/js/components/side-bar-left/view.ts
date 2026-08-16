@@ -19,7 +19,8 @@ class View {
     headings.forEach(h => {
       const indent = (h.level - 1) * 12;
 
-      let itemClass = 'toc-link block cursor-pointer font-mono leading-snug transition-colors duration-150 hover:text-blue-500';
+      //let itemClass = 'toc-link block cursor-pointer font-mono leading-snug transition-colors duration-150 hover:text-blue-500';
+      let itemClass = 'toc-link block cursor-pointer font-sans leading-snug transition-colors duration-150 hover:text-blue-500';
       if (h.level === 1) {
         itemClass += ' text-[15px] font-semibold py-1';
       } else if (h.level === 2) {
